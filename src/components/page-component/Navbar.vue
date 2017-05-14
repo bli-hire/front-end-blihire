@@ -11,7 +11,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li class=""><a href="#">Notification</a></li>
-          <li class=""><a href="#">Logout</a></li>
+          <li class=""><router-link to="/login">Login</router-link></li>
         </ul>
       </div>
     </nav>
