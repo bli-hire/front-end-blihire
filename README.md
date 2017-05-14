@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # y
 
 > Simple Web App SPA using Vue
@@ -19,3 +20,6 @@ npm run build --report
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+=======
+# front-end-blihire
+>>>>>>> ec3b3ee933685d6a4b284ea472769d7caec2d488
