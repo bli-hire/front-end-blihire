@@ -1,14 +1,7 @@
 <template>
   <div id="app">
 
-    <NavbarTop></NavbarTop>
-
-    <div class="navbar navbar-inverse navbar-fixed-left">
-      <ul class="nav navbar-nav">
-        <li><router-link :to="'/'+statePage+'/technology'">Technology</router-link></li>
-        <li><router-link :to="'/'+statePage+'/hrd'">Human Resource</router-link></li>
-      </ul>
-    </div>
+    <navbar></navbar>
     <!-- <img src="./assets/logo.png"> -->
     <router-view></router-view>
   </div>
@@ -16,27 +9,13 @@
 
 <script>
 
-import NavbarTop from './components/page-component/NavbarTop'
+import Navbar from './components/page-component/Navbar'
 
 export default {
   name: 'app',
-  data () {
-    return {
-      statePage: 'fpk'
-    }
-  },
-  methods: {
-    chStatePageToMpp () {
-      this.statePage = 'mpp'
-      alert(this.statePage)
-    },
-    chStatePageToFpk () {
-      this.statePage = 'fpk'
-      console.log(this.statePage)
-    }
-  },
+
   components: {
-    NavbarTop
+    Navbar
   }
 }
 </script>
