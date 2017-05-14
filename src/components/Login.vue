@@ -1,20 +1,47 @@
 <template>
   <div id="Login" class="container">
-    <form name="loginForm" class="form-signin">
+    <!-- <form name="loginForm" class="form-signin" method="post"> -->
       <h3 class="form-signin-heading">Login</h3>
-          <input type="email" class="form-control" name="internalEmail" placeholder="email" required/>
-          <br/>
-          <span class="error">Required!</span>
-    		  <span class="error">Not valid email!</span>
-    		  <br/>
-          <input type="password" class="form-control" name="internalPassword" placeholder="password"/>
-          <button type="Login" class="btn btn-primary btn-block">Login</button>
-    </form>
+      <div class="form-group">
+        <label for="author-name" class="form-control-label">Author:</label>
+        <input type="email" class="form-control" name="internalEmail" id="author-name" v-model="email" required placeholder="email"/>
+      </div>
+
+      <div class="form-group">
+        <input type="password" class="form-control" name="internalPassword" placeholder="password" id="message-text" v-model="password"/>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" v-on:click="login()">Login</button>
+      </div>
+
+      <!-- <button type="Login" class="btn btn-primary btn-block">Login</button> -->
+    <!-- </form> -->
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Login'
+  name: 'Login',
+  data () {
+    return {
+      message: 'login',
+      email: '',
+      password: '',
+      user: null
+    }
+  },
+  methods: {
+    login () {
+      var self = this
+      self.$http.post('http://localhost:8080/users/login', {
+        email: self.email,
+        password: self.password }, (json) => {
+          this.user = json
+          if (this.user.id != null) {
+            this.$router.push('/')
+          }
+        })
+    }
+  }
 }
 </script>

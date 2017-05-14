@@ -4,9 +4,11 @@ import Vue from 'vue'
 // import Login from './components/Login'
 // import router from './router'
 import Index from './Index'
+import VueResource from 'vue-resource'
 
 import router from './router'
 
+Vue.use(VueResource)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
