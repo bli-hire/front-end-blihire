@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Technology from '@/components/Technology'
 import HRD from '@/components/HumanResource'
+import Fpk from '@/components/Fpk'
+import Mpp from '@/components/Mpp'
 
 Vue.use(Router)
 
@@ -15,14 +17,25 @@ export default new Router({
       component: Hello
     },
     {
-      path: '/fpk/Technology',
-      name: 'Technology',
-      component: Technology
+      path: '/fpk',
+      component: Fpk,
+      children: [
+        {
+          path: 'technology',
+          component: Technology
+        },
+        {
+          path: 'hrd',
+          component: HRD
+        }
+      ]
     },
     {
-      path: '/fpk/hrd',
-      name: 'Hello',
-      component: HRD
+      path: '/mpp',
+      component: Mpp,
+      children: [
+
+      ]
     }
 
   ]

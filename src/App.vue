@@ -1,20 +1,8 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">BliHire</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li v-on:click="chStatePageToFpk()"><router-link to="/fpk">FPK</router-link></li>
-          <li v-on:click="statePage = 'mpp'"><router-link to="/mpp">MPP</router-link></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li class=""><a href="#">Notification</a></li>
-          <li class=""><a href="#">Logout</a></li>
-        </ul>
-      </div>
-    </nav>
+
+    <NavbarTop></NavbarTop>
+
     <div class="navbar navbar-inverse navbar-fixed-left">
       <ul class="nav navbar-nav">
         <li><router-link :to="'/'+statePage+'/technology'">Technology</router-link></li>
@@ -27,6 +15,9 @@
 </template>
 
 <script>
+
+import NavbarTop from './components/page-component/NavbarTop'
+
 export default {
   name: 'app',
   data () {
@@ -43,6 +34,9 @@ export default {
       this.statePage = 'fpk'
       console.log(this.statePage)
     }
+  },
+  components: {
+    NavbarTop
   }
 }
 </script>
