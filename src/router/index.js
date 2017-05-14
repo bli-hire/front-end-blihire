@@ -1,10 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Login from '@/components/Login'
+import App from '@/App'
 import Hello from '@/components/Hello'
 import Technology from '@/components/Technology'
 import HRD from '@/components/HumanResource'
 import Fpk from '@/components/Fpk'
 import Mpp from '@/components/Mpp'
+// import Technology from '@/components/Technology'
+// import HRD from '@/components/HumanResource'
+// import Fpk from '@/components/Fpk'
+// import Mpp from '@/components/Mpp'
 
 Vue.use(Router)
 
@@ -13,29 +19,40 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
-    },
-    {
-      path: '/fpk',
-      component: Fpk,
+      name: 'App',
+      component: App,
       children: [
         {
-          path: 'technology',
-          component: Technology
+          path: 'fpk',
+          component: Hello
         },
         {
-          path: 'hrd',
-          component: HRD
+          path: '/fpk',
+          component: Fpk,
+          children: [
+            {
+              path: 'technology',
+              component: Technology
+            },
+            {
+              path: 'hrd',
+              component: HRD
+            }
+          ]
+        },
+        {
+          path: '/mpp',
+          component: Mpp,
+          children: [
+
+          ]
         }
       ]
     },
     {
-      path: '/mpp',
-      component: Mpp,
-      children: [
-
-      ]
+      path: '/login',
+      name: 'Login',
+      component: Login
     }
   ]
 })
