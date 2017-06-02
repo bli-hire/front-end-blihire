@@ -3,23 +3,39 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
           <a class="navbar-brand" href="#">BliHire</a>
         </div>
-        <ul class="nav navbar-nav">
-          <li v-on:click="chStatePageToFpk()"><router-link to="/fpk">FPK</router-link></li>
-          <li v-on:click="statePage = 'mpp'"><router-link to="/mpp">MPP</router-link></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li class=""><a href="#">Notification</a></li>
-          <li class=""><router-link to="/login">Login</router-link></li>
-        </ul>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li v-on:click="chStatePageToFpk()"><router-link to="/fpk">FPK</router-link></li>
+            <li v-on:click="chStatePageToMpp()"><router-link to="/mpp">MPP</router-link></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><router-link to="/notification"><span class="glyphicon glyphicon-comment"> Notification</span></router-link></li>
+            <li><router-link to="/login"><span class="glyphicon glyphicon-log-out"> Logout</span></router-link></li>
+          </ul>
+        </div>
       </div>
     </nav>
-    <div class="navbar navbar-inverse navbar-fixed-left">
-      <ul class="nav navbar-nav">
-        <li><router-link :to="'/'+statePage+'/technology'">Technology</router-link></li>
-        <li><router-link :to="'/'+statePage+'/hrd'">Human Resource</router-link></li>
-      </ul>
+      <div class="collapse navbar-collapse" id="sideNavbar" v-bind:style="navbarLeft">
+      <div class="navbar navbar-inverse navbar-fixed-left">
+        <ul class="nav navbar-nav">
+          <li><router-link :to="'/'+statePage+'/human-resource'">Human Resource</router-link></li>
+          <li><router-link :to="'/'+statePage+'/marketing'">Marketing</router-link></li>
+          <li><router-link :to="'/'+statePage+'/trade-partnership'">Trade Partnership</router-link></li>
+          <li><router-link :to="'/'+statePage+'/operation'">Operation</router-link></li>
+          <li><router-link :to="'/'+statePage+'/technology'">Technology</router-link></li>
+          <li><router-link :to="'/'+statePage+'/business-development'">Business Development</router-link></li>
+          <li><router-link :to="'/'+statePage+'/finance'">Finance</router-link></li>
+          <li><router-link :to="'/'+statePage+'/project-management'">Project Management</router-link></li>
+          <li><router-link :to="'/'+statePage+'/product-management'">Product Management</router-link></li>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -30,13 +46,16 @@ export default {
   name: 'navbar',
   data () {
     return {
+      navbarLeft: {
+        marginLeft: '-15px'
+      },
       statePage: 'fpk'
     }
   },
   methods: {
     chStatePageToMpp () {
       this.statePage = 'mpp'
-      alert(this.statePage)
+      console.log(this.statePage)
     },
     chStatePageToFpk () {
       this.statePage = 'fpk'
@@ -45,3 +64,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+#myNavbar li:hover {
+  background-color: #e5e5ff;
+}
+
+.navbar-inverse {
+}
+</style>
