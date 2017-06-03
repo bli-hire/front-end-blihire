@@ -1,9 +1,14 @@
 <template>
   <div id="Navbar">
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default top-navbar navbar-static-top">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sideNavbar">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -22,7 +27,7 @@
         </div>
       </div>
     </nav>
-      <div class="collapse navbar-collapse" id="sideNavbar" v-bind:style="navbarLeft">
+      <div class="collapse width navbar-collapse" id="sideNavbar" v-bind:style="navbarLeft">
       <div class="navbar navbar-inverse navbar-fixed-left">
         <ul class="nav navbar-nav">
           <li><router-link :to="'/'+statePage+'/human-resource'">Human Resource</router-link></li>
@@ -66,10 +71,22 @@ export default {
 </script>
 
 <style scoped>
+
 #myNavbar li:hover {
   background-color: #e5e5ff;
 }
 
-.navbar-inverse {
+.top-navbar {
+  background-color: white;
 }
+
+.navbar-brand {
+  padding-left: 45px;
+  padding-right: 42px;
+}
+
+.active {
+  background-color: #e5e5ff;
+}
+
 </style>
