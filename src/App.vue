@@ -24,7 +24,7 @@ export default {
 
 <style>
 body {
-  background-color: #e9e9e9;
+  background-color: #e5e5ff;
 }
 
 #app {
@@ -34,7 +34,7 @@ body {
   text-align: center;
   color: #2c3e50;
   margin-top: 0px;
-  background-color: #e9e9e9;
+  background-color: #e5e5ff;
 }
 
 .navbar-fixed-left {
@@ -68,6 +68,7 @@ body {
 .navbar-inverse .navbar-nav>li>a:hover{
   color: black;
   background-color: #e5e5ff;
+  /*background-color: #e9e9e9;*/
 }
 
 </style>

@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Login from '@/components/Login'
 import App from '@/App'
 import Technology from '@/components/Technology'
-import HRD from '@/components/HumanResource'
 import Fpk from '@/components/Fpk'
 import Mpp from '@/components/Mpp'
 
@@ -25,12 +24,40 @@ export default new Router({
           component: Fpk,
           children: [
             {
+              path: 'human-resource',
+              component: Technology
+            },
+            {
+              path: 'marketing',
+              component: Technology
+            },
+            {
+              path: 'trade-partnership',
+              component: Technology
+            },
+            {
+              path: 'operation',
+              component: Technology
+            },
+            {
               path: 'technology',
               component: Technology
             },
             {
-              path: 'hrd',
-              component: HRD
+              path: 'business-development',
+              component: Technology
+            },
+            {
+              path: 'finance',
+              component: Technology
+            },
+            {
+              path: 'project-management',
+              component: Technology
+            },
+            {
+              path: 'product-management',
+              component: Technology
             }
           ]
         },
@@ -38,7 +65,42 @@ export default new Router({
           path: '/mpp',
           component: Mpp,
           children: [
-
+            {
+              path: 'human-resource',
+              component: Technology
+            },
+            {
+              path: 'marketing',
+              component: Technology
+            },
+            {
+              path: 'trade-partnership',
+              component: Technology
+            },
+            {
+              path: 'operation',
+              component: Technology
+            },
+            {
+              path: 'technology',
+              component: Technology
+            },
+            {
+              path: 'business-development',
+              component: Technology
+            },
+            {
+              path: 'finance',
+              component: Technology
+            },
+            {
+              path: 'project-management',
+              component: Technology
+            },
+            {
+              path: 'product-management',
+              component: Technology
+            }
           ]
         }
       ]
