@@ -21,9 +21,9 @@
             <li v-on:click="chStatePageToMpp(); setActive('mpp'); setActiveSide('');" :class="{active: isActive('mpp')}"><router-link to="/mpp">MPP</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li :class="{active: isActive('notification')}"><router-link to="/notification"><span class="glyphicon glyphicon-comment"> Notification</span></router-link></li>
-            <li :class="{active: isActive('login')}"><router-link to="/login"><span class="glyphicon glyphicon-user"> Username</span></router-link></li>
-            <li :class="{active: isActive('logout')}"><router-link to="/logout"><span class="glyphicon glyphicon-log-out"></span></router-link></li>
+            <li :class="{active: isActive('notification')}"><router-link to=""><span class="glyphicon glyphicon-comment"> Notification</span></router-link></li>
+            <li :class="{active: isActive('user')}"><router-link to=""><span class="glyphicon glyphicon-user"> Username</span></router-link></li>
+            <li :class="{active: isActive('login')}"><router-link to="/login"><span class="glyphicon glyphicon-log-out"></span></router-link></li>
           </ul>
         </div>
       </div>
