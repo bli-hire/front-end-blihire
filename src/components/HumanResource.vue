@@ -1,6 +1,5 @@
 <template>
   <div class="hrd">
-    <h1>{{ msg }}</h1>
   </div>
 </template>
 
@@ -34,4 +33,5 @@ li {
 a {
   color: #42b983;
 }
+
 </style>

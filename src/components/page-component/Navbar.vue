@@ -1,6 +1,6 @@
 <template>
   <div id="Navbar">
-    <nav class="navbar navbar-default top-navbar navbar-static-top">
+    <nav class="navbar navbar-default top-navbar navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -104,7 +104,6 @@ export default {
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
   /*turn off bootstrap*/
   background-color: white;
-
   border-bottom: 3px solid #3c8dbc;
   color: black;
 }
@@ -112,7 +111,6 @@ export default {
 .navbar-inverse .navbar-nav>.active>a {
   /*turn off bootstrap*/
   background-color: #4c99c6;
-
   border-left: 3px solid white;
   color: white;
 }

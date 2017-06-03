@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Login from '@/components/Login'
 import App from '@/App'
 import Technology from '@/components/Technology'
+import HRD from '@/components/HumanResource'
 import Fpk from '@/components/Fpk'
 import Mpp from '@/components/Mpp'
 
@@ -17,15 +18,15 @@ export default new Router({
       component: App,
       children: [
         {
-          path: 'fpk'
+          path: 'fpk',
+          component: Fpk
         },
         {
           path: '/fpk',
-          component: Fpk,
           children: [
             {
               path: 'human-resource',
-              component: Technology
+              component: HRD
             },
             {
               path: 'marketing',

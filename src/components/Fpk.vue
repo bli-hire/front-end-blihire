@@ -1,6 +1,7 @@
 <template>
-  <div class="Fpk">
-    <h1>{{ msg }}</h1>
+  <div class="fpk">
+    <div class="panel-dashboard">
+    </div>
     <router-view></router-view>
   </div>
 </template>
@@ -34,5 +35,23 @@ li {
 
 a {
   color: #42b983;
+}
+
+.fpk {
+  margin-top: 62px;
+  margin-left: 150px;
+  overflow-y: scroll;
+}
+
+.panel-dashboard {
+  width: 800px;
+  height: 1200px;
+  /*background-color: #3c8dbc;*/
+  background-color: white;
+  position:absolute;
+  margin: auto;
+  max-width:100%;
+  max-height:100%;
+  box-shadow: 1px 1px 1px #888888;
 }
 </style>

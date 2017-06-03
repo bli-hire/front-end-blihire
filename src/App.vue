@@ -35,16 +35,20 @@ body {
   color: #2c3e50;
   margin-top: 0px;
   background-color: #e5e5ff;
+  overflow: auto;
 }
 
 .navbar-fixed-left {
-  margin-top: -22px;
+  margin-top: 0px;
+  padding-top: 50px;
   width: 140px;
   position: fixed;
-  border-radius: 0;
   height: 100%;
+  border-radius: 0;
   background-color: #3c8dbc;
   border-color: #3c8dbc;
+  max-width:100%;
+  max-height:100%;
 }
 
 .navbar-fixed-left .navbar-nav > li {
