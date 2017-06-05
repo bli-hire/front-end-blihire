@@ -30,12 +30,32 @@ export default {
       user: null
     }
   },
+  ready: function () {
+    // this.$session.start()
+    // if (window.sessionStorage.getItem('user')) {
+    //   this.$router.push('/')
+    // }
+    if (this.$session.get('user')) {
+      this.$router.push('/')
+    }
+  },
+  beforeMount () {
+    if (window.sessionStorage.getItem('user') != null) {
+      this.$router.push('/')
+    }
+  },
   methods: {
     login () {
       var self = this
       self.$http.post('http://localhost:8080/users/login', {
         email: self.email,
         password: self.password }, (json) => {
+          // this.$session.start()
+          // this.$session.clear()
+          // this.$session.destroy()
+
+          // window.sessionStorage.setItem('user', json)
+          window.sessionStorage.setItem('user', json)
           this.user = json
           if (this.user.id != null) {
             this.$router.push('/')

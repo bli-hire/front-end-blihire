@@ -12,6 +12,10 @@
         <ul class="nav navbar-nav navbar-right">
           <li class=""><a href="#">Notification</a></li>
           <li class=""><router-link to="/login">Login</router-link></li>
+          <li class="" v-if="check() != null">
+            <router-link to="/login"> <span v-on:click="logout ()">Logout</span></router-link>
+
+          </li>
         </ul>
       </div>
     </nav>
@@ -41,6 +45,12 @@ export default {
     chStatePageToFpk () {
       this.statePage = 'fpk'
       console.log(this.statePage)
+    },
+    logout () {
+      window.sessionStorage.clear()
+    },
+    check: function () {
+      return window.sessionStorage.getItem('user')
     }
   }
 }

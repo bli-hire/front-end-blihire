@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
 import App from '@/App'
-import Hello from '@/components/Hello'
+// import Hello from '@/components/Hello'
 import Technology from '@/components/Technology'
 import HRD from '@/components/HumanResource'
 import Fpk from '@/components/Fpk'
@@ -22,10 +22,6 @@ export default new Router({
       name: 'App',
       component: App,
       children: [
-        {
-          path: 'fpk',
-          component: Hello
-        },
         {
           path: '/fpk',
           component: Fpk,

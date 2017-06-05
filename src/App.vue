@@ -16,6 +16,11 @@ export default {
 
   components: {
     Navbar
+  },
+  beforeMount () {
+    if (window.sessionStorage.getItem('user') == null) {
+      this.$router.push('/login')
+    }
   }
 }
 </script>
