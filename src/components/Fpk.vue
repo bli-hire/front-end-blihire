@@ -1,14 +1,21 @@
 <template>
   <div class="fpk">
     <div class="panel-dashboard">
+      <h3>Report</h3>
+      <report-chart></report-chart>
     </div>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import ReportChart from './page-component/ReportChart'
+
 export default {
   name: 'Fpk',
+  components: {
+    ReportChart
+  },
   data () {
     return {
       msg: 'Welcome to FPK dashboard'
