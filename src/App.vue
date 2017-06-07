@@ -74,5 +74,7 @@ body {
   background-color: #e5e5ff;
   /*background-color: #e9e9e9;*/
 }
-
+.content{
+  margin-top: 63.2px;
+}
 </style>

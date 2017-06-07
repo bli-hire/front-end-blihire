@@ -11,8 +11,8 @@ export default {
 
 <style scoped>
 .box-content {
-    width: 1000px;
-    height: 400px;
+    width: 1200px;
+    height: 140px;
     background-color: white;
     position:absolute;
     margin: auto;
@@ -20,5 +20,6 @@ export default {
     max-height:100%;
     box-shadow: 1px 1px 1px #888888;
     display: table;
+    margin-left: 150px;
   }
 </style>

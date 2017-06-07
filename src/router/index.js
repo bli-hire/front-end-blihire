@@ -98,46 +98,83 @@ export default new Router({
         // },
         {
           path: '/mpp',
-          component: Mpp,
-          children: [
-            {
-              path: 'human-resource',
-              component: HRD
-            },
-            {
-              path: 'marketing',
-              component: Technology
-            },
-            {
-              path: 'trade-partnership',
-              component: Technology
-            },
-            {
-              path: 'operation',
-              component: Technology
-            },
-            {
-              path: 'technology',
-              component: Technology
-            },
-            {
-              path: 'business-development',
-              component: Technology
-            },
-            {
-              path: 'finance',
-              component: Technology
-            },
-            {
-              path: 'project-management',
-              component: Technology
-            },
-            {
-              path: 'product-management',
-              component: Technology
-            }
-          ]
+          component: Mpp
+        },
+        {
+          path: '/mpp/human-resource',
+          component: HRD
+        },
+        {
+          path: '/mpp/marketing',
+          component: Technology
+        },
+        {
+          path: '/mpp/trade-partnership',
+          component: Technology
+        },
+        {
+          path: '/mpp/operation',
+          component: Technology
+        },
+        {
+          path: '/mpp/technology',
+          component: Technology
+        },
+        {
+          path: '/mpp/business-development',
+          component: Technology
+        },
+        {
+          path: '/mpp/finance',
+          component: Technology
+        },
+        {
+          path: '/mpp/project-management',
+          component: Technology
+        },
+        {
+          path: '/mpp/product-management',
+          component: Technology
         }
+          // children: [
+            // {
+            //   path: 'human-resource',
+            //   component: HRD
+            // },
+            // {
+            //   path: 'marketing',
+            //   component: Technology
+            // },
+            // {
+            //   path: 'trade-partnership',
+            //   component: Technology
+            // },
+            // {
+            //   path: 'operation',
+            //   component: Technology
+            // },
+            // {
+            //   path: 'technology',
+            //   component: Technology
+            // },
+            // {
+            //   path: 'business-development',
+            //   component: Technology
+            // },
+            // {
+            //   path: 'finance',
+            //   component: Technology
+            // },
+            // {
+            //   path: 'project-management',
+            //   component: Technology
+            // },
+            // {
+            //   path: 'product-management',
+            //   component: Technology
+            // }
+          // ]
+        // }
       ]
     },
     {

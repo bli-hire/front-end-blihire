@@ -1,5 +1,5 @@
 <template>
-  <div class="HRD">
+  <div class="content">
     <box-component></box-component>
   </div>
 </template>
@@ -11,7 +11,7 @@ export default {
   components: {
     BoxComponent
   },
-  name: 'HRD',
+  name: 'project-management',
   data () {
     return {
       msg: 'Menu Divisi HRD'
@@ -38,10 +38,6 @@ li {
 
 a {
   color: #42b983;
-}
-
-.HRD{
-  margin-top: 63.2px;
 }
 
 </style>
