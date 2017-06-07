@@ -1,25 +1,33 @@
 <template>
-  <div class="box-content">
+  <div col-md-12>
+    <div class="box-content">
+      <h3>{{title}}</h3>
+      <h4>{{message}}</h4>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'box'
+  name: 'box',
+  data () {
+    return {
+      title: '',
+      message: ''
+    }
+  }
 }
 </script>
 
 <style scoped>
 .box-content {
-    width: 1200px;
-    height: 140px;
     background-color: white;
-    position:absolute;
-    margin: auto;
-    max-width:100%;
-    max-height:100%;
+    height: 120px;
+    position: relative;
+    margin:0 auto;
     box-shadow: 1px 1px 1px #888888;
-    display: table;
     margin-left: 150px;
+    margin-right: 10px;
+    margin-bottom: 10px;
   }
 </style>
