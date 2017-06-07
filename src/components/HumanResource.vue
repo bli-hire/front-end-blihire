@@ -1,11 +1,17 @@
 <template>
-  <div class="hrd">
+  <div class="HRD">
+    <h2>wdokaodwkodkaodkwo</h2>
   </div>
 </template>
 
 <script>
+import BoxComponent from '@/components/page-component/BoxComponent'
+
 export default {
-  name: 'hrd',
+  components: {
+    BoxComponent
+  },
+  name: 'HRD',
   data () {
     return {
       msg: 'Menu Divisi HRD'
@@ -32,6 +38,10 @@ li {
 
 a {
   color: #42b983;
+}
+
+.HRD{
+  margin-top: 90px;
 }
 
 </style>

@@ -34,4 +34,8 @@ li {
 a {
   color: #42b983;
 }
+
+.Technology {
+  margin-top:100px;
+}
 </style>

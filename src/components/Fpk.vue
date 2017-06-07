@@ -1,5 +1,5 @@
 <template>
-  <div class="fpk">
+  <div class="Fpk">
     <div class="panel-dashboard">
       <h3>Report</h3>
       <report-chart></report-chart>
@@ -44,7 +44,7 @@ a {
   color: #42b983;
 }
 
-.fpk {
+.Fpk {
   margin-top: 62px;
   margin-left: 150px;
   overflow-y: scroll;

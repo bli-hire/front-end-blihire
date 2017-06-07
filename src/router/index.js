@@ -18,57 +18,91 @@ export default new Router({
       component: App,
       children: [
         {
-          path: 'fpk',
+          path: '/fpk',
           component: Fpk
         },
         {
-          path: '/fpk',
-          children: [
-            {
-              path: 'human-resource',
-              component: HRD
-            },
-            {
-              path: 'marketing',
-              component: Technology
-            },
-            {
-              path: 'trade-partnership',
-              component: Technology
-            },
-            {
-              path: 'operation',
-              component: Technology
-            },
-            {
-              path: 'technology',
-              component: Technology
-            },
-            {
-              path: 'business-development',
-              component: Technology
-            },
-            {
-              path: 'finance',
-              component: Technology
-            },
-            {
-              path: 'project-management',
-              component: Technology
-            },
-            {
-              path: 'product-management',
-              component: Technology
-            }
-          ]
+          path: '/fpk/human-resource',
+          component: HRD
         },
+        {
+          path: '/fpk/marketing',
+          component: Fpk
+        },
+        {
+          path: '/fpk/trade-partnership',
+          component: Technology
+        },
+        {
+          path: '/fpk/operation',
+          component: Technology
+        },
+        {
+          path: '/fpk/technology',
+          component: Technology
+        },
+        {
+          path: '/fpk/business-development',
+          component: Technology
+        },
+        {
+          path: '/fpk/finance',
+          component: Technology
+        },
+        {
+          path: '/fpk/project-management',
+          component: Technology
+        },
+        {
+          path: '/fpk/product-management',
+          component: Technology
+        },
+          // children: [
+          //   {
+          //     path: 'human-resource',
+          //     component: HRD
+          //   },
+            // {
+            //   path: 'marketing',
+            //   component: Fpk
+            // },
+            // {
+            //   path: 'trade-partnership',
+            //   component: Technology
+            // },
+            // {
+            //   path: 'operation',
+            //   component: Technology
+            // },
+            // {
+            //   path: 'technology',
+            //   component: Technology
+            // },
+            // {
+            //   path: 'business-development',
+            //   component: Technology
+            // },
+            // {
+            //   path: 'finance',
+            //   component: Technology
+            // },
+            // {
+            //   path: 'project-management',
+            //   component: Technology
+            // },
+            // {
+            //   path: 'product-management',
+            //   component: Technology
+            // }
+          // ]
+        // },
         {
           path: '/mpp',
           component: Mpp,
           children: [
             {
               path: 'human-resource',
-              component: Technology
+              component: HRD
             },
             {
               path: 'marketing',
