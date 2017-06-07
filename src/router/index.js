@@ -4,6 +4,13 @@ import Login from '@/components/Login'
 import App from '@/App'
 import Technology from '@/components/Technology'
 import HRD from '@/components/HumanResource'
+import Marketing from '@/components/Marketing'
+import TradePartnership from '@/components/TradePartnership'
+import Operation from '@/components/Operation'
+import BusinessDevelopment from '@/components/BusinessDevelopment'
+import Finance from '@/components/Finance'
+import ProjectManagement from '@/components/ProjectManagement'
+import ProductManagement from '@/components/ProductManagement'
 import Fpk from '@/components/Fpk'
 import Mpp from '@/components/Mpp'
 
@@ -27,15 +34,15 @@ export default new Router({
         },
         {
           path: '/fpk/marketing',
-          component: Fpk
+          component: Marketing
         },
         {
           path: '/fpk/trade-partnership',
-          component: Technology
+          component: TradePartnership
         },
         {
           path: '/fpk/operation',
-          component: Technology
+          component: Operation
         },
         {
           path: '/fpk/technology',
@@ -43,19 +50,19 @@ export default new Router({
         },
         {
           path: '/fpk/business-development',
-          component: Technology
+          component: BusinessDevelopment
         },
         {
           path: '/fpk/finance',
-          component: Technology
+          component: Finance
         },
         {
           path: '/fpk/project-management',
-          component: Technology
+          component: ProjectManagement
         },
         {
           path: '/fpk/product-management',
-          component: Technology
+          component: ProductManagement
         },
           // children: [
           //   {
@@ -106,15 +113,15 @@ export default new Router({
         },
         {
           path: '/mpp/marketing',
-          component: Technology
+          component: Marketing
         },
         {
           path: '/mpp/trade-partnership',
-          component: Technology
+          component: TradePartnership
         },
         {
           path: '/mpp/operation',
-          component: Technology
+          component: Operation
         },
         {
           path: '/mpp/technology',
@@ -122,19 +129,19 @@ export default new Router({
         },
         {
           path: '/mpp/business-development',
-          component: Technology
+          component: BusinessDevelopment
         },
         {
           path: '/mpp/finance',
-          component: Technology
+          component: Finance
         },
         {
           path: '/mpp/project-management',
-          component: Technology
+          component: ProjectManagement
         },
         {
           path: '/mpp/product-management',
-          component: Technology
+          component: ProductManagement
         }
           // children: [
             // {
