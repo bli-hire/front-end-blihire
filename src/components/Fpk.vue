@@ -1,6 +1,6 @@
 <template>
   <div class="Fpk">
-    <div class="panel-dashboard">
+    <div class="panel-dashboard col-md-5">
       <h3>Report</h3>
       <report-chart></report-chart>
     </div>
@@ -51,8 +51,6 @@ a {
 }
 
 .panel-dashboard {
-  width: 800px;
-  height: 1200px;
   /*background-color: #3c8dbc;*/
   background-color: white;
   position:absolute;

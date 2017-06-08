@@ -7,9 +7,9 @@ export default Bar.extend({
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
       datasets: [
         {
-          label: 'GitHub Commits',
+          label: 'Sample Chart',
           backgroundColor: '#f87979',
-          data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
+          data: [19, 20, 12, 21, 10, 20, 22, 23, 18, 10, 12, 11]
         }
       ]
     })
