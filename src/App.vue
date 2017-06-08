@@ -77,4 +77,15 @@ body {
 .content{
   margin-top: 63.2px;
 }
+.panel-dashboard {
+  /*background-color: #3c8dbc;*/
+  background-color: white;
+  position:absolute;
+  margin: auto;
+  max-width:100%;
+  max-height:100%;
+  box-shadow: 1px 1px 1px #888888;
+  /*untuk membuat div menyesuaikan content graphs */
+  display: table;
+}
 </style>
