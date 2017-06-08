@@ -30,7 +30,8 @@ export default new Router({
         },
         {
           path: '/fpk/human-resource',
-          component: HRD
+          component: HRD,
+          props: {content: 'FPK'}
         },
         {
           path: '/fpk/marketing',

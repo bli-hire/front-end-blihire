@@ -1,6 +1,6 @@
 <template>
   <div class="HRD">
-    <box-component></box-component>
+    <BoxComponent v-for="n in 10" v-bind:title="content" message="Please we need ..."></BoxComponent>
   </div>
 </template>
 
@@ -16,7 +16,8 @@ export default {
     return {
       msg: 'Menu Divisi HRD'
     }
-  }
+  },
+  props: ['content']
 }
 </script>
 

@@ -12,10 +12,9 @@ export default {
   name: 'box',
   data () {
     return {
-      title: '',
-      message: ''
     }
-  }
+  },
+  props: ['title', 'message']
 }
 </script>
 
