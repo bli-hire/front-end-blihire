@@ -3,7 +3,7 @@
     <div class="box-content">
       <h3>{{title}}</h3>
       <h4>{{message}}</h4>
-      <button class="btn btn-primary">Detail</button>
+      <button class="btn btn-primary"><router-link :to="'/mpp/detail'">detail</router-link></button>
     </div>
   </div>
 </template>
@@ -31,5 +31,6 @@ export default {
     text-align: left;
     padding-left: 10px;
     padding-bottom: 10px;
+    z-index: 5;
   }
 </style>

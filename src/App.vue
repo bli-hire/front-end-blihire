@@ -49,6 +49,7 @@ body {
   border-color: #3c8dbc;
   max-width:100%;
   max-height:100%;
+  z-index: 10;
 }
 
 .navbar-fixed-left .navbar-nav > li {
@@ -92,7 +93,7 @@ body {
 
 .detail-box {
   background-color: white;
-  position:absolute;
+  position: absolute;
   max-width:100%;
   max-height:100%;
   box-shadow: 1px 1px 1px #888888;
@@ -101,5 +102,7 @@ body {
   margin-left: 150px;
   margin-top: 62.5px;
   text-align: left;
+  padding-left: -100px;
+  overflow-x: scroll;
 }
 </style>

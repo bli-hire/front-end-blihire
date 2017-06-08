@@ -115,7 +115,7 @@ export default {
 
 .top-navbar {
   background-color: white;
-  z-index: 2;
+  z-index: 11;
 }
 
 .navbar-brand {
