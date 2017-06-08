@@ -21,7 +21,18 @@
             <li v-on:click="chStatePageToMpp(); setActive('mpp'); setActiveSide('');" :class="{active: isActive('mpp')}"><router-link to="/mpp">MPP</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li :class="{active: isActive('notification')}"><router-link to=""><span class="glyphicon glyphicon-comment"> Notification</span></router-link></li>
+            <li
+              class="dropdown-toggle"
+              data-toggle="dropdown"
+              :class="{active: isActive('notification'), open: isNotifActive('notification')}"
+              v-on:click="setNotifActive('notification')">
+              <router-link to="">
+                <span class="glyphicon glyphicon-comment"> Notification</span>
+              </router-link>
+              <ul class="dropdown-menu">
+                <li>No FPK request</li>
+              </ul>
+            </li>
             <li :class="{active: isActive('user')}"><router-link to=""><span class="glyphicon glyphicon-user"> Username</span></router-link></li>
             <li :class="{active: isActive('login')}"><router-link to="/login"><span class="glyphicon glyphicon-log-out"></span></router-link></li>
           </ul>
@@ -57,7 +68,8 @@ export default {
       },
       statePage: 'fpk',
       activeNavItem: 'fpk',
-      activeNavItemSide: ''
+      activeNavItemSide: '',
+      notifPopMenu: ''
     }
   },
   methods: {
@@ -80,6 +92,16 @@ export default {
     },
     setActiveSide (navItem) {
       this.activeNavItemSide = navItem
+    },
+    isNotifActive (notif) {
+      return this.notifPopMenu === notif
+    },
+    setNotifActive (notif) {
+      if (this.notifPopMenu !== notif) {
+        this.notifPopMenu = notif
+      } else {
+        this.notifPopMenu = ''
+      }
     }
   }
 }
@@ -115,4 +137,19 @@ export default {
   color: white;
 }
 
+/*Navigation notification popup*/
+.dropdown-menu{
+  position: absolute;
+  right: 0;
+  left: auto;
+  width: 280px;
+  padding: 0 0 0 0;
+  top: 100%;
+  box-shadow: 2px 2px 2px grey;
+  border-color: #eee;
+}
+
+.open>.dropdown-menu{
+  display: block;
+}
 </style>
