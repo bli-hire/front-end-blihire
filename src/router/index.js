@@ -13,6 +13,7 @@ import ProjectManagement from '@/components/ProjectManagement'
 import ProductManagement from '@/components/ProductManagement'
 import Fpk from '@/components/Fpk'
 import Mpp from '@/components/Mpp'
+import MppDetail from '@/components/page-component/MppDetail'
 
 Vue.use(Router)
 
@@ -26,6 +27,10 @@ export default new Router({
       children: [
         {
           path: '/fpk',
+          component: Fpk
+        },
+        {
+          path: '/fpk/detail',
           component: Fpk
         },
         {
@@ -109,8 +114,13 @@ export default new Router({
           component: Mpp
         },
         {
+          path: '/mpp/detail',
+          component: MppDetail
+        },
+        {
           path: '/mpp/human-resource',
-          component: HRD
+          component: HRD,
+          props: {content: 'Mpp'}
         },
         {
           path: '/mpp/marketing',
