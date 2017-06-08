@@ -30,7 +30,7 @@
                 <span class="glyphicon glyphicon-comment"> Notification</span>
               </router-link>
               <ul class="dropdown-menu">
-                <li>No FPK request</li>
+                <li><p>No FPK/MPP request</p></li>
               </ul>
             </li>
             <li :class="{active: isActive('user')}"><router-link to=""><span class="glyphicon glyphicon-user"> Username</span></router-link></li>
@@ -150,6 +150,12 @@ export default {
 }
 
 .open>.dropdown-menu{
+  padding-top: 10px;
+  text-align: center;
   display: block;
+}
+
+.open>.dropdown-menu>li{
+
 }
 </style>

@@ -3,6 +3,7 @@
     <div class="box-content">
       <h3>{{title}}</h3>
       <h4>{{message}}</h4>
+      <button class="btn btn-primary">Detail</button>
     </div>
   </div>
 </template>
@@ -21,12 +22,14 @@ export default {
 <style scoped>
 .box-content {
     background-color: white;
-    height: 120px;
     position: relative;
-    margin:0 auto;
     box-shadow: 1px 1px 1px #888888;
     margin-left: 150px;
     margin-right: 10px;
     margin-bottom: 10px;
+    padding-top: 5px;
+    text-align: left;
+    padding-left: 10px;
+    padding-bottom: 10px;
   }
 </style>
