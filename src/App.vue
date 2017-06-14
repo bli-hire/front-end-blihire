@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-    <navbar></navbar>
+    <navbar :loginStatus=status></navbar>
     <!-- <img src="./assets/logo.png"> -->
       <router-view></router-view>
 
@@ -17,7 +17,9 @@ export default {
 
   components: {
     Navbar
-  }
+  },
+
+  props: ['status']
 }
 
 </script>

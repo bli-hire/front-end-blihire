@@ -42,15 +42,18 @@
       <div class="collapse width navbar-collapse" id="sideNavbar" v-bind:style="navbarLeft">
       <div class="navbar navbar-inverse navbar-fixed-left">
         <ul class="nav navbar-nav">
-          <li v-on:click="setActiveSide({statePage}+'/human-resource');" :class="{active: isActiveSide({statePage}+'/human-resource')}"><router-link :to="'/'+statePage+'/human-resource'">Human Resource</router-link></li>
-          <li v-on:click="setActiveSide({statePage}+'/marketing');" :class="{active: isActiveSide({statePage}+'/marketing')}"><router-link :to="'/'+statePage+'/marketing'">Marketing</router-link></li>
-          <li v-on:click="setActiveSide({statePage}+'/trade-partnership');" :class="{active: isActiveSide({statePage}+'/trade-partnership')}"><router-link :to="'/'+statePage+'/trade-partnership'">Trade Partnership</router-link></li>
-          <li v-on:click="setActiveSide({statePage}+'/operation');" :class="{active: isActiveSide({statePage}+'/operation')}"><router-link :to="'/'+statePage+'/operation'">Operation</router-link></li>
-          <li v-on:click="setActiveSide({statePage}+'/technology');" :class="{active: isActiveSide({statePage}+'/technology')}"><router-link :to="'/'+statePage+'/technology'">Technology</router-link></li>
-          <li v-on:click="setActiveSide({statePage}+'/business-development');" :class="{active: isActiveSide({statePage}+'/business-development')}"><router-link :to="'/'+statePage+'/business-development'">Business Development</router-link></li>
-          <li v-on:click="setActiveSide({statePage}+'/finance');" :class="{active: isActiveSide({statePage}+'/finance')}"><router-link :to="'/'+statePage+'/finance'">Finance</router-link></li>
-          <li v-on:click="setActiveSide({statePage}+'/project-management');" :class="{active: isActiveSide({statePage}+'/project-management')}"><router-link :to="'/'+statePage+'/project-management'">Project Management</router-link></li>
-          <li v-on:click="setActiveSide({statePage}+'/product-management');" :class="{active: isActiveSide({statePage}+'/product-management')}"><router-link :to="'/'+statePage+'/product-management'">Product Management</router-link></li>
+            <li v-if="loginStatus === ''" v-on:click="setActiveSide({statePage}+'/human-resource');" :class="{active: isActiveSide({statePage}+'/human-resource')}"><router-link :to="'/'+statePage+'/human-resource'">Human Resource</router-link></li>
+            <li v-if="loginStatus === ''" v-on:click="setActiveSide({statePage}+'/marketing');" :class="{active: isActiveSide({statePage}+'/marketing')}"><router-link :to="'/'+statePage+'/marketing'">Marketing</router-link></li>
+            <li v-if="loginStatus === ''" v-on:click="setActiveSide({statePage}+'/trade-partnership');" :class="{active: isActiveSide({statePage}+'/trade-partnership')}"><router-link :to="'/'+statePage+'/trade-partnership'">Trade Partnership</router-link></li>
+            <li v-if="loginStatus === ''" v-on:click="setActiveSide({statePage}+'/operation');" :class="{active: isActiveSide({statePage}+'/operation')}"><router-link :to="'/'+statePage+'/operation'">Operation</router-link></li>
+            <li v-if="loginStatus === ''" v-on:click="setActiveSide({statePage}+'/technology');" :class="{active: isActiveSide({statePage}+'/technology')}"><router-link :to="'/'+statePage+'/technology'">Technology</router-link></li>
+            <li v-if="loginStatus === ''" v-on:click="setActiveSide({statePage}+'/business-development');" :class="{active: isActiveSide({statePage}+'/business-development')}"><router-link :to="'/'+statePage+'/business-development'">Business Development</router-link></li>
+            <li v-if="loginStatus === ''" v-on:click="setActiveSide({statePage}+'/finance');" :class="{active: isActiveSide({statePage}+'/finance')}"><router-link :to="'/'+statePage+'/finance'">Finance</router-link></li>
+            <li v-if="loginStatus === ''" v-on:click="setActiveSide({statePage}+'/project-management');" :class="{active: isActiveSide({statePage}+'/project-management')}"><router-link :to="'/'+statePage+'/project-management'">Project Management</router-link></li>
+            <li v-if="loginStatus === ''" v-on:click="setActiveSide({statePage}+'/product-management');" :class="{active: isActiveSide({statePage}+'/product-management')}"><router-link :to="'/'+statePage+'/product-management'">Product Management</router-link></li>
+            <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({statePage}+'/dashboard');" :class="{active: isActiveSide({statePage}+'/dashboard')}"><router-link :to="'/'+statePage+'/dashboard'">Dashboard</router-link></li>
+            <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({statePage}+'/create-new');" :class="{active: isActiveSide({statePage}+'/create-new')}"><router-link :to="'/'+statePage+'/create-new'">Create New</router-link></li>
+            <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({statePage}+'/history');" :class="{active: isActiveSide({statePage}+'/history')}"><router-link :to="'/'+statePage+'/history'">History</router-link></li>
         </ul>
       </div>
     </div>
@@ -72,6 +75,7 @@ export default {
       notifPopMenu: ''
     }
   },
+  props: ['loginStatus'],
   methods: {
     chStatePageToMpp () {
       this.statePage = 'mpp'

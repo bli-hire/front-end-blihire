@@ -24,6 +24,7 @@ export default new Router({
       path: '/',
       name: 'App',
       component: App,
+      props: {status: ''},
       children: [
         {
           path: '/fpk',
@@ -202,7 +203,9 @@ export default new Router({
     },
     {
       path: '/department',
-      name: 'department'
+      name: 'department',
+      component: App,
+      props: {status: 'department'}
     }
   ]
 })
