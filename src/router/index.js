@@ -71,45 +71,6 @@ export default new Router({
           path: '/fpk/product-management',
           component: ProductManagement
         },
-          // children: [
-          //   {
-          //     path: 'human-resource',
-          //     component: HRD
-          //   },
-            // {
-            //   path: 'marketing',
-            //   component: Fpk
-            // },
-            // {
-            //   path: 'trade-partnership',
-            //   component: Technology
-            // },
-            // {
-            //   path: 'operation',
-            //   component: Technology
-            // },
-            // {
-            //   path: 'technology',
-            //   component: Technology
-            // },
-            // {
-            //   path: 'business-development',
-            //   component: Technology
-            // },
-            // {
-            //   path: 'finance',
-            //   component: Technology
-            // },
-            // {
-            //   path: 'project-management',
-            //   component: Technology
-            // },
-            // {
-            //   path: 'product-management',
-            //   component: Technology
-            // }
-          // ]
-        // },
         {
           path: '/mpp',
           component: Mpp
@@ -155,45 +116,6 @@ export default new Router({
           path: '/mpp/product-management',
           component: ProductManagement
         }
-          // children: [
-            // {
-            //   path: 'human-resource',
-            //   component: HRD
-            // },
-            // {
-            //   path: 'marketing',
-            //   component: Technology
-            // },
-            // {
-            //   path: 'trade-partnership',
-            //   component: Technology
-            // },
-            // {
-            //   path: 'operation',
-            //   component: Technology
-            // },
-            // {
-            //   path: 'technology',
-            //   component: Technology
-            // },
-            // {
-            //   path: 'business-development',
-            //   component: Technology
-            // },
-            // {
-            //   path: 'finance',
-            //   component: Technology
-            // },
-            // {
-            //   path: 'project-management',
-            //   component: Technology
-            // },
-            // {
-            //   path: 'product-management',
-            //   component: Technology
-            // }
-          // ]
-        // }
       ]
     },
     {
@@ -205,7 +127,36 @@ export default new Router({
       path: '/department',
       name: 'department',
       component: App,
-      props: {status: 'department'}
+      props: {status: 'department'},
+      children: [
+        {
+          path: '/department/fpk'
+        },
+        {
+          path: '/department/mpp'
+        },
+        {
+          path: '/department/fpk/dashboard'
+        },
+        {
+          path: '/department/fpk/create-new'
+        },
+        {
+          path: '/department/fpk/history'
+        },
+        {
+          path: '/department/mpp'
+        },
+        {
+          path: '/department/mpp/dashboard'
+        },
+        {
+          path: '/department/mpp/create-new'
+        },
+        {
+          path: '/department/mpp/history'
+        }
+      ]
     }
   ]
 })

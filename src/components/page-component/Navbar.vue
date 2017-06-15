@@ -53,9 +53,9 @@
             <li v-if="loginStatus === ''" v-on:click="setActiveSide({statePage}+'/finance');" :class="{active: isActiveSide({statePage}+'/finance')}"><router-link :to="'/'+statePage+'/finance'">Finance</router-link></li>
             <li v-if="loginStatus === ''" v-on:click="setActiveSide({statePage}+'/project-management');" :class="{active: isActiveSide({statePage}+'/project-management')}"><router-link :to="'/'+statePage+'/project-management'">Project Management</router-link></li>
             <li v-if="loginStatus === ''" v-on:click="setActiveSide({statePage}+'/product-management');" :class="{active: isActiveSide({statePage}+'/product-management')}"><router-link :to="'/'+statePage+'/product-management'">Product Management</router-link></li>
-            <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({loginStatus}+{statePage}+'/dashboard');" :class="{active: isActiveSide({loginStatus}+'/dashboard')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/dashboard'">Dashboard</router-link></li>
-            <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({loginStatus}+{statePage}+'/create-new');" :class="{active: isActiveSide({loginStatus}+'/create-new')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/create-new'">Create New</router-link></li>
-            <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({loginStatus}+{statePage}+'/history');" :class="{active: isActiveSide({loginStatus}+'/history')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/history'">History</router-link></li>
+            <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/dashboard');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/dashboard')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/dashboard'">Dashboard</router-link></li>
+            <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/create-new');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/create-new')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/create-new'">Create New</router-link></li>
+            <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/history');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/history')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/history'">History</router-link></li>
         </ul>
       </div>
     </div>
