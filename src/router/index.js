@@ -14,6 +14,7 @@ import ProductManagement from '@/components/ProductManagement'
 import Fpk from '@/components/Fpk'
 import Mpp from '@/components/Mpp'
 import MppDetail from '@/components/page-component/MppDetail'
+import CreateForm from '@/components/department/CreateForm'
 
 Vue.use(Router)
 
@@ -139,7 +140,9 @@ export default new Router({
           path: '/department/fpk/dashboard'
         },
         {
-          path: '/department/fpk/create-new'
+          path: '/department/fpk/create-new',
+          component: CreateForm,
+          props: {content: 'fpk'}
         },
         {
           path: '/department/fpk/history'
@@ -151,7 +154,9 @@ export default new Router({
           path: '/department/mpp/dashboard'
         },
         {
-          path: '/department/mpp/create-new'
+          path: '/department/mpp/create-new',
+          component: CreateForm,
+          props: {content: 'mpp'}
         },
         {
           path: '/department/mpp/history'
