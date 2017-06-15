@@ -17,8 +17,10 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
-            <li v-on:click="chStatePageToFpk(); setActive('fpk'); setActiveSide('');" :class="{active: isActive('fpk')}"><router-link to="/fpk">FPK</router-link></li>
-            <li v-on:click="chStatePageToMpp(); setActive('mpp'); setActiveSide('');" :class="{active: isActive('mpp')}"><router-link to="/mpp">MPP</router-link></li>
+            <li v-if="loginStatus === ''" v-on:click="chStatePageToFpk(); setActive('fpk'); setActiveSide('');" :class="{active: isActive('fpk')}"><router-link to="/fpk">FPK</router-link></li>
+            <li v-if="loginStatus === ''" v-on:click="chStatePageToMpp(); setActive('mpp'); setActiveSide('');" :class="{active: isActive('mpp')}"><router-link to="/mpp">MPP</router-link></li>
+            <li v-if="loginStatus === 'department'" v-on:click="chStatePageToFpk(); setActive('department/fpk'); setActiveSide('');" :class="{active: isActive('department/fpk')}"><router-link to="/department/fpk">FPK</router-link></li>
+            <li v-if="loginStatus === 'department'" v-on:click="chStatePageToMpp(); setActive('department/mpp'); setActiveSide('');" :class="{active: isActive('department/mpp')}"><router-link to="/department/mpp">MPP</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li
@@ -51,9 +53,9 @@
             <li v-if="loginStatus === ''" v-on:click="setActiveSide({statePage}+'/finance');" :class="{active: isActiveSide({statePage}+'/finance')}"><router-link :to="'/'+statePage+'/finance'">Finance</router-link></li>
             <li v-if="loginStatus === ''" v-on:click="setActiveSide({statePage}+'/project-management');" :class="{active: isActiveSide({statePage}+'/project-management')}"><router-link :to="'/'+statePage+'/project-management'">Project Management</router-link></li>
             <li v-if="loginStatus === ''" v-on:click="setActiveSide({statePage}+'/product-management');" :class="{active: isActiveSide({statePage}+'/product-management')}"><router-link :to="'/'+statePage+'/product-management'">Product Management</router-link></li>
-            <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({statePage}+'/dashboard');" :class="{active: isActiveSide({statePage}+'/dashboard')}"><router-link :to="'/'+statePage+'/dashboard'">Dashboard</router-link></li>
-            <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({statePage}+'/create-new');" :class="{active: isActiveSide({statePage}+'/create-new')}"><router-link :to="'/'+statePage+'/create-new'">Create New</router-link></li>
-            <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({statePage}+'/history');" :class="{active: isActiveSide({statePage}+'/history')}"><router-link :to="'/'+statePage+'/history'">History</router-link></li>
+            <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({loginStatus}+{statePage}+'/dashboard');" :class="{active: isActiveSide({loginStatus}+'/dashboard')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/dashboard'">Dashboard</router-link></li>
+            <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({loginStatus}+{statePage}+'/create-new');" :class="{active: isActiveSide({loginStatus}+'/create-new')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/create-new'">Create New</router-link></li>
+            <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({loginStatus}+{statePage}+'/history');" :class="{active: isActiveSide({loginStatus}+'/history')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/history'">History</router-link></li>
         </ul>
       </div>
     </div>
