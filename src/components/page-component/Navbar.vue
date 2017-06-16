@@ -19,8 +19,8 @@
           <ul class="nav navbar-nav">
             <li v-if="loginStatus === ''" v-on:click="chStatePageToFpk(); setActive('fpk'); setActiveSide('');" :class="{active: isActive('fpk')}"><router-link to="/fpk">FPK</router-link></li>
             <li v-if="loginStatus === ''" v-on:click="chStatePageToMpp(); setActive('mpp'); setActiveSide('');" :class="{active: isActive('mpp')}"><router-link to="/mpp">MPP</router-link></li>
-            <li v-if="loginStatus === 'department'" v-on:click="chStatePageToFpk(); setActive('department/fpk'); setActiveSide('');" :class="{active: isActive('department/fpk')}"><router-link to="/department/fpk">FPK</router-link></li>
-            <li v-if="loginStatus === 'department'" v-on:click="chStatePageToMpp(); setActive('department/mpp'); setActiveSide('');" :class="{active: isActive('department/mpp')}"><router-link to="/department/mpp">MPP</router-link></li>
+            <li v-if="loginStatus === 'department'" v-on:click="chStatePageToFpk(); setActive('department/fpk'); setActiveSide({loginStatus}+'/'+{statePage}+'/dashboard');" :class="{active: isActive('department/fpk')}"><router-link to="/department/fpk/dashboard">FPK</router-link></li>
+            <li v-if="loginStatus === 'department'" v-on:click="chStatePageToMpp(); setActive('department/mpp'); setActiveSide({loginStatus}+'/'+{statePage}+'/dashboard');" :class="{active: isActive('department/mpp')}"><router-link to="/department/mpp/dashboard">MPP</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li
