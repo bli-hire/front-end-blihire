@@ -15,6 +15,7 @@ import Fpk from '@/components/Fpk'
 import Mpp from '@/components/Mpp'
 import MppDetail from '@/components/page-component/MppDetail'
 import CreateForm from '@/components/department/CreateForm'
+import DepartmentDasboard from '@/components/department/Dashboard'
 
 Vue.use(Router)
 
@@ -137,7 +138,9 @@ export default new Router({
           path: '/department/mpp'
         },
         {
-          path: '/department/fpk/dashboard'
+          path: '/department/fpk/dashboard',
+          component: DepartmentDasboard,
+          props: {content: 'fpk'}
         },
         {
           path: '/department/fpk/create-new',
@@ -151,7 +154,9 @@ export default new Router({
           path: '/department/mpp'
         },
         {
-          path: '/department/mpp/dashboard'
+          path: '/department/mpp/dashboard',
+          component: DepartmentDasboard,
+          props: {content: 'mpp'}
         },
         {
           path: '/department/mpp/create-new',
