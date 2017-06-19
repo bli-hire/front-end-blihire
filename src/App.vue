@@ -110,6 +110,7 @@ body {
 
 .listContent {
   margin-top:72px;
-  margin-left:130px;
+  margin-left:160px;
+  background: white;
 }
 </style>

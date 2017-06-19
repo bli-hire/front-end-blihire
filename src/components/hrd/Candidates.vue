@@ -10,8 +10,7 @@
         <th style="text-align:center;" colspan="4">Aksi</th>
       </tr>
     </thead>
-    <tbody>
-      <form>
+    <tbody> 
         <tr>
           <td>17010101</td>
           <td>Alfons Manggala</td>
@@ -40,7 +39,6 @@
           <td style="text-align:center;"><input type="button" value="Score" class="btn btn-primary"/></td>
           <td style="text-align:center;"><input type="button" value="Mutasi" class="btn btn-primary"/></td>
         </tr>
-      </form>
     </tbody>
   </table>
   </div>

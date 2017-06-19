@@ -10,13 +10,11 @@
       </tr>
     </thead>
     <tbody>
-      <form>
         <tr>
           <td>Accounting Jr.</td>
           <td>28 Februari 2017</td>
           <td><input type="button" value="Lihat FPK" class="btn btn-primary" onclick="location.href='./HRD-DetailRequestedFPK.html';"/></td>
         </tr>
-      </form>
     </tbody>
   </table>
   </div>
