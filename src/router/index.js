@@ -16,6 +16,8 @@ import Mpp from '@/components/Mpp'
 import MppDetail from '@/components/page-component/MppDetail'
 import CreateForm from '@/components/department/CreateForm'
 import DepartmentDasboard from '@/components/department/Dashboard'
+import HrdRequested from '@/components/hrd/Requested'
+import HrdCandidates from '@/components/hrd/Candidates'
 
 Vue.use(Router)
 
@@ -211,43 +213,37 @@ export default new Router({
         },
         {
           path: '/hrd/requested/human-resource',
-          component: HRD,
-          props: {content: 'Mpp'}
+          component: HrdRequested,
+          props: {department: 'human-resource'}
         },
         {
-          path: '/hrd/requested/marketing',
-          component: Marketing
+          path: '/hrd/requested/marketing'
         },
         {
-          path: '/hrd/requested/trade-partnership',
-          component: TradePartnership
+          path: '/hrd/requested/trade-partnership'
         },
         {
-          path: '/hrd/requested/operation',
-          component: Operation
+          path: '/hrd/requested/operation'
         },
         {
-          path: '/hrd/requested/technology',
-          component: Technology
+          path: '/hrd/requested/technology'
         },
         {
-          path: '/hrd/requested/business-development',
-          component: BusinessDevelopment
+          path: '/hrd/requested/business-development'
         },
         {
-          path: '/hrd/requested/finance',
-          component: Finance
+          path: '/hrd/requested/finance'
         },
         {
-          path: '/hrd/requested/project-management',
-          component: ProjectManagement
+          path: '/hrd/requested/project-management'
         },
         {
-          path: '/hrd/requested/product-management',
-          component: ProductManagement
+          path: '/hrd/requested/product-management'
         },
         {
-          path: '/hrd/candidates/human-resource'
+          path: '/hrd/candidates/human-resource',
+          component: HrdCandidates,
+          props: {department: 'human-resource'}
         },
         {
           path: '/hrd/candidates/marketing'
