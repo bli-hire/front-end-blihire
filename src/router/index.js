@@ -167,6 +167,49 @@ export default new Router({
           path: '/department/mpp/history'
         }
       ]
+    },
+    {
+      path: '/hrd',
+      name: 'hrd',
+      component: App,
+      props: {status: 'hrd'},
+      children: [
+        {
+          path: '/hrd/fpk'
+        },
+        {
+          path: '/hrd/mpp'
+        },
+        {
+          path: '/hrd/fpk/dashboard',
+          component: DepartmentDasboard,
+          props: {content: 'fpk'}
+        },
+        {
+          path: '/hrd/fpk/create-new',
+          component: CreateForm,
+          props: {content: 'fpk'}
+        },
+        {
+          path: '/hrd/fpk/history'
+        },
+        {
+          path: '/hrd/mpp'
+        },
+        {
+          path: '/hrd/mpp/dashboard',
+          component: DepartmentDasboard,
+          props: {content: 'mpp'}
+        },
+        {
+          path: '/hrd/mpp/create-new',
+          component: CreateForm,
+          props: {content: 'mpp'}
+        },
+        {
+          path: '/hrd/mpp/history'
+        }
+      ]
     }
   ]
 })
