@@ -10,7 +10,7 @@
         <th style="text-align:center;" colspan="4">Aksi</th>
       </tr>
     </thead>
-    <tbody> 
+    <tbody>
         <tr>
           <td>17010101</td>
           <td>Alfons Manggala</td>

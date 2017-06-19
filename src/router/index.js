@@ -268,6 +268,15 @@ export default new Router({
         },
         {
           path: '/hrd/candidates/product-management'
+        },
+        {
+          path: '/hrd/candidates/view-cv'
+        },
+        {
+          path: '/hrd/candidates/hiring-process'
+        },
+        {
+          path: '/hrd/requested/view-detail'
         }
       ]
     }
