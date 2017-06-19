@@ -208,6 +208,12 @@ export default new Router({
         },
         {
           path: '/hrd/mpp/history'
+        },
+        {
+          path: '/hrd/requested'
+        },
+        {
+          path: '/hrd/candidates'
         }
       ]
     }
