@@ -21,6 +21,10 @@
             <li v-if="loginStatus === ''" v-on:click="chStatePageToMpp(); setActive('mpp'); setActiveSide('');" :class="{active: isActive('mpp')}"><router-link to="/mpp">MPP</router-link></li>
             <li v-if="loginStatus === 'department'" v-on:click="chStatePageToFpk(); setActive('department/fpk'); setActiveSide({loginStatus}+'/'+{statePage}+'/dashboard');" :class="{active: isActive('department/fpk')}"><router-link to="/department/fpk/dashboard">FPK</router-link></li>
             <li v-if="loginStatus === 'department'" v-on:click="chStatePageToMpp(); setActive('department/mpp'); setActiveSide({loginStatus}+'/'+{statePage}+'/dashboard');" :class="{active: isActive('department/mpp')}"><router-link to="/department/mpp/dashboard">MPP</router-link></li>
+            <li v-if="loginStatus === 'hrd'" v-on:click="chStatePageToFpk(); setActive('hrd/fpk'); setActiveSide({loginStatus}+'/'+{statePage}+'/dashboard');" :class="{active: isActive('hrd/fpk')}"><router-link to="/hrd/fpk/dashboard">FPK</router-link></li>
+            <li v-if="loginStatus === 'hrd'" v-on:click="chStatePageToMpp(); setActive('hrd/mpp'); setActiveSide({loginStatus}+'/'+{statePage}+'/dashboard');" :class="{active: isActive('hrd/mpp')}"><router-link to="/hrd/mpp/dashboard">MPP</router-link></li>
+            <li v-if="loginStatus === 'hrd'" v-on:click="chStatePageToHrdRequested(); setActive('hrd/requested'); setActiveSide('');" :class="{active: isActive('hrd/requested')}"><router-link to="/hrd/requested">Requested</router-link></li>
+            <li v-if="loginStatus === 'hrd'" v-on:click="chStatePageToHrdCandidates(); setActive('hrd/candidates'); setActiveSide('');" :class="{active: isActive('hrd/candidates')}"><router-link to="/hrd/candidates">Candidates</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li
@@ -53,6 +57,20 @@
             <li v-if="loginStatus === ''" v-on:click="setActiveSide({statePage}+'/finance');" :class="{active: isActiveSide({statePage}+'/finance')}"><router-link :to="'/'+statePage+'/finance'">Finance</router-link></li>
             <li v-if="loginStatus === ''" v-on:click="setActiveSide({statePage}+'/project-management');" :class="{active: isActiveSide({statePage}+'/project-management')}"><router-link :to="'/'+statePage+'/project-management'">Project Management</router-link></li>
             <li v-if="loginStatus === ''" v-on:click="setActiveSide({statePage}+'/product-management');" :class="{active: isActiveSide({statePage}+'/product-management')}"><router-link :to="'/'+statePage+'/product-management'">Product Management</router-link></li>
+            <!---->
+            <li v-if="loginStatus === 'hrd' && (statePage === 'requested' || statePage === 'candidates')" v-on:click="setActiveSide({statePage}+'/human-resource');" :class="{active: isActiveSide({statePage}+'/human-resource')}"><router-link :to="'/'+statePage+'/human-resource'">Human Resource</router-link></li>
+            <li v-if="loginStatus === 'hrd' && (statePage === 'requested' || statePage === 'candidates')" v-on:click="setActiveSide({statePage}+'/marketing');" :class="{active: isActiveSide({statePage}+'/marketing')}"><router-link :to="'/'+statePage+'/marketing'">Marketing</router-link></li>
+            <li v-if="loginStatus === 'hrd' && (statePage === 'requested' || statePage === 'candidates')" v-on:click="setActiveSide({statePage}+'/trade-partnership');" :class="{active: isActiveSide({statePage}+'/trade-partnership')}"><router-link :to="'/'+statePage+'/trade-partnership'">Trade Partnership</router-link></li>
+            <li v-if="loginStatus === 'hrd' && (statePage === 'requested' || statePage === 'candidates')" v-on:click="setActiveSide({statePage}+'/operation');" :class="{active: isActiveSide({statePage}+'/operation')}"><router-link :to="'/'+statePage+'/operation'">Operation</router-link></li>
+            <li v-if="loginStatus === 'hrd' && (statePage === 'requested' || statePage === 'candidates')" v-on:click="setActiveSide({statePage}+'/technology');" :class="{active: isActiveSide({statePage}+'/technology')}"><router-link :to="'/'+statePage+'/technology'">Technology</router-link></li>
+            <li v-if="loginStatus === 'hrd' && (statePage === 'requested' || statePage === 'candidates')" v-on:click="setActiveSide({statePage}+'/business-development');" :class="{active: isActiveSide({statePage}+'/business-development')}"><router-link :to="'/'+statePage+'/business-development'">Business Development</router-link></li>
+            <li v-if="loginStatus === 'hrd' && (statePage === 'requested' || statePage === 'candidates')" v-on:click="setActiveSide({statePage}+'/finance');" :class="{active: isActiveSide({statePage}+'/finance')}"><router-link :to="'/'+statePage+'/finance'">Finance</router-link></li>
+            <li v-if="loginStatus === 'hrd' && (statePage === 'requested' || statePage === 'candidates')" v-on:click="setActiveSide({statePage}+'/project-management');" :class="{active: isActiveSide({statePage}+'/project-management')}"><router-link :to="'/'+statePage+'/project-management'">Project Management</router-link></li>
+            <li v-if="loginStatus === 'hrd' && (statePage === 'requested' || statePage === 'candidates')" v-on:click="setActiveSide({statePage}+'/product-management');" :class="{active: isActiveSide({statePage}+'/product-management')}"><router-link :to="'/'+statePage+'/product-management'">Product Management</router-link></li>
+            <li v-if="loginStatus === 'hrd' && (statePage === 'fpk' || statePage === 'mpp')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/dashboard');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/dashboard')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/dashboard'">Dashboard</router-link></li>
+            <li v-if="loginStatus === 'hrd' && (statePage === 'fpk' || statePage === 'mpp')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/create-new');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/create-new')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/create-new'">Create New</router-link></li>
+            <li v-if="loginStatus === 'hrd' && (statePage === 'fpk' || statePage === 'mpp')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/history');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/history')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/history'">History</router-link></li>
+            <!---->
             <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/dashboard');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/dashboard')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/dashboard'">Dashboard</router-link></li>
             <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/create-new');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/create-new')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/create-new'">Create New</router-link></li>
             <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/history');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/history')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/history'">History</router-link></li>
@@ -108,6 +126,12 @@ export default {
       } else {
         this.notifPopMenu = ''
       }
+    },
+    chStatePageToHrdRequested () {
+      this.statePage = 'requested'
+    },
+    chStatePageToHrdCandidates () {
+      this.statePage = 'candidates'
     }
   }
 }
