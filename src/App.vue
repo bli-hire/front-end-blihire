@@ -107,4 +107,9 @@ body {
   padding-left: -100px;
   overflow-x: scroll;
 }
+
+.listContent {
+  margin-top:72px;
+  margin-left:130px;
+}
 </style>
