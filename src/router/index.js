@@ -210,10 +210,68 @@ export default new Router({
           path: '/hrd/mpp/history'
         },
         {
-          path: '/hrd/requested'
+          path: '/hrd/requested/human-resource',
+          component: HRD,
+          props: {content: 'Mpp'}
         },
         {
-          path: '/hrd/candidates'
+          path: '/hrd/requested/marketing',
+          component: Marketing
+        },
+        {
+          path: '/hrd/requested/trade-partnership',
+          component: TradePartnership
+        },
+        {
+          path: '/hrd/requested/operation',
+          component: Operation
+        },
+        {
+          path: '/hrd/requested/technology',
+          component: Technology
+        },
+        {
+          path: '/hrd/requested/business-development',
+          component: BusinessDevelopment
+        },
+        {
+          path: '/hrd/requested/finance',
+          component: Finance
+        },
+        {
+          path: '/hrd/requested/project-management',
+          component: ProjectManagement
+        },
+        {
+          path: '/hrd/requested/product-management',
+          component: ProductManagement
+        },
+        {
+          path: '/hrd/candidates/human-resource'
+        },
+        {
+          path: '/hrd/candidates/marketing'
+        },
+        {
+          path: '/hrd/candidates/trade-partnership'
+        },
+        {
+          path: '/hrd/candidates/operation'
+        },
+        {
+          path: '/hrd/candidates/technology'
+        },
+        {
+          path: '/hrd/candidates/business-development'
+        },
+        {
+          path: '/hrd/candidates/finance'
+        },
+        {
+          path: '/hrd/candidates/project-management'
+        },
+        {
+          path: '/hrd/candidates/product-management'
         }
       ]
     }
