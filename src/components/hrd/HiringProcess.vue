@@ -1,5 +1,5 @@
 <template>
-  <div class="listContent col-md-12">
+  <div class="listContent col-md-10">
   <h2>Hiring Process</h2>
     <h4>Nama : Alfons Manggala</h4>
     <h4>Posisi : Jr. Accounting</h4>

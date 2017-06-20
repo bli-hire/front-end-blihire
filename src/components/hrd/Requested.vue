@@ -13,7 +13,7 @@
         <tr>
           <td>Accounting Jr.</td>
           <td>28 Februari 2017</td>
-          <td><input type="button" value="Lihat FPK" class="btn btn-primary" onclick="location.href='./HRD-DetailRequestedFPK.html';"/></td>
+          <td><button class="btn btn-primary"><router-link :to="'/hrd/requested/view-detail'">Lihat FPK</router-link></button></td></td>
         </tr>
     </tbody>
   </table>

@@ -18,6 +18,9 @@ import CreateForm from '@/components/department/CreateForm'
 import DepartmentDasboard from '@/components/department/Dashboard'
 import HrdRequested from '@/components/hrd/Requested'
 import HrdCandidates from '@/components/hrd/Candidates'
+import HrdViewCV from '@/components/hrd/ViewCV'
+import HrdViewDetailFpk from '@/components/hrd/ViewDetailFpk'
+import HrdViewHiringProcess from '@/components/hrd/HiringProcess'
 
 Vue.use(Router)
 
@@ -270,13 +273,16 @@ export default new Router({
           path: '/hrd/candidates/product-management'
         },
         {
-          path: '/hrd/candidates/view-cv'
+          path: '/hrd/candidates/view-cv',
+          component: HrdViewCV
         },
         {
-          path: '/hrd/candidates/hiring-process'
+          path: '/hrd/candidates/hiring-process',
+          component: HrdViewHiringProcess
         },
         {
-          path: '/hrd/requested/view-detail'
+          path: '/hrd/requested/view-detail',
+          component: HrdViewDetailFpk
         }
       ]
     }

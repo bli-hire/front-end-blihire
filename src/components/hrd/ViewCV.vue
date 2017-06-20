@@ -1,5 +1,5 @@
 <template>
-  <div class="listContent col-md-12">
+  <div class="listContent col-md-10">
 
   <h2 style="text-align:center;">Formulir Lamaran</h2>
   <br/>
