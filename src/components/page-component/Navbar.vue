@@ -40,7 +40,11 @@
               </ul>
             </li>
             <li :class="{active: isActive('user')}"><router-link to=""><span class="glyphicon glyphicon-user"> Username</span></router-link></li>
-            <li :class="{active: isActive('login')}"><router-link to="/login"><span class="glyphicon glyphicon-log-out"></span></router-link></li>
+            <!-- <li :class="{active: isActive('login')}"><router-link to="/login"><span class="glyphicon glyphicon-log-out"></span></router-link></li> -->
+            <li class="" v-if="check() != null">
+              <router-link to="/login"> <span v-on:click="logout ()">Logout</span></router-link>
+
+            </li>
           </ul>
         </div>
       </div>
@@ -132,6 +136,12 @@ export default {
     },
     chStatePageToHrdCandidates () {
       this.statePage = 'candidates'
+    },
+    logout () {
+      window.sessionStorage.clear()
+    },
+    check: function () {
+      return window.sessionStorage.getItem('user')
     }
   }
 }
