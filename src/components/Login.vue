@@ -1,6 +1,6 @@
 <template>
   <div id="Login" class="container">
-    <form>
+
       <div class="information-bar">
         <h3 class="form-signin-heading">Login</h3>
         <p>Blibli Hiring System Internal , please login below</p>
@@ -21,7 +21,6 @@
       <div class="form-group">
         <button class="btn-login btn btn-primary" v-on:click="login()">Login</button>
       </div>
-    </form>
   </div>
 </template>
 

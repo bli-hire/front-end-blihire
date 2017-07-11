@@ -42,7 +42,7 @@
             <li :class="{active: isActive('user')}"><router-link to=""><span class="glyphicon glyphicon-user"> Username</span></router-link></li>
             <!-- <li :class="{active: isActive('login')}"><router-link to="/login"><span class="glyphicon glyphicon-log-out"></span></router-link></li> -->
             <li class="" v-if="check() != null">
-              <router-link to="/login"> <span v-on:click="logout ()">Logout</span></router-link>
+              <router-link to="/login"> <span class="glyphicon glyphicon-log-out" v-on:click="logout ()"></span></router-link>
 
             </li>
           </ul>
