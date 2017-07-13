@@ -63,7 +63,12 @@ export default {
           window.sessionStorage.setItem('user', json)
           this.user = json
           if (this.user.id != null) {
-            this.$router.push('/')
+            // this.$router.push('/')
+            if (this.user.role.roleName === 'HR') {
+              this.$router.push('/hrd')
+            } else if (this.user.role.roleName === 'CEO') {
+              this.$router.push('/')
+            }
           }
         })
     }
