@@ -21,6 +21,28 @@ export default {
   beforeMount () {
     if (window.sessionStorage.getItem('user') == null) {
       this.$router.push('/login')
+    } else {
+      const user = window.sessionStorage.getItem('user')
+      var userLogged = JSON.parse(user).role.roleName
+      if (userLogged === 'CEO') {
+        if (window.location.href.includes('hrd') || window.location.href.includes('department')) {
+        //   this.$router.push('/forbidden')
+          alert('403 : Forbidden')
+          this.$router.go(-1)
+        }
+      } else if (userLogged === 'HRD') {
+        if (window.location.href.includes('department')) {
+        //   this.$router.push('/forbidden')
+          alert('403 : Forbidden')
+          this.$router.go(-1)
+        }
+      } else if (userLogged === 'Department') {
+        if (window.location.href.includes('hrd')) {
+        //   this.$router.push('/forbidden')
+          alert('403 : Forbidden')
+          this.$router.go(-1)
+        }
+      }
     }
   },
 
