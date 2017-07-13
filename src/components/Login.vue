@@ -68,6 +68,8 @@ export default {
               this.$router.push('/hrd')
             } else if (this.user.role.roleName === 'CEO') {
               this.$router.push('/')
+            } else if (this.user.role.roleName === 'Department') {
+              this.$router.push('/department')
             }
           }
         })
