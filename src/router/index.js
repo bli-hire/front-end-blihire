@@ -21,12 +21,18 @@ import HrdCandidates from '@/components/hrd/Candidates'
 import HrdViewCV from '@/components/hrd/ViewCV'
 import HrdViewDetailFpk from '@/components/hrd/ViewDetailFpk'
 import HrdViewHiringProcess from '@/components/hrd/HiringProcess'
+import NotFound from '@/components/page-component/NotFound'
 
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
   routes: [
+    {
+      path: '*',
+      component: NotFound
+    },
+    // CEO
     {
       path: '/',
       name: 'App',
@@ -125,11 +131,13 @@ export default new Router({
         }
       ]
     },
+    // Login
     {
       path: '/login',
       name: 'Login',
       component: Login
     },
+    // Department
     {
       path: '/department',
       name: 'department',
@@ -173,6 +181,7 @@ export default new Router({
         }
       ]
     },
+    // HRD
     {
       path: '/hrd',
       name: 'hrd',
