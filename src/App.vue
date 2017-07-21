@@ -140,4 +140,8 @@ body {
   margin-left:160px;
   background: white;
 }
+
+.msg-empty{
+  margin-top: 40vh;
+}
 </style>
