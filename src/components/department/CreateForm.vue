@@ -2,11 +2,11 @@
   <div>
     <div v-if="content === 'fpk'" class="listContent col-md-12">
     <h1 style="text-align: center;">Form Penerimaan Karyawan</h1>
-      <form method="POST" action="">
+      <!-- <form method="POST"> -->
         <div class="form-group">
 
           <label for="pos">Departemen Pemohon:</label>
-            <select class="form-control" id="pos">
+            <select class="form-control" id="pos" v-model="departmentPemohon">
               <option>Department 1</option>
               <option>Department 2</option>
               <option>Department 3</option>
@@ -14,21 +14,21 @@
           <br/>
 
         <label for="pos">Jabatan Pemohon:</label>
-            <select class="form-control" id="pos">
+            <select class="form-control" id="pos" v-model="jabatanPemohon">
               <option>Jabatan</option>
             </select>
           <br/>
 
         <label for="personNeeded">Posisi atau jumlah</label>
-        <input type="number" id="personNeeded" class="form-control"/>
+        <input type="number" id="personNeeded" class="form-control" v-model="jumlahPosisi"/>
         <br/>
 
         <label for="">Tanggal Dibutuhkan</label>
-        <input type="date" id="" class="form-control"/>
+        <input type="date" id="" class="form-control" v-model="tanggalDibutuhkan"/>
         <br/>
 
         <label>Alasan</label>
-         <select class="form-control" id="">
+         <select class="form-control" id="" v-model="alasan">
               <option>Pemegang Jabatan terdahulu Resign</option>
               <option>Pemegang Jabatan terdahulu dimutasi/promosi</option>
               <option>Penambahan</option>
@@ -36,21 +36,21 @@
           <br/>
 
        <label>Kesesuaian dengan MPP</label>
-         <select class="form-control" id="">
+         <select class="form-control" id="" v-model="kesesuaianMpp">
               <option>Sesuai</option>
               <option>Tidak sesuai</option>
             </select>
           <br/>
 
         <label for="education">Status Karyawan:</label>
-            <select class="form-control" id="education">
+            <select class="form-control" id="education" v-model="statusKaryawan">
               <option>GDN</option>
               <option>Pemborong Kerja</option>
             </select>
           <br/>
 
         <label>Pendidikan</label>
-         <select class="form-control" id="">
+         <select class="form-control" id="" v-model="pendidikan">
               <option>SMA</option>
               <option>S1</option>
               <option>S2</option>
@@ -59,7 +59,7 @@
           <br/>
 
          <label>Pengalaman Bekerja</label>
-         <select class="form-control" id="">
+         <select class="form-control" id="" v-model="pengalamanBekerja">
               <option>Fresh Graduate</option>
               <option>Pengalaman 1-3 Tahun</option>
               <option>Pengalaman > 5 Tahun</option>
@@ -68,14 +68,14 @@
           <br/>
 
         <label>Skill/Knowledge</label>
-        <textarea name="Text1" cols="140" rows="8" class="form-control" ></textarea>
+        <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="skillPengetahuan"></textarea>
          <br/>
 
-      <button type="submit" class="btn btn-primary" name="">Send FPK</button>
+      <button type="submit" class="btn btn-primary" name="" v-on:click="insertFpk()">Send FPK</button>
 
       <button type="reset" class="btn btn-warning" name="">Reset</button>
       </div>
-      </form>
+      <!-- </form> -->
     </div>
 
     <div v-if="content === 'mpp'" class="listContent col-md-12">
@@ -179,7 +179,42 @@
 <script>
 export default {
   name: 'create-new',
-  props: ['content']
+  data () {
+    return {
+      departmentPemohon: '',
+      jabatanPemohon: '',
+      jumlahPosisi: '',
+      tanggalDibutuhkan: '',
+      alasan: '',
+      kesesuaianMpp: '',
+      statusKaryawan: '',
+      pendidikan: '',
+      pengalamanBekerja: '',
+      skillPengetahuan: ''
+    }
+  },
+  props: ['content'],
+  methods: {
+    insertFpk () {
+      var self = this
+      var requestedFpk = Object()
+      requestedFpk.idUserRequested = 1
+      requestedFpk.idUserApproved = 2
+      requestedFpk.positionNeeded = parseInt(self.jumlahPosisi)
+      requestedFpk.reason = self.alasan
+      requestedFpk.fitnessWithMpp = self.kesesuaianMpp
+      requestedFpk.employeeStatus = self.statusKaryawan
+      requestedFpk.school = self.pendidikan
+      requestedFpk.workExperience = self.pengalamanBekerja
+      requestedFpk.skillKnowledge = self.skillPengetahuan
+      requestedFpk.completeness = 'Tes'
+      var jsonRequestedFpk = JSON.stringify(requestedFpk)
+      self.$http.post('http://localhost:8080/internal/fpk', {
+        addFpkRequest: jsonRequestedFpk}, (json) => {
+          alert('Sukses Terkirim')
+        })
+    }
+  }
 }
 </script>
 
