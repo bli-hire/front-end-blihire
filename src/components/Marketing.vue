@@ -1,24 +1,20 @@
 <template>
-  <div class="Fpk">
-    <div class="panel-dashboard col-md-5">
-      <h3>Report</h3>
-      <report-chart></report-chart>
-    </div>
-    <router-view></router-view>
+  <div class="content">
+    <box-component></box-component>
   </div>
 </template>
 
 <script>
-import ReportChart from './page-component/ReportChart'
+import BoxComponent from '@/components/page-component/BoxComponent'
 
 export default {
-  name: 'Fpk',
   components: {
-    ReportChart
+    BoxComponent
   },
+  name: 'marketing',
   data () {
     return {
-      msg: 'Welcome to FPK dashboard'
+      msg: 'Menu Divisi HRD'
     }
   }
 }
@@ -42,11 +38,5 @@ li {
 
 a {
   color: #42b983;
-}
-
-.Fpk {
-  margin-top: 62px;
-  margin-left: 150px;
-  overflow-y: scroll;
 }
 </style>
