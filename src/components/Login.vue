@@ -55,19 +55,13 @@ export default {
       self.$http.post('http://localhost:8080/users/login', {
         email: self.email,
         password: self.password }, (json) => {
-          // this.$session.start()
-          // this.$session.clear()
-          // this.$session.destroy()
-
-          // window.sessionStorage.setItem('user', json)
-          window.sessionStorage.setItem('user', json)
+          window.sessionStorage.setItem('user', JSON.stringify(json))
           this.user = json
           if (this.user.id != null) {
-            // this.$router.push('/')
             if (this.user.role.roleName === 'HR') {
               this.$router.push('/hrd')
             } else if (this.user.role.roleName === 'CEO') {
-              this.$router.push('/')
+              this.$router.push('/ceo')
             } else if (this.user.role.roleName === 'Department') {
               this.$router.push('/department')
             }
