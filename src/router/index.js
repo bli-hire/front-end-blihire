@@ -34,99 +34,99 @@ export default new Router({
     },
     // CEO
     {
-      path: '/',
+      path: '/ceo',
       name: 'App',
       component: App,
       props: {status: ''},
       children: [
         {
-          path: '/fpk',
+          path: '/ceo/fpk',
           component: Fpk
         },
         {
-          path: '/fpk/detail',
+          path: '/ceo/fpk/detail',
           component: Fpk
         },
         {
-          path: '/fpk/human-resource',
+          path: '/ceo/fpk/human-resource',
           component: HRD,
           props: {content: 'FPK'}
         },
         {
-          path: '/fpk/marketing',
+          path: '/ceo/fpk/marketing',
           component: Marketing
         },
         {
-          path: '/fpk/trade-partnership',
+          path: '/ceo/fpk/trade-partnership',
           component: TradePartnership
         },
         {
-          path: '/fpk/operation',
+          path: '/ceo/fpk/operation',
           component: Operation
         },
         {
-          path: '/fpk/technology',
+          path: '/ceo/fpk/technology',
           component: Technology
         },
         {
-          path: '/fpk/business-development',
+          path: '/ceo/fpk/business-development',
           component: BusinessDevelopment
         },
         {
-          path: '/fpk/finance',
+          path: '/ceo/fpk/finance',
           component: Finance
         },
         {
-          path: '/fpk/project-management',
+          path: '/ceo/fpk/project-management',
           component: ProjectManagement
         },
         {
-          path: '/fpk/product-management',
+          path: '/ceo/fpk/product-management',
           component: ProductManagement
         },
         {
-          path: '/mpp',
+          path: '/ceo/mpp',
           component: Mpp
         },
         {
-          path: '/mpp/detail',
+          path: '/ceo/mpp/detail',
           component: MppDetail
         },
         {
-          path: '/mpp/human-resource',
+          path: '/ceo/mpp/human-resource',
           component: HRD,
           props: {content: 'Mpp'}
         },
         {
-          path: '/mpp/marketing',
+          path: '/ceo/mpp/marketing',
           component: Marketing
         },
         {
-          path: '/mpp/trade-partnership',
+          path: '/ceo/mpp/trade-partnership',
           component: TradePartnership
         },
         {
-          path: '/mpp/operation',
+          path: '/ceo/mpp/operation',
           component: Operation
         },
         {
-          path: '/mpp/technology',
+          path: '/ceo/mpp/technology',
           component: Technology
         },
         {
-          path: '/mpp/business-development',
+          path: '/ceo/mpp/business-development',
           component: BusinessDevelopment
         },
         {
-          path: '/mpp/finance',
+          path: '/ceo/mpp/finance',
           component: Finance
         },
         {
-          path: '/mpp/project-management',
+          path: '/ceo/mpp/project-management',
           component: ProjectManagement
         },
         {
-          path: '/mpp/product-management',
+          path: '/ceo/mpp/product-management',
           component: ProductManagement
         }
       ]
