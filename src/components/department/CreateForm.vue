@@ -209,6 +209,7 @@ export default {
         idUserRequested: 1,
         completeness: 'sementara kosong'}, (json) => {
           alert('Sukses Terkirim')
+          this.$router.push('/')
         })
     }
   }
