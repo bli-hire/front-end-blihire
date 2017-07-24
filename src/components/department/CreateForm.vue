@@ -197,20 +197,17 @@ export default {
   methods: {
     insertFpk () {
       var self = this
-      var requestedFpk = Object()
-      requestedFpk.idUserRequested = 1
-      requestedFpk.idUserApproved = 2
-      requestedFpk.positionNeeded = parseInt(self.jumlahPosisi)
-      requestedFpk.reason = self.alasan
-      requestedFpk.fitnessWithMpp = self.kesesuaianMpp
-      requestedFpk.employeeStatus = self.statusKaryawan
-      requestedFpk.school = self.pendidikan
-      requestedFpk.workExperience = self.pengalamanBekerja
-      requestedFpk.skillKnowledge = self.skillPengetahuan
-      requestedFpk.completeness = 'Tes'
-      var jsonRequestedFpk = JSON.stringify(requestedFpk)
       self.$http.post('http://localhost:8080/internal/fpk', {
-        addFpkRequest: jsonRequestedFpk}, (json) => {
+        position: self.jumlahPosisi,
+        reason: self.alasan,
+        fitnessWithMpp: self.kesesuaianMpp,
+        employeeStatus: self.statusKaryawan,
+        school: self.pendidikan,
+        workExperience: self.pengalamanBekerja,
+        skillKnowledge: self.skillPengetahuan,
+        idUserApproved: 1,
+        idUserRequested: 1,
+        completeness: 'sementara kosong'}, (json) => {
           alert('Sukses Terkirim')
         })
     }
