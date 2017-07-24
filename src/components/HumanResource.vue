@@ -16,7 +16,7 @@ export default {
   data () {
     return {
       msg: 'Menu Divisi HRD',
-      total: 0
+      total: 2
     }
   },
   props: ['content'],
@@ -24,10 +24,11 @@ export default {
     var self = this
     if (this.content === 'FPK') {
       self.$http.get('http://localhost:8080/internal/fpk').then(response => {
-        var result = JSON.stringify(response)
-        if (JSON.stringify(response.data === '')) {
-          console.log(result)
+        console.log(JSON.stringify(response.data))
+        if (JSON.stringify(response.data) === '[]') {
           this.total = 0
+        } else {
+          this.total = 5
         }
       })
     }
