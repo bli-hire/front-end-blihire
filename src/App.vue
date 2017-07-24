@@ -26,20 +26,16 @@ export default {
       var userLogged = JSON.parse(user).role.roleName
       if (userLogged === 'CEO') {
         if (window.location.href.includes('hrd') || window.location.href.includes('department')) {
-        //   this.$router.push('/forbidden')
           alert('403 : Forbidden')
-          this.$router.push('/')
+          this.$router.push('/ceo')
         }
       } else if (userLogged === 'HRD') {
-        if (window.location.href.includes('department')) {
-        //   this.$router.push('/forbidden')
+        if (window.location.href.includes('ceo') || window.location.href.includes('department')) {
           alert('403 : Forbidden')
-          // this.$router.go(-1)
           this.$router.push('/hrd')
         }
       } else if (userLogged === 'Department') {
-        if (window.location.href.includes('hrd')) {
-        //   this.$router.push('/forbidden')
+        if (window.location.href.includes('hrd') || window.location.href.includes('ceo')) {
           alert('403 : Forbidden')
           this.$router.push('/department')
         }

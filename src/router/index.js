@@ -37,7 +37,7 @@ export default new Router({
       path: '/ceo',
       name: 'App',
       component: App,
-      props: {status: ''},
+      props: {status: 'ceo'},
       children: [
         {
           path: '/ceo/fpk',
