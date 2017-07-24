@@ -28,19 +28,20 @@ export default {
         if (window.location.href.includes('hrd') || window.location.href.includes('department')) {
         //   this.$router.push('/forbidden')
           alert('403 : Forbidden')
-          this.$router.go(-1)
+          this.$router.push('/')
         }
       } else if (userLogged === 'HRD') {
         if (window.location.href.includes('department')) {
         //   this.$router.push('/forbidden')
           alert('403 : Forbidden')
-          this.$router.go(-1)
+          // this.$router.go(-1)
+          this.$router.push('/hrd')
         }
       } else if (userLogged === 'Department') {
         if (window.location.href.includes('hrd')) {
         //   this.$router.push('/forbidden')
           alert('403 : Forbidden')
-          this.$router.go(-1)
+          this.$router.push('/department')
         }
       }
     }
