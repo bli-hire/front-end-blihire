@@ -6,6 +6,9 @@
 
 <script>
 export default {
-  name: 'index'
+  name: 'index',
+  beforeMount () {
+    this.$router.push('/login')
+  }
 }
 </script>
