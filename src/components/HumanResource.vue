@@ -1,17 +1,23 @@
 <template>
-  <div class="hrd">
-    <h1>{{ msg }}</h1>
+  <div class="HRD">
+    <BoxComponent v-for="n in 4" v-bind:title="content" message="Please we need ..."></BoxComponent>
   </div>
 </template>
 
 <script>
+import BoxComponent from '@/components/page-component/BoxComponent'
+
 export default {
-  name: 'hrd',
+  components: {
+    BoxComponent
+  },
+  name: 'HRD',
   data () {
     return {
       msg: 'Menu Divisi HRD'
     }
-  }
+  },
+  props: ['content']
 }
 </script>
 
@@ -34,4 +40,9 @@ li {
 a {
   color: #42b983;
 }
+
+.HRD{
+  margin-top: 63.2px;
+}
+
 </style>

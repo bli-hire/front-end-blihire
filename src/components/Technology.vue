@@ -1,11 +1,16 @@
 <template>
-  <div class="Technology">
-    <h1>{{ msg }}</h1>
+  <div class="content">
+    <box-component></box-component>
   </div>
 </template>
 
 <script>
+import BoxComponent from '@/components/page-component/BoxComponent'
+
 export default {
+  components: {
+    BoxComponent
+  },
   name: 'Technology',
   data () {
     return {
@@ -33,5 +38,9 @@ li {
 
 a {
   color: #42b983;
+}
+
+.Technology {
+  margin-top:100px;
 }
 </style>

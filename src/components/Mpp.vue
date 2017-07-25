@@ -1,13 +1,21 @@
 <template>
   <div class="Mpp">
-    <h1>{{ msg }}</h1>
+    <div class="panel-dashboard col-md-5">
+      <h3>Report Mpp</h3>
+      <ReportChart></ReportChart>
+    </div>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import ReportChart from './page-component/ReportChart'
+
 export default {
   name: 'Mpp',
+  components: {
+    ReportChart
+  },
   data () {
     return {
       msg: 'Welcome to Mpp dashboard'
@@ -34,5 +42,11 @@ li {
 
 a {
   color: #42b983;
+}
+
+.Mpp {
+  margin-top: 62px;
+  margin-left: 150px;
+  overflow-y: scroll;
 }
 </style>
