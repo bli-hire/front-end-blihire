@@ -16,6 +16,12 @@ import Mpp from '@/components/Mpp'
 import MppDetail from '@/components/page-component/MppDetail'
 import CreateForm from '@/components/department/CreateForm'
 import DepartmentDasboard from '@/components/department/Dashboard'
+import HrdRequested from '@/components/hrd/Requested'
+import HrdCandidates from '@/components/hrd/Candidates'
+import HrdViewCV from '@/components/hrd/ViewCV'
+import HrdViewDetailFpk from '@/components/hrd/ViewDetailFpk'
+import HrdViewHiringProcess from '@/components/hrd/HiringProcess'
+import NotFound from '@/components/page-component/NotFound'
 
 Vue.use(Router)
 
@@ -23,108 +29,119 @@ export default new Router({
   mode: 'history',
   routes: [
     {
+      path: '*',
+      component: NotFound
+    },
+    {
       path: '/',
       name: 'App',
+      component: App
+    },
+    // CEO
+    {
+      path: '/ceo',
       component: App,
-      props: {status: ''},
+      props: {status: 'ceo'},
       children: [
         {
-          path: '/fpk',
+          path: '/ceo/fpk',
           component: Fpk
         },
         {
-          path: '/fpk/detail',
+          path: '/ceo/fpk/detail',
           component: Fpk
         },
         {
-          path: '/fpk/human-resource',
+          path: '/ceo/fpk/human-resource',
           component: HRD,
           props: {content: 'FPK'}
         },
         {
-          path: '/fpk/marketing',
+          path: '/ceo/fpk/marketing',
           component: Marketing
         },
         {
-          path: '/fpk/trade-partnership',
+          path: '/ceo/fpk/trade-partnership',
           component: TradePartnership
         },
         {
-          path: '/fpk/operation',
+          path: '/ceo/fpk/operation',
           component: Operation
         },
         {
-          path: '/fpk/technology',
+          path: '/ceo/fpk/technology',
           component: Technology
         },
         {
-          path: '/fpk/business-development',
+          path: '/ceo/fpk/business-development',
           component: BusinessDevelopment
         },
         {
-          path: '/fpk/finance',
+          path: '/ceo/fpk/finance',
           component: Finance
         },
         {
-          path: '/fpk/project-management',
+          path: '/ceo/fpk/project-management',
           component: ProjectManagement
         },
         {
-          path: '/fpk/product-management',
+          path: '/ceo/fpk/product-management',
           component: ProductManagement
         },
         {
-          path: '/mpp',
+          path: '/ceo/mpp',
           component: Mpp
         },
         {
-          path: '/mpp/detail',
+          path: '/ceo/mpp/detail',
           component: MppDetail
         },
         {
-          path: '/mpp/human-resource',
+          path: '/ceo/mpp/human-resource',
           component: HRD,
           props: {content: 'Mpp'}
         },
         {
-          path: '/mpp/marketing',
+          path: '/ceo/mpp/marketing',
           component: Marketing
         },
         {
-          path: '/mpp/trade-partnership',
+          path: '/ceo/mpp/trade-partnership',
           component: TradePartnership
         },
         {
-          path: '/mpp/operation',
+          path: '/ceo/mpp/operation',
           component: Operation
         },
         {
-          path: '/mpp/technology',
+          path: '/ceo/mpp/technology',
           component: Technology
         },
         {
-          path: '/mpp/business-development',
+          path: '/ceo/mpp/business-development',
           component: BusinessDevelopment
         },
         {
-          path: '/mpp/finance',
+          path: '/ceo/mpp/finance',
           component: Finance
         },
         {
-          path: '/mpp/project-management',
+          path: '/ceo/mpp/project-management',
           component: ProjectManagement
         },
         {
-          path: '/mpp/product-management',
+          path: '/ceo/mpp/product-management',
           component: ProductManagement
         }
       ]
     },
+    // Login
     {
       path: '/login',
       name: 'Login',
       component: Login
     },
+    // Department
     {
       path: '/department',
       name: 'department',
@@ -165,6 +182,120 @@ export default new Router({
         },
         {
           path: '/department/mpp/history'
+        }
+      ]
+    },
+    // HRD
+    {
+      path: '/hrd',
+      name: 'hrd',
+      component: App,
+      props: {status: 'hrd'},
+      children: [
+        {
+          path: '/hrd/fpk'
+        },
+        {
+          path: '/hrd/mpp'
+        },
+        {
+          path: '/hrd/fpk/dashboard',
+          component: DepartmentDasboard,
+          props: {content: 'fpk'}
+        },
+        {
+          path: '/hrd/fpk/create-new',
+          component: CreateForm,
+          props: {content: 'fpk'}
+        },
+        {
+          path: '/hrd/fpk/history'
+        },
+        {
+          path: '/hrd/mpp'
+        },
+        {
+          path: '/hrd/mpp/dashboard',
+          component: DepartmentDasboard,
+          props: {content: 'mpp'}
+        },
+        {
+          path: '/hrd/mpp/create-new',
+          component: CreateForm,
+          props: {content: 'mpp'}
+        },
+        {
+          path: '/hrd/mpp/history'
+        },
+        {
+          path: '/hrd/requested/human-resource',
+          component: HrdRequested,
+          props: {department: 'human-resource'}
+        },
+        {
+          path: '/hrd/requested/marketing'
+        },
+        {
+          path: '/hrd/requested/trade-partnership'
+        },
+        {
+          path: '/hrd/requested/operation'
+        },
+        {
+          path: '/hrd/requested/technology'
+        },
+        {
+          path: '/hrd/requested/business-development'
+        },
+        {
+          path: '/hrd/requested/finance'
+        },
+        {
+          path: '/hrd/requested/project-management'
+        },
+        {
+          path: '/hrd/requested/product-management'
+        },
+        {
+          path: '/hrd/candidates/human-resource',
+          component: HrdCandidates,
+          props: {department: 'human-resource'}
+        },
+        {
+          path: '/hrd/candidates/marketing'
+        },
+        {
+          path: '/hrd/candidates/trade-partnership'
+        },
+        {
+          path: '/hrd/candidates/operation'
+        },
+        {
+          path: '/hrd/candidates/technology'
+        },
+        {
+          path: '/hrd/candidates/business-development'
+        },
+        {
+          path: '/hrd/candidates/finance'
+        },
+        {
+          path: '/hrd/candidates/project-management'
+        },
+        {
+          path: '/hrd/candidates/product-management'
+        },
+        {
+          path: '/hrd/candidates/view-cv',
+          component: HrdViewCV
+        },
+        {
+          path: '/hrd/candidates/hiring-process',
+          component: HrdViewHiringProcess
+        },
+        {
+          path: '/hrd/requested/view-detail',
+          component: HrdViewDetailFpk
         }
       ]
     }
