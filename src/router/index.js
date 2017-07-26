@@ -32,10 +32,14 @@ export default new Router({
       path: '*',
       component: NotFound
     },
+    {
+      path: '/',
+      name: 'App',
+      component: App
+    },
     // CEO
     {
       path: '/ceo',
-      name: 'App',
       component: App,
       props: {status: 'ceo'},
       children: [

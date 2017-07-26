@@ -8,7 +8,9 @@
 export default {
   name: 'index',
   beforeMount () {
-    this.$router.push('/login')
+    if (window.sessionStorage.getItem('user') === null) {
+      this.$router.push('/login')
+    }
   }
 }
 </script>
