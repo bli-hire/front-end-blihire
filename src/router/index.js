@@ -22,6 +22,9 @@ import HrdViewCV from '@/components/hrd/ViewCV'
 import HrdViewDetailFpk from '@/components/hrd/ViewDetailFpk'
 import HrdViewHiringProcess from '@/components/hrd/HiringProcess'
 import NotFound from '@/components/page-component/NotFound'
+import MppPending from '@/components/department/MppPending'
+import MppAccepted from '@/components/department/MppAccepted'
+import MppApply from '@/components/department/MppApply'
 
 Vue.use(Router)
 
@@ -182,6 +185,18 @@ export default new Router({
         },
         {
           path: '/department/mpp/history'
+        },
+        {
+          path: '/department/mpp/pending',
+          component: MppPending
+        },
+        {
+          path: '/department/mpp/accepted',
+          component: MppAccepted
+        },
+        {
+          path: '/department/mpp/apply',
+          component: MppApply
         }
       ]
     },

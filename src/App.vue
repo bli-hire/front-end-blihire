@@ -37,7 +37,7 @@ export default {
           alert('403 : Forbidden')
           this.$router.push('/hrd')
         }
-      } else if (userLogged === 'Department') {
+      } else if (userLogged.includes('Department')) {
         this.$router.push('/department')
         if (window.location.href.includes('hrd') || window.location.href.includes('ceo') || window.location.href.includes('login')) {
           alert('403 : Forbidden')

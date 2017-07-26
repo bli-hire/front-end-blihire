@@ -47,13 +47,12 @@ export default {
   beforeMount () {
     if (window.sessionStorage.getItem('user') != null) {
       // this.$router.push('/')
-      alert('Please Logout First')
       var roleUser = JSON.parse(window.sessionStorage.getItem('user')).role.roleName
       if (roleUser === 'HR') {
         this.$router.push('/hrd')
       } else if (roleUser === 'CEO') {
         this.$router.push('/ceo')
-      } else if (roleUser === 'Department') {
+      } else if (roleUser.includes('Department')) {
         this.$router.push('/department')
       }
     }
@@ -71,7 +70,7 @@ export default {
               this.$router.push('/hrd')
             } else if (this.user.role.roleName === 'CEO') {
               this.$router.push('/ceo')
-            } else if (this.user.role.roleName === 'Department') {
+            } else if (this.user.role.roleName.includes('Department')) {
               this.$router.push('/department')
             }
           }
