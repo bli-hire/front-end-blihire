@@ -2,6 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
 import App from '@/App'
+// <<<<<<< HEAD
+// // import Hello from '@/components/Hello'
+// =======
+// >>>>>>> 0340dea32d416246c3984daea58b73e96b8ee976
 import Technology from '@/components/Technology'
 import HRD from '@/components/HumanResource'
 import Marketing from '@/components/Marketing'

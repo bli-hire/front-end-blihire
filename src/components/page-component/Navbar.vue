@@ -72,8 +72,7 @@
 
             <li v-if="loginStatus === 'ceo'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/project-management');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/project-management')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/project-management'">Project Management</router-link></li>
 
-            <li v-if="loginStatus === 'ceo'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/product-management');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/product-management')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/product-management'">Product Management</router-link></li>
-            <!---->
+            <li v-if="loginStatus === 'ceo'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/product-management');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/product-management')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/product-management'">Product Management</router-link></li>            <!---->
 
             <li v-if="loginStatus === 'hrd' && (statePage === 'requested' || statePage === 'candidates')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/human-resource');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/human-resource')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/human-resource'">Human Resource</router-link></li>
             <li v-if="loginStatus === 'hrd' && (statePage === 'requested' || statePage === 'candidates')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/marketing');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/marketing')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/marketing'">Marketing</router-link></li>
