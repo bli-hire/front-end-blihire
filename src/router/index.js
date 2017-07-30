@@ -2,10 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
 import App from '@/App'
-// <<<<<<< HEAD
-// // import Hello from '@/components/Hello'
-// =======
-// >>>>>>> 0340dea32d416246c3984daea58b73e96b8ee976
 import Technology from '@/components/Technology'
 import HRD from '@/components/HumanResource'
 import Marketing from '@/components/Marketing'
@@ -16,6 +12,7 @@ import Finance from '@/components/Finance'
 import ProjectManagement from '@/components/ProjectManagement'
 import ProductManagement from '@/components/ProductManagement'
 import Fpk from '@/components/Fpk'
+import FpkDetail from '@/components/page-component/FpkDetail'
 import Mpp from '@/components/Mpp'
 import MppDetail from '@/components/page-component/MppDetail'
 import CreateForm from '@/components/department/CreateForm'
@@ -56,7 +53,7 @@ export default new Router({
         },
         {
           path: '/ceo/fpk/detail',
-          component: Fpk
+          component: FpkDetail
         },
         {
           path: '/ceo/fpk/human-resource',
@@ -172,6 +169,10 @@ export default new Router({
           props: {content: 'fpk'}
         },
         {
+          path: '/department/fpk/detail/:id',
+          component: FpkDetail
+        },
+        {
           path: '/department/fpk/history'
         },
         {
@@ -201,6 +202,10 @@ export default new Router({
         {
           path: '/department/mpp/apply',
           component: MppApply
+        },
+        {
+          path: '/department/mpp/detail/:id',
+          component: MppDetail
         }
       ]
     },
