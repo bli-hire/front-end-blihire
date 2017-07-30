@@ -91,9 +91,9 @@
             <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/dashboard');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/dashboard')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/dashboard'">Dashboard</router-link></li>
             <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/create-new');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/create-new')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/create-new'">Create New</router-link></li>
             <li v-if="loginStatus === 'department'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/history');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/history')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/history'">History</router-link></li>
-            <li v-if="role === 'Department Head' && statePage === 'mpp'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/apply');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/apply')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/apply'">Apply</router-link></li>
-            <li v-if="role === 'Department Head' && statePage === 'mpp'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/pending');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/pending')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/pending'">Pending</router-link></li>
-            <li v-if="role === 'Department Head' && statePage === 'mpp'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/accepted');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/accepted')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/accepted'">Accepted</router-link></li>
+            <li v-if="role === 'DepartmentHead' && statePage === 'mpp'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/apply');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/apply')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/apply'">Apply</router-link></li>
+            <li v-if="role === 'DepartmentHead' && statePage === 'mpp'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/pending');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/pending')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/pending'">Pending</router-link></li>
+            <li v-if="role === 'DepartmentHead' && statePage === 'mpp'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/accepted');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/accepted')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/accepted'">Accepted</router-link></li>
         </ul>
       </div>
     </div>
@@ -114,7 +114,7 @@ export default {
       activeNavItemSide: '',
       notifPopMenu: '',
       username: JSON.parse(window.sessionStorage.getItem('user')).name,
-      role: JSON.parse(window.sessionStorage.getItem('user')).role.roleName
+      role: JSON.parse(window.sessionStorage.getItem('user')).role
     }
   },
   props: ['loginStatus'],
