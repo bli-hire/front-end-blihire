@@ -4,7 +4,9 @@
       <h3>{{title}}</h3>
       <h4>{{message}}</h4>
       <h4>{{status}}</h4>
-      <button class="btn btn-primary"><router-link :to="'/mpp/detail'">detail</router-link></button>
+      <button class="btn btn-primary">
+        <router-link :to="{ path: '/'+loginStatus+'/'+content+'/detail/'+id , params: { id: id }}">detail</router-link>
+      </button>
     </div>
   </div>
 </template>
@@ -16,7 +18,7 @@ export default {
     return {
     }
   },
-  props: ['title', 'message', 'status']
+  props: ['title', 'message', 'status', 'loginStatus', 'content', 'dataContent', 'id']
 }
 </script>
 
