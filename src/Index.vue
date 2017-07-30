@@ -6,6 +6,11 @@
 
 <script>
 export default {
-  name: 'index'
+  name: 'index',
+  beforeMount () {
+    if (window.sessionStorage.getItem('user') === null) {
+      this.$router.push('/login')
+    }
+  }
 }
 </script>
