@@ -32,12 +32,12 @@
 
        <tr>
           <th>Kesesuaian dengan MPP</th>
-          <td>{{fitness-mpp}}</td>
+          <td>{{fitnessMpp}}</td>
         </tr>
 
         <tr>
           <th>Status Karyawan</th>
-          <td>{{employee-status}}</td>
+          <td>{{employementStatus}}</td>
         </tr>
 
         <tr>
@@ -47,12 +47,12 @@
 
         <tr>
           <th>Pengalaman Bekerja</th>
-          <td>{{work-experience}}</td>
+          <td>{{workExperience}}</td>
         </tr>
 
         <tr>
           <th>Skill Knowledge</th>
-          <td>{{skill-knowledge}}</td>
+          <td>{{skillKnowledge}}</td>
         </tr>
       </table>
       
@@ -91,14 +91,24 @@ export default{
     var idSelector = self.$route.params.id
     self.$http.get('http://localhost:8080/fpk/' + idSelector).then(response => {
       var fpk = JSON.stringify(response.data.data)
-      alert(fpk)
-      var totalFpk = JSON.stringify(response.data.totalData)
-      if (totalFpk === 0) {
-        alert('No Valid Fpk for this id')
-        this.$router.push('/department/dashboard')
-      } else {
-        self.department = JSON.stringify(JSON.parse(fpk).department)
-      }
+      var objFpk = {}
+      objFpk = JSON.parse(fpk)[0]
+      this.department = objFpk.department
+      this.position = 'Belum Ada di entity Fpk'
+      this.number = objFpk.numberOfPerson
+      this.date = objFpk.createdDate
+      this.reason = objFpk.reason
+      this.fitnessMpp = objFpk.fitnessWithMpp
+      this.employementStatus = objFpk.employeeStatus
+      this.education = objFpk.school
+      this.workExperience = objFpk.workExperience
+      this.skillKnowledge = objFpk.skillKnowledge
+    }, () => {
+      alert('No Valid Fpk for this id')
+      this.$router.push('/department/')
+    }).catch((e) => {
+      alert('No Valid Fpk for this id')
+      this.$router.push('/department/')
     })
   }
 }
