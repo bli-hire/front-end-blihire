@@ -56,6 +56,10 @@ body {
   background-color: #e5e5ff;
 }
 
+button>a {
+  color: white
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -144,4 +148,5 @@ body {
 .msg-empty{
   margin-top: 40vh;
 }
+
 </style>

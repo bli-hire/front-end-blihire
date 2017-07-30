@@ -3,6 +3,7 @@
     <div class="box-content">
       <h3>{{title}}</h3>
       <h4>{{message}}</h4>
+      <h4>{{status}}</h4>
       <button class="btn btn-primary"><router-link :to="'/mpp/detail'">detail</router-link></button>
     </div>
   </div>
@@ -15,7 +16,7 @@ export default {
     return {
     }
   },
-  props: ['title', 'message']
+  props: ['title', 'message', 'status']
 }
 </script>
 
