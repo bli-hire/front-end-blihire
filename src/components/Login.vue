@@ -46,7 +46,15 @@ export default {
   },
   beforeMount () {
     if (window.sessionStorage.getItem('user') != null) {
-      this.$router.push('/')
+      // this.$router.push('/')
+      var roleUser = JSON.parse(window.sessionStorage.getItem('user')).role
+      if (roleUser === 'HR') {
+        this.$router.push('/hrd')
+      } else if (roleUser === 'CEO') {
+        this.$router.push('/ceo')
+      } else if (roleUser.includes('Department')) {
+        this.$router.push('/department')
+      }
     }
   },
   methods: {
@@ -55,15 +63,18 @@ export default {
       self.$http.post('http://localhost:8080/users/login', {
         email: self.email,
         password: self.password }, (json) => {
-          // this.$session.start()
-          // this.$session.clear()
-          // this.$session.destroy()
-
-          // window.sessionStorage.setItem('user', json)
-          window.sessionStorage.setItem('user', json)
+          window.sessionStorage.setItem('user', JSON.stringify(json))
           this.user = json
           if (this.user.id != null) {
-            this.$router.push('/')
+            if (this.user.role === 'HR') {
+              this.$router.push('/hrd')
+            } else if (this.user.role === 'CEO') {
+              this.$router.push('/ceo')
+            } else if (this.user.role.includes('Department')) {
+              this.$router.push('/department')
+            }
+          } else {
+            alert('Sorry username/password not correct')
           }
         })
     }
