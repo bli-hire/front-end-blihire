@@ -61,7 +61,7 @@
          <br/>
       
       <button v-if="role.includes('Department')" type="reset" class="btn btn-primary" name="">Edit Fpk</button>
-      <button v-if="role !== 'DepartmentTeamMember'" type="submit" class="btn btn-primary" name="">Apply Fpk</button>
+      <button v-if="role === 'DepartmentHead'" type="submit" class="btn btn-primary" name="">Apply Fpk</button>
       <button v-if="role === 'HR' || role === 'CEO' " type="reset" class="btn btn-primary" name="">Accept</button>
       <button v-if="role !== 'DepartmentTeamMember'" type="reset" class="btn btn-warning" name="">Reject</button>
       

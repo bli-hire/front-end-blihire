@@ -8,7 +8,7 @@
       v-bind:message="'Reason : '+fpk.reason"
       v-bind:statusAccept="fpk.accept"
       v-bind:statusReject="fpk.reject"
-      v-bind:loginStatus="'department'"
+      v-bind:loginStatus="role"
       v-bind:content="content"
       v-bind:id="fpk.idFpk"></BoxComponent>
 
@@ -36,13 +36,18 @@ export default {
         resultTotalFpk: 0,
         resultMpp: {},
         resultTotalMpp: 0
-      }
+      },
+      role: ''
     }
   },
   props: ['content'],
   beforeMount () {
     var self = this
     var division = 'BusinessDevelopment'
+    self.role = JSON.parse(window.sessionStorage.getItem('user')).role
+    if (self.role === 'HR') {
+      self.role = 'hrd'
+    }
     if (this.content === 'fpk') {
       self.$http.get('http://localhost:8080/fpk/byDepartment', {}, {
         headers: {

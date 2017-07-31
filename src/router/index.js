@@ -53,7 +53,7 @@ export default new Router({
           component: Fpk
         },
         {
-          path: '/ceo/fpk/detail',
+          path: '/ceo/fpk/detail/:id',
           component: FpkDetail
         },
         {
@@ -106,7 +106,7 @@ export default new Router({
           component: Mpp
         },
         {
-          path: '/ceo/mpp/detail',
+          path: '/ceo/mpp/detail/:id',
           component: MppDetail
         },
         {
