@@ -94,6 +94,9 @@ export default{
     var idSelector = self.$route.params.id
     self.username = JSON.parse(window.sessionStorage.getItem('user')).name
     self.role = JSON.parse(window.sessionStorage.getItem('user')).role
+    if (self.role.includes('Department')) {
+      var roleUrl = 'department'
+    }
     self.$http.get('http://localhost:8080/fpk/' + idSelector).then(response => {
       var fpk = JSON.stringify(response.data.data)
       var objFpk = {}
@@ -111,10 +114,10 @@ export default{
       this.dateCreated = objFpk.createdDate
     }, () => {
       alert('No Valid Fpk for this id')
-      this.$router.push('/' + self.role + '/')
+      this.$router.push('/' + roleUrl + '/')
     }).catch((e) => {
       alert('No Valid Fpk for this id')
-      this.$router.push('/' + self.role + '/')
+      this.$router.push('/' + roleUrl + '/')
     })
   }
 }

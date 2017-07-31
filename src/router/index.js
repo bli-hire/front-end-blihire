@@ -17,6 +17,7 @@ import Mpp from '@/components/Mpp'
 import MppDetail from '@/components/page-component/MppDetail'
 import CreateForm from '@/components/department/CreateForm'
 import DepartmentDasboard from '@/components/department/Dashboard'
+import DepartmentHistory from '@/components/department/History'
 import HrdRequested from '@/components/hrd/Requested'
 import HrdCandidates from '@/components/hrd/Candidates'
 import HrdViewCV from '@/components/hrd/ViewCV'
@@ -173,7 +174,9 @@ export default new Router({
           component: FpkDetail
         },
         {
-          path: '/department/fpk/history'
+          path: '/department/fpk/history',
+          component: DepartmentHistory,
+          props: {content: 'fpk'}
         },
         {
           path: '/department/mpp'
