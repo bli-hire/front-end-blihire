@@ -24,7 +24,7 @@ export default {
       this.$router.push('/login')
     } else {
       const user = window.sessionStorage.getItem('user')
-      var userLogged = JSON.parse(user).role.roleName
+      var userLogged = JSON.parse(user).role
       if (userLogged === 'CEO') {
         this.$router.push('/ceo')
         if (window.location.href.includes('hrd') || window.location.href.includes('department') || window.location.href.includes('login')) {
