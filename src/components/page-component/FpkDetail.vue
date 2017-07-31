@@ -1,8 +1,8 @@
 <template>
   <div class="listContent col-md-10">
     <h1 style="text-align: center;">{{department}}</h1>
-    <h3 style="text-align: center;">From : {{department}}</h3>
-    <h3 style="text-align: center;">Date Submited : {{date}}</h3>
+    <h3 style="text-align: center;">From : {{username}}</h3>
+    <h3 style="text-align: center;">Date Submited : {{dateCreated}}</h3>
     <br/>
         <div class="form-group">
           <table class="table table-bordered table-condensed">
@@ -13,7 +13,7 @@
           
           <tr>
             <th>Jabatan</th>
-            <td>{{position}}</td>
+            <td>{{jobPositionRequester}}</td>
           </tr>
         <tr>
           <th>Posisi/Jumlah</th> 
@@ -22,7 +22,7 @@
 
         <tr>
         <th>Tanggal dibutuhkan</th>
-        <td>{{date}}</td>
+        <td>{{dateNeeded}}</td>
         </tr>
 
         <tr>
@@ -75,34 +75,38 @@ export default{
   data () {
     return {
       department: '',
-      position: '',
       number: '',
-      date: '',
+      dateCreated: '',
       reason: '',
       fitnessMpp: '',
       employementStatus: '',
       educaton: '',
       workExperience: '',
-      skillKnowledge: ''
+      skillKnowledge: '',
+      jobPositionRequester: '',
+      dateNeeded: '',
+      username: ''
     }
   },
   beforeMount () {
     var self = this
     var idSelector = self.$route.params.id
+    self.username = JSON.parse(window.sessionStorage.getItem('user')).name
     self.$http.get('http://localhost:8080/fpk/' + idSelector).then(response => {
       var fpk = JSON.stringify(response.data.data)
       var objFpk = {}
       objFpk = JSON.parse(fpk)[0]
       this.department = objFpk.department
-      this.position = 'Belum Ada di entity Fpk'
       this.number = objFpk.numberOfPerson
-      this.date = objFpk.createdDate
       this.reason = objFpk.reason
       this.fitnessMpp = objFpk.fitnessWithMpp
       this.employementStatus = objFpk.employeeStatus
       this.education = objFpk.school
       this.workExperience = objFpk.workExperience
       this.skillKnowledge = objFpk.skillKnowledge
+      this.jobPositionRequester = objFpk.jobPositionRequester
+      this.dateNeeded = objFpk.dateNeeded
+      this.dateCreated = objFpk.createdDate
     }, () => {
       alert('No Valid Fpk for this id')
       this.$router.push('/department/')
