@@ -7,17 +7,21 @@
 
           <label for="pos">Departemen Pemohon:</label>
             <select class="form-control" id="pos" v-model="departmentPemohon">
-              <option>Department 1</option>
-              <option>Department 2</option>
-              <option>Department 3</option>
+              <option value="HumanResource">Human Resource</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Operation">Operation</option>
+              <option value="TradePartnership">Trade Partnership</option>
+              <option value="Technology">Technology</option>
+              <option value="BusinessDevelopment">Business Development</option>
+              <option value="Finance">Finance</option>
+              <option value="ProjectManagement">Project Management</option>
+              <option value="ProductManagement">Product Management</option>
             </select>
           <br/>
 
         <label for="pos">Jabatan Pemohon:</label>
-            <select class="form-control" id="pos" v-model="jabatanPemohon">
-              <option>Jabatan</option>
-            </select>
-          <br/>
+          <input type="text" id="jabatanPemohon" class="form-control" v-model="jobPositionRequester"/>
+        <br/>
 
         <label for="personNeeded">Posisi atau jumlah</label>
         <input type="number" id="personNeeded" class="form-control" v-model="jumlahPosisi"/>
@@ -33,14 +37,18 @@
               <option>Pemegang Jabatan terdahulu dimutasi/promosi</option>
               <option>Penambahan</option>
             </select>
-          <br/>
+        <p v-if="alasan === 'Penambahan'">Silahkan lanjutkan alasan penambahan</p>
+        <input v-if="alasan === 'Penambahan'" type="text" id="" class="form-control" v-model="alasanTambahan" value="" />
+        <br/>
 
        <label>Kesesuaian dengan MPP</label>
          <select class="form-control" id="" v-model="kesesuaianMpp">
               <option>Sesuai</option>
               <option>Tidak sesuai</option>
             </select>
-          <br/>
+        <p v-if="kesesuaianMpp === 'Tidak sesuai'">Silahkan lanjutkan alasan tidak sesuai</p>
+        <input v-if="kesesuaianMpp === 'Tidak sesuai'" type="text" id="" class="form-control" v-model="kesesuaianMppTambahan" value="" />
+        <br/>
 
         <label for="education">Status Karyawan:</label>
             <select class="form-control" id="education" v-model="statusKaryawan">
@@ -55,8 +63,11 @@
               <option>S1</option>
               <option>S2</option>
               <option>S3</option>
+              <option>Lainnya</option>
             </select>
-          <br/>
+        <p v-if="pendidikan === 'Lainnya'">Silahkan lanjutkan alasan tidak sesuai</p>
+        <input v-if="pendidikan === 'Lainnya'" type="text" id="" class="form-control" v-model="pendidikanLainnya" value="" />  
+        <br/>
 
          <label>Pengalaman Bekerja</label>
          <select class="form-control" id="" v-model="pengalamanBekerja">
@@ -187,29 +198,41 @@ export default {
       tanggalDibutuhkan: '',
       alasan: '',
       kesesuaianMpp: '',
+      kesesuaianMppTambahan: '',
       statusKaryawan: '',
       pendidikan: '',
+      pendidikanLainnya: '',
       pengalamanBekerja: '',
-      skillPengetahuan: ''
+      skillPengetahuan: '',
+      alasanTambahan: '',
+      idUserRequested: '',
+      jobPositionRequester: '',
+      role: ''
     }
   },
   props: ['content'],
   methods: {
     insertFpk () {
       var self = this
-      self.$http.post('http://localhost:8080/internal/fpk', {
+      self.idUserRequested = JSON.parse(window.sessionStorage.getItem('user')).id
+      self.role = JSON.parse(window.sessionStorage.getItem('user')).role
+      if (self.pendidikanLainnya !== '') {
+        self.pendidikan = self.pendidikanLainnya
+      }
+      self.$http.post('http://localhost:8080/fpk', {
         position: self.jumlahPosisi,
-        reason: self.alasan,
-        fitnessWithMpp: self.kesesuaianMpp,
+        reason: self.alasan + ' ' + self.alasanTambahan,
+        fitnessWithMpp: self.kesesuaianMpp + ' ' + self.kesesuaianMppTambahan,
         employeeStatus: self.statusKaryawan,
         school: self.pendidikan,
         workExperience: self.pengalamanBekerja,
         skillKnowledge: self.skillPengetahuan,
-        idUserApproved: 1,
-        idUserRequested: 1,
-        completeness: 'sementara kosong'}, (json) => {
+        idUserRequested: self.idUserRequested,
+        dateNeeded: self.tanggalDibutuhkan,
+        jobPositionRequester: self.jobPositionRequester,
+        completeness: ''}, (json) => {
           alert('Sukses Terkirim')
-          this.$router.push('/')
+          this.$router.push('/' + self.role + '/')
         })
     }
   }

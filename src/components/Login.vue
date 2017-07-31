@@ -46,7 +46,15 @@ export default {
   },
   beforeMount () {
     if (window.sessionStorage.getItem('user') != null) {
-      this.$router.push('/')
+      // this.$router.push('/')
+      var roleUser = JSON.parse(window.sessionStorage.getItem('user')).role
+      if (roleUser === 'HR') {
+        this.$router.push('/hrd')
+      } else if (roleUser === 'CEO') {
+        this.$router.push('/ceo')
+      } else if (roleUser.includes('Department')) {
+        this.$router.push('/department')
+      }
     }
   },
   methods: {
@@ -58,13 +66,15 @@ export default {
           window.sessionStorage.setItem('user', JSON.stringify(json))
           this.user = json
           if (this.user.id != null) {
-            if (this.user.role.roleName === 'HR') {
+            if (this.user.role === 'HR') {
               this.$router.push('/hrd')
-            } else if (this.user.role.roleName === 'CEO') {
+            } else if (this.user.role === 'CEO') {
               this.$router.push('/ceo')
-            } else if (this.user.role.roleName === 'Department') {
+            } else if (this.user.role.includes('Department')) {
               this.$router.push('/department')
             }
+          } else {
+            alert('Sorry username/password not correct')
           }
         })
     }

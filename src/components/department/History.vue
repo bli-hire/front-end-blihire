@@ -24,7 +24,7 @@ export default {
   components: {
     BoxComponent
   },
-  name: 'department-dashboard',
+  name: 'history',
   data () {
     return {
       resultContent: {
@@ -40,7 +40,7 @@ export default {
     var self = this
     var division = JSON.parse(window.sessionStorage.getItem('user')).department
     if (this.content === 'fpk') {
-      self.$http.get('http://localhost:8080/fpk/byDepartment', {}, {
+      self.$http.get('http://localhost:8080/fpk/byDepartment/history', {}, {
         headers: {
           'department': division
         }

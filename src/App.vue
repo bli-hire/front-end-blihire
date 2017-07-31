@@ -19,30 +19,33 @@ export default {
     Navbar
   },
   beforeMount () {
+    // alert(JSON.parse(window.sessionStorage.getItem('user')).role.roleName)
     if (window.sessionStorage.getItem('user') == null) {
       this.$router.push('/login')
     } else {
       const user = window.sessionStorage.getItem('user')
-      var userLogged = JSON.parse(user).role.roleName
+      var userLogged = JSON.parse(user).role
       if (userLogged === 'CEO') {
-        if (window.location.href.includes('hrd') || window.location.href.includes('department')) {
+        this.$router.push('/ceo')
+        if (window.location.href.includes('hrd') || window.location.href.includes('department') || window.location.href.includes('login')) {
           alert('403 : Forbidden')
           this.$router.push('/ceo')
         }
-      } else if (userLogged === 'HRD') {
-        if (window.location.href.includes('ceo') || window.location.href.includes('department')) {
+      } else if (userLogged === 'HR') {
+        this.$router.push('/hrd')
+        if (window.location.href.includes('ceo') || window.location.href.includes('department') || window.location.href.includes('login')) {
           alert('403 : Forbidden')
           this.$router.push('/hrd')
         }
-      } else if (userLogged === 'Department') {
-        if (window.location.href.includes('hrd') || window.location.href.includes('ceo')) {
+      } else if (userLogged.includes('Department')) {
+        this.$router.push('/department')
+        if (window.location.href.includes('hrd') || window.location.href.includes('ceo') || window.location.href.includes('login')) {
           alert('403 : Forbidden')
           this.$router.push('/department')
         }
       }
     }
   },
-
   props: ['status']
 }
 
@@ -51,6 +54,10 @@ export default {
 <style>
 body {
   background-color: #e5e5ff;
+}
+
+button>a {
+  color: white
 }
 
 #app {
@@ -141,4 +148,5 @@ body {
 .msg-empty{
   margin-top: 40vh;
 }
+
 </style>
