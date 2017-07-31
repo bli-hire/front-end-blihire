@@ -206,7 +206,8 @@ export default {
       skillPengetahuan: '',
       alasanTambahan: '',
       idUserRequested: '',
-      jobPositionRequester: ''
+      jobPositionRequester: '',
+      role: ''
     }
   },
   props: ['content'],
@@ -214,7 +215,7 @@ export default {
     insertFpk () {
       var self = this
       self.idUserRequested = JSON.parse(window.sessionStorage.getItem('user')).id
-      var department = JSON.parse(window.sessionStorage.getItem('user')).department
+      self.role = JSON.parse(window.sessionStorage.getItem('user')).role
       if (self.pendidikanLainnya !== '') {
         self.pendidikan = self.pendidikanLainnya
       }
@@ -231,7 +232,7 @@ export default {
         jobPositionRequester: self.jobPositionRequester,
         completeness: ''}, (json) => {
           alert('Sukses Terkirim')
-          this.$router.push('/' + department + '/')
+          this.$router.push('/' + self.role + '/')
         })
     }
   }

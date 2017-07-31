@@ -56,15 +56,15 @@
         </tr>
       </table>
       
-        <label>Comment</label>
-        <textarea name="Text1" cols="140" rows="8" class="form-control" ></textarea>
+        <label v-if="role !== 'DepartmentTeamMember'">Comment</label>
+        <textarea v-if="role !== 'DepartmentTeamMember'"name="Text1" cols="140" rows="8" class="form-control" ></textarea>
          <br/>
-
-      <button type="submit" class="btn btn-primary" name="">Accept FPK</button>
       
-      <button type="reset" class="btn btn-warning" name="">Reject</button>
-
-
+      <button v-if="role.includes('Department')" type="reset" class="btn btn-primary" name="">Edit Fpk</button>
+      <button v-if="role !== 'DepartmentTeamMember'" type="submit" class="btn btn-primary" name="">Apply Fpk</button>
+      <button v-if="role === 'HR' || role === 'CEO' " type="reset" class="btn btn-primary" name="">Accept</button>
+      <button v-if="role !== 'DepartmentTeamMember'" type="reset" class="btn btn-warning" name="">Reject</button>
+      
       </div>
     </div>
 </template>
@@ -85,13 +85,15 @@ export default{
       skillKnowledge: '',
       jobPositionRequester: '',
       dateNeeded: '',
-      username: ''
+      username: '',
+      role: ''
     }
   },
   beforeMount () {
     var self = this
     var idSelector = self.$route.params.id
     self.username = JSON.parse(window.sessionStorage.getItem('user')).name
+    self.role = JSON.parse(window.sessionStorage.getItem('user')).role
     self.$http.get('http://localhost:8080/fpk/' + idSelector).then(response => {
       var fpk = JSON.stringify(response.data.data)
       var objFpk = {}
@@ -109,10 +111,10 @@ export default{
       this.dateCreated = objFpk.createdDate
     }, () => {
       alert('No Valid Fpk for this id')
-      this.$router.push('/department/')
+      this.$router.push('/' + self.role + '/')
     }).catch((e) => {
       alert('No Valid Fpk for this id')
-      this.$router.push('/department/')
+      this.$router.push('/' + self.role + '/')
     })
   }
 }
