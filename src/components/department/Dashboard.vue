@@ -6,7 +6,8 @@
       v-for="fpk in JSON.parse(resultContent.resultFpk)" 
       v-bind:title="fpk.department" 
       v-bind:message="'Reason : '+fpk.reason"
-      v-bind:status="'Status : '+fpk.accept"
+      v-bind:statusAccept="fpk.accept"
+      v-bind:statusReject="fpk.reject"
       v-bind:loginStatus="'department'"
       v-bind:content="content"
       v-bind:id="fpk.idFpk"></BoxComponent>

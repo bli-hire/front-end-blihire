@@ -16,9 +16,19 @@ export default {
   name: 'box',
   data () {
     return {
+      status: ''
     }
   },
-  props: ['title', 'message', 'status', 'loginStatus', 'content', 'dataContent', 'id']
+  props: ['title', 'message', 'loginStatus', 'content', 'dataContent', 'id', 'statusAccept', 'statusReject'],
+  beforeMount () {
+    if (this.statusAccept === false && this.statusReject === false) {
+      this.status = 'Not Yet Accepted'
+    } else if (this.statusAccept === true && this.statusReject === false) {
+      this.status = 'Accepted'
+    } else if (this.statusAccept === false && this.statusReject === true) {
+      this.status = 'Rejected'
+    }
+  }
 }
 </script>
 
