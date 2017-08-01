@@ -39,19 +39,19 @@ export default new Router({
       children: [
         {
           path: '/fpk',
-<<<<<<< HEAD
-          component: Fpk,
-          children: [
-            {
-              path: 'technology',
-              component: Technology
-            },
-            {
-              path: 'hrd',
-              component: HRD
-            }
-          ]
-=======
+// <<<<<<< HEAD
+//           component: Fpk,
+//           children: [
+//             {
+//               path: 'technology',
+//               component: Technology
+//             },
+//             {
+//               path: 'hrd',
+//               component: HRD
+//             }
+//           ]
+// =======
           component: Fpk
         },
         {
@@ -94,7 +94,7 @@ export default new Router({
         {
           path: '/fpk/product-management',
           component: ProductManagement
->>>>>>> 0340dea32d416246c3984daea58b73e96b8ee976
+// >>>>>>> 0340dea32d416246c3984daea58b73e96b8ee976
         },
         {
           path: '/mpp',

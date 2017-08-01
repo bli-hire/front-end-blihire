@@ -55,8 +55,7 @@ export default {
       self.$http.post('http://localhost:8080/users/login', {
         email: self.email,
         password: self.password }, (json) => {
-
-          window.sessionStorage.setItem('user', JSON.stringify(json))\
+          window.sessionStorage.setItem('user', JSON.stringify(json))
           this.user = json
           if (this.user.id != null) {
             if (this.user.role.roleName === 'HR') {
