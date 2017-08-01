@@ -49,7 +49,7 @@ export default {
       self.role = 'hrd'
     }
     if (this.content === 'fpk') {
-      self.$http.get('http://localhost:8080/fpk/byDepartment', {}, {
+      self.$http.get('http://localhost:8080/fpk/byDepartment/active', {}, {
         headers: {
           'department': division
         }
