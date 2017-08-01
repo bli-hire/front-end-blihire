@@ -152,18 +152,18 @@
           <th>December</th>
         </tr>
         <tr>
-          <td><input type="number" class="form-control" v-model="januaryExpect"/></td>
-          <td><input type="number" class="form-control" v-model="februaryExpect"/></td>
-          <td><input type="number" class="form-control" v-model="marchExpect"/></td>
-          <td><input type="number" class="form-control" v-model="aprilExpect"/></td>
-          <td><input type="number" class="form-control" v-model="mayExpect"/></td>
-          <td><input type="number" class="form-control" v-model="juneExpect"/></td>
-          <td><input type="number" class="form-control" v-model="julyExpect"/></td>
-          <td><input type="number" class="form-control" v-model="augustExpect"/></td>
-          <td><input type="number" class="form-control" v-model="septemberExpect"/></td>
-          <td><input type="number" class="form-control" v-model="octoberExpect"/></td>
-          <td><input type="number" class="form-control" v-model="novemberExpect"/></td>
-          <td><input type="number" class="form-control" v-model="decemberExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="januaryExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="februaryExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="marchExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="aprilExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="mayExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="juneExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="julyExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="augustExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="septemberExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="octoberExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="novemberExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="decemberExpect"/></td>
         </tr>
       </table>
 
@@ -261,19 +261,20 @@ export default {
       self.idUserRequested = JSON.parse(window.sessionStorage.getItem('user')).id
       self.role = JSON.parse(window.sessionStorage.getItem('user')).role
       self.expectedJoin = self.januaryExpect + self.februaryExpect + self.marchExpect + self.aprilExpect + self.mayExpect + self.juneExpect + self.julyExpect + self.augustExpect + self.septemberExpect + self.octoberExpect + self.novemberExpect + self.decemberExpect
+      // self.expectedJoin = 20
       self.$http.post('http://localhost:8080/mpp', {
-        position: self.positionMpp,
         numberOfPerson: self.personNeededMpp,
+        position: self.positionMpp,
         reason: self.reasonMpp,
-        mainResponsibilty: '',
+        mainResponsibility: '',
         education: self.educationMpp,
         experience: self.experienceMpp,
-        knowledge: self.knowledge,
+        knowledge: self.knowledgeMpp,
         employeeStatus: self.employeeStatusMpp,
         expectedJoin: self.expectedJoin,
         pcAmmount: self.pcNumberMpp,
         pcSpec: self.pcSpecMpp,
-        idUserRequested: self.idUserRequested}, (json) => {
+        idRequested: self.idUserRequested}, (json) => {
           alert('Sukses Terkirim')
           this.$router.push('/' + self.role + '/')
         })
