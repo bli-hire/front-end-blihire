@@ -139,10 +139,11 @@ export default{
   methods: {
     ceoApprove () {
       this.$http.post('http://localhost:8080/mpp/approve', {
-        idWhoApprove: this.idUser,
-        MppId: parseInt(this.idSelector)
+        idUser: this.idUser,
+        idMpp: parseInt(this.idSelector)
       }, (json) => {
         alert(JSON.stringify(json.message))
+        this.$router.push('/ceo')
       })
     }
   }
