@@ -228,7 +228,8 @@ export default {
       decemberExpect: '',
       pcNumberMpp: '',
       pcSpecMpp: '',
-      expectedJoin: ''
+      expectedJoin: '',
+      expectJoin: {}
     }
   },
   props: ['content'],
@@ -261,6 +262,20 @@ export default {
       self.idUserRequested = JSON.parse(window.sessionStorage.getItem('user')).id
       self.role = JSON.parse(window.sessionStorage.getItem('user')).role
       self.expectedJoin = self.januaryExpect + self.februaryExpect + self.marchExpect + self.aprilExpect + self.mayExpect + self.juneExpect + self.julyExpect + self.augustExpect + self.septemberExpect + self.octoberExpect + self.novemberExpect + self.decemberExpect
+      self.expectJoin = {
+        januaryExpect: self.januaryExpect,
+        februaryExpect: self.februaryExpect,
+        marchExpect: self.marchExpect,
+        aprilExpect: self.aprilExpect,
+        mayExpect: self.mayExpect,
+        juneExpect: self.juneExpect,
+        julyExpect: self.julyExpect,
+        augustExpect: self.augustExpect,
+        septemberExpect: self.septemberExpect,
+        octoberExpect: self.octoberExpect,
+        novemberExpect: self.novemberExpect,
+        decemberExpect: self.decemberExpect
+      }
       // self.expectedJoin = 20
       self.$http.post('http://localhost:8080/mpp', {
         numberOfPerson: self.personNeededMpp,
@@ -274,7 +289,8 @@ export default {
         expectedJoin: self.expectedJoin,
         pcAmmount: self.pcNumberMpp,
         pcSpec: self.pcSpecMpp,
-        idRequested: self.idUserRequested}, (json) => {
+        idRequested: self.idUserRequested,
+        expectJoin: self.expectJoin}, (json) => {
           alert('Sukses Terkirim')
           this.$router.push('/' + self.role + '/')
         })
