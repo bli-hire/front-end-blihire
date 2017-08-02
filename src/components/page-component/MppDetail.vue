@@ -27,18 +27,18 @@
             <th>December</th>
           </tr>
           <tr>
-            <td>{{month-1}}</td>
-            <td>{{month-2}}</td>
-            <td>{{month-3}}</td>
-            <td>{{month-4}}</td>
-            <td>{{month-5}}</td>
-            <td>{{month-6}}</td>
-            <td>{{month-7}}</td>
-            <td>{{month-8}}</td>
-            <td>{{month-9}}</td>
-            <td>{{month-10}}</td>
-            <td>{{month-11}}</td>
-            <td>{{month-12}}</td>
+            <td>{{month1}}</td>
+            <td>{{month2}}</td>
+            <td>{{month3}}</td>
+            <td>{{month4}}</td>
+            <td>{{month5}}</td>
+            <td>{{month6}}</td>
+            <td>{{month7}}</td>
+            <td>{{month8}}</td>
+            <td>{{month9}}</td>
+            <td>{{month10}}</td>
+            <td>{{month11}}</td>
+            <td>{{month12}}</td>
           </tr>
         </tbody>
       </table>
@@ -46,6 +46,10 @@
       <p>Spesification : {{pcSpec}}</p>
       <h3>Comment :</h3>
       <textarea name="Text1" cols="140" rows="8"></textarea>
+      <br/>
+      <button v-if="role === 'CEO'"  v-on:click="ceoApprove()" type="reset" class="btn btn-primary" name="">Approve</button>
+      <button v-if="role === 'CEO'" type="reset" class="btn btn-warning" name="">Reject</button>
+
   </div>
 </template>
 
@@ -72,7 +76,19 @@ export default{
       pcSpec: '',
       role: '',
       idSelector: '',
-      idUser: ''
+      idUser: '',
+      month1: '',
+      month2: '',
+      month3: '',
+      month4: '',
+      month5: '',
+      month6: '',
+      month7: '',
+      month8: '',
+      month9: '',
+      month10: '',
+      month11: '',
+      month12: ''
     }
   },
   beforeMount () {
@@ -100,6 +116,18 @@ export default{
       this.pcAmmount = objMpp.pcAmmount
       // this.dateNeeded = objMpp.dateNeeded
       this.dateCreated = objMpp.createdDate
+      this.month1 = objMpp.januaryExpect
+      this.month2 = objMpp.februaryExpect
+      this.month3 = objMpp.marchExpect
+      this.month4 = objMpp.aprilExpect
+      this.month5 = objMpp.mayExpect
+      this.month6 = objMpp.juneExpect
+      this.month7 = objMpp.julyExpect
+      this.month8 = objMpp.augustExpect
+      this.month9 = objMpp.septemberExpect
+      this.month10 = objMpp.octoberExpect
+      this.month11 = objMpp.novemberExpect
+      this.month12 = objMpp.decemberExpect
     }, () => {
       alert('No Valid Mpp for this id')
       this.$router.push('/' + roleUrl + '/')
@@ -111,8 +139,8 @@ export default{
   methods: {
     ceoApprove () {
       this.$http.post('http://localhost:8080/mpp/approve', {
-        idUser: this.idUser,
-        idMpp: parseInt(this.idSelector)
+        idWhoApprove: this.idUser,
+        MppId: parseInt(this.idSelector)
       }, (json) => {
         alert(JSON.stringify(json.message))
       })
