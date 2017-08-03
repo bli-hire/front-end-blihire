@@ -1,19 +1,19 @@
 <template>
   <div class="listContent col-md-10">
-  <h2>List of Requested FPK</h2>
+  <h2>List of Requested FPK/MPP</h2>
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Posisi</th>
-        <th>Target Tanggal</th>
-        <th>Aksi(Klik Lihat FPK untuk mengkonfirmasi atau membatalkan)</th>
+        <th>Position Needed</th>
+        <th>Target Date</th>
+        <th>View Detail</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td>Accounting Jr.</td>
           <td>28 Februari 2017</td>
-          <td><button class="btn btn-primary"><router-link :to="'/hrd/requested/view-detail'">Lihat FPK</router-link></button></td></td>
+          <td><button class="btn btn-primary"><router-link :to="'/hrd/requested/view-detail'">View Fpk</router-link></button></td></td>
         </tr>
     </tbody>
   </table>
@@ -28,7 +28,11 @@ export default {
 </script>
 
 <style scoped>
-a{
+a {
   color: white;
+}
+
+th {
+  text-align: center;
 }
 </style>
