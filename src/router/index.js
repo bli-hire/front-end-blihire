@@ -12,16 +12,24 @@ import Finance from '@/components/Finance'
 import ProjectManagement from '@/components/ProjectManagement'
 import ProductManagement from '@/components/ProductManagement'
 import Fpk from '@/components/Fpk'
+import FpkDetail from '@/components/page-component/FpkDetail'
 import Mpp from '@/components/Mpp'
 import MppDetail from '@/components/page-component/MppDetail'
 import CreateForm from '@/components/department/CreateForm'
 import DepartmentDasboard from '@/components/department/Dashboard'
+import DepartmentHistory from '@/components/department/History'
 import HrdRequested from '@/components/hrd/Requested'
 import HrdCandidates from '@/components/hrd/Candidates'
 import HrdViewCV from '@/components/hrd/ViewCV'
 import HrdViewDetailFpk from '@/components/hrd/ViewDetailFpk'
 import HrdViewHiringProcess from '@/components/hrd/HiringProcess'
 import NotFound from '@/components/page-component/NotFound'
+import MppPending from '@/components/department/MppPending'
+import MppAccepted from '@/components/department/MppAccepted'
+import MppRejected from '@/components/department/MppRejected'
+import FpkPending from '@/components/department/FpkPending'
+import FpkAccepted from '@/components/department/FpkAccepted'
+import FpkRejected from '@/components/department/FpkRejected'
 
 Vue.use(Router)
 
@@ -49,7 +57,7 @@ export default new Router({
         },
         {
           path: '/ceo/fpk/detail',
-          component: Fpk
+          component: FpkDetail
         },
         {
           path: '/ceo/fpk/human-resource',
@@ -165,7 +173,28 @@ export default new Router({
           props: {content: 'fpk'}
         },
         {
-          path: '/department/fpk/history'
+          path: '/department/fpk/detail/:id',
+          component: FpkDetail
+        },
+        {
+          path: '/department/fpk/history',
+          component: DepartmentHistory,
+          props: {content: 'fpk'}
+        },
+        {
+          path: '/department/fpk/pending',
+          component: FpkPending,
+          props: {content: 'fpk'}
+        },
+        {
+          path: '/department/fpk/accepted',
+          component: FpkAccepted,
+          props: {content: 'fpk'}
+        },
+        {
+          path: '/department/fpk/rejected',
+          component: FpkRejected,
+          props: {content: 'fpk'}
         },
         {
           path: '/department/mpp'
@@ -182,6 +211,24 @@ export default new Router({
         },
         {
           path: '/department/mpp/history'
+        },
+        {
+          path: '/department/mpp/pending',
+          component: MppPending,
+          props: {content: 'mpp'}
+        },
+        {
+          path: '/department/mpp/accepted',
+          component: MppAccepted,
+          props: {content: 'mpp'}
+        },
+        {
+          path: '/department/mpp/rejected',
+          component: MppRejected
+        },
+        {
+          path: '/department/mpp/detail/:id',
+          component: MppDetail
         }
       ]
     },

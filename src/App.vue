@@ -24,7 +24,7 @@ export default {
       this.$router.push('/login')
     } else {
       const user = window.sessionStorage.getItem('user')
-      var userLogged = JSON.parse(user).role.roleName
+      var userLogged = JSON.parse(user).role
       if (userLogged === 'CEO') {
         this.$router.push('/ceo')
         if (window.location.href.includes('hrd') || window.location.href.includes('department') || window.location.href.includes('login')) {
@@ -37,7 +37,7 @@ export default {
           alert('403 : Forbidden')
           this.$router.push('/hrd')
         }
-      } else if (userLogged === 'Department') {
+      } else if (userLogged.includes('Department')) {
         this.$router.push('/department')
         if (window.location.href.includes('hrd') || window.location.href.includes('ceo') || window.location.href.includes('login')) {
           alert('403 : Forbidden')
@@ -46,7 +46,6 @@ export default {
       }
     }
   },
-
   props: ['status']
 }
 
@@ -55,6 +54,10 @@ export default {
 <style>
 body {
   background-color: #e5e5ff;
+}
+
+button>a {
+  color: white
 }
 
 #app {
@@ -145,4 +148,5 @@ body {
 .msg-empty{
   margin-top: 40vh;
 }
+
 </style>

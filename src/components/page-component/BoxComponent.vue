@@ -3,7 +3,10 @@
     <div class="box-content">
       <h3>{{title}}</h3>
       <h4>{{message}}</h4>
-      <button class="btn btn-primary"><router-link :to="'/mpp/detail'">detail</router-link></button>
+      <h4>{{status}}</h4>
+      <button class="btn btn-primary">
+        <router-link :to="{ path: '/'+loginStatus+'/'+content+'/detail/'+id , params: { id: id }}">detail</router-link>
+      </button>
     </div>
   </div>
 </template>
@@ -13,9 +16,19 @@ export default {
   name: 'box',
   data () {
     return {
+      status: ''
     }
   },
-  props: ['title', 'message']
+  props: ['title', 'message', 'loginStatus', 'content', 'dataContent', 'id', 'statusAccept', 'statusReject'],
+  beforeMount () {
+    if (this.statusAccept === false && this.statusReject === false) {
+      this.status = 'Not Yet Accepted'
+    } else if (this.statusAccept === true && this.statusReject === false) {
+      this.status = 'Accepted'
+    } else if (this.statusAccept === false && this.statusReject === true) {
+      this.status = 'Rejected'
+    }
+  }
 }
 </script>
 
