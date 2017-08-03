@@ -26,7 +26,10 @@ import HrdViewHiringProcess from '@/components/hrd/HiringProcess'
 import NotFound from '@/components/page-component/NotFound'
 import MppPending from '@/components/department/MppPending'
 import MppAccepted from '@/components/department/MppAccepted'
-import MppApply from '@/components/department/MppApply'
+import MppRejected from '@/components/department/MppRejected'
+import FpkPending from '@/components/department/FpkPending'
+import FpkAccepted from '@/components/department/FpkAccepted'
+import FpkRejected from '@/components/department/FpkRejected'
 
 Vue.use(Router)
 
@@ -179,6 +182,21 @@ export default new Router({
           props: {content: 'fpk'}
         },
         {
+          path: '/department/fpk/pending',
+          component: FpkPending,
+          props: {content: 'fpk'}
+        },
+        {
+          path: '/department/fpk/accepted',
+          component: FpkAccepted,
+          props: {content: 'fpk'}
+        },
+        {
+          path: '/department/fpk/rejected',
+          component: FpkRejected,
+          props: {content: 'fpk'}
+        },
+        {
           path: '/department/mpp'
         },
         {
@@ -205,8 +223,8 @@ export default new Router({
           props: {content: 'mpp'}
         },
         {
-          path: '/department/mpp/apply',
-          component: MppApply
+          path: '/department/mpp/rejected',
+          component: MppRejected
         },
         {
           path: '/department/mpp/detail/:id',
