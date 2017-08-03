@@ -1,51 +1,107 @@
 <template>
   <div class="listContent col-md-10">
-  <h2>List of Requested {{content.toUpperCase()}}</h2>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Position Needed</th>
-        <th>Target Date</th>
-        <th>View Detail</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>Accounting Jr.</td>
-          <td>28 Februari 2017</td>
-          <td><button class="btn btn-primary"><router-link :to="'/hrd/requested/view-detail'">View {{content.toUpperCase()}}</router-link></button></td></td>
-        </tr>
-    </tbody>
-  </table>
+    <h2 class="" v-if="content === 'mpp' && JSON.parse(resultContent.resultTotalMpp) === 0">There are no new {{content}} requested</h2>
+    <h2 class="" v-if="content === 'fpk' && JSON.parse(resultContent.resultTotalFpk) === 0">There are no new {{content}} requested</h2>
+    <div v-if=" content === 'mpp' && JSON.parse(resultContent.resultTotalMpp) !== 0">
+      <h2>List of Requested {{content.toUpperCase()}}</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Position Needed</th>
+            <th>Target Date</th>
+            <th>View Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td>Accounting Jr.</td>
+              <td>28 Februari 2017</td>
+              <td><button class="btn btn-primary"><router-link :to="'/hrd/requested/view-detail-mpp'">View {{content.toUpperCase()}}</router-link></button></td></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <div v-if=" content === 'fpk' && JSON.parse(resultContent.resultTotalFpk) !== 0">
+      <h2>List of Requested {{content.toUpperCase()}}</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Position Needed</th>
+            <th>Target Date</th>
+            <th>View Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td>Accounting Jr.</td>
+              <td>28 Februari 2017</td>
+              <td><button class="btn btn-primary"><router-link :to="'/hrd/requested/view-detail-fpk'">View {{content.toUpperCase()}}</router-link></button></td></td>
+            </tr>
+        </tbody>
+      </table>
+      </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'requeted',
+  name: 'requested',
   props: ['department', 'content'],
   data () {
     return {
+      resultContent: {
+        resultFpk: {},
+        resultTotalFpk: 0,
+        resultMpp: {},
+        resultTotalMpp: 0
+      },
+      totalData: 0,
+      role: ''
     }
   },
   beforeMount () {
-    self.$http.post('http://localhost:8080/users/login', {
-      email: self.email,
-      password: self.password }, (json) => {
-        window.sessionStorage.setItem('user', JSON.stringify(json))
-        this.user = json
-        if (this.user.id != null) {
-          if (this.user.role === 'HR') {
-            this.$router.push('/hrd')
-          } else if (this.user.role === 'CEO') {
-            this.$router.push('/ceo')
-          } else if (this.user.role.includes('Department')) {
-            this.$router.push('/department')
-          }
+    var self = this
+    var division = this.department
+    self.role = JSON.parse(window.sessionStorage.getItem('user')).role
+    if (self.role === 'HR') {
+      self.role = 'hrd'
+    }
+    if (this.content === 'fpk') {
+      self.$http.get('http://localhost:8080/fpk/byDepartment/active', {}, {
+        headers: {
+          'department': division
+        }
+      }).then(response => {
+        if (response.data.data === '[]') {
+          this.resultContent.resultTotalFpk = 0
         } else {
-          alert('Sorry username/password not correct')
+          var fpk = JSON.stringify(response.data.data)
+          var totalFpk = JSON.stringify(response.data.totalData)
+          this.resultContent.resultFpk = fpk
+          this.resultContent.resultTotalFpk = totalFpk
+          this.totalData = totalFpk
         }
       })
+    } else if (this.content === 'mpp') {
+      self.$http.get('http://localhost:8080/mpp/byDepartment/active', {}, {
+        headers: {
+          'department': division
+        }
+      }).then(response => {
+        if (response.data.data === '[]') {
+          this.resultContent.resultTotalMpp = 0
+        } else {
+          var mpp = JSON.stringify(response.data.data)
+          var totalMpp = JSON.stringify(response.data.totalData)
+          this.resultContent.resultMpp = mpp
+          this.resultContent.resultTotalMpp = totalMpp
+          this.totalData = totalMpp
+        }
+      })
+    }
+  },
+  methods: {
+
   }
 }
 </script>
