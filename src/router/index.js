@@ -275,33 +275,94 @@ export default new Router({
           path: '/hrd/mpp/history'
         },
         {
-          path: '/hrd/requested/human-resource',
+          path: '/hrd/requested/fpk/human-resource',
           component: HrdRequested,
-          props: {department: 'human-resource'}
+          props: {department: 'human-resource', content: 'fpk'}
         },
         {
-          path: '/hrd/requested/marketing'
+          path: '/hrd/requested/mpp/human-resource',
+          component: HrdRequested,
+          props: {department: 'human-resource', content: 'mpp'}
         },
         {
-          path: '/hrd/requested/trade-partnership'
+          path: '/hrd/requested/fpk/marketing',
+          component: HrdRequested,
+          props: {department: 'marketing', content: 'fpk'}
         },
         {
-          path: '/hrd/requested/operation'
+          path: '/hrd/requested/mpp/marketing',
+          component: HrdRequested,
+          props: {department: 'marketing', content: 'mpp'}
         },
         {
-          path: '/hrd/requested/technology'
+          path: '/hrd/requested/fpk/trade-partnership',
+          component: HrdRequested,
+          props: {department: 'trade-partnership', content: 'fpk'}
         },
         {
-          path: '/hrd/requested/business-development'
+          path: '/hrd/requested/mpp/trade-partnership',
+          component: HrdRequested,
+          props: {department: 'trade-partnership', content: 'mpp'}
         },
         {
-          path: '/hrd/requested/finance'
+          path: '/hrd/requested/fpk/operation',
+          component: HrdRequested,
+          props: {department: 'operation', content: 'fpk'}
         },
         {
-          path: '/hrd/requested/project-management'
+          path: '/hrd/requested/mpp/operation',
+          component: HrdRequested,
+          props: {department: 'operation', content: 'mpp'}
         },
         {
-          path: '/hrd/requested/product-management'
+          path: '/hrd/requested/fpk/technology',
+          component: HrdRequested,
+          props: {department: 'technology', content: 'fpk'}
+        },
+        {
+          path: '/hrd/requested/mpp/technology',
+          component: HrdRequested,
+          props: {department: 'technology', content: 'mpp'}
+        },
+        {
+          path: '/hrd/requested/fpk/business-development',
+          component: HrdRequested,
+          props: {department: 'business-development', content: 'fpk'}
+        },
+        {
+          path: '/hrd/requested/mpp/business-development',
+          component: HrdRequested,
+          props: {department: 'business-development', content: 'mpp'}
+        },
+        {
+          path: '/hrd/requested/fpk/finance',
+          component: HrdRequested,
+          props: {department: 'finance', content: 'fpk'}
+        },
+        {
+          path: '/hrd/requested/mpp/finance',
+          component: HrdRequested,
+          props: {department: 'finance', content: 'mpp'}
+        },
+        {
+          path: '/hrd/requested/fpk/project-management',
+          component: HrdRequested,
+          props: {department: 'project-management', content: 'fpk'}
+        },
+        {
+          path: '/hrd/requested/mpp/project-management',
+          component: HrdRequested,
+          props: {department: 'project-management', content: 'mpp'}
+        },
+        {
+          path: '/hrd/requested/fpk/product-management',
+          component: HrdRequested,
+          props: {department: 'product-management', content: 'fpk'}
+        },
+        {
+          path: '/hrd/requested/mpp/product-management',
+          component: HrdRequested,
+          props: {department: 'product-management', content: 'mpp'}
         },
         {
           path: '/hrd/candidates/human-resource',
