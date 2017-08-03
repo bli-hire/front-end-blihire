@@ -4,19 +4,23 @@
     <h2 class="" v-if="content === 'fpk' && JSON.parse(resultContent.resultTotalFpk) === 0">There are no new {{content}} requested</h2>
     <div v-if=" content === 'mpp' && JSON.parse(resultContent.resultTotalMpp) !== 0">
       <h2>List of Requested {{content.toUpperCase()}}</h2>
-      <table class="table table-bordered">
+      <table class="table table-bordered" v-for="mpp in JSON.parse(resultContent.resultMpp)">
         <thead>
           <tr>
             <th>Position Needed</th>
-            <th>Target Date</th>
+            <th>Created Date</th>
+            <th>Men Needed</th>
             <th>View Detail</th>
           </tr>
         </thead>
         <tbody>
             <tr>
-              <td>Accounting Jr.</td>
-              <td>28 Februari 2017</td>
-              <td><button class="btn btn-primary"><router-link :to="'/hrd/requested/view-detail-mpp'">View {{content.toUpperCase()}}</router-link></button></td></td>
+              <td>{{mpp.position}}</td>
+              <td>{{mpp.createdDate.dayOfMonth}} - {{mpp.createdDate.monthOfYear}} - {{mpp.createdDate.year}}</td>
+              <td>{{mpp.numberOfPerson}}</td>
+              <td><button class="btn btn-primary">
+                <router-link :to="{ path: '/'+role+'/'+'requested'+'/'+content+'/detail/'+mpp.id , params: { id: mpp.id }}">View {{content.toUpperCase()}}</router-link></button></td></td>
+                <!-- <router-link :to="'/hrd/requested/view-detail-mpp'">View {{content.toUpperCase()}}</router-link></button></td></td> -->
             </tr>
         </tbody>
       </table>
@@ -83,7 +87,7 @@ export default {
         }
       })
     } else if (this.content === 'mpp') {
-      self.$http.get('http://localhost:8080/mpp/byDepartment/active', {}, {
+      self.$http.get('http://localhost:8080/mpp/byDepartment/acceptedNotPublished', {}, {
         headers: {
           'department': division
         }

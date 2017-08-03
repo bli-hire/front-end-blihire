@@ -406,7 +406,7 @@ export default new Router({
           component: HrdViewDetailFpk
         },
         {
-          path: '/hrd/requested/view-detail/mpp',
+          path: '/hrd/requested/mpp/detail/:id',
           component: MppDetail
         }
       ]
