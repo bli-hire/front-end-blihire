@@ -201,7 +201,8 @@ export default new Router({
         },
         {
           path: '/department/mpp/accepted',
-          component: MppAccepted
+          component: MppAccepted,
+          props: {content: 'mpp'}
         },
         {
           path: '/department/mpp/apply',
