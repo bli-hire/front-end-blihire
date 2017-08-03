@@ -48,7 +48,7 @@
       <textarea name="Text1" cols="140" rows="8"></textarea>
       <br/>
       <button v-if="role === 'CEO'"  v-on:click="ceoApprove()" type="reset" class="btn btn-primary" name="">Approve</button>
-      <button v-if="role === 'CEO'" type="reset" class="btn btn-warning" name="">Reject</button>
+      <button v-if="role === 'CEO'" v-on:click="ceoReject()"type="reset" class="btn btn-warning" name="">Reject</button>
 
   </div>
 </template>
@@ -138,12 +138,39 @@ export default{
   },
   methods: {
     ceoApprove () {
+      var self = this
+      var urlRole
+      self.role = JSON.parse(window.sessionStorage.getItem('user')).role
+      self.idUser = JSON.parse(window.sessionStorage.getItem('user')).id
+      if (self.role.includes('Department')) {
+        urlRole = 'department'
+      } else {
+        urlRole = self.role
+      }
       this.$http.post('http://localhost:8080/mpp/approve', {
         idUser: this.idUser,
         idMpp: parseInt(this.idSelector)
       }, (json) => {
-        alert(JSON.stringify(json.message))
-        this.$router.push('/ceo')
+        alert(JSON.stringify(json.message + self.role))
+        this.$router.push('/' + urlRole + '/mpp')
+      })
+    },
+    ceoReject () {
+      var self = this
+      var urlRole
+      self.role = JSON.parse(window.sessionStorage.getItem('user')).role
+      self.idUser = JSON.parse(window.sessionStorage.getItem('user')).id
+      if (self.role.includes('Department')) {
+        urlRole = 'department'
+      } else {
+        urlRole = self.role
+      }
+      this.$http.post('http://localhost:8080/mpp/reject', {
+        idUser: this.idUser,
+        idMpp: parseInt(this.idSelector)
+      }, (json) => {
+        alert(JSON.stringify(json.message + self.role))
+        this.$router.push('/' + urlRole + '/mpp')
       })
     }
   }
