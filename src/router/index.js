@@ -196,7 +196,8 @@ export default new Router({
         },
         {
           path: '/department/mpp/pending',
-          component: MppPending
+          component: MppPending,
+          props: {content: 'mpp'}
         },
         {
           path: '/department/mpp/accepted',
