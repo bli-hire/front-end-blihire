@@ -24,7 +24,28 @@
 export default {
   name: 'requeted',
   props: ['department', 'content'],
+  data () {
+    return {
+    }
+  },
   beforeMount () {
+    self.$http.post('http://localhost:8080/users/login', {
+      email: self.email,
+      password: self.password }, (json) => {
+        window.sessionStorage.setItem('user', JSON.stringify(json))
+        this.user = json
+        if (this.user.id != null) {
+          if (this.user.role === 'HR') {
+            this.$router.push('/hrd')
+          } else if (this.user.role === 'CEO') {
+            this.$router.push('/ceo')
+          } else if (this.user.role.includes('Department')) {
+            this.$router.push('/department')
+          }
+        } else {
+          alert('Sorry username/password not correct')
+        }
+      })
   }
 }
 </script>
