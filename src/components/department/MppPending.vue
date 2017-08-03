@@ -1,19 +1,22 @@
 <template>
 	<div class="content">
-		<h2>Pending Mpp</h2>
+		<h2 v-if="content === 'mpp'">asdads</h2>
 		<!-- <BoxComponent v-for="n in 3" v-bind:title="content" message="Please we need ..."></BoxComponent> -->
-		<div v-if="content === 'mpp'">
-      <BoxComponent
-        v-for="mpp in JSON.parse(resultContent.resultMpp)"
-        v-bind:title="mpp.department"
-        v-bind:message="'Reason : '+mpp.reason"
-        v-bind:statusAccept="mpp.isAccept"
-        v-bind:statusReject="mpp.isReject"
-        v-bind:loginStatus="role"
-        v-bind:content="content"
-        v-bind:id="mpp.id">
-      </BoxComponent>
-    </div>
+		<!-- <div v-if="content === 'mpp'"> -->
+    <BoxComponent
+			v-if="content === 'mpp'"
+      v-for="mpp in JSON.parse(resultContent.resultMpp)"
+      v-bind:title="mpp.department"
+      v-bind:message="'Reason : '+mpp.reason"
+      v-bind:statusAccept="mpp.isAccept"
+      v-bind:statusReject="mpp.isReject"
+      v-bind:loginStatus="role"
+      v-bind:content="content"
+      v-bind:id="mpp.id">
+    </BoxComponent>
+    <!-- </div> -->
+		<!-- <BoxComponent v-if="content === 'mpp'" v-for="n in resultContent.resultTotalMpp" v-bind:title="content" message="Please we need ..."></BoxComponent> -->
+
 	</div>
 </template>
 
@@ -44,10 +47,10 @@ export default {
     if (self.role === 'HR') {
       self.role = 'hrd'
     }
-    if (this.content === 'mpp') {
+    if (self === this) {
       self.$http.get('http://localhost:8080/mpp/byRequested/pending', {}, {
         headers: {
-          'userId': 2
+          'userId': self.userId
         }
       }).then(response => {
         if (response.data.data === '[]') {
