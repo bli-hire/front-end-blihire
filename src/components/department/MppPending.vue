@@ -46,6 +46,9 @@ export default {
     if (self.role === 'HR') {
       self.role = 'hrd'
     }
+    if (self.role === 'DepartmentHead') {
+      self.role = 'department'
+    }
     if (self === this) {
       self.$http.get('http://localhost:8080/mpp/byRequested/pending', {}, {
         headers: {
