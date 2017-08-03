@@ -1,6 +1,6 @@
 <template>
   <div class="listContent col-md-10">
-  <h2>List of Requested FPK/MPP</h2>
+  <h2>List of Requested {{content.toUpperCase()}}</h2>
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -13,7 +13,7 @@
         <tr>
           <td>Accounting Jr.</td>
           <td>28 Februari 2017</td>
-          <td><button class="btn btn-primary"><router-link :to="'/hrd/requested/view-detail'">View Fpk</router-link></button></td></td>
+          <td><button class="btn btn-primary"><router-link :to="'/hrd/requested/view-detail'">View {{content.toUpperCase()}}</router-link></button></td></td>
         </tr>
     </tbody>
   </table>
@@ -23,7 +23,9 @@
 <script>
 export default {
   name: 'requeted',
-  props: ['department']
+  props: ['department', 'content'],
+  beforeMount () {
+  }
 }
 </script>
 
