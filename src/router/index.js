@@ -395,6 +395,36 @@ export default new Router({
           path: '/hrd/candidates/product-management'
         },
         {
+          path: '/hrd/fpk/pending',
+          component: FpkPending,
+          props: {content: 'fpk'}
+        },
+        {
+          path: '/hrd/mpp/pending',
+          component: MppPending,
+          props: {content: 'mpp'}
+        },
+        {
+          path: '/hrd/fpk/accepted',
+          component: FpkAccepted,
+          props: {content: 'fpk'}
+        },
+        {
+          path: '/hrd/mpp/accepted',
+          component: MppAccepted,
+          props: {content: 'mpp'}
+        },
+        {
+          path: '/hrd/fpk/rejected',
+          component: FpkRejected,
+          props: {content: 'fpk'}
+        },
+        {
+          path: '/hrd/mpp/rejected',
+          component: MppRejected,
+          props: {content: 'mpp'}
+        },
+        {
           path: '/hrd/candidates/view-cv',
           component: HrdViewCV
         },
