@@ -86,18 +86,21 @@ export default{
       jobPositionRequester: '',
       dateNeeded: '',
       username: '',
-      role: ''
+      role: '',
+      idSelector: '',
+      idUser: ''
     }
   },
   beforeMount () {
     var self = this
-    var idSelector = self.$route.params.id
+    this.idSelector = self.$route.params.id
     self.username = JSON.parse(window.sessionStorage.getItem('user')).name
     self.role = JSON.parse(window.sessionStorage.getItem('user')).role
+    self.idUser = JSON.parse(window.sessionStorage.getItem('user')).id
     if (self.role.includes('Department')) {
       var roleUrl = 'department'
     }
-    self.$http.get('http://localhost:8080/fpk/' + idSelector).then(response => {
+    self.$http.get('http://localhost:8080/fpk/' + this.idSelector).then(response => {
       var fpk = JSON.stringify(response.data.data)
       var objFpk = {}
       objFpk = JSON.parse(fpk)[0]
@@ -119,6 +122,16 @@ export default{
       alert('No Valid Fpk for this id')
       this.$router.push('/' + roleUrl + '/')
     })
+  },
+  methods: {
+    ceoApprove () {
+      this.$http.post('http://localhost:8080/fpk/approve', {
+        idUser: this.idUser,
+        idFpk: parseInt(this.idSelector)
+      }, (json) => {
+        alert(JSON.stringify(json.message))
+      })
+    }
   }
 }
 </script>

@@ -2,15 +2,15 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
 import App from '@/App'
-import Technology from '@/components/Technology'
-import HRD from '@/components/HumanResource'
-import Marketing from '@/components/Marketing'
-import TradePartnership from '@/components/TradePartnership'
-import Operation from '@/components/Operation'
-import BusinessDevelopment from '@/components/BusinessDevelopment'
-import Finance from '@/components/Finance'
-import ProjectManagement from '@/components/ProjectManagement'
-import ProductManagement from '@/components/ProductManagement'
+import Technology from '@/components/ceo/dashboard/Technology'
+import HRD from '@/components/ceo/dashboard/HumanResource'
+import Marketing from '@/components/ceo/dashboard/Marketing'
+import TradePartnership from '@/components/ceo/dashboard/TradePartnership'
+import Operation from '@/components/ceo/dashboard/Operation'
+import BusinessDevelopment from '@/components/ceo/dashboard/BusinessDevelopment'
+import Finance from '@/components/ceo/dashboard/Finance'
+import ProjectManagement from '@/components/ceo/dashboard/ProjectManagement'
+import ProductManagement from '@/components/ceo/dashboard/ProductManagement'
 import Fpk from '@/components/Fpk'
 import FpkDetail from '@/components/page-component/FpkDetail'
 import Mpp from '@/components/Mpp'
@@ -57,90 +57,106 @@ export default new Router({
           component: Fpk
         },
         {
-          path: '/ceo/fpk/detail',
+          path: '/ceo/fpk/detail/:id',
           component: FpkDetail
         },
         {
           path: '/ceo/fpk/human-resource',
           component: HRD,
-          props: {content: 'FPK'}
+          props: {content: 'fpk'}
         },
         {
           path: '/ceo/fpk/marketing',
-          component: Marketing
+          component: Marketing,
+          props: {content: 'fpk'}
         },
         {
           path: '/ceo/fpk/trade-partnership',
-          component: TradePartnership
+          component: TradePartnership,
+          props: {content: 'fpk'}
         },
         {
           path: '/ceo/fpk/operation',
-          component: Operation
+          component: Operation,
+          props: {content: 'fpk'}
         },
         {
           path: '/ceo/fpk/technology',
-          component: Technology
+          component: Technology,
+          props: {content: 'fpk'}
         },
         {
           path: '/ceo/fpk/business-development',
-          component: BusinessDevelopment
+          component: BusinessDevelopment,
+          props: {content: 'fpk'}
         },
         {
           path: '/ceo/fpk/finance',
-          component: Finance
+          component: Finance,
+          props: {content: 'fpk'}
         },
         {
           path: '/ceo/fpk/project-management',
-          component: ProjectManagement
+          component: ProjectManagement,
+          props: {content: 'fpk'}
         },
         {
           path: '/ceo/fpk/product-management',
-          component: ProductManagement
+          component: ProductManagement,
+          props: {content: 'fpk'}
         },
         {
           path: '/ceo/mpp',
           component: Mpp
         },
         {
-          path: '/ceo/mpp/detail',
+          path: '/ceo/mpp/detail/:id',
           component: MppDetail
         },
         {
           path: '/ceo/mpp/human-resource',
           component: HRD,
-          props: {content: 'Mpp'}
+          props: {content: 'mpp'}
         },
         {
           path: '/ceo/mpp/marketing',
-          component: Marketing
+          component: Marketing,
+          props: {content: 'mpp'}
         },
         {
           path: '/ceo/mpp/trade-partnership',
-          component: TradePartnership
+          component: TradePartnership,
+          props: {content: 'mpp'}
         },
         {
           path: '/ceo/mpp/operation',
-          component: Operation
+          component: Operation,
+          props: {content: 'mpp'}
         },
         {
           path: '/ceo/mpp/technology',
-          component: Technology
+          component: Technology,
+          props: {content: 'mpp'}
         },
         {
           path: '/ceo/mpp/business-development',
-          component: BusinessDevelopment
+          component: BusinessDevelopment,
+          props: {content: 'mpp'}
         },
         {
           path: '/ceo/mpp/finance',
-          component: Finance
+          component: Finance,
+          props: {content: 'mpp'}
         },
         {
           path: '/ceo/mpp/project-management',
-          component: ProjectManagement
+          component: ProjectManagement,
+          props: {content: 'mpp'}
         },
         {
           path: '/ceo/mpp/product-management',
-          component: ProductManagement
+          component: ProductManagement,
+          props: {content: 'mpp'}
         }
       ]
     },
