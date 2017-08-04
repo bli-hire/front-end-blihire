@@ -21,7 +21,7 @@ import DepartmentHistory from '@/components/department/History'
 import HrdRequested from '@/components/hrd/Requested'
 import HrdCandidates from '@/components/hrd/Candidates'
 import HrdViewCV from '@/components/hrd/ViewCV'
-import HrdViewDetailFpk from '@/components/hrd/ViewDetailFpk'
+// import HrdViewDetailFpk from '@/components/hrd/ViewDetailFpk'
 import HrdViewHiringProcess from '@/components/hrd/HiringProcess'
 import NotFound from '@/components/page-component/NotFound'
 import MppPending from '@/components/department/MppPending'
@@ -402,8 +402,8 @@ export default new Router({
           component: HrdViewHiringProcess
         },
         {
-          path: '/hrd/requested/view-detail/fpk',
-          component: HrdViewDetailFpk
+          path: '/hrd/requested/fpk/detail/:id',
+          component: FpkDetail
         },
         {
           path: '/hrd/requested/mpp/detail/:id',

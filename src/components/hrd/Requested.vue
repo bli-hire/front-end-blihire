@@ -27,19 +27,21 @@
     </div>
     <div v-if=" content === 'fpk' && JSON.parse(resultContent.resultTotalFpk) !== 0">
       <h2>List of Requested {{content.toUpperCase()}}</h2>
-      <table class="table table-bordered">
+      <table class="table table-bordered" v-for="fpk in JSON.parse(resultContent.resultFpk)">
         <thead>
           <tr>
             <th>Position Needed</th>
             <th>Target Date</th>
+            <th>Men Needed</th>
             <th>View Detail</th>
           </tr>
         </thead>
         <tbody>
             <tr>
-              <td>Accounting Jr.</td>
-              <td>28 Februari 2017</td>
-              <td><button class="btn btn-primary"><router-link :to="'/hrd/requested/view-detail-fpk'">View {{content.toUpperCase()}}</router-link></button></td></td>
+              <td>{{fpk.jobPositionRequester}}</td>
+              <td>{{fpk.dateNeeded.dayOfMonth}} - {{fpk.dateNeeded.monthOfYear}} - {{fpk.dateNeeded.year}}</td>
+              <td>{{fpk.numberOfPerson}}</td>
+              <td><button class="btn btn-primary"><router-link :to="{ path: '/'+role+'/'+'requested'+'/'+content+'/detail/'+fpk.idFpk , params: { id: fpk.idFpk }}">View {{content.toUpperCase()}}</router-link></button></td>
             </tr>
         </tbody>
       </table>
