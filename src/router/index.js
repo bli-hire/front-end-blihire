@@ -146,7 +146,7 @@ export default new Router({
         {
           path: '/ceo/mpp/finance',
           component: Finance,
-          props: {content: 'mpp'}
+          props: {content: 'mpp', status: 'active'}
         },
         {
           path: '/ceo/mpp/project-management',
@@ -162,17 +162,17 @@ export default new Router({
         {
           path: '/ceo/accepted/fpk/human-resource',
           component: HRD,
-          props: {department: 'HumanResource', content: 'fpk'}
+          props: {department: 'HumanResource', content: 'fpk', status: 'accepted'}
         },
         {
           path: '/ceo/rejected/fpk/human-resource',
           component: HRD,
-          props: {department: 'HumanResource', content: 'fpk'}
+          props: {department: 'HumanResource', content: 'fpk', status: 'rejected'}
         },
         {
           path: '/ceo/published/fpk/human-resource',
           component: HRD,
-          props: {department: 'HumanResource', content: 'fpk'}
+          props: {department: 'HumanResource', content: 'fpk', status: 'published'}
         },
         {
           path: '/ceo/accepted/mpp/human-resource',
@@ -348,32 +348,32 @@ export default new Router({
         {
           path: '/ceo/accepted/fpk/finance',
           component: Finance,
-          props: {department: 'Finance', content: 'fpk'}
+          props: {department: 'Finance', content: 'fpk', status: 'accepted'}
         },
         {
           path: '/ceo/rejected/fpk/finance',
           component: Finance,
-          props: {department: 'Finance', content: 'fpk'}
+          props: {department: 'Finance', content: 'fpk', status: 'rejected'}
         },
         {
           path: '/ceo/published/fpk/finance',
           component: Finance,
-          props: {department: 'Finance', content: 'fpk'}
+          props: {department: 'Finance', content: 'fpk', status: 'published'}
         },
         {
           path: '/ceo/accepted/mpp/finance',
           component: Finance,
-          props: {department: 'Finance', content: 'mpp'}
+          props: {department: 'Finance', content: 'mpp', status: 'accepted'}
         },
         {
           path: '/ceo/rejected/mpp/finance',
           component: Finance,
-          props: {department: 'Finance', content: 'mpp'}
+          props: {department: 'Finance', content: 'mpp', status: 'rejected'}
         },
         {
           path: '/ceo/published/mpp/finance',
           component: Finance,
-          props: {department: 'Finance', content: 'mpp'}
+          props: {department: 'Finance', content: 'mpp', status: 'published'}
         },
         // ------
         {

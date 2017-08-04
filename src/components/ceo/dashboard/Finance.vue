@@ -16,7 +16,6 @@
     </div>
     <div v-if="content === 'mpp'">
       <BoxComponent
-
         v-for="mpp in JSON.parse(resultContent.resultMpp)"
         v-bind:title="mpp.department"
         v-bind:message="'Reason : '+mpp.reason"
@@ -30,7 +29,7 @@
 
     <h2 class="msg-empty" v-if="content === 'fpk' && JSON.parse(resultContent.resultTotalFpk) === 0">There are no new {{content}} requested</h2>
 
-    <BoxComponent v-if="content === 'mpp'" v-for="n in resultContent.resultTotalMpp" v-bind:title="content" message="Please we need ..."></BoxComponent>
+    <!-- <BoxComponent v-if="content === 'mpp'" v-for="n in resultContent.resultTotalMpp" v-bind:title="content" message="Please we need ..."></BoxComponent> -->
 
     <h2 class="msg-empty" v-if="content === 'mpp' && JSON.parse(resultContent.resultTotalMpp) === 0">There are no new {{content}} requested</h2>
 
@@ -53,14 +52,16 @@ export default {
         resultMpp: {},
         resultTotalMpp: 0
       },
-      role: ''
+      role: '',
+      idUser: ''
     }
   },
-  props: ['content'],
+  props: ['content', 'status'],
   beforeMount () {
     var self = this
     var division = 'Finance'
     self.role = JSON.parse(window.sessionStorage.getItem('user')).role
+    self.idUser = JSON.parse(window.sessionStorage.getItem('user')).id
     if (self.role === 'HR') {
       self.role = 'hrd'
     }
@@ -80,20 +81,79 @@ export default {
         }
       })
     } else if (this.content === 'mpp') {
-      self.$http.get('http://localhost:8080/mpp/byDepartment/active', {}, {
-        headers: {
-          'department': division
-        }
-      }).then(response => {
-        if (response.data.data === '[]') {
-          this.resultContent.resultTotalMpp = 0
-        } else {
-          var mpp = JSON.stringify(response.data.data)
-          var totalMpp = JSON.stringify(response.data.totalData)
-          this.resultContent.resultMpp = mpp
-          this.resultContent.resultTotalMpp = totalMpp
-        }
-      })
+      var endpoint = 'http://localhost:8080/mpp/byDepartment/'
+      if (this.status === 'accepted') {
+        endpoint = endpoint + 'accepted/ceo'
+        self.$http.get(endpoint, {}, {
+          headers: {
+            'department': division,
+            'userId': self.idUser
+          }
+        }).then(response => {
+          if (response.data.data === '[]') {
+            this.resultContent.resultTotalMpp = 0
+          } else {
+            var mpp = JSON.stringify(response.data.data)
+            var totalMpp = JSON.stringify(response.data.totalData)
+            this.resultContent.resultMpp = mpp
+            this.resultContent.resultTotalMpp = totalMpp
+            // alert(JSON.stringify(this.status))
+          }
+        })
+      } else if (this.status === 'rejected') {
+        endpoint = endpoint + 'rejected/ceo'
+        self.$http.get(endpoint, {}, {
+          headers: {
+            'department': division,
+            'userId': self.idUser
+          }
+        }).then(response => {
+          if (response.data.data === '[]') {
+            this.resultContent.resultTotalMpp = 0
+          } else {
+            var mpp = JSON.stringify(response.data.data)
+            var totalMpp = JSON.stringify(response.data.totalData)
+            this.resultContent.resultMpp = mpp
+            this.resultContent.resultTotalMpp = totalMpp
+            // alert(JSON.stringify(this.status))
+          }
+        })
+      } else if (this.status === 'published') {
+        endpoint = endpoint + 'published/ceo'
+        self.$http.get(endpoint, {}, {
+          headers: {
+            'department': division,
+            'userId': self.idUser
+          }
+        }).then(response => {
+          if (response.data.data === '[]') {
+            this.resultContent.resultTotalMpp = 0
+          } else {
+            var mpp = JSON.stringify(response.data.data)
+            var totalMpp = JSON.stringify(response.data.totalData)
+            this.resultContent.resultMpp = mpp
+            this.resultContent.resultTotalMpp = totalMpp
+            // alert(JSON.stringify(this.status))
+          }
+        })
+      } else {
+        endpoint = endpoint + 'active'
+        self.$http.get(endpoint, {}, {
+          headers: {
+            'department': division
+          }
+        }).then(response => {
+          if (response.data.data === '[]') {
+            this.resultContent.resultTotalMpp = 0
+          } else {
+            var mpp = JSON.stringify(response.data.data)
+            var totalMpp = JSON.stringify(response.data.totalData)
+            this.resultContent.resultMpp = mpp
+            this.resultContent.resultTotalMpp = totalMpp
+            // alert(JSON.stringify(this.status))
+          }
+        })
+      }
     }
   }
 }
