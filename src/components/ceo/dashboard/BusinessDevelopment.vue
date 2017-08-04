@@ -2,7 +2,7 @@
   <div class="content">
 
     <BoxComponent 
-      v-if="content === 'fpk'" 
+      v-if="content === 'fpk' && JSON.parse(resultContent.resultTotalFpk) !== 0" 
       v-for="fpk in JSON.parse(resultContent.resultFpk)" 
       v-bind:title="fpk.department" 
       v-bind:message="'Reason : '+fpk.reason"
@@ -14,7 +14,7 @@
 
     <h2 class="msg-empty" v-if="content === 'fpk' && JSON.parse(resultContent.resultTotalFpk) === 0">There are no new {{content}} requested</h2>
 
-    <BoxComponent v-if="content === 'mpp'" v-for="n in resultContent.resultTotalMpp" v-bind:title="content" message="Please we need ..."></BoxComponent>
+    <BoxComponent v-if="content === 'mpp' && JSON.parse(resultContent.resultTotalMpp) !== 0" v-for="n in resultContent.resultTotalMpp" v-bind:title="content" message="Please we need ..."></BoxComponent>
 
     <h2 class="msg-empty" v-if="content === 'mpp' && JSON.parse(resultContent.resultTotalMpp) === 0">There are no new {{content}} requested</h2>
 
@@ -45,7 +45,7 @@ export default {
     var self = this
     var division = 'BusinessDevelopment'
     self.role = JSON.parse(window.sessionStorage.getItem('user')).role
-    if (self.role === 'HR') {
+    if (self.role.includes('HR')) {
       self.role = 'hrd'
     }
     if (this.content === 'fpk') {

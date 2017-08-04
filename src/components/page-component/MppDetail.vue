@@ -47,7 +47,7 @@
       <h3>Comment :</h3>
       <textarea name="Text1" cols="140" rows="8"></textarea>
       <br/>
-      <button v-if="role === 'HR'"  v-on:click="hrdPublish()" type="reset" class="btn btn-primary" name="">Publish</button>
+      <button v-if="role.includes('HR')"  v-on:click="hrdPublish()" type="reset" class="btn btn-primary" name="">Publish</button>
       <button v-if="role === 'CEO'"  v-on:click="ceoApprove()" type="reset" class="btn btn-primary" name="">Approve</button>
       <button v-if="role === 'CEO'" v-on:click="ceoReject()"type="reset" class="btn btn-warning" name="">Reject</button>
 

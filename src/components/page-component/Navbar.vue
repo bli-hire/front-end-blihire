@@ -19,6 +19,12 @@
           <ul class="nav navbar-nav">
             <li v-if="loginStatus === 'ceo'" v-on:click="chStatePageToFpk(); setActive('ceo/fpk'); setActiveSide('ceo/fpk');" :class="{active: isActive('ceo/fpk')}"><router-link to="/ceo/fpk">FPK</router-link></li>
             <li v-if="loginStatus === 'ceo'" v-on:click="chStatePageToMpp(); setActive('ceo/mpp'); setActiveSide('ceo/mpp');" :class="{active: isActive('ceo/mpp')}"><router-link to="/ceo/mpp">MPP</router-link></li>
+             <li v-if="loginStatus === 'ceo'" v-on:click="chStatePageToHrdPublishedFpk(); chContentRequestToFpk(); setActiveSide({loginStatus}+'/'+{statePage}+'/human-resource'); setActive('ceo/accepted/fpk');" :class="{active: isActive('ceo/accepted/fpk')}"><router-link to="/ceo/accepted/fpk/human-resource">Accepted FPK</router-link></li>
+            <li v-if="loginStatus === 'ceo'" v-on:click="chStatePageToHrdPublishedMpp(); chContentRequestToMpp(); setActiveSide({loginStatus}+'/'+{statePage}+'/human-resource'); setActive('ceo/accepted/mpp');" :class="{active: isActive('ceo/accepted/mpp')}"><router-link to="/ceo/accepted/mpp/human-resource">Accepted MPP</router-link></li>
+            <li v-if="loginStatus === 'ceo'" v-on:click="chStatePageToHrdPublishedFpk(); chContentRequestToFpk(); setActiveSide({loginStatus}+'/'+{statePage}+'/human-resource'); setActive('ceo/rejected/fpk');" :class="{active: isActive('ceo/rejected/fpk')}"><router-link to="/ceo/rejected/fpk/human-resource">Rejected FPK</router-link></li>
+            <li v-if="loginStatus === 'ceo'" v-on:click="chStatePageToHrdPublishedMpp(); chContentRequestToMpp(); setActiveSide({loginStatus}+'/'+{statePage}+'/human-resource'); setActive('ceo/rejected/mpp');" :class="{active: isActive('ceo/rejected/mpp')}"><router-link to="/ceo/rejected/mpp/human-resource">Rejected MPP</router-link></li>
+            <li v-if="loginStatus === 'ceo'" v-on:click="chStatePageToHrdPublishedFpk(); chContentRequestToFpk(); setActiveSide({loginStatus}+'/'+{statePage}+'/human-resource'); setActive('ceo/published/fpk');" :class="{active: isActive('ceo/published/fpk')}"><router-link to="/ceo/published/fpk/human-resource">Published FPK</router-link></li>
+            <li v-if="loginStatus === 'ceo'" v-on:click="chStatePageToHrdPublishedMpp(); chContentRequestToMpp(); setActiveSide({loginStatus}+'/'+{statePage}+'/human-resource'); setActive('ceo/published/mpp');" :class="{active: isActive('ceo/published/mpp')}"><router-link to="/ceo/published/mpp/human-resource">Published MPP</router-link></li>
 
             <li v-if="loginStatus === 'department'" v-on:click="chStatePageToFpk(); setActive('department/fpk'); setActiveSide({loginStatus}+'/'+{statePage}+'/dashboard');" :class="{active: isActive('department/fpk')}"><router-link to="/department/fpk/dashboard">FPK</router-link></li>
             <li v-if="loginStatus === 'department'" v-on:click="chStatePageToMpp(); setActive('department/mpp'); setActiveSide({loginStatus}+'/'+{statePage}+'/dashboard');" :class="{active: isActive('department/mpp')}"><router-link to="/department/mpp/dashboard">MPP</router-link></li>
@@ -62,7 +68,7 @@
       <div class="collapse width navbar-collapse" id="sideNavbar" v-bind:style="navbarLeft">
       <div class="navbar navbar-inverse navbar-fixed-left">
         <ul class="nav navbar-nav">
-            <li v-if="loginStatus === 'ceo'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/human-resource');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/human-resource')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/human-resource'">Human Resource</router-link></li>
+            <!-- <li v-if="loginStatus === 'ceo'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/human-resource');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/human-resource')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/human-resource'">Human Resource</router-link></li>
 
             <li v-if="loginStatus === 'ceo'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/marketing');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/marketing')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/marketing'">Marketing</router-link></li>
 
@@ -77,7 +83,27 @@
 
             <li v-if="loginStatus === 'ceo'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/project-management');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/project-management')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/project-management'">Project Management</router-link></li>
 
-            <li v-if="loginStatus === 'ceo'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/product-management');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/product-management')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/product-management'">Product Management</router-link></li>            <!---->
+            <li v-if="loginStatus === 'ceo'" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/product-management');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/product-management')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/product-management'">Product Management</router-link></li>     -->        
+            
+            <li v-if="loginStatus === 'ceo' && (statePage === 'fpk' || statePage === 'mpp' || statePage === 'accepted/fpk' || statePage === 'accepted/mpp' || statePage === 'published/fpk' || statePage === 'published/mpp' || statePage === 'rejected/fpk' || statePage === 'rejected/mpp')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/human-resource');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/human-resource')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/human-resource'">Human Resource</router-link></li>
+
+            <li v-if="loginStatus === 'ceo' && (statePage === 'fpk' || statePage === 'mpp' || statePage === 'accepted/fpk' || statePage === 'accepted/mpp' || statePage === 'published/fpk' || statePage === 'published/mpp' || statePage === 'rejected/fpk' || statePage === 'rejected/mpp')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/marketing');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/marketing')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/marketing'">Marketing</router-link></li>
+
+            <li v-if="loginStatus === 'ceo' && (statePage === 'fpk' || statePage === 'mpp' || statePage === 'accepted/fpk' || statePage === 'accepted/mpp' || statePage === 'published/fpk' || statePage === 'published/mpp' || statePage === 'rejected/fpk' || statePage === 'rejected/mpp')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/trade-partnership');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/trade-partnership')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/trade-partnership'">Trade Partnership</router-link></li>
+
+            <li v-if="loginStatus === 'ceo' && (statePage === 'fpk' || statePage === 'mpp' || statePage === 'accepted/fpk' || statePage === 'accepted/mpp' || statePage === 'published/fpk' || statePage === 'published/mpp' || statePage === 'rejected/fpk' || statePage === 'rejected/mpp')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/operation');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/operation')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/operation'">Operation</router-link></li>
+
+            <li v-if="loginStatus === 'ceo' && (statePage === 'fpk' || statePage === 'mpp' || statePage === 'accepted/fpk' || statePage === 'accepted/mpp' || statePage === 'published/fpk' || statePage === 'published/mpp' || statePage === 'rejected/fpk' || statePage === 'rejected/mpp')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/technology');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/technology')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/technology'">Technology</router-link></li>
+
+            <li v-if="loginStatus === 'ceo' && (statePage === 'fpk' || statePage === 'mpp' || statePage === 'accepted/fpk' || statePage === 'accepted/mpp' || statePage === 'published/fpk' || statePage === 'published/mpp' || statePage === 'rejected/fpk' || statePage === 'rejected/mpp')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/business-development');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/business-development')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/business-development'">Business Development</router-link></li>
+
+            <li v-if="loginStatus === 'ceo' && (statePage === 'fpk' || statePage === 'mpp' || statePage === 'accepted/fpk' || statePage === 'accepted/mpp' || statePage === 'published/fpk' || statePage === 'published/mpp' || statePage === 'rejected/fpk' || statePage === 'rejected/mpp')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/finance');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/finance')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/finance'">Finance</router-link></li>
+
+            <li v-if="loginStatus === 'ceo' && (statePage === 'fpk' || statePage === 'mpp' || statePage === 'accepted/fpk' || statePage === 'accepted/mpp' || statePage === 'published/fpk' || statePage === 'published/mpp' || statePage === 'rejected/fpk' || statePage === 'rejected/mpp')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/project-management');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/project-management')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/project-management'">Project Management</router-link></li>
+
+            <li v-if="loginStatus === 'ceo' && (statePage === 'fpk' || statePage === 'mpp' || statePage === 'accepted/fpk' || statePage === 'accepted/mpp' || statePage === 'published/fpk' || statePage === 'published/mpp' || statePage === 'rejected/fpk' || statePage === 'rejected/mpp')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/product-management');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/product-management')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/product-management'">Product Management</router-link></li>
+
+            <!-------------------------------------------------->
 
             <li v-if="loginStatus === 'hrd' && (statePage === 'requested/fpk' || statePage === 'requested/mpp' || statePage === 'published/fpk' || statePage === 'published/mpp')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/human-resource');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/human-resource')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/human-resource'">Human Resource</router-link></li>
             <li v-if="loginStatus === 'hrd' && (statePage === 'requested/fpk' || statePage === 'requested/mpp' || statePage === 'published/fpk' || statePage === 'published/mpp')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/marketing');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/marketing')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/marketing'">Marketing</router-link></li>
@@ -181,6 +207,18 @@ export default {
     },
     chStatePageToHrdPublishedMpp () {
       this.statePage = 'published/mpp'
+    },
+    chStatePageToHrdRejectedFpk () {
+      this.statePage = 'rejected/fpk'
+    },
+    chStatePageToHrdRejectedMpp () {
+      this.statePage = 'rejected/mpp'
+    },
+    chStatePageToHrdAcceptedFpk () {
+      this.statePage = 'accepted/fpk'
+    },
+    chStatePageToHrdAccepteddMpp () {
+      this.statePage = 'accepted/mpp'
     },
     chStatePageToHrdCandidates () {
       this.statePage = 'candidates'
