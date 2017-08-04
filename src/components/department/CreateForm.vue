@@ -175,9 +175,11 @@
       <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="pcSpecMpp"></textarea>
       <br/>
 
-      <button type="submit" class="btn btn-primary" name="" v-on:click="insertMpp()">Send MPP</button>
+      <button v-if="currentDetailIndex === totalPositionNeeded - 1" type="submit" class="btn btn-primary" name="" v-on:click="insertMpp()">Send MPP</button>
+      <button v-if="currentDetailIndex === totalPositionNeeded - 1" type="reset" class="btn btn-warning" name="">Reset</button>
 
-      <button type="reset" class="btn btn-warning" name="">Reset</button>
+      <button v-if="currentDetailIndex !== totalPositionNeeded - 1" type="submit" class="btn btn-primary" name="" v-on:click="back()">Previous Job Position</button>
+      <button v-if="currentDetailIndex !== totalPositionNeeded - 1" type="submit" class="btn btn-primary" name="" v-on:click="next()">Next Job Position</button>
 
 
       </div>
@@ -190,6 +192,8 @@ export default {
   name: 'create-new',
   data () {
     return {
+      maxMppDetail: '',
+      currentDetailIndex: '',
       departmentPemohon: '',
       jabatanPemohon: '',
       jumlahPosisi: '',
@@ -233,6 +237,11 @@ export default {
     }
   },
   props: ['content'],
+  beforeMount () {
+    this.maxMppDetail = this.$route.query.positionNeeded
+    this.currentDetailIndex = 0
+    window.localStorage.setItem('detailMpp', null)
+  },
   methods: {
     insertFpk () {
       var self = this
@@ -294,6 +303,14 @@ export default {
           alert('Sukses Terkirim')
           this.$router.push('/' + self.role + '/')
         })
+    },
+    next () {
+      this.currentDetailIndex++
+      alert(this.currentDetailIndex)
+    },
+    back () {
+      this.currentDetailIndex--
+      alert(this.currentDetailIndex)
     }
   }
 }
