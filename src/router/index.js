@@ -19,6 +19,7 @@ import CreateForm from '@/components/department/CreateForm'
 import DepartmentDasboard from '@/components/department/Dashboard'
 import DepartmentHistory from '@/components/department/History'
 import HrdRequested from '@/components/hrd/Requested'
+import HrdPublished from '@/components/hrd/Published'
 import HrdCandidates from '@/components/hrd/Candidates'
 import HrdViewCV from '@/components/hrd/ViewCV'
 // import HrdViewDetailFpk from '@/components/hrd/ViewDetailFpk'
@@ -408,6 +409,96 @@ export default new Router({
         {
           path: '/hrd/requested/mpp/detail/:id',
           component: MppDetail
+        },
+        {
+          path: '/hrd/published/fpk/human-resource',
+          component: HrdPublished,
+          props: {department: 'HumanResource', content: 'fpk'}
+        },
+        {
+          path: '/hrd/published/mpp/human-resource',
+          component: HrdPublished,
+          props: {department: 'HumanResource', content: 'mpp'}
+        },
+        {
+          path: '/hrd/published/fpk/marketing',
+          component: HrdPublished,
+          props: {department: 'Marketing', content: 'fpk'}
+        },
+        {
+          path: '/hrd/published/mpp/marketing',
+          component: HrdPublished,
+          props: {department: 'Marketing', content: 'mpp'}
+        },
+        {
+          path: '/hrd/published/fpk/trade-partnership',
+          component: HrdPublished,
+          props: {department: 'TradePartnership', content: 'fpk'}
+        },
+        {
+          path: '/hrd/published/mpp/trade-partnership',
+          component: HrdPublished,
+          props: {department: 'TradePartnership', content: 'mpp'}
+        },
+        {
+          path: '/hrd/published/fpk/operation',
+          component: HrdPublished,
+          props: {department: 'Operation', content: 'fpk'}
+        },
+        {
+          path: '/hrd/published/mpp/operation',
+          component: HrdPublished,
+          props: {department: 'Operation', content: 'mpp'}
+        },
+        {
+          path: '/hrd/published/fpk/technology',
+          component: HrdPublished,
+          props: {department: 'Technology', content: 'fpk'}
+        },
+        {
+          path: '/hrd/published/mpp/technology',
+          component: HrdPublished,
+          props: {department: 'Technology', content: 'mpp'}
+        },
+        {
+          path: '/hrd/published/fpk/business-development',
+          component: HrdPublished,
+          props: {department: 'BusinessDevelopment', content: 'fpk'}
+        },
+        {
+          path: '/hrd/published/mpp/business-development',
+          component: HrdPublished,
+          props: {department: 'BusinessDevelopment', content: 'mpp'}
+        },
+        {
+          path: '/hrd/published/fpk/finance',
+          component: HrdPublished,
+          props: {department: 'Finance', content: 'fpk'}
+        },
+        {
+          path: '/hrd/published/mpp/finance',
+          component: HrdPublished,
+          props: {department: 'Finance', content: 'mpp'}
+        },
+        {
+          path: '/hrd/published/fpk/project-management',
+          component: HrdPublished,
+          props: {department: 'ProjectManagement', content: 'fpk'}
+        },
+        {
+          path: '/hrd/published/mpp/project-management',
+          component: HrdPublished,
+          props: {department: 'ProjectManagement', content: 'mpp'}
+        },
+        {
+          path: '/hrd/published/fpk/product-management',
+          component: HrdPublished,
+          props: {department: 'ProductManagement', content: 'fpk'}
+        },
+        {
+          path: '/hrd/published/mpp/product-management',
+          component: HrdPublished,
+          props: {department: 'ProductManagement', content: 'mpp'}
         }
       ]
     }
