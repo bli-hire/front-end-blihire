@@ -66,7 +66,7 @@
               <option>Lainnya</option>
             </select>
         <p v-if="pendidikan === 'Lainnya'">Silahkan lanjutkan alasan tidak sesuai</p>
-        <input v-if="pendidikan === 'Lainnya'" type="text" id="" class="form-control" v-model="pendidikanLainnya" value="" />  
+        <input v-if="pendidikan === 'Lainnya'" type="text" id="" class="form-control" v-model="pendidikanLainnya" value="" />
         <br/>
 
          <label>Pengalaman Bekerja</label>
@@ -91,10 +91,9 @@
 
     <div v-if="content === 'mpp'" class="listContent col-md-12">
     <h1 style="text-align: center;">Man Powering Plant Form</h1>
-      <form method="POST" action="">
         <div class="form-group">
           <label for="pos">Position (select one):</label>
-            <select class="form-control" id="pos">
+            <select class="form-control" id="pos" v-model="positionMpp" >
               <option>Senior Development Engineer</option>
               <option>Junior Development Engineer</option>
               <option>Mobile Development Engineer</option>
@@ -103,34 +102,34 @@
 
 
         <label for="personNeeded">Number of Person(s)</label><br/>
-        <input type="number" id="personNeeded" class="form-control"/>
+        <input type="number" id="personNeeded" class="form-control" v-model="personNeededMpp"/>
         <br/>
 
         <label>Comment Section</label>
-        <textarea name="Text1" cols="140" rows="8" class="form-control" ></textarea>
+        <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="commentMpp" ></textarea>
          <br/>
 
         <label>Reason</label>
-        <textarea name="Text1" cols="140" rows="8" class="form-control" ></textarea>
+        <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="reasonMpp" ></textarea>
         <br/>
 
-        <label for="education">Position (select one):</label>
-            <select class="form-control" id="education">
+        <label for="education">Education (select one):</label>
+            <select class="form-control" id="education" v-model="educationMpp">
               <option>Bacheloor Degree</option>
               <option>Master Degree</option>
             </select>
           <br/>
 
         <label>Experience</label>
-        <textarea name="Text1" cols="140" rows="8" class="form-control" ></textarea>
+        <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="experienceMpp"></textarea>
          <br/>
 
         <label>Knowledge Skill</label>
-        <textarea name="Text1" cols="140" rows="8" class="form-control" ></textarea>
+        <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="knowledgeMpp"></textarea>
          <br/>
 
          <label for="employeeStatus">Employee Status(GDN or Outsource):</label>
-            <select class="form-control" id="employeeStatus">
+            <select class="form-control" id="employeeStatus" v-model="employeeStatusMpp">
               <option>Bacheloor Degree</option>
               <option>Master Degree</option>
             </select>
@@ -153,36 +152,35 @@
           <th>December</th>
         </tr>
         <tr>
-          <td><input type="number" class="form-control"/></td>
-          <td><input type="number" class="form-control"/></td>
-          <td><input type="number" class="form-control"/></td>
-          <td><input type="number" class="form-control"/></td>
-          <td><input type="number" class="form-control"/></td>
-          <td><input type="number" class="form-control"/></td>
-          <td><input type="number" class="form-control"/></td>
-          <td><input type="number" class="form-control"/></td>
-          <td><input type="number" class="form-control"/></td>
-          <td><input type="number" class="form-control"/></td>
-          <td><input type="number" class="form-control"/></td>
-          <td><input type="number" class="form-control"/></td>
+          <td><input type="number" class="form-control" v-model.number="januaryExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="februaryExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="marchExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="aprilExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="mayExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="juneExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="julyExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="augustExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="septemberExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="octoberExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="novemberExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="decemberExpect"/></td>
         </tr>
       </table>
 
       <label for="">PC/Laptop (number)</label>
-      <input type="number" class="form-control"/>
+      <input type="number" class="form-control" v-model="pcNumberMpp"/>
       <br/>
 
       <label for="">Spesification</label>
-      <textarea name="Text1" cols="140" rows="8" class="form-control" ></textarea>
+      <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="pcSpecMpp"></textarea>
       <br/>
 
-      <button type="submit" class="btn btn-primary" name="">Send MPP</button>
+      <button type="submit" class="btn btn-primary" name="" v-on:click="insertMpp()">Send MPP</button>
 
       <button type="reset" class="btn btn-warning" name="">Reset</button>
 
 
       </div>
-      </form>
     </div>
   </div>
 </template>
@@ -207,7 +205,31 @@ export default {
       alasanTambahan: '',
       idUserRequested: '',
       jobPositionRequester: '',
-      role: ''
+      role: '',
+      positionMpp: '',
+      personNeededMpp: '',
+      commentMpp: '',
+      reasonMpp: '',
+      educationMpp: '',
+      experienceMpp: '',
+      knowledgeMpp: '',
+      employeeStatusMpp: '',
+      januaryExpect: '',
+      februaryExpect: '',
+      marchExpect: '',
+      aprilExpect: '',
+      mayExpect: '',
+      juneExpect: '',
+      julyExpect: '',
+      augustExpect: '',
+      septemberExpect: '',
+      octoberExpect: '',
+      novemberExpect: '',
+      decemberExpect: '',
+      pcNumberMpp: '',
+      pcSpecMpp: '',
+      expectedJoin: '',
+      expectJoin: {}
     }
   },
   props: ['content'],
@@ -231,6 +253,44 @@ export default {
         dateNeeded: self.tanggalDibutuhkan,
         jobPositionRequester: self.jobPositionRequester,
         completeness: ''}, (json) => {
+          alert('Sukses Terkirim')
+          this.$router.push('/' + self.role + '/')
+        })
+    },
+    insertMpp () {
+      var self = this
+      self.idUserRequested = JSON.parse(window.sessionStorage.getItem('user')).id
+      self.role = JSON.parse(window.sessionStorage.getItem('user')).role
+      self.expectedJoin = self.januaryExpect + self.februaryExpect + self.marchExpect + self.aprilExpect + self.mayExpect + self.juneExpect + self.julyExpect + self.augustExpect + self.septemberExpect + self.octoberExpect + self.novemberExpect + self.decemberExpect
+      self.expectJoin = {
+        januaryExpect: self.januaryExpect,
+        februaryExpect: self.februaryExpect,
+        marchExpect: self.marchExpect,
+        aprilExpect: self.aprilExpect,
+        mayExpect: self.mayExpect,
+        juneExpect: self.juneExpect,
+        julyExpect: self.julyExpect,
+        augustExpect: self.augustExpect,
+        septemberExpect: self.septemberExpect,
+        octoberExpect: self.octoberExpect,
+        novemberExpect: self.novemberExpect,
+        decemberExpect: self.decemberExpect
+      }
+      // self.expectedJoin = 20
+      self.$http.post('http://localhost:8080/mpp', {
+        numberOfPerson: self.personNeededMpp,
+        position: self.positionMpp,
+        reason: self.reasonMpp,
+        mainResponsibility: '',
+        education: self.educationMpp,
+        experience: self.experienceMpp,
+        knowledge: self.knowledgeMpp,
+        employeeStatus: self.employeeStatusMpp,
+        expectedJoin: self.expectedJoin,
+        pcAmmount: self.pcNumberMpp,
+        pcSpec: self.pcSpecMpp,
+        idRequested: self.idUserRequested,
+        expectJoin: self.expectJoin}, (json) => {
           alert('Sukses Terkirim')
           this.$router.push('/' + self.role + '/')
         })

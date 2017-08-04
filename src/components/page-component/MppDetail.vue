@@ -47,8 +47,10 @@
       <h3>Comment :</h3>
       <textarea name="Text1" cols="140" rows="8"></textarea>
       <br/>
+      <button v-if="role === 'HR'"  v-on:click="hrdPublish()" type="reset" class="btn btn-primary" name="">Publish</button>
       <button v-if="role === 'CEO'"  v-on:click="ceoApprove()" type="reset" class="btn btn-primary" name="">Approve</button>
       <button v-if="role === 'CEO'" v-on:click="ceoReject()"type="reset" class="btn btn-warning" name="">Reject</button>
+
 
   </div>
 </template>
@@ -153,6 +155,15 @@ export default{
       }, (json) => {
         alert(JSON.stringify(json.message + self.role))
         this.$router.push('/' + urlRole + '/mpp')
+      })
+    },
+    hrdPublish () {
+      this.$http.post('http://localhost:8080/mpp/publishFromMpp', {
+        idUser: this.idUser,
+        idMpp: parseInt(this.idSelector)
+      }, (json) => {
+        alert(JSON.stringify(json.message))
+        this.$router.push('/')
       })
     },
     ceoReject () {

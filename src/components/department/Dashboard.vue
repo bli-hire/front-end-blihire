@@ -1,10 +1,10 @@
 <template>
   <div class="content">
 
-    <BoxComponent 
-      v-if="content === 'fpk'" 
-      v-for="fpk in JSON.parse(resultContent.resultFpk)" 
-      v-bind:title="fpk.department" 
+    <BoxComponent
+      v-if="content === 'fpk'"
+      v-for="fpk in JSON.parse(resultContent.resultFpk)"
+      v-bind:title="fpk.department"
       v-bind:message="'Reason : '+fpk.reason"
       v-bind:statusAccept="fpk.accept"
       v-bind:statusReject="fpk.reject"
@@ -12,14 +12,13 @@
       v-bind:content="content"
       v-bind:id="fpk.idFpk"></BoxComponent>
 
-    <BoxComponent v-if="content === 'mpp'" v-for="n in resultContent.resultTotalMpp" v-bind:title="content" message="Please we need ..."></BoxComponent>
-    <h2 class="msg-empty" v-if="total === 0">There are no new {{content}} requested</h2>
+    <!-- <BoxComponent v-if="content === 'mpp'" v-for="n in resultContent.resultTotalMpp" v-bind:title="content" message="Please we need ..."></BoxComponent> -->
+    <h2 class="msg-empty" v-if="resultContent.resultTotalFpk === 0">There are no new {{content}} requested</h2>
   </div>
 </template>
 
 <script>
 import BoxComponent from '@/components/page-component/BoxComponent'
-
 export default {
   components: {
     BoxComponent
