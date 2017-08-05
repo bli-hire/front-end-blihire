@@ -1,4 +1,7 @@
 <template>
+  <div v-for="mpp in mpps">
+
+  </div>
   <div class="detail-box col-md-12">
     <h3>{{title}}</h3>
     <p>Position : {{position}}</p>
@@ -88,7 +91,37 @@ export default{
       month9: '',
       month10: '',
       month11: '',
-      month12: ''
+      month12: '',
+      mppDetail: {
+        position: '',
+        number: '',
+        mainResponsibilty: '',
+        dateCreated: '',
+        reason: '',
+        knowledgeSkill: '',
+        employementStatus: '',
+        education: '',
+        experience: '',
+        pcAmmount: '',
+        // dateNeeded: '',
+        username: '',
+        pcSpec: '',
+        idSelector: '',
+        idUser: '',
+        month1: '',
+        month2: '',
+        month3: '',
+        month4: '',
+        month5: '',
+        month6: '',
+        month7: '',
+        month8: '',
+        month9: '',
+        month10: '',
+        month11: '',
+        month12: ''
+      },
+      mpps: []
     }
   },
   beforeMount () {
