@@ -110,7 +110,7 @@
         </div>
       </div>
     </div>
-    
+
     <div v-if="department === 'Operation'">
       <h4>Operation</h4>
       <div class="list-group">
@@ -149,7 +149,7 @@
     <br>
     <br>
     <button class="btn btn-primary pull-right">Send MPP</button>
-    <button class="btn btn-warning pull-right">Clear MPP</button>
+    <button @click="clearLoc ()" class="btn btn-warning pull-right">Clear MPP</button>
 
   </div>
 </template>
@@ -190,6 +190,10 @@ export default {
         path: 'create-new/detail',
         query: {jobPosition: jobPosition}
       })
+    },
+    clearLoc () {
+      localStorage.removeItem('detailMpp')
+      // window.localStorage.clear
     }
   }
 }

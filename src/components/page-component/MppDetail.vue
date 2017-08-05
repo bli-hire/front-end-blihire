@@ -1,7 +1,4 @@
 <template>
-  <div v-for="mpp in mpps">
-
-  </div>
   <div class="detail-box col-md-12">
     <h3>{{title}}</h3>
     <p>Position : {{position}}</p>
