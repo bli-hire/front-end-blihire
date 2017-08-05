@@ -242,7 +242,7 @@ export default {
   props: ['content'],
   beforeMount () {
     this.jobPosition = this.$route.query.jobPosition
-    alert(this.jobPosition)
+    // alert(this.jobPosition)
     this.currentDetailIndex = 0
     this.arrayMppDetail = JSON.parse(window.localStorage.getItem('detailMpp'))
   },
