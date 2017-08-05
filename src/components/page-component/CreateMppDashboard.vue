@@ -239,15 +239,17 @@ export default {
       return true
     },
     sendMpp () {
+      var self = this
       // ****
       // * idRequested = id Perquest
       // * detailMpp = array detail
       // * department = var department
       // ****
-      var detailMppStringify = this.detailMpp
+      // var detailMppStringify = JSON.stringify(this.detailMpp)
+      // alert(detailMppStringify)
       self.$http.post('http://localhost:8080/mpp', {
-        idRequested: this.idUserRequested,
-        mppDetails: detailMppStringify}, (json) => {
+        idRequested: self.idRequested,
+        mppDetails: this.detailMpp}, (json) => {
           alert('Sukses Terkirim')
           this.$router.push('/' + self.role + '/')
         })
