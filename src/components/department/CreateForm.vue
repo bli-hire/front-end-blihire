@@ -326,6 +326,7 @@ export default {
       window.localStorage.setItem('detailMpp', JSON.stringify(this.arrayMppDetail))
       // Fungsi dibawah ini untuk mengecek data di localstorage, untuk array pertama
       alert(JSON.stringify(JSON.parse(window.localStorage.getItem('detailMpp'))[0]))
+      this.$router.go(-1)
     }
   }
 }
