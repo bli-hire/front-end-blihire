@@ -199,6 +199,7 @@ export default {
     initMppDetail () {
       window.localStorage.clear()
       alert('Data Mpp sementara berhasil dihapus')
+      this.$router.go(0)
     },
     checkExistJobPosition () {
       var i
