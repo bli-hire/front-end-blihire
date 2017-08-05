@@ -103,34 +103,34 @@
 
 
         <label for="personNeeded">Number of Person(s)</label><br/>
-        <input type="number" id="personNeeded" class="form-control" v-model="personNeededMpp"/>
+        <input type="number" id="personNeeded" class="form-control" v-model="personNeededMpp" v-bind:value="{personNeededMpp}"/>
         <br/>
 
         <label>Comment Section</label>
-        <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="commentMpp" ></textarea>
+        <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="commentMpp" v-bind:value="commentMpp"></textarea>
          <br/>
 
         <label>Reason</label>
-        <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="reasonMpp" ></textarea>
+        <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="reasonMpp" v-bind:value="reasonMpp"></textarea>
         <br/>
 
         <label for="education">Education (select one):</label>
-            <select class="form-control" id="education" v-model="educationMpp">
+            <select class="form-control" id="education" v-model="educationMpp" v-bind:value="educationMpp">
               <option>Bacheloor Degree</option>
               <option>Master Degree</option>
             </select>
           <br/>
 
         <label>Experience</label>
-        <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="experienceMpp"></textarea>
+        <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="experienceMpp" v-bind:value="experienceMpp"></textarea>
          <br/>
 
         <label>Knowledge Skill</label>
-        <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="knowledgeMpp"></textarea>
+        <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="knowledgeMpp" v-bind:value="knowledgeMpp"></textarea>
          <br/>
 
          <label for="employeeStatus">Employee Status(GDN or Outsource):</label>
-            <select class="form-control" id="employeeStatus" v-model="employeeStatusMpp">
+            <select class="form-control" id="employeeStatus" v-model="employeeStatusMpp" v-bind:value="employeeStatusMpp">
               <option>Bacheloor Degree</option>
               <option>Master Degree</option>
             </select>
@@ -153,18 +153,18 @@
           <th>December</th>
         </tr>
         <tr>
-          <td><input type="number" class="form-control" v-model.number="januaryExpect"/></td>
-          <td><input type="number" class="form-control" v-model.number="februaryExpect"/></td>
-          <td><input type="number" class="form-control" v-model.number="marchExpect"/></td>
-          <td><input type="number" class="form-control" v-model.number="aprilExpect"/></td>
-          <td><input type="number" class="form-control" v-model.number="mayExpect"/></td>
-          <td><input type="number" class="form-control" v-model.number="juneExpect"/></td>
-          <td><input type="number" class="form-control" v-model.number="julyExpect"/></td>
-          <td><input type="number" class="form-control" v-model.number="augustExpect"/></td>
-          <td><input type="number" class="form-control" v-model.number="septemberExpect"/></td>
-          <td><input type="number" class="form-control" v-model.number="octoberExpect"/></td>
-          <td><input type="number" class="form-control" v-model.number="novemberExpect"/></td>
-          <td><input type="number" class="form-control" v-model.number="decemberExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="januaryExpect" v-bind:value="januaryExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="februaryExpect" v-bind:value="februaryExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="marchExpect" v-bind:value="marchExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="aprilExpect" v-bind:value="aprilExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="mayExpect" v-bind:value="mayExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="juneExpect" v-bind:value="juneExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="julyExpect" v-bind:value="julyExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="augustExpect" v-bind:value="augustExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="septemberExpect" v-bind:value="septemberExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="octoberExpect" v-bind:value="octoberExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="novemberExpect" v-bind:value="novemberExpect"/></td>
+          <td><input type="number" class="form-control" v-model.number="decemberExpect" v-bind:value="decemberExpect"/></td>
         </tr>
       </table>
 
@@ -182,7 +182,8 @@
       <button v-if="currentDetailIndex !== totalPositionNeeded - 1" type="submit" class="btn btn-primary" name="" v-on:click="back()">Previous Job Position</button>
       <button v-if="currentDetailIndex !== totalPositionNeeded - 1" type="submit" class="btn btn-primary" name="" v-on:click="next()">Next Job Position</button>
  -->
-      <button v-if="" type="submit" class="btn btn-primary" name="" v-on:click="insertMpp()">Send MPP</button>
+      <button v-if="this.edit !== true" type="submit" class="btn btn-primary" name="" v-on:click="insertMpp()">Send MPP</button>
+      <button v-if="this.edit === true" type="submit" class="btn btn-primary" name="" v-on:click="editMpp()">Edit Mpp</button>
 
       </div>
     </div>
@@ -236,15 +237,32 @@ export default {
       pcSpecMpp: '',
       expectedJoin: '',
       expectJoin: {},
-      arrayMppDetail: []
+      arrayMppDetail: [],
+      indeksMppDetail: ''
     }
   },
-  props: ['content'],
+  props: ['content', 'edit'],
   beforeMount () {
     this.jobPosition = this.$route.query.jobPosition
     // alert(this.jobPosition)
     this.currentDetailIndex = 0
+    this.indeksMppDetail = this.$route.query.indeksEditMpp
     this.arrayMppDetail = JSON.parse(window.localStorage.getItem('detailMpp'))
+    if (this.content === 'mpp' && this.edit === true) {
+      var objMppDetail = this.arrayMppDetail[this.indeksMppDetail]
+      // alert(JSON.stringify(objMppDetail))
+      this.personNeededMpp = objMppDetail.numberOfPerson
+      this.positionMpp = objMppDetail.position.jobPosition
+      this.reasonMpp = objMppDetail.reason
+      this.educationMpp = objMppDetail.education
+      this.experienceMpp = objMppDetail.experience
+      this.knowledgeMpp = objMppDetail.knowledge
+      this.employeeStatusMpp = objMppDetail.employeeStatus
+      this.expectedJoin = objMppDetail.expectedJoin
+      this.pcNumberMpp = objMppDetail.pcAmmount
+      this.pcSpecMpp = objMppDetail.pcSpec
+      this.idUserRequested = objMppDetail.idRequested
+    }
   },
   methods: {
     insertFpk () {
@@ -322,10 +340,32 @@ export default {
         idRequested: self.idUserRequested
       }
       this.arrayMppDetail.push(resultObjectDetailMpp)
-      alert(JSON.stringify(this.arrayMppDetail))
+      // alert(JSON.stringify(this.arrayMppDetail))
       window.localStorage.setItem('detailMpp', JSON.stringify(this.arrayMppDetail))
       // Fungsi dibawah ini untuk mengecek data di localstorage, untuk array pertama
-      alert(JSON.stringify(JSON.parse(window.localStorage.getItem('detailMpp'))[0]))
+      // alert(JSON.stringify(JSON.parse(window.localStorage.getItem('detailMpp'))[0]))
+      alert('Detail MPP berhasil dibuat')
+      this.$router.go(-1)
+    },
+    editMpp () {
+      var self = this
+      var resultObjectDetailMppEdited = {
+        numberOfPerson: self.personNeededMpp,
+        position: self.positionMpp,
+        reason: self.reasonMpp,
+        mainResponsibility: '',
+        education: self.educationMpp,
+        experience: self.experienceMpp,
+        knowledge: self.knowledgeMpp,
+        employeeStatus: self.employeeStatusMpp,
+        expectedJoin: self.expectedJoin,
+        pcAmmount: self.pcNumberMpp,
+        pcSpec: self.pcSpecMpp,
+        idRequested: self.idUserRequested
+      }
+      this.arrayMppDetail[this.indeksMppDetail] = resultObjectDetailMppEdited
+      window.localStorage.setItem('detailMpp', JSON.stringify(this.arrayMppDetail))
+      alert('Data Berhasil di ubah')
       this.$router.go(-1)
     }
   }

@@ -15,7 +15,7 @@
           <button v-if="checkExistJobPosition('Sr. System Development Engineer') === true" @click="goToCreateMppDetail('Sr. System Development Engineer')" class="btn btn-primary">Create Mpp for this Position</button>
           <div v-if="checkExistJobPosition('Sr. System Development Engineer') === false">
             <p>You are already assign detail for this job position for mpp</p>  
-            <button class="btn-primary btn">Edit Detail Mpp</button>
+            <button @click="editMppDetail('Sr. System Development Engineer')" class="btn-primary btn">Edit Detail Mpp</button>
           </div>
         </div>
         <br>
@@ -188,7 +188,8 @@ export default {
       department: '',
       indicatorData: '',
       surename: '',
-      detailMpp: []
+      detailMpp: [],
+      idRequested: ''
     }
   },
   props: ['content'],
@@ -238,10 +239,28 @@ export default {
       return true
     },
     sendMpp () {
+      // ****
+      // * idRequested = id Perquest
+      // * detailMpp = array detail
+      // * department = var department
+      // ****
     },
     clearLoc () {
       localStorage.removeItem('detailMpp')
       window.localStorage.clear
+    },
+    getIndexEditMpp (jobPosition) {
+      for (var i = 0; i < this.detailMpp.length; i++) {
+        if (this.detailMpp[i].position.jobPosition === jobPosition) {
+          return i
+        }
+      }
+    },
+    editMppDetail (jobPosition) {
+      this.$router.push({
+        path: 'create-new/detail-edit',
+        query: {indeksEditMpp: this.getIndexEditMpp(jobPosition), jobPosition: jobPosition}
+      })
     }
   }
 }

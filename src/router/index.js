@@ -216,6 +216,11 @@ export default new Router({
           props: {content: 'mpp'}
         },
         {
+          path: '/department/mpp/create-new/detail-edit',
+          component: CreateForm,
+          props: {content: 'mpp', edit: true}
+        },
+        {
           path: '/department/mpp/history'
         },
         {
