@@ -1,14 +1,14 @@
 <template>
   <div class="content content-job">
     <div class=""v-if="department === 'Technology'">
-    <h2>Pembuatan MPP</h2>
-    <h3>Department : {{department}}</h3>
-    <h4>Pengaju MPP : {{surename}}</h4>
-    <br><br>
-      <p>Berikut ini adalah posisi pekerjaan yang tersedia untuk department anda. Silahkan pilih salah satu untuk melanjutkan pembuatan MPP detail. </p>
-      <p>Jika sudah selesai mengisikan detail, silahkan melanjutkan dengan menekan tombol "Send MPP"</p>
-      <p>Jika sudah selesai mengosongkan seluruh data mpp yang hendak dibuat, silahkan tekan tombol "Clear MPP"</p>
-      <br>
+      <h2>Pembuatan MPP</h2>
+      <h3>Department : {{department}}</h3>
+      <h4>Pengaju MPP : {{surename}}</h4>
+      <br><br>
+        <p>Berikut ini adalah posisi pekerjaan yang tersedia untuk department anda. Silahkan pilih salah satu untuk melanjutkan pembuatan MPP detail. </p>
+        <p>Jika sudah selesai mengisikan detail, silahkan melanjutkan dengan menekan tombol "Send MPP"</p>
+        <p>Jika sudah selesai mengosongkan seluruh data mpp yang hendak dibuat, silahkan tekan tombol "Clear MPP"</p>
+        <br>
       <div class="list-group">
         <a class="list-group-item" data-toggle="collapse" href="#jobSystemDev">Sr. System Development Engineer</a>
         <div id="jobSystemDev" class="collapse container-fluid">
@@ -58,30 +58,66 @@
     </div>
 
     <div v-if="department === 'BusinessDevelopment'">
-      <h4>Business Developement</h4>
+      <!-- <h4>Business Developement</h4> -->
+      <h2>Pembuatan MPP</h2>
+      <h3>Department : {{department}}</h3>
+      <h4>Pengaju MPP : {{surename}}</h4>
+      <br><br>
+        <p>Berikut ini adalah posisi pekerjaan yang tersedia untuk department anda. Silahkan pilih salah satu untuk melanjutkan pembuatan MPP detail. </p>
+        <p>Jika sudah selesai mengisikan detail, silahkan melanjutkan dengan menekan tombol "Send MPP"</p>
+        <p>Jika sudah selesai mengosongkan seluruh data mpp yang hendak dibuat, silahkan tekan tombol "Clear MPP"</p>
+        <br>
       <div class="list-group">
         <a class="list-group-item" data-toggle="collapse" href="#productManager"  v-model="jobPosition">Product Manager</a>
         <div id="productManager" class="collapse container-fluid">
-          <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button>
+          <button v-if="checkExistJobPosition('Product Manager') === true" @click="goToCreateMppDetail('Product Manager')" class="btn btn-primary">Create Mpp for this Position</button>
+          <div v-if="checkExistJobPosition('Product Manager') === false">
+            <p>You are already assign detail for this job position for mpp</p>
+            <button @click="editMppDetail('Product Manager')" class="btn-primary btn">Edit Detail Mpp</button>
+          </div>
+          <!-- <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button> -->
         </div>
         <a class="list-group-item" data-toggle="collapse" href="#businessDevStaff" v-model="jobPosition">Business Development Staff</a>
         <div id="businessDevStaff" class="collapse container-fluid">
-          <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button>
+          <button v-if="checkExistJobPosition('Business Development Staff') === true" @click="goToCreateMppDetail('Business Development Staff')" class="btn btn-primary">Create Mpp for this Position</button>
+          <div v-if="checkExistJobPosition('Business Development Staff') === false">
+            <p>You are already assign detail for this job position for mpp</p>
+            <button @click="editMppDetail('Business Development Staff')" class="btn-primary btn">Edit Detail Mpp</button>
+          </div>
+          <!-- <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button> -->
         </div>
       </div>
     </div>
 
     <div v-if="department === 'Marketing'">
-      <h4>Marketing</h4>
+      <!-- <h4>Marketing</h4> -->
+      <h2>Pembuatan MPP</h2>
+      <h3>Department : {{department}}</h3>
+      <h4>Pengaju MPP : {{surename}}</h4>
+      <br><br>
+        <p>Berikut ini adalah posisi pekerjaan yang tersedia untuk department anda. Silahkan pilih salah satu untuk melanjutkan pembuatan MPP detail. </p>
+        <p>Jika sudah selesai mengisikan detail, silahkan melanjutkan dengan menekan tombol "Send MPP"</p>
+        <p>Jika sudah selesai mengosongkan seluruh data mpp yang hendak dibuat, silahkan tekan tombol "Clear MPP"</p>
+        <br>
       <div class="list-group">
         <a class="list-group-item" data-toggle="collapse" href="#srConsumer" v-model="jobPosition">Sr. Consumer Market Insight Analyst</a>
         <div id="srConsumer" class="collapse container-fluid">
-          <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button>
+          <button v-if="checkExistJobPosition('Sr. Consumer Market Insight Analyst') === true" @click="goToCreateMppDetail('Sr. Consumer Market Insight Analyst')" class="btn btn-primary">Create Mpp for this Position</button>
+          <div v-if="checkExistJobPosition('Sr. Consumer Market Insight Analyst') === false">
+            <p>You are already assign detail for this job position for mpp</p>
+            <button @click="editMppDetail('Sr. Consumer Market Insight Analyst')" class="btn-primary btn">Edit Detail Mpp</button>
+          </div>
+          <!-- <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button> -->
         </div>
 
         <a class="list-group-item" v-on:click="" data-toggle="collapse" href="#performanceAdvertist" v-model="jobPosition">Performance Advertising Analyst</a>
         <div id="performanceAdvertist" class="collapse container-fluid">
-          <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button>
+          <button v-if="checkExistJobPosition('Performance Advertising Analyst') === true" @click="goToCreateMppDetail('Performance Advertising Analyst')" class="btn btn-primary">Create Mpp for this Position</button>
+          <div v-if="checkExistJobPosition('Performance Advertising Analyst') === false">
+            <p>You are already assign detail for this job position for mpp</p>
+            <button @click="editMppDetail('Performance Advertising Analyst')" class="btn-primary btn">Edit Detail Mpp</button>
+          </div>
+          <!-- <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button> -->
         </div>
       </div>
     </div>
@@ -91,12 +127,22 @@
       <div class="list-group">
         <a class="list-group-item" data-toggle="collapse" href="#srUxDesigner" v-model="jobPosition">Sr. UX Designer</a>
         <div id="srUxDesigner" class="collapse container-fluid">
-          <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button>
+          <button v-if="checkExistJobPosition('Sr. UX Designer') === true" @click="goToCreateMppDetail('Sr. UX Designer')" class="btn btn-primary">Create Mpp for this Position</button>
+          <div v-if="checkExistJobPosition('Sr. UX Designer') === false">
+            <p>You are already assign detail for this job position for mpp</p>
+            <button @click="editMppDetail('Sr. UX Designer')" class="btn-primary btn">Edit Detail Mpp</button>
+          </div>
+          <!-- <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button> -->
         </div>
 
         <a class="list-group-item" v-on:click="" data-toggle="collapse" href="#uxCopyWritter" v-model="jobPosition">UX Copywriter</a>
         <div id="uxCopyWritter" class="collapse container-fluid">
-          <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button>
+          <button v-if="checkExistJobPosition('UX Copywriter') === true" @click="goToCreateMppDetail('UX Copywriter')" class="btn btn-primary">Create Mpp for this Position</button>
+          <div v-if="checkExistJobPosition('UX Copywriter') === false">
+            <p>You are already assign detail for this job position for mpp</p>
+            <button @click="editMppDetail('UX Copywriter')" class="btn-primary btn">Edit Detail Mpp</button>
+          </div>
+          <!-- <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button> -->
         </div>
       </div>
     </div>
@@ -106,17 +152,32 @@
       <div class="list-group">
         <a class="list-group-item" data-toggle="collapse" href="#digitalImaging" v-model="jobPosition">Digital Imaging</a>
         <div id="digitalImaging" class="collapse container-fluid">
-          <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button>
+          <button v-if="checkExistJobPosition('Digital Imaging') === true" @click="goToCreateMppDetail('Digital Imaging')" class="btn btn-primary">Create Mpp for this Position</button>
+          <div v-if="checkExistJobPosition('Digital Imaging') === false">
+            <p>You are already assign detail for this job position for mpp</p>
+            <button @click="editMppDetail('Digital Imaging')" class="btn-primary btn">Edit Detail Mpp</button>
+          </div>
+          <!-- <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button> -->
         </div>
 
         <a class="list-group-item" v-on:click="" data-toggle="collapse" href="#contentPromotionStrategist" v-model="jobPosition">Content & Promotion Strategist</a>
         <div id="contentPromotionStrategist" class="collapse container-fluid">
-          <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button>
+          <button v-if="checkExistJobPosition('Content & Promotion Strategist') === true" @click="goToCreateMppDetail('Content & Promotion Strategist')" class="btn btn-primary">Create Mpp for this Position</button>
+          <div v-if="checkExistJobPosition('Content & Promotion Strategist') === false">
+            <p>You are already assign detail for this job position for mpp</p>
+            <button @click="editMppDetail('Content & Promotion Strategist')" class="btn-primary btn">Edit Detail Mpp</button>
+          </div>
+          <!-- <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button> -->
         </div>
 
         <a class="list-group-item" v-on:click="" data-toggle="collapse" href="#merchandisingManager" v-model="jobPosition">Merchandising Manager</a>
         <div id="merchandisingManager" class="collapse container-fluid">
-          <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button>
+          <button v-if="checkExistJobPosition('Merchandising Manager') === true" @click="goToCreateMppDetail('Merchandising Manager')" class="btn btn-primary">Create Mpp for this Position</button>
+          <div v-if="checkExistJobPosition('Merchandising Manager') === false">
+            <p>You are already assign detail for this job position for mpp</p>
+            <button @click="editMppDetail('Merchandising Manager')" class="btn-primary btn">Edit Detail Mpp</button>
+          </div>
+          <!-- <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button> -->
         </div>
       </div>
     </div>
@@ -126,7 +187,12 @@
       <div class="list-group">
         <a class="list-group-item" data-toggle="collapse" href="#talentAcquisition" v-model="jobPosition">Talent Acquisition Specialist</a>
         <div id="talentAcquisition" class="collapse container-fluid">
-          <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button>
+          <button v-if="checkExistJobPosition('Talent Acquisition Specialist') === true" @click="goToCreateMppDetail('Talent Acquisition Specialist')" class="btn btn-primary">Create Mpp for this Position</button>
+          <div v-if="checkExistJobPosition('Talent Acquisition Specialist') === false">
+            <p>You are already assign detail for this job position for mpp</p>
+            <button @click="editMppDetail('Talent Acquisition Specialist')" class="btn-primary btn">Edit Detail Mpp</button>
+          </div>
+          <!-- <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button> -->
         </div>
       </div>
     </div>
@@ -137,32 +203,62 @@
 
         <a class="list-group-item" v-on:click="" data-toggle="collapse" href="#seniorExperienceSolutionManager" v-model="jobPosition">Senior Experience Solution Manager</a>
         <div id="seniorExperienceSolutionManager" class="collapse container-fluid">
-          <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button>
+          <button v-if="checkExistJobPosition('Senior Experience Solution Manager') === true" @click="goToCreateMppDetail('Senior Experience Solution Manager')" class="btn btn-primary">Create Mpp for this Position</button>
+          <div v-if="checkExistJobPosition('Senior Experience Solution Manager') === false">
+            <p>You are already assign detail for this job position for mpp</p>
+            <button @click="editMppDetail('Senior Experience Solution Manager')" class="btn-primary btn">Edit Detail Mpp</button>
+          </div>
+          <!-- <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button> -->
         </div>
 
         <a class="list-group-item" v-on:click="" data-toggle="collapse" href="#inventoryControlAsset" v-model="jobPosition">Inventory Control & Asset Recovery (Return) Staff</a>
         <div id="inventoryControlAsset" class="collapse container-fluid">
-          <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button>
+          <button v-if="checkExistJobPosition('Inventory Control & Asset Recovery (Return) Staff') === true" @click="goToCreateMppDetail('Inventory Control & Asset Recovery (Return) Staff')" class="btn btn-primary">Create Mpp for this Position</button>
+          <div v-if="checkExistJobPosition('Inventory Control & Asset Recovery (Return) Staff') === false">
+            <p>You are already assign detail for this job position for mpp</p>
+            <button @click="editMppDetail('Inventory Control & Asset Recovery (Return) Staff')" class="btn-primary btn">Edit Detail Mpp</button>
+          </div>
+          <!-- <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button> -->
         </div>
 
         <a class="list-group-item" v-on:click="" data-toggle="collapse" href="#blitsCollegeAssistantManager" v-model="jobPosition">BLITS College Assistant Manager</a>
         <div id="blitsCollegeAssistantManager" class="collapse container-fluid">
-          <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button>
+          <button v-if="checkExistJobPosition('BLITS College Assistant Manager') === true" @click="goToCreateMppDetail('BLITS College Assistant Manager')" class="btn btn-primary">Create Mpp for this Position</button>
+          <div v-if="checkExistJobPosition('BLITS College Assistant Manager') === false">
+            <p>You are already assign detail for this job position for mpp</p>
+            <button @click="editMppDetail('BLITS College Assistant Manager')" class="btn-primary btn">Edit Detail Mpp</button>
+          </div>
+          <!-- <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button> -->
         </div>
 
         <a class="list-group-item" v-on:click="" data-toggle="collapse" href="#srFleetManagementSpesialist" v-model="jobPosition">Sr. Fleet Management Specialist(To be Located in Bandung)</a>
         <div id="srFleetManagementSpesialist" class="collapse container-fluid">
-          <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button>
+          <button v-if="checkExistJobPosition('Sr. Fleet Management Specialist(To be Located in Bandung)') === true" @click="goToCreateMppDetail('Sr. Fleet Management Specialist(To be Located in Bandung)')" class="btn btn-primary">Create Mpp for this Position</button>
+          <div v-if="checkExistJobPosition('Sr. Fleet Management Specialist(To be Located in Bandung)') === false">
+            <p>You are already assign detail for this job position for mpp</p>
+            <button @click="editMppDetail('Sr. Fleet Management Specialist(To be Located in Bandung)')" class="btn-primary btn">Edit Detail Mpp</button>
+          </div>
+          <!-- <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button> -->
         </div>
 
         <a class="list-group-item" v-on:click="" data-toggle="collapse" href="#fleetManagementSpecialist" v-model="jobPosition">Fleet Management Specialist(To be Located in Bandung)</a>
         <div id="fleetManagementSpecialist" class="collapse container-fluid">
-          <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button>
+          <button v-if="checkExistJobPosition('Fleet Management Specialist(To be Located in Bandung)') === true" @click="goToCreateMppDetail('Fleet Management Specialist(To be Located in Bandung)')" class="btn btn-primary">Create Mpp for this Position</button>
+          <div v-if="checkExistJobPosition('Fleet Management Specialist(To be Located in Bandung)') === false">
+            <p>You are already assign detail for this job position for mpp</p>
+            <button @click="editMppDetail('Fleet Management Specialist(To be Located in Bandung)')" class="btn-primary btn">Edit Detail Mpp</button>
+          </div>
+          <!-- <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button> -->
         </div>
 
         <a class="list-group-item" v-on:click="" data-toggle="collapse" href="#processImprovementAndReengineering" v-model="jobPosition">Process Improvement and Reengineering Specialist</a>
         <div id="processImprovementAndReengineering" class="collapse container-fluid">
-          <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button>
+          <button v-if="checkExistJobPosition('Process Improvement and Reengineering Specialist') === true" @click="goToCreateMppDetail('Process Improvement and Reengineering Specialist')" class="btn btn-primary">Create Mpp for this Position</button>
+          <div v-if="checkExistJobPosition('Process Improvement and Reengineering Specialist') === false">
+            <p>You are already assign detail for this job position for mpp</p>
+            <button @click="editMppDetail('Process Improvement and Reengineering Specialist')" class="btn-primary btn">Edit Detail Mpp</button>
+          </div>
+          <!-- <button @click="goToMppDetail()" class="btn btn-primary">Create Mpp for this Position</button> -->
         </div>
       </div>
     </div>
@@ -187,6 +283,7 @@ export default {
     return {
       department: '',
       indicatorData: '',
+      role: '',
       surename: '',
       detailMpp: [],
       idRequested: ''
@@ -195,6 +292,7 @@ export default {
   props: ['content'],
   beforeMount () {
     this.department = JSON.parse(window.sessionStorage.getItem('user')).department
+    this.role = JSON.parse(window.sessionStorage.getItem('user')).role
     this.idRequested = JSON.parse(window.sessionStorage.getItem('user')).id
     this.surename = JSON.parse(window.sessionStorage.getItem('user')).name
     if (window.localStorage.getItem('detailMpp') === null || window.localStorage.getItem('detailMpp') === 'undefined' || window.localStorage.getItem('detailMpp') === []) {
@@ -231,7 +329,12 @@ export default {
       for (i = 0; i < this.detailMpp.length; i++) {
         // alert(JSON.stringify(this.detailMpp[i].position.jobPosition))
         if (this.department === 'Technology') {
-          if (this.detailMpp[i].position.jobPosition === jobPosition) {
+          if (this.detailMpp[i].position === jobPosition) {
+            return false
+          }
+        }
+        if (this.department === 'Marketing') {
+          if (this.detailMpp[i].position === jobPosition) {
             return false
           }
         }
@@ -245,8 +348,8 @@ export default {
       // * detailMpp = array detail
       // * department = var department
       // ****
-      // var detailMppStringify = JSON.stringify(this.detailMpp)
-      // alert(detailMppStringify)
+      var detailMppStringify = JSON.stringify(this.detailMpp)
+      alert(detailMppStringify)
       self.$http.post('http://localhost:8080/mpp', {
         idRequested: self.idRequested,
         mppDetails: this.detailMpp}, (json) => {

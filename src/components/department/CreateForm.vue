@@ -97,7 +97,7 @@
 <!--               <option>Senior Development Engineer</option>
               <option>Junior Development Engineer</option>
               <option>Mobile Development Engineer</option> -->
-              <option v-bind:value="{jobPosition}">{{jobPosition}}</option>
+              <option v-bind:value="jobPosition">{{jobPosition}}</option>
             </select>
           <br/>
 
