@@ -1,56 +1,57 @@
 <template>
-  <div  class="detail-box col-md-12">
+  <div class="detail-box col-md-12">
     <h3>{{title}}</h3>
-  </div>
-  <div  v-for="mpp in JSON.parse(mpps)" class="detail-box col-md-12">
-    <p>Position : {{mpp.position}}</p>
-    <p>Number : {{mpp.numberOfPerson}}</p>
-    <p>Reason : {{mpp.reason}}</p>
-    <p>Main Responsibilty : {{mpp.mainResponsibilty}}</p>
-    <h3>Qualification</h3>
-    <p>Education : {{mpp.education}}</p>
-    <p>Knowledge Skill : {{mpp.knowledge}}</p>
-    <p>Experience : {{mpp.experience}}</p>
-    <p>Employement Status : {{mpp.employeeStatus}}</p>
-    <!-- <h3>Expected to Join in {{mpp.year}}</h3> -->
-    <table class="table">
-          <tbody><tr>
-            <th>January</th>
-            <th>February</th>
-            <th>March</th>
-            <th>April</th>
-            <th>May</th>
-            <th>June</th>
-            <th>July</th>
-            <th>August</th>
-            <th>September</th>
-            <th>October</th>
-            <th>November</th>
-            <th>December</th>
-          </tr>
-          <tr>
-            <td>{{mpp.januaryExpect}}</td>
-            <td>{{mpp.februaryExpect}}</td>
-            <td>{{mpp.marchExpect}}</td>
-            <td>{{mpp.aprilExpect}}</td>
-            <td>{{mpp.mayExpect}}</td>
-            <td>{{mpp.juneExpect}}</td>
-            <td>{{mpp.julyExpect}}</td>
-            <td>{{mpp.augustExpect}}</td>
-            <td>{{mpp.septemberExpect}}</td>
-            <td>{{mpp.octoberExpect}}</td>
-            <td>{{mpp.novemberExpect}}</td>
-            <td>{{mpp.decemberExpect}}</td>
-          </tr>
-        </tbody>
-      </table>
-      <p>Computer Needed : {{mpp.pcAmmount}}</p>
-      <p>Spesification : {{mpp.pcSpec}}</p>
-      <h3>Comment :</h3>
-      <textarea name="Text1" cols="140" rows="8"></textarea>
-      <br/>
-      <button v-if="role === 'CEO'"  v-on:click="ceoApprove()" type="reset" class="btn btn-primary" name="">Approve</button>
-      <button v-if="role === 'CEO'" type="reset" class="btn btn-warning" name="">Reject</button>
+    <div v-for="mpp in mpps">
+      <p>Position : {{mpp.position}}</p>
+      <p>Number : {{mpp.numberOfPerson}}</p>
+      <p>Reason : {{mpp.reason}}</p>
+      <p>Main Responsibilty : {{mpp.mainResponsibilty}}</p>
+      <h3>Qualification</h3>
+      <p>Education : {{mpp.education}}</p>
+      <p>Knowledge Skill : {{mpp.knowledge}}</p>
+      <p>Experience : {{mpp.experience}}</p>
+      <p>Employement Status : {{mpp.employeeStatus}}</p>
+      <!-- <h3>Expected to Join in {{mpp.year}}</h3> -->
+      <table class="table">
+            <tbody><tr>
+              <th>January</th>
+              <th>February</th>
+              <th>March</th>
+              <th>April</th>
+              <th>May</th>
+              <th>June</th>
+              <th>July</th>
+              <th>August</th>
+              <th>September</th>
+              <th>October</th>
+              <th>November</th>
+              <th>December</th>
+            </tr>
+            <tr>
+              <td>{{mpp.januaryExpect}}</td>
+              <td>{{mpp.februaryExpect}}</td>
+              <td>{{mpp.marchExpect}}</td>
+              <td>{{mpp.aprilExpect}}</td>
+              <td>{{mpp.mayExpect}}</td>
+              <td>{{mpp.juneExpect}}</td>
+              <td>{{mpp.julyExpect}}</td>
+              <td>{{mpp.augustExpect}}</td>
+              <td>{{mpp.septemberExpect}}</td>
+              <td>{{mpp.octoberExpect}}</td>
+              <td>{{mpp.novemberExpect}}</td>
+              <td>{{mpp.decemberExpect}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Computer Needed : {{mpp.pcAmmount}}</p>
+        <p>Spesification : {{mpp.pcSpec}}</p>
+        <h3>Comment :</h3>
+        <textarea name="Text1" cols="140" rows="8"></textarea>
+        <br/>
+        <button v-if="role === 'CEO'"  v-on:click="ceoApprove()" type="reset" class="btn btn-primary" name="">Approve</button>
+        <button v-if="role === 'CEO'" type="reset" class="btn btn-warning" name="">Reject</button>
+
+    </div>
 
   </div>
 </template>
