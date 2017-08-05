@@ -130,7 +130,7 @@
         </div>
       </div>
     </div>
-    
+
     <div v-if="department === 'Operation'">
       <h4>Operation</h4>
       <div class="list-group">
@@ -170,6 +170,8 @@
     <br>
     <button class="btn btn-primary pull-right" @click="">Send MPP</button>
     <button class="btn btn-warning pull-right" @click="initMppDetail()">Clear MPP</button>
+    <!-- <button class="btn btn-primary pull-right">Send MPP</button>
+    <button @click="clearLoc ()" class="btn btn-warning pull-right">Clear MPP</button> -->
 
   </div>
 </template>
@@ -194,7 +196,12 @@ export default {
     this.department = JSON.parse(window.sessionStorage.getItem('user')).department
     this.idRequested = JSON.parse(window.sessionStorage.getItem('user')).id
     this.surename = JSON.parse(window.sessionStorage.getItem('user')).name
-    if (JSON.parse(window.localStorage.getItem('detailMpp')) === null) {
+    if (window.localStorage.getItem('detailMpp') === null || window.localStorage.getItem('detailMpp') === 'undefined' || window.localStorage.getItem('detailMpp') === []) {
+      localStorage.removeItem('detailMpp')
+      window.localStorage.clear
+    }
+    if (JSON.parse(window.localStorage.getItem('detailMpp')) === null || JSON.parse(window.localStorage.getItem('detailMpp')) === 'undefined' || JSON.parse(window.localStorage.getItem('detailMpp')) === []) {
+      localStorage.removeItem('detailMpp')
       this.indicatorData = false
     } else {
       this.indicatorData = true
@@ -204,7 +211,8 @@ export default {
   },
   methods: {
     goToCreateMppDetail (jobPosition) {
-      if (JSON.parse(window.localStorage.getItem('detailMpp')) === null) {
+      if (window.localStorage.getItem('detailMpp') === null || window.localStorage.getItem('detailMpp') === 'undefined' || window.localStorage.getItem('detailMpp') === []) {
+        localStorage.removeItem('detailMpp')
         window.localStorage.setItem('detailMpp', [])
       }
       this.$router.push({
@@ -230,6 +238,10 @@ export default {
       return true
     },
     sendMpp () {
+    },
+    clearLoc () {
+      localStorage.removeItem('detailMpp')
+      window.localStorage.clear
     }
   }
 }
