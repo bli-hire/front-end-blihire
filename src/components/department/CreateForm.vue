@@ -94,9 +94,10 @@
         <div class="form-group">
           <label for="pos">Position (select one):</label>
             <select class="form-control" id="pos" v-model="positionMpp" >
-              <option>Senior Development Engineer</option>
+<!--               <option>Senior Development Engineer</option>
               <option>Junior Development Engineer</option>
-              <option>Mobile Development Engineer</option>
+              <option>Mobile Development Engineer</option> -->
+              <option v-bind:value="{jobPosition}">{{jobPosition}}</option>
             </select>
           <br/>
 
@@ -175,12 +176,13 @@
       <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="pcSpecMpp"></textarea>
       <br/>
 
-      <button v-if="currentDetailIndex === totalPositionNeeded - 1" type="submit" class="btn btn-primary" name="" v-on:click="insertMpp()">Send MPP</button>
+    <!--   <button v-if="currentDetailIndex === totalPositionNeeded - 1" type="submit" class="btn btn-primary" name="" v-on:click="insertMpp()">Send MPP</button>
       <button v-if="currentDetailIndex === totalPositionNeeded - 1" type="reset" class="btn btn-warning" name="">Reset</button>
 
       <button v-if="currentDetailIndex !== totalPositionNeeded - 1" type="submit" class="btn btn-primary" name="" v-on:click="back()">Previous Job Position</button>
       <button v-if="currentDetailIndex !== totalPositionNeeded - 1" type="submit" class="btn btn-primary" name="" v-on:click="next()">Next Job Position</button>
-
+ -->
+      <button v-if="" type="submit" class="btn btn-primary" name="" v-on:click="insertMpp()">Send MPP</button>
 
       </div>
     </div>
@@ -192,7 +194,7 @@ export default {
   name: 'create-new',
   data () {
     return {
-      maxMppDetail: '',
+      jobPosition: '',
       currentDetailIndex: '',
       departmentPemohon: '',
       jabatanPemohon: '',
@@ -233,14 +235,16 @@ export default {
       pcNumberMpp: '',
       pcSpecMpp: '',
       expectedJoin: '',
-      expectJoin: {}
+      expectJoin: {},
+      arrayMppDetail: []
     }
   },
   props: ['content'],
   beforeMount () {
-    this.maxMppDetail = this.$route.query.positionNeeded
+    this.jobPosition = this.$route.query.jobPosition
+    alert(this.jobPosition)
     this.currentDetailIndex = 0
-    window.localStorage.setItem('detailMpp', null)
+    this.arrayMppDetail = JSON.parse(window.localStorage.getItem('detailMpp'))
   },
   methods: {
     insertFpk () {
@@ -286,7 +290,24 @@ export default {
         decemberExpect: self.decemberExpect
       }
       // self.expectedJoin = 20
-      self.$http.post('http://localhost:8080/mpp', {
+      // self.$http.post('http://localhost:8080/mpp', {
+      //   numberOfPerson: self.personNeededMpp,
+      //   position: self.positionMpp,
+      //   reason: self.reasonMpp,
+      //   mainResponsibility: '',
+      //   education: self.educationMpp,
+      //   experience: self.experienceMpp,
+      //   knowledge: self.knowledgeMpp,
+      //   employeeStatus: self.employeeStatusMpp,
+      //   expectedJoin: self.expectedJoin,
+      //   pcAmmount: self.pcNumberMpp,
+      //   pcSpec: self.pcSpecMpp,
+      //   idRequested: self.idUserRequested,
+      //   expectJoin: self.expectJoin}, (json) => {
+      //     alert('Sukses Terkirim')
+      //     this.$router.push('/' + self.role + '/')
+      //   })
+      var resultObjectDetailMpp = {
         numberOfPerson: self.personNeededMpp,
         position: self.positionMpp,
         reason: self.reasonMpp,
@@ -298,19 +319,14 @@ export default {
         expectedJoin: self.expectedJoin,
         pcAmmount: self.pcNumberMpp,
         pcSpec: self.pcSpecMpp,
-        idRequested: self.idUserRequested,
-        expectJoin: self.expectJoin}, (json) => {
-          alert('Sukses Terkirim')
-          this.$router.push('/' + self.role + '/')
-        })
-    },
-    next () {
-      this.currentDetailIndex++
-      alert(this.currentDetailIndex)
-    },
-    back () {
-      this.currentDetailIndex--
-      alert(this.currentDetailIndex)
+        idRequested: self.idUserRequested
+      }
+      this.arrayMppDetail.push(resultObjectDetailMpp)
+      alert(JSON.stringify(this.arrayMppDetail))
+      window.localStorage.setItem('detailMpp', JSON.stringify(this.arrayMppDetail))
+      // Fungsi dibawah ini untuk mengecek data di localstorage, untuk array pertama
+      alert(JSON.stringify(JSON.parse(window.localStorage.getItem('detailMpp'))[0]))
+      this.$router.go(-1)
     }
   }
 }
