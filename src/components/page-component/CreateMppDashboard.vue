@@ -174,7 +174,12 @@ export default {
     this.department = JSON.parse(window.sessionStorage.getItem('user')).department
     this.idRequested = JSON.parse(window.sessionStorage.getItem('user')).id
     this.surename = JSON.parse(window.sessionStorage.getItem('user')).name
-    if (JSON.parse(window.localStorage.getItem('detailMpp')) === null) {
+    if (window.localStorage.getItem('detailMpp') === null || window.localStorage.getItem('detailMpp') === 'undefined' || window.localStorage.getItem('detailMpp') === []) {
+      localStorage.removeItem('detailMpp')
+      window.localStorage.clear
+    }
+    if (JSON.parse(window.localStorage.getItem('detailMpp')) === null || JSON.parse(window.localStorage.getItem('detailMpp')) === 'undefined' || JSON.parse(window.localStorage.getItem('detailMpp')) === []) {
+      localStorage.removeItem('detailMpp')
       this.indicatorData = false
     } else {
       this.indicatorData = true
@@ -183,7 +188,8 @@ export default {
   },
   methods: {
     goToCreateMppDetail (jobPosition) {
-      if (JSON.parse(window.localStorage.getItem('detailMpp')) === null) {
+      if (window.localStorage.getItem('detailMpp') === null || window.localStorage.getItem('detailMpp') === 'undefined' || window.localStorage.getItem('detailMpp') === []) {
+        localStorage.removeItem('detailMpp')
         window.localStorage.setItem('detailMpp', [])
       }
       this.$router.push({
@@ -193,7 +199,7 @@ export default {
     },
     clearLoc () {
       localStorage.removeItem('detailMpp')
-      // window.localStorage.clear
+      window.localStorage.clear
     }
   }
 }
