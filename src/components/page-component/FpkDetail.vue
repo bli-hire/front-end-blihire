@@ -2,7 +2,7 @@
   <div class="listContent col-md-10">
     <h1 style="text-align: center;">{{department}}</h1>
     <h3 style="text-align: center;">From : {{username}}</h3>
-    <h3 style="text-align: center;">Date Submited : {{dateCreated}}</h3>
+    <h3 style="text-align: center;">Date Submited : {{dateCreated.dayOfMonth}} - {{dateCreated.monthOfYear}} - {{dateCreated.year}}</h3>
     <br/>
         <div class="form-group">
           <table class="table table-bordered table-condensed">
@@ -22,7 +22,7 @@
 
         <tr>
         <th>Tanggal dibutuhkan</th>
-        <td>{{dateNeeded}}</td>
+        <td>{{dateNeeded.dayOfMonth}} - {{dateCreated.monthOfYear}} - {{dateCreated.year}}</td>
         </tr>
 
         <tr>
@@ -60,7 +60,7 @@
         <textarea v-if="role !== 'DepartmentTeamMember'"name="Text1" cols="140" rows="8" class="form-control" ></textarea>
          <br/>
       
-      <button v-if="role.includes('Department')" type="reset" class="btn btn-primary" name="">Edit Fpk</button>
+      <button v-if="role.includes('Department')" @click="editFpk()" type="reset" class="btn btn-primary" name="">Edit Fpk</button>
       <button v-if="role !== 'DepartmentTeamMember'" type="submit" class="btn btn-primary" name="">Apply Fpk</button>
       <button v-if="role === 'HR' || role === 'CEO' " type="reset" class="btn btn-primary" name="">Accept</button>
       <button v-if="role !== 'DepartmentTeamMember'" type="reset" class="btn btn-warning" name="">Reject</button>
@@ -86,7 +86,8 @@ export default{
       jobPositionRequester: '',
       dateNeeded: '',
       username: '',
-      role: ''
+      role: '',
+      roleUrl: ''
     }
   },
   beforeMount () {
@@ -94,8 +95,9 @@ export default{
     var idSelector = self.$route.params.id
     self.username = JSON.parse(window.sessionStorage.getItem('user')).name
     self.role = JSON.parse(window.sessionStorage.getItem('user')).role
+    // self.department = JSON.parse(window.sessionStorage.getItem('user')).department
     if (self.role.includes('Department')) {
-      var roleUrl = 'department'
+      this.roleUrl = 'department'
     }
     self.$http.get('http://localhost:8080/fpk/' + idSelector).then(response => {
       var fpk = JSON.stringify(response.data.data)
@@ -114,11 +116,19 @@ export default{
       this.dateCreated = objFpk.createdDate
     }, () => {
       alert('No Valid Fpk for this id')
-      this.$router.push('/' + roleUrl + '/')
+      this.$router.push('/')
     }).catch((e) => {
       alert('No Valid Fpk for this id')
-      this.$router.push('/' + roleUrl + '/')
+      this.$router.push('/')
     })
+  },
+  methods: {
+    editFpk () {
+      var idSelector = this.$route.params.id
+      this.$router.push({
+        path: '/' + this.roleUrl + '/fpk/edit/' + idSelector
+      })
+    }
   }
 }
 </script>

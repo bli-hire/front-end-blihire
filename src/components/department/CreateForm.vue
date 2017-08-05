@@ -254,7 +254,7 @@ export default {
         jobPositionRequester: self.jobPositionRequester,
         completeness: ''}, (json) => {
           alert('Sukses Terkirim')
-          this.$router.push('/' + self.role + '/')
+          this.$router.push('/')
         })
     },
     insertMpp () {
