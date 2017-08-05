@@ -31,6 +31,7 @@ import MppRejected from '@/components/department/MppRejected'
 import FpkPending from '@/components/department/FpkPending'
 import FpkAccepted from '@/components/department/FpkAccepted'
 import FpkRejected from '@/components/department/FpkRejected'
+import BankQuizDashboard from '@/components/hrd/BankQuizDashboard'
 
 Vue.use(Router)
 
@@ -529,6 +530,11 @@ export default new Router({
           path: '/hrd/published/mpp/product-management',
           component: HrdPublished,
           props: {department: 'ProductManagement', content: 'mpp'}
+        },
+        {
+          path: '/hrd/bank/quiz',
+          component: BankQuizDashboard,
+          props: {content: 'quiz'}
         }
       ]
     }

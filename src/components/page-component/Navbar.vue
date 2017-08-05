@@ -32,6 +32,9 @@
             <li v-if="loginStatus === 'hrd'" v-on:click="chStatePageToHrdPublishedMpp(); chContentRequestToMpp(); setActiveSide({loginStatus}+'/'+{statePage}+'/human-resource'); setActive('hrd/published/mpp');" :class="{active: isActive('hrd/published/mpp')}"><router-link to="/hrd/published/mpp/human-resource">Published MPP</router-link></li>
 
             <li v-if="loginStatus === 'hrd'" v-on:click="chStatePageToHrdCandidates(); setActiveSide({loginStatus}+'/'+{statePage}+'/human-resource'); setActive('hrd/candidates');" :class="{active: isActive('hrd/candidates')}"><router-link to="/hrd/candidates/human-resource">Candidates</router-link></li>
+
+            <li v-if="loginStatus === 'hrd'" v-on:click="chStatePageToHrdQuiz(); setActive('hrd/bank/quiz');" :class="{active: isActive('hrd/bank/quiz')}"><router-link to="/hrd/bank/quiz">Bank Quiz</router-link></li>
+
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li
@@ -184,6 +187,9 @@ export default {
     },
     chStatePageToHrdCandidates () {
       this.statePage = 'candidates'
+    },
+    chStatePageToHrdQuiz () {
+      this.statePage = 'bank/quiz'
     },
     chContentRequestToFpk () {
       this.content = 'fpk'
