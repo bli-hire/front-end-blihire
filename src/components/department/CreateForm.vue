@@ -337,7 +337,7 @@ export default {
         expectedJoin: self.expectedJoin,
         pcAmmount: self.pcNumberMpp,
         pcSpec: self.pcSpecMpp,
-        idRequested: self.idUserRequested
+        expectJoin: self.expectJoin
       }
       this.arrayMppDetail.push(resultObjectDetailMpp)
       // alert(JSON.stringify(this.arrayMppDetail))
@@ -349,6 +349,23 @@ export default {
     },
     editMpp () {
       var self = this
+      self.idUserRequested = JSON.parse(window.sessionStorage.getItem('user')).id
+      self.role = JSON.parse(window.sessionStorage.getItem('user')).role
+      self.expectedJoin = self.januaryExpect + self.februaryExpect + self.marchExpect + self.aprilExpect + self.mayExpect + self.juneExpect + self.julyExpect + self.augustExpect + self.septemberExpect + self.octoberExpect + self.novemberExpect + self.decemberExpect
+      self.expectJoin = {
+        januaryExpect: self.januaryExpect,
+        februaryExpect: self.februaryExpect,
+        marchExpect: self.marchExpect,
+        aprilExpect: self.aprilExpect,
+        mayExpect: self.mayExpect,
+        juneExpect: self.juneExpect,
+        julyExpect: self.julyExpect,
+        augustExpect: self.augustExpect,
+        septemberExpect: self.septemberExpect,
+        octoberExpect: self.octoberExpect,
+        novemberExpect: self.novemberExpect,
+        decemberExpect: self.decemberExpect
+      }
       var resultObjectDetailMppEdited = {
         numberOfPerson: self.personNeededMpp,
         position: self.positionMpp,

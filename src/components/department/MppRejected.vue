@@ -6,7 +6,7 @@
 	    <BoxComponent
 	      v-for="mpp in JSON.parse(resultContent.resultMpp)"
 	      v-bind:title="mpp.department"
-	      v-bind:message="'Reason : '+mpp.mppDetails.reason"
+	      v-bind:message="'Created Date : '+ mpp.createdDate.dayOfWeek + ' - '+mpp.createdDate.monthOfYear + ' - ' + mpp.createdDate.yearOfEra"
 	      v-bind:statusAccept="mpp.isAccept"
 	      v-bind:statusReject="mpp.isReject"
 	      v-bind:loginStatus="role"
@@ -26,7 +26,7 @@ export default {
     BoxComponent
   },
   name: 'MppRejected',
-	data () {
+  data () {
     return {
       resultContent: {
         resultFpk: {},
@@ -38,8 +38,8 @@ export default {
       userId: ''
     }
   },
-	props: ['content'],
-	beforeMount () {
+  props: ['content'],
+  beforeMount () {
     var self = this
     self.role = JSON.parse(window.sessionStorage.getItem('user')).role
     self.userId = JSON.parse(window.sessionStorage.getItem('user')).id

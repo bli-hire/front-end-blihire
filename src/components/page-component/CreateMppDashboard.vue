@@ -14,7 +14,7 @@
         <div id="jobSystemDev" class="collapse container-fluid">
           <button v-if="checkExistJobPosition('Sr. System Development Engineer') === true" @click="goToCreateMppDetail('Sr. System Development Engineer')" class="btn btn-primary">Create Mpp for this Position</button>
           <div v-if="checkExistJobPosition('Sr. System Development Engineer') === false">
-            <p>You are already assign detail for this job position for mpp</p>  
+            <p>You are already assign detail for this job position for mpp</p>
             <button @click="editMppDetail('Sr. System Development Engineer')" class="btn-primary btn">Edit Detail Mpp</button>
           </div>
         </div>
@@ -23,7 +23,7 @@
         <div id="jobMobieDev" class="collapse container-fluid">
           <button v-if="checkExistJobPosition('Mobile Development Engineer') === true" @click="goToCreateMppDetail('Mobile Development Engineer')" class="btn btn-primary">Create Mpp for this Position</button>
           <div v-if="checkExistJobPosition('Mobile Development Engineer') === false">
-            <p>You are already assign detail for this job position for mpp</p>  
+            <p>You are already assign detail for this job position for mpp</p>
             <button class="btn-primary btn">Edit Detail Mpp</button>
           </div>
         </div>
@@ -32,7 +32,7 @@
         <div id="sysDevEng" class="collapse container-fluid">
           <button v-if="checkExistJobPosition('System Development Engineer') === true" @click="goToCreateMppDetail('System Development Engineer')" class="btn btn-primary">Create Mpp for this Position</button>
           <div v-if="checkExistJobPosition('System Development Engineer') === false">
-            <p>You are already assign detail for this job position for mpp</p>  
+            <p>You are already assign detail for this job position for mpp</p>
             <button class="btn-primary btn">Edit Detail Mpp</button>
           </div>
         </div>
@@ -41,7 +41,7 @@
         <div id="sysDevEngTest" class="collapse container-fluid">
           <button v-if="checkExistJobPosition('System Development Engineer Testing') === true" @click="goToCreateMppDetail('System Development Engineer Testing')" class="btn btn-primary">Create Mpp for this Position</button>
           <div v-if="checkExistJobPosition('System Development Engineer Testing') === false">
-            <p>You are already assign detail for this job position for mpp</p>  
+            <p>You are already assign detail for this job position for mpp</p>
             <button class="btn-primary btn">Edit Detail Mpp</button>
           </div>
         </div>
@@ -50,7 +50,7 @@
         <div id="techSupp" class="collapse container-fluid">
           <button v-if="checkExistJobPosition('Technical Support Staff') === true" @click="goToCreateMppDetail('Technical Support Staff')" class="btn btn-primary">Create Mpp for this Position</button>
           <div v-if="checkExistJobPosition('Technical Support Staff') === false">
-            <p>You are already assign detail for this job position for mpp</p>  
+            <p>You are already assign detail for this job position for mpp</p>
             <button class="btn-primary btn">Edit Detail Mpp</button>
           </div>
         </div>
@@ -168,7 +168,7 @@
     </div>
     <br>
     <br>
-    <button class="btn btn-primary pull-right" @click="">Send MPP</button>
+    <button class="btn btn-primary pull-right" @click="sendMpp()">Send MPP</button>
     <button class="btn btn-warning pull-right" @click="initMppDetail()">Clear MPP</button>
     <!-- <button class="btn btn-primary pull-right">Send MPP</button>
     <button @click="clearLoc ()" class="btn btn-warning pull-right">Clear MPP</button> -->
@@ -244,6 +244,13 @@ export default {
       // * detailMpp = array detail
       // * department = var department
       // ****
+      var detailMppStringify = this.detailMpp
+      self.$http.post('http://localhost:8080/mpp', {
+        idRequested: this.idUserRequested,
+        mppDetails: detailMppStringify}, (json) => {
+          alert('Sukses Terkirim')
+          this.$router.push('/' + self.role + '/')
+        })
     },
     clearLoc () {
       localStorage.removeItem('detailMpp')
