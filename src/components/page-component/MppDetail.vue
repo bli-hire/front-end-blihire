@@ -93,6 +93,7 @@ export default{
       month10: '',
       month11: '',
       month12: '',
+      published: '',
       mppDetail: {
         position: '',
         number: '',
@@ -150,6 +151,7 @@ export default{
       // this.pcAmmount = objMpp.pcAmmount
       // this.dateNeeded = objMpp.dateNeeded
       this.dateCreated = objMpp.createdDate
+
       // this.month1 = objMpp.januaryExpect
       // this.month2 = objMpp.februaryExpect
       // this.month3 = objMpp.marchExpect
@@ -163,6 +165,7 @@ export default{
       // this.month11 = objMpp.novemberExpect
       // this.month12 = objMpp.decemberExpect
       this.mpps = objMpp.mppDetails
+
     }, () => {
       alert('No Valid Mpp for this id')
       this.$router.push('/' + roleUrl + '/')
