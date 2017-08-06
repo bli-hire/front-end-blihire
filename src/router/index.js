@@ -235,7 +235,8 @@ export default new Router({
         },
         {
           path: '/department/mpp/rejected',
-          component: MppRejected
+          component: MppRejected,
+          props: {content: 'mpp'}
         },
         {
           path: '/department/mpp/detail/:id',
