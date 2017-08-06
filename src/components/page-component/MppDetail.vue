@@ -48,8 +48,9 @@
         <h3>Comment :</h3>
         <textarea name="Text1" cols="140" rows="8"></textarea>
         <br/>
+        <button v-if="role === 'HR' && this.published === false"  v-on:click="hrdPublish()" type="reset" class="btn btn-primary" name="">Publish</button>
         <button v-if="role === 'CEO'"  v-on:click="ceoApprove()" type="reset" class="btn btn-primary" name="">Approve</button>
-        <button v-if="role === 'CEO'" type="reset" class="btn btn-warning" name="">Reject</button>
+        <button v-if="role === 'CEO'" v-on:click="ceoReject()"type="reset" class="btn btn-warning" name="">Reject</button>
 
     </div>
 
@@ -92,6 +93,7 @@ export default{
       month10: '',
       month11: '',
       month12: '',
+      published: '',
       mppDetail: {
         position: '',
         number: '',
@@ -149,6 +151,7 @@ export default{
       // this.pcAmmount = objMpp.pcAmmount
       // this.dateNeeded = objMpp.dateNeeded
       this.dateCreated = objMpp.createdDate
+
       // this.month1 = objMpp.januaryExpect
       // this.month2 = objMpp.februaryExpect
       // this.month3 = objMpp.marchExpect
@@ -162,6 +165,7 @@ export default{
       // this.month11 = objMpp.novemberExpect
       // this.month12 = objMpp.decemberExpect
       this.mpps = objMpp.mppDetails
+
     }, () => {
       alert('No Valid Mpp for this id')
       this.$router.push('/' + roleUrl + '/')
