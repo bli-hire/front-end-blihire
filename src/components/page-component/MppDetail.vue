@@ -165,7 +165,6 @@ export default{
       // this.month11 = objMpp.novemberExpect
       // this.month12 = objMpp.decemberExpect
       this.mpps = objMpp.mppDetails
-
     }, () => {
       alert('No Valid Mpp for this id')
       this.$router.push('/' + roleUrl + '/')
