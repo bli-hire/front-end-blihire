@@ -1,6 +1,6 @@
 <template>
 	<div class="content">
-		<h2>Pending Mpp</h2>
+		<h2>Rejected Mpp</h2>
 		<!-- <BoxComponent v-for="n in 3" v-bind:title="content" message="Please we need ..."></BoxComponent> -->
 		<div v-if="content === 'mpp'">
 	    <BoxComponent
