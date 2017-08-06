@@ -172,12 +172,48 @@ export default{
   },
   methods: {
     ceoApprove () {
+      var self = this
+      var urlRole
+      self.role = JSON.parse(window.sessionStorage.getItem('user')).role
+      self.idUser = JSON.parse(window.sessionStorage.getItem('user')).id
+      if (self.role.includes('Department')) {
+        urlRole = 'department'
+      } else {
+        urlRole = self.role
+      }
       this.$http.post('http://localhost:8080/mpp/approve', {
         idUser: this.idUser,
         idMpp: parseInt(this.idSelector)
       }, (json) => {
+        alert(JSON.stringify(json.message + self.role))
+        this.$router.push('/' + urlRole + '/mpp')
+      })
+    },
+    hrdPublish () {
+      this.$http.post('http://localhost:8080/mpp/publishFromMpp', {
+        idUser: this.idUser,
+        idMpp: parseInt(this.idSelector)
+      }, (json) => {
         alert(JSON.stringify(json.message))
-        this.$router.push('/ceo')
+        this.$router.push('/')
+      })
+    },
+    ceoReject () {
+      var self = this
+      var urlRole
+      self.role = JSON.parse(window.sessionStorage.getItem('user')).role
+      self.idUser = JSON.parse(window.sessionStorage.getItem('user')).id
+      if (self.role.includes('Department')) {
+        urlRole = 'department'
+      } else {
+        urlRole = self.role
+      }
+      this.$http.post('http://localhost:8080/mpp/reject', {
+        idUser: this.idUser,
+        idMpp: parseInt(this.idSelector)
+      }, (json) => {
+        alert(JSON.stringify(json.message + self.role))
+        this.$router.push('/' + urlRole + '/mpp')
       })
     }
   }

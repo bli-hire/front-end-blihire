@@ -48,7 +48,7 @@ export default {
     if (window.sessionStorage.getItem('user') != null) {
       // this.$router.push('/')
       var roleUser = JSON.parse(window.sessionStorage.getItem('user')).role
-      if (roleUser === 'HR') {
+      if (roleUser.includes('HR')) {
         this.$router.push('/hrd')
       } else if (roleUser === 'CEO') {
         this.$router.push('/ceo')
@@ -66,7 +66,7 @@ export default {
           window.sessionStorage.setItem('user', JSON.stringify(json))
           this.user = json
           if (this.user.id != null) {
-            if (this.user.role === 'HR') {
+            if (this.user.role.includes('HR')) {
               this.$router.push('/hrd')
             } else if (this.user.role === 'CEO') {
               this.$router.push('/ceo')

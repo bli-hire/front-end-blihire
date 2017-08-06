@@ -1,7 +1,7 @@
 <template>
   <div class="listContent col-md-10">
-    <h2 class="" v-if="content === 'mpp' && JSON.parse(resultContent.resultTotalMpp) === 0">There are no new {{content}} requested</h2>
-    <h2 class="" v-if="content === 'fpk' && JSON.parse(resultContent.resultTotalFpk) === 0">There are no new {{content}} requested</h2>
+    <h2 class="" v-if="content === 'mpp' && JSON.parse(resultContent.resultTotalMpp) === 0">There are no {{content}} published</h2>
+    <h2 class="" v-if="content === 'fpk' && JSON.parse(resultContent.resultTotalFpk) === 0">There are no {{content}} published</h2>
     <div v-if=" content === 'mpp' && JSON.parse(resultContent.resultTotalMpp) !== 0">
       <h2>List of Requested {{content.toUpperCase()}}</h2>
       <table class="table table-bordered" v-for="mpp in JSON.parse(resultContent.resultMpp)">
@@ -73,7 +73,7 @@ export default {
       self.role = 'hrd'
     }
     if (this.content === 'fpk') {
-      self.$http.get('http://localhost:8080/fpk/byDepartment/active', {}, {
+      self.$http.get('http://localhost:8080/fpk/byDepartment/published', {}, {
         headers: {
           'department': division
         }
@@ -89,7 +89,7 @@ export default {
         }
       })
     } else if (this.content === 'mpp') {
-      self.$http.get('http://localhost:8080/mpp/byDepartment/acceptedNotPublished', {}, {
+      self.$http.get('http://localhost:8080/mpp/byDepartment/published', {}, {
         headers: {
           'department': division
         }
