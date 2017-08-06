@@ -528,7 +528,7 @@ export default new Router({
         {
           path: '/department/mpp/dashboard',
           component: DepartmentDasboard,
-          props: {content: 'mpp'}
+          props: {content: 'mpp', param: 'active'}
         },
         {
           path: '/department/mpp/create-new',
@@ -546,22 +546,24 @@ export default new Router({
           props: {content: 'mpp', edit: true}
         },
         {
-          path: '/department/mpp/history'
+          path: '/department/mpp/history',
+          component: DepartmentDasboard,
+          props: {content: 'mpp', param: 'history'}
         },
         {
           path: '/department/mpp/pending',
-          component: MppPending,
-          props: {content: 'mpp'}
+          component: DepartmentDasboard,
+          props: {content: 'mpp', param: 'pending'}
         },
         {
           path: '/department/mpp/accepted',
-          component: MppAccepted,
-          props: {content: 'mpp'}
+          component: DepartmentDasboard,
+          props: {content: 'mpp', param: 'accepted'}
         },
         {
           path: '/department/mpp/rejected',
-          component: MppRejected,
-          props: {content: 'mpp'}
+          component: DepartmentDasboard,
+          props: {content: 'mpp', param: 'rejected'}
         },
         {
           path: '/department/mpp/detail/:id',
