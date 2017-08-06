@@ -12,8 +12,7 @@
       v-bind:content="content"
       v-bind:id="fpk.idFpk"></BoxComponent>
 
-    <!-- <BoxComponent v-if="content === 'mpp'" v-for="n in resultContent.resultTotalMpp" v-bind:title="content" message="Please we need ..."></BoxComponent> -->
-    <h2 class="msg-empty" v-if="resultContent.resultTotalFpk === 0">There are no new {{content}} requested</h2>
+    <h2 class="msg-empty" v-if="content === 'fpk' && resultContent.resultTotalFpk === '0'">There are no fpk ( {{param}} )</h2>
   </div>
 </template>
 
@@ -28,18 +27,18 @@ export default {
     return {
       resultContent: {
         resultFpk: {},
-        resultTotalFpk: '',
+        resultTotalFpk: '0',
         resultMpp: {},
-        resultTotalMpp: ''
+        resultTotalMpp: 0
       }
     }
   },
-  props: ['content'],
+  props: ['content', 'param'],
   beforeMount () {
     var self = this
     var division = JSON.parse(window.sessionStorage.getItem('user')).department
     if (this.content === 'fpk') {
-      self.$http.get('http://localhost:8080/fpk/byDepartment', {}, {
+      self.$http.get('http://localhost:8080/fpk/byDepartment/' + this.param, {}, {
         headers: {
           'department': division
         }
@@ -49,6 +48,62 @@ export default {
         this.resultContent.resultFpk = fpk
         this.resultContent.resultTotalFpk = totalFpk
       })
+      // if (this.param === 'active') {
+      //   self.$http.get('http://localhost:8080/fpk/byDepartment/active', {}, {
+      //     headers: {
+      //       'department': division
+      //     }
+      //   }).then(response => {
+      //     var fpk = JSON.stringify(response.data.data)
+      //     var totalFpk = JSON.stringify(response.data.totalData)
+      //     this.resultContent.resultFpk = fpk
+      //     this.resultContent.resultTotalFpk = totalFpk
+      //   })
+      // } else if (this.param === 'history') {
+      //   self.$http.get('http://localhost:8080/fpk/byDepartment/history', {}, {
+      //     headers: {
+      //       'department': division
+      //     }
+      //   }).then(response => {
+      //     var fpk = JSON.stringify(response.data.data)
+      //     var totalFpk = JSON.stringify(response.data.totalData)
+      //     this.resultContent.resultFpk = fpk
+      //     this.resultContent.resultTotalFpk = totalFpk
+      //   })
+      // } else if (this.param === 'pending') {
+      //   self.$http.get('http://localhost:8080/fpk/byDepartment/pending', {}, {
+      //     headers: {
+      //       'department': division
+      //     }
+      //   }).then(response => {
+      //     var fpk = JSON.stringify(response.data.data)
+      //     var totalFpk = JSON.stringify(response.data.totalData)
+      //     this.resultContent.resultFpk = fpk
+      //     this.resultContent.resultTotalFpk = totalFpk
+      //   })
+      // } else if (this.param === 'accepted') {
+      //   self.$http.get('http://localhost:8080/fpk/byDepartment/history', {}, {
+      //     headers: {
+      //       'department': division
+      //     }
+      //   }).then(response => {
+      //     var fpk = JSON.stringify(response.data.data)
+      //     var totalFpk = JSON.stringify(response.data.totalData)
+      //     this.resultContent.resultFpk = fpk
+      //     this.resultContent.resultTotalFpk = totalFpk
+      //   })
+      // } else if (this.param === 'rejected') {
+      //   self.$http.get('http://localhost:8080/fpk/byDepartment/history', {}, {
+      //     headers: {
+      //       'department': division
+      //     }
+      //   }).then(response => {
+      //     var fpk = JSON.stringify(response.data.data)
+      //     var totalFpk = JSON.stringify(response.data.totalData)
+      //     this.resultContent.resultFpk = fpk
+      //     this.resultContent.resultTotalFpk = totalFpk
+      //   })
+      // }
     }
   }
 }

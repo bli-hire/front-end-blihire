@@ -17,7 +17,6 @@ import FpkDetail from '@/components/page-component/FpkDetail'
 import MppDetail from '@/components/page-component/MppDetail'
 import CreateForm from '@/components/department/CreateForm'
 import DepartmentDasboard from '@/components/department/Dashboard'
-import DepartmentHistory from '@/components/department/History'
 import HrdRequested from '@/components/hrd/Requested'
 import HrdPublished from '@/components/hrd/Published'
 import HrdCandidates from '@/components/hrd/Candidates'
@@ -492,7 +491,7 @@ export default new Router({
         {
           path: '/department/fpk/dashboard',
           component: DepartmentDasboard,
-          props: {content: 'fpk'}
+          props: {content: 'fpk', param: 'active'}
         },
         {
           path: '/department/fpk/create-new',
@@ -505,23 +504,23 @@ export default new Router({
         },
         {
           path: '/department/fpk/history',
-          component: DepartmentHistory,
-          props: {content: 'fpk'}
+          component: DepartmentDasboard,
+          props: {content: 'fpk', param: 'history'}
         },
         {
           path: '/department/fpk/pending',
-          component: FpkPending,
-          props: {content: 'fpk'}
+          component: DepartmentDasboard,
+          props: {content: 'fpk', param: 'pending'}
         },
         {
           path: '/department/fpk/accepted',
-          component: FpkAccepted,
-          props: {content: 'fpk'}
+          component: DepartmentDasboard,
+          props: {content: 'fpk', param: 'accepted'}
         },
         {
           path: '/department/fpk/rejected',
-          component: FpkRejected,
-          props: {content: 'fpk'}
+          component: DepartmentDasboard,
+          props: {content: 'fpk', param: 'rejected'}
         },
         {
           path: '/department/mpp'
