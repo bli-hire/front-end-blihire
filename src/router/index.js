@@ -137,7 +137,7 @@ export default new Router({
         {
           path: '/ceo/mpp/technology',
           component: Technology,
-          props: {content: 'mpp'}
+          props: {content: 'mpp', status: 'active'}
         },
         {
           path: '/ceo/mpp/business-development',
@@ -287,32 +287,32 @@ export default new Router({
         {
           path: '/ceo/accepted/fpk/technology',
           component: Technology,
-          props: {department: 'Technology', content: 'fpk'}
+          props: {department: 'Technology', content: 'fpk', status: 'accepted'}
         },
         {
           path: '/ceo/rejected/fpk/technology',
           component: Technology,
-          props: {department: 'Technology', content: 'fpk'}
+          props: {department: 'Technology', content: 'fpk', status: 'rejected'}
         },
         {
           path: '/ceo/published/fpk/technology',
           component: Technology,
-          props: {department: 'Technology', content: 'fpk'}
+          props: {department: 'Technology', content: 'fpk', status: 'published'}
         },
         {
           path: '/ceo/accepted/mpp/technology',
           component: Technology,
-          props: {department: 'Technology', content: 'mpp'}
+          props: {department: 'Technology', content: 'mpp', status: 'accepted'}
         },
         {
           path: '/ceo/rejected/mpp/technology',
           component: Technology,
-          props: {department: 'Technology', content: 'mpp'}
+          props: {department: 'Technology', content: 'mpp', status: 'rejected'}
         },
         {
           path: '/ceo/published/mpp/technology',
           component: Technology,
-          props: {department: 'Technology', content: 'mpp'}
+          props: {department: 'Technology', content: 'mpp', status: 'published'}
         },
         // --------------
         {
