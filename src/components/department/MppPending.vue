@@ -6,7 +6,7 @@
 	    <BoxComponent
 	      v-for="mpp in JSON.parse(resultContent.resultMpp)"
 	      v-bind:title="mpp.department"
-	      v-bind:message="'Reason : '+mpp.reason"
+	      v-bind:message="'Created Date : '+ mpp.createdDate.dayOfWeek + ' - ' +mpp.createdDate.monthOfYear + ' - ' +mpp.createdDate.yearOfEra"
 	      v-bind:statusAccept="mpp.isAccept"
 	      v-bind:statusReject="mpp.isReject"
 	      v-bind:loginStatus="role"
