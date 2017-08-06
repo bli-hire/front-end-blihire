@@ -61,9 +61,9 @@
          <br/>
 
       <button v-if="role.includes('Department')" type="reset" class="btn btn-primary" name="">Edit Fpk</button>
-      <button v-if="role === 'DepartmentHead'" type="submit" class="btn btn-primary" name="">Apply Fpk</button>
+      <button v-if="role === 'DepartmentHead' && alreadyApproveHead === false" type="submit" class="btn btn-primary" name="" @click="approveFpk()">Apply Fpk</button>
       <button v-if="role.includes('HR') || role === 'CEO' " type="reset" class="btn btn-primary" name="">Submit</button>
-      <button v-if="role !== 'DepartmentTeamMember'" type="reset" class="btn btn-warning" name="">Reject</button>
+      <button v-if="role !== 'DepartmentTeamMember'" type="reset" class="btn btn-warning" @click="rejectFpk()" name="">Reject</button>
       
       </div>
     </div>
@@ -88,7 +88,9 @@ export default{
       username: '',
       role: '',
       idSelector: '',
-      idUser: ''
+      idUser: '',
+      alreadyApproveHead: '',
+      alreadyApproveCeo: ''
     }
   },
   beforeMount () {
@@ -98,6 +100,10 @@ export default{
     self.role = JSON.parse(window.sessionStorage.getItem('user')).role
     // self.department = JSON.parse(window.sessionStorage.getItem('user')).department
     self.idUser = JSON.parse(window.sessionStorage.getItem('user')).id
+    self.alreadyApproveHead = self.$route.query.headApprove
+    // alert(self.alreadyApproveHead)
+    self.alreadyApproveCeo = self.$route.query.ceoApprove
+    // alert(self.alreadyApproveCeo)
     if (self.role.includes('Department')) {
       this.roleUrl = 'department'
     }
@@ -116,6 +122,8 @@ export default{
       this.jobPositionRequester = objFpk.jobPositionRequester
       this.dateNeeded = objFpk.dateNeeded
       this.dateCreated = objFpk.createdDate
+      this.alreadyApproveHead = objFpk.approveHead
+      this.alreadyApproveCeo = objFpk.approveCeo
     }, () => {
       alert('No Valid Fpk for this id')
       this.$router.push('/')
@@ -131,12 +139,22 @@ export default{
         path: '/' + this.roleUrl + '/fpk/edit/' + idSelector
       })
     },
-    ceoApprove () {
+    approveFpk () {
       this.$http.post('http://localhost:8080/fpk/approve', {
         idUser: this.idUser,
-        idFpk: parseInt(this.idSelector)
+        idFpk: JSON.parse(this.idSelector)
       }, (json) => {
         alert(JSON.stringify(json.message))
+        this.$router.go(-1)
+      })
+    },
+    rejectFpk () {
+      this.$http.post('http://localhost:8080/fpk/reject', {
+        idUser: this.idUser,
+        idFpk: JSON.parse(this.idSelector)
+      }, (json) => {
+        alert(JSON.stringify(json.message))
+        this.$router.go(-1)
       })
     }
   }

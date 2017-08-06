@@ -7,7 +7,7 @@
 
           <label for="pos">Departemen Pemohon:</label>
             <select class="form-control" id="pos" v-model="departmentPemohon">
-              <option value="HumanResource">Human Resource</option>
+              <!-- <option value="HumanResource">Human Resource</option>
               <option value="Marketing">Marketing</option>
               <option value="Operation">Operation</option>
               <option value="TradePartnership">Trade Partnership</option>
@@ -15,7 +15,8 @@
               <option value="BusinessDevelopment">Business Development</option>
               <option value="Finance">Finance</option>
               <option value="ProjectManagement">Project Management</option>
-              <option value="ProductManagement">Product Management</option>
+              <option value="ProductManagement">Product Management</option> -->
+              <option value="jobPosition">{{jobPosition}}</option>
             </select>
           <br/>
 
@@ -196,6 +197,7 @@ export default {
   data () {
     return {
       jobPosition: '',
+      jobPositonFpk: '',
       currentDetailIndex: '',
       departmentPemohon: '',
       jabatanPemohon: '',
@@ -244,6 +246,7 @@ export default {
   props: ['content', 'edit'],
   beforeMount () {
     this.jobPosition = this.$route.query.jobPosition
+    this.jobPosition = JSON.parse(window.sessionStorage.getItem('user')).department
     // alert(this.jobPosition)
     this.currentDetailIndex = 0
     this.indeksMppDetail = this.$route.query.indeksEditMpp
@@ -272,21 +275,39 @@ export default {
       if (self.pendidikanLainnya !== '') {
         self.pendidikan = self.pendidikanLainnya
       }
-      self.$http.post('http://localhost:8080/fpk', {
-        position: self.jumlahPosisi,
-        reason: self.alasan + ' ' + self.alasanTambahan,
-        fitnessWithMpp: self.kesesuaianMpp + ' ' + self.kesesuaianMppTambahan,
-        employeeStatus: self.statusKaryawan,
-        school: self.pendidikan,
-        workExperience: self.pengalamanBekerja,
-        skillKnowledge: self.skillPengetahuan,
-        idUserRequested: self.idUserRequested,
-        dateNeeded: self.tanggalDibutuhkan,
-        jobPositionRequester: self.jobPositionRequester,
-        completeness: ''}, (json) => {
-          alert('Sukses Terkirim')
-          this.$router.push('/')
-        })
+      if (self.role === 'DepartmentTeamMember') {
+        self.$http.post('http://localhost:8080/fpk/add/byMemberDepartment', {
+          position: self.jumlahPosisi,
+          reason: self.alasan + ' ' + self.alasanTambahan,
+          fitnessWithMpp: self.kesesuaianMpp + ' ' + self.kesesuaianMppTambahan,
+          employeeStatus: self.statusKaryawan,
+          school: self.pendidikan,
+          workExperience: self.pengalamanBekerja,
+          skillKnowledge: self.skillPengetahuan,
+          idUserRequested: self.idUserRequested,
+          dateNeeded: self.tanggalDibutuhkan,
+          jobPositionRequester: self.jobPositionRequester,
+          completeness: ''}, (json) => {
+            alert('Sukses Terkirim')
+            this.$router.go(-1)
+          })
+      } else if (self.role === 'DepartmentHead') {
+        self.$http.post('http://localhost:8080/fpk/add/byHeadDepartment', {
+          position: self.jumlahPosisi,
+          reason: self.alasan + ' ' + self.alasanTambahan,
+          fitnessWithMpp: self.kesesuaianMpp + ' ' + self.kesesuaianMppTambahan,
+          employeeStatus: self.statusKaryawan,
+          school: self.pendidikan,
+          workExperience: self.pengalamanBekerja,
+          skillKnowledge: self.skillPengetahuan,
+          idUserRequested: self.idUserRequested,
+          dateNeeded: self.tanggalDibutuhkan,
+          jobPositionRequester: self.jobPositionRequester,
+          completeness: ''}, (json) => {
+            alert('Sukses Terkirim')
+            this.$router.go(-1)
+          })
+      }
     },
     insertMpp () {
       var self = this
@@ -307,24 +328,6 @@ export default {
         novemberExpect: self.novemberExpect,
         decemberExpect: self.decemberExpect
       }
-      // self.expectedJoin = 20
-      // self.$http.post('http://localhost:8080/mpp', {
-      //   numberOfPerson: self.personNeededMpp,
-      //   position: self.positionMpp,
-      //   reason: self.reasonMpp,
-      //   mainResponsibility: '',
-      //   education: self.educationMpp,
-      //   experience: self.experienceMpp,
-      //   knowledge: self.knowledgeMpp,
-      //   employeeStatus: self.employeeStatusMpp,
-      //   expectedJoin: self.expectedJoin,
-      //   pcAmmount: self.pcNumberMpp,
-      //   pcSpec: self.pcSpecMpp,
-      //   idRequested: self.idUserRequested,
-      //   expectJoin: self.expectJoin}, (json) => {
-      //     alert('Sukses Terkirim')
-      //     this.$router.push('/' + self.role + '/')
-      //   })
       var resultObjectDetailMpp = {
         numberOfPerson: self.personNeededMpp,
         position: self.positionMpp,

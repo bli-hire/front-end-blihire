@@ -7,6 +7,8 @@
       v-bind:message="'Reason : '+fpk.reason"
       v-bind:statusAccept="fpk.accept"
       v-bind:statusReject="fpk.reject"
+      v-bind:statusCeo="fpk.approveCeo"
+      v-bind:statusHead="fpk.approveHead"
       v-bind:loginStatus="'department'"
       v-bind:content="content"
       v-bind:id="fpk.idFpk"></BoxComponent>
@@ -25,7 +27,7 @@
 
     <h2 class="msg-empty" v-if="content === 'fpk' && JSON.parse(resultContent.resultTotalFpk) === 0">There are no fpk ( {{param}} )</h2>
     <h2 class="msg-empty" v-if="content === 'mpp' && JSON.parse(resultContent.resultTotalMpp) === 0">There are no mpp ( {{param}} )</h2>
-    <h2 class="msg-empty" v-if="content === 'mpp'">There are no mpp ( {{param}} )</h2>
+    <!-- <h2 class="msg-empty" v-if="content === 'mpp'">There are no mpp ( {{param}} )</h2> -->
   </div>
 </template>
 
