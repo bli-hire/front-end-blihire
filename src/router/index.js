@@ -30,6 +30,7 @@ import MppRejected from '@/components/department/MppRejected'
 import FpkPending from '@/components/department/FpkPending'
 import FpkAccepted from '@/components/department/FpkAccepted'
 import FpkRejected from '@/components/department/FpkRejected'
+import CreateMppDashboard from '@/components/page-component/CreateMppDashboard'
 
 Vue.use(Router)
 
@@ -206,8 +207,18 @@ export default new Router({
         },
         {
           path: '/department/mpp/create-new',
+          component: CreateMppDashboard,
+          props: {content: 'mpp'}
+        },
+        {
+          path: '/department/mpp/create-new/detail',
           component: CreateForm,
           props: {content: 'mpp'}
+        },
+        {
+          path: '/department/mpp/create-new/detail-edit',
+          component: CreateForm,
+          props: {content: 'mpp', edit: true}
         },
         {
           path: '/department/mpp/history'
