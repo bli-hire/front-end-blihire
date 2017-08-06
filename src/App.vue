@@ -3,7 +3,7 @@
 
     <navbar :loginStatus=status></navbar>
     <!-- <img src="./assets/logo.png"> -->
-      <router-view></router-view>
+      <router-view :key="$route.fullPath"></router-view>
 
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
           alert('403 : Forbidden')
           this.$router.push('/ceo')
         }
-      } else if (userLogged === 'HR') {
+      } else if (userLogged.includes('HR')) {
         this.$router.push('/hrd')
         if (window.location.href.includes('ceo') || window.location.href.includes('department') || window.location.href.includes('login')) {
           alert('403 : Forbidden')

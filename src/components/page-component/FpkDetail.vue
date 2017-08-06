@@ -22,7 +22,11 @@
 
         <tr>
         <th>Tanggal dibutuhkan</th>
+<<<<<<< HEAD
         <td>{{dateNeeded.dayOfMonth}} - {{dateCreated.monthOfYear}} - {{dateCreated.year}}</td>
+=======
+        <td>{{dateNeeded.dayOfMonth}} - {{dateNeeded.monthOfYear}} - {{dateNeeded.year}}</td>
+>>>>>>> f8f2bbce63c2c0b2b8b5484a75475800f80a2fc1
         </tr>
 
         <tr>
@@ -60,9 +64,15 @@
         <textarea v-if="role !== 'DepartmentTeamMember'"name="Text1" cols="140" rows="8" class="form-control" ></textarea>
          <br/>
       
+<<<<<<< HEAD
       <button v-if="role.includes('Department')" @click="editFpk()" type="reset" class="btn btn-primary" name="">Edit Fpk</button>
       <button v-if="role !== 'DepartmentTeamMember'" type="submit" class="btn btn-primary" name="">Apply Fpk</button>
       <button v-if="role === 'HR' || role === 'CEO' " type="reset" class="btn btn-primary" name="">Accept</button>
+=======
+      <button v-if="role.includes('Department')" type="reset" class="btn btn-primary" name="">Edit Fpk</button>
+      <button v-if="role === 'DepartmentHead'" type="submit" class="btn btn-primary" name="">Apply Fpk</button>
+      <button v-if="role.includes('HR') || role === 'CEO' " type="reset" class="btn btn-primary" name="">Submit</button>
+>>>>>>> f8f2bbce63c2c0b2b8b5484a75475800f80a2fc1
       <button v-if="role !== 'DepartmentTeamMember'" type="reset" class="btn btn-warning" name="">Reject</button>
       
       </div>
@@ -87,19 +97,28 @@ export default{
       dateNeeded: '',
       username: '',
       role: '',
+<<<<<<< HEAD
       roleUrl: ''
+=======
+      idSelector: '',
+      idUser: ''
+>>>>>>> f8f2bbce63c2c0b2b8b5484a75475800f80a2fc1
     }
   },
   beforeMount () {
     var self = this
-    var idSelector = self.$route.params.id
+    this.idSelector = self.$route.params.id
     self.username = JSON.parse(window.sessionStorage.getItem('user')).name
     self.role = JSON.parse(window.sessionStorage.getItem('user')).role
+<<<<<<< HEAD
     // self.department = JSON.parse(window.sessionStorage.getItem('user')).department
+=======
+    self.idUser = JSON.parse(window.sessionStorage.getItem('user')).id
+>>>>>>> f8f2bbce63c2c0b2b8b5484a75475800f80a2fc1
     if (self.role.includes('Department')) {
       this.roleUrl = 'department'
     }
-    self.$http.get('http://localhost:8080/fpk/' + idSelector).then(response => {
+    self.$http.get('http://localhost:8080/fpk/' + this.idSelector).then(response => {
       var fpk = JSON.stringify(response.data.data)
       var objFpk = {}
       objFpk = JSON.parse(fpk)[0]
@@ -123,10 +142,19 @@ export default{
     })
   },
   methods: {
+<<<<<<< HEAD
     editFpk () {
       var idSelector = this.$route.params.id
       this.$router.push({
         path: '/' + this.roleUrl + '/fpk/edit/' + idSelector
+=======
+    ceoApprove () {
+      this.$http.post('http://localhost:8080/fpk/approve', {
+        idUser: this.idUser,
+        idFpk: parseInt(this.idSelector)
+      }, (json) => {
+        alert(JSON.stringify(json.message))
+>>>>>>> f8f2bbce63c2c0b2b8b5484a75475800f80a2fc1
       })
     }
   }
