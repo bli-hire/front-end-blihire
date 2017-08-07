@@ -2,18 +2,18 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
 import App from '@/App'
-import Technology from '@/components/Technology'
-import HRD from '@/components/HumanResource'
-import Marketing from '@/components/Marketing'
-import TradePartnership from '@/components/TradePartnership'
-import Operation from '@/components/Operation'
-import BusinessDevelopment from '@/components/BusinessDevelopment'
-import Finance from '@/components/Finance'
-import ProjectManagement from '@/components/ProjectManagement'
-import ProductManagement from '@/components/ProductManagement'
-import Fpk from '@/components/Fpk'
+import Technology from '@/components/ceo/dashboard/Technology'
+import HRD from '@/components/ceo/dashboard/HumanResource'
+import Marketing from '@/components/ceo/dashboard/Marketing'
+import TradePartnership from '@/components/ceo/dashboard/TradePartnership'
+import Operation from '@/components/ceo/dashboard/Operation'
+import BusinessDevelopment from '@/components/ceo/dashboard/BusinessDevelopment'
+import Finance from '@/components/ceo/dashboard/Finance'
+import ProjectManagement from '@/components/ceo/dashboard/ProjectManagement'
+import ProductManagement from '@/components/ceo/dashboard/ProductManagement'
+// import Fpk from '@/components/Fpk'
 import FpkDetail from '@/components/page-component/FpkDetail'
-import Mpp from '@/components/Mpp'
+// import Mpp from '@/components/Mpp'
 import MppDetail from '@/components/page-component/MppDetail'
 import CreateForm from '@/components/department/CreateForm'
 import DepartmentDasboard from '@/components/department/Dashboard'
@@ -32,6 +32,8 @@ import FpkPending from '@/components/department/FpkPending'
 import FpkAccepted from '@/components/department/FpkAccepted'
 import FpkRejected from '@/components/department/FpkRejected'
 import BankQuizDashboard from '@/components/hrd/BankQuizDashboard'
+import CreateMppDashboard from '@/components/page-component/CreateMppDashboard'
+
 
 Vue.use(Router)
 
@@ -54,94 +56,389 @@ export default new Router({
       props: {status: 'ceo'},
       children: [
         {
-          path: '/ceo/fpk',
-          component: Fpk
+          path: '/ceo/fpk'
+          // component: Fpk
         },
         {
-          path: '/ceo/fpk/detail',
+          path: '/ceo/fpk/detail/:id',
           component: FpkDetail
         },
         {
           path: '/ceo/fpk/human-resource',
           component: HRD,
-          props: {content: 'FPK'}
+          props: {content: 'fpk'}
         },
         {
           path: '/ceo/fpk/marketing',
-          component: Marketing
+          component: Marketing,
+          props: {content: 'fpk'}
         },
         {
           path: '/ceo/fpk/trade-partnership',
-          component: TradePartnership
+          component: TradePartnership,
+          props: {content: 'fpk'}
         },
         {
           path: '/ceo/fpk/operation',
-          component: Operation
+          component: Operation,
+          props: {content: 'fpk'}
         },
         {
           path: '/ceo/fpk/technology',
-          component: Technology
+          component: Technology,
+          props: {content: 'fpk'}
         },
         {
           path: '/ceo/fpk/business-development',
-          component: BusinessDevelopment
+          component: BusinessDevelopment,
+          props: {content: 'fpk'}
         },
         {
           path: '/ceo/fpk/finance',
-          component: Finance
+          component: Finance,
+          props: {content: 'fpk'}
         },
         {
           path: '/ceo/fpk/project-management',
-          component: ProjectManagement
+          component: ProjectManagement,
+          props: {content: 'fpk'}
         },
         {
           path: '/ceo/fpk/product-management',
-          component: ProductManagement
+          component: ProductManagement,
+          props: {content: 'fpk'}
         },
         {
-          path: '/ceo/mpp',
-          component: Mpp
+          path: '/ceo/mpp'
+          // component: Mpp
         },
         {
-          path: '/ceo/mpp/detail',
+          path: '/ceo/mpp/detail/:id',
           component: MppDetail
         },
         {
           path: '/ceo/mpp/human-resource',
           component: HRD,
-          props: {content: 'Mpp'}
+          props: {content: 'mpp'}
         },
         {
           path: '/ceo/mpp/marketing',
-          component: Marketing
+          component: Marketing,
+          props: {content: 'mpp'}
         },
         {
           path: '/ceo/mpp/trade-partnership',
-          component: TradePartnership
+          component: TradePartnership,
+          props: {content: 'mpp'}
         },
         {
           path: '/ceo/mpp/operation',
-          component: Operation
+          component: Operation,
+          props: {content: 'mpp'}
         },
         {
           path: '/ceo/mpp/technology',
-          component: Technology
+          component: Technology,
+          props: {content: 'mpp'}
         },
         {
           path: '/ceo/mpp/business-development',
-          component: BusinessDevelopment
+          component: BusinessDevelopment,
+          props: {content: 'mpp'}
         },
         {
           path: '/ceo/mpp/finance',
-          component: Finance
+          component: Finance,
+          props: {content: 'mpp', status: 'active'}
         },
         {
           path: '/ceo/mpp/project-management',
-          component: ProjectManagement
+          component: ProjectManagement,
+          props: {content: 'mpp'}
         },
         {
           path: '/ceo/mpp/product-management',
-          component: ProductManagement
+          component: ProductManagement,
+          props: {content: 'mpp'}
+        },
+        // Accepted, Published, Rejected
+        {
+          path: '/ceo/accepted/fpk/human-resource',
+          component: HRD,
+          props: {department: 'HumanResource', content: 'fpk', status: 'accepted'}
+        },
+        {
+          path: '/ceo/rejected/fpk/human-resource',
+          component: HRD,
+          props: {department: 'HumanResource', content: 'fpk', status: 'rejected'}
+        },
+        {
+          path: '/ceo/published/fpk/human-resource',
+          component: HRD,
+          props: {department: 'HumanResource', content: 'fpk', status: 'published'}
+        },
+        {
+          path: '/ceo/accepted/mpp/human-resource',
+          component: HRD,
+          props: {department: 'HumanResource', content: 'mpp'}
+        },
+        {
+          path: '/ceo/rejected/mpp/human-resource',
+          component: HRD,
+          props: {department: 'HumanResource', content: 'mpp'}
+        },
+        {
+          path: '/ceo/published/mpp/human-resource',
+          component: HRD,
+          props: {department: 'HumanResource', content: 'mpp'}
+        },
+        // --------------
+        {
+          path: '/ceo/accepted/fpk/marketing',
+          component: Marketing,
+          props: {department: 'Marketing', content: 'fpk'}
+        },
+        {
+          path: '/ceo/rejected/fpk/marketing',
+          component: Marketing,
+          props: {department: 'Marketing', content: 'fpk'}
+        },
+        {
+          path: '/ceo/published/fpk/marketing',
+          component: Marketing,
+          props: {department: 'Marketing', content: 'fpk'}
+        },
+        {
+          path: '/ceo/accepted/mpp/marketing',
+          component: Marketing,
+          props: {department: 'Marketing', content: 'mpp'}
+        },
+        {
+          path: '/ceo/rejected/mpp/marketing',
+          component: Marketing,
+          props: {department: 'Marketing', content: 'mpp'}
+        },
+        {
+          path: '/ceo/published/mpp/marketing',
+          component: Marketing,
+          props: {department: 'Marketing', content: 'mpp'}
+        },
+        // --------------
+        {
+          path: '/ceo/accepted/fpk/trade-partnership',
+          component: TradePartnership,
+          props: {department: 'TradePartnership', content: 'fpk'}
+        },
+        {
+          path: '/ceo/rejected/fpk/trade-partnership',
+          component: TradePartnership,
+          props: {department: 'TradePartnership', content: 'fpk'}
+        },
+        {
+          path: '/ceo/published/fpk/trade-partnership',
+          component: TradePartnership,
+          props: {department: 'TradePartnership', content: 'fpk'}
+        },
+        {
+          path: '/ceo/accepted/mpp/trade-partnership',
+          component: TradePartnership,
+          props: {department: 'TradePartnership', content: 'mpp'}
+        },
+        {
+          path: '/ceo/rejected/mpp/trade-partnership',
+          component: TradePartnership,
+          props: {department: 'TradePartnership', content: 'mpp'}
+        },
+        {
+          path: '/ceo/published/mpp/trade-partnership',
+          component: TradePartnership,
+          props: {department: 'TradePartnership', content: 'mpp'}
+        },
+        // --------------
+        {
+          path: '/ceo/accepted/fpk/operation',
+          component: Operation,
+          props: {department: 'Operation', content: 'fpk'}
+        },
+        {
+          path: '/ceo/rejected/fpk/operation',
+          component: Operation,
+          props: {department: 'Operation', content: 'fpk'}
+        },
+        {
+          path: '/ceo/published/fpk/operation',
+          component: Operation,
+          props: {department: 'Operation', content: 'fpk'}
+        },
+        {
+          path: '/ceo/accepted/mpp/operation',
+          component: Operation,
+          props: {department: 'Operation', content: 'mpp'}
+        },
+        {
+          path: '/ceo/rejected/mpp/operation',
+          component: Operation,
+          props: {department: 'Operation', content: 'mpp'}
+        },
+        {
+          path: '/ceo/published/mpp/operation',
+          component: Operation,
+          props: {department: 'Operation', content: 'mpp'}
+        },
+        // --------------
+        {
+          path: '/ceo/accepted/fpk/technology',
+          component: Technology,
+          props: {department: 'Technology', content: 'fpk'}
+        },
+        {
+          path: '/ceo/rejected/fpk/technology',
+          component: Technology,
+          props: {department: 'Technology', content: 'fpk'}
+        },
+        {
+          path: '/ceo/published/fpk/technology',
+          component: Technology,
+          props: {department: 'Technology', content: 'fpk'}
+        },
+        {
+          path: '/ceo/accepted/mpp/technology',
+          component: Technology,
+          props: {department: 'Technology', content: 'mpp'}
+        },
+        {
+          path: '/ceo/rejected/mpp/technology',
+          component: Technology,
+          props: {department: 'Technology', content: 'mpp'}
+        },
+        {
+          path: '/ceo/published/mpp/technology',
+          component: Technology,
+          props: {department: 'Technology', content: 'mpp'}
+        },
+        // --------------
+        {
+          path: '/ceo/accepted/fpk/business-development',
+          component: BusinessDevelopment,
+          props: {department: 'BusinessDevelopment', content: 'fpk'}
+        },
+        {
+          path: '/ceo/rejected/fpk/business-development',
+          component: BusinessDevelopment,
+          props: {department: 'BusinessDevelopment', content: 'fpk'}
+        },
+        {
+          path: '/ceo/published/fpk/business-development',
+          component: BusinessDevelopment,
+          props: {department: 'BusinessDevelopment', content: 'fpk'}
+        },
+        {
+          path: '/ceo/accepted/mpp/business-development',
+          component: BusinessDevelopment,
+          props: {department: 'BusinessDevelopment', content: 'mpp'}
+        },
+        {
+          path: '/ceo/rejected/mpp/business-development',
+          component: BusinessDevelopment,
+          props: {department: 'BusinessDevelopment', content: 'mpp'}
+        },
+        {
+          path: '/ceo/published/mpp/business-development',
+          component: BusinessDevelopment,
+          props: {department: 'BusinessDevelopment', content: 'mpp'}
+        },
+        // --------------
+        {
+          path: '/ceo/accepted/fpk/finance',
+          component: Finance,
+          props: {department: 'Finance', content: 'fpk', status: 'accepted'}
+        },
+        {
+          path: '/ceo/rejected/fpk/finance',
+          component: Finance,
+          props: {department: 'Finance', content: 'fpk', status: 'rejected'}
+        },
+        {
+          path: '/ceo/published/fpk/finance',
+          component: Finance,
+          props: {department: 'Finance', content: 'fpk', status: 'published'}
+        },
+        {
+          path: '/ceo/accepted/mpp/finance',
+          component: Finance,
+          props: {department: 'Finance', content: 'mpp', status: 'accepted'}
+        },
+        {
+          path: '/ceo/rejected/mpp/finance',
+          component: Finance,
+          props: {department: 'Finance', content: 'mpp', status: 'rejected'}
+        },
+        {
+          path: '/ceo/published/mpp/finance',
+          component: Finance,
+          props: {department: 'Finance', content: 'mpp', status: 'published'}
+        },
+        // ------
+        {
+          path: '/ceo/accepted/fpk/project-management',
+          component: ProjectManagement,
+          props: {department: 'ProjectManagement', content: 'fpk'}
+        },
+        {
+          path: '/ceo/rejected/fpk/project-management',
+          component: ProjectManagement,
+          props: {department: 'ProjectManagement', content: 'fpk'}
+        },
+        {
+          path: '/ceo/published/fpk/project-management',
+          component: ProjectManagement,
+          props: {department: 'ProjectManagement', content: 'fpk'}
+        },
+        {
+          path: '/ceo/accepted/mpp/project-management',
+          component: ProjectManagement,
+          props: {department: 'ProjectManagement', content: 'mpp'}
+        },
+        {
+          path: '/ceo/rejected/mpp/project-management',
+          component: ProjectManagement,
+          props: {department: 'ProjectManagement', content: 'mpp'}
+        },
+        {
+          path: '/ceo/published/mpp/project-management',
+          component: ProjectManagement,
+          props: {department: 'ProjectManagement', content: 'mpp'}
+        },
+        // -----
+        {
+          path: '/ceo/accepted/fpk/product-management',
+          component: ProductManagement,
+          props: {department: 'ProductManagement', content: 'fpk'}
+        },
+        {
+          path: '/ceo/rejected/fpk/product-management',
+          component: ProductManagement,
+          props: {department: 'ProductManagement', content: 'fpk'}
+        },
+        {
+          path: '/ceo/published/fpk/product-management',
+          component: ProductManagement,
+          props: {department: 'ProductManagement', content: 'fpk'}
+        },
+        {
+          path: '/ceo/accepted/mpp/product-management',
+          component: ProductManagement,
+          props: {department: 'ProductManagement', content: 'mpp'}
+        },
+        {
+          path: '/ceo/rejected/mpp/product-management',
+          component: ProductManagement,
+          props: {department: 'ProductManagement', content: 'mpp'}
+        },
+        {
+          path: '/ceo/published/mpp/product-management',
+          component: ProductManagement,
+          props: {department: 'ProductManagement', content: 'mpp'}
         }
       ]
     },
@@ -208,8 +505,18 @@ export default new Router({
         },
         {
           path: '/department/mpp/create-new',
+          component: CreateMppDashboard,
+          props: {content: 'mpp'}
+        },
+        {
+          path: '/department/mpp/create-new/detail',
           component: CreateForm,
           props: {content: 'mpp'}
+        },
+        {
+          path: '/department/mpp/create-new/detail-edit',
+          component: CreateForm,
+          props: {content: 'mpp', edit: true}
         },
         {
           path: '/department/mpp/history'
@@ -226,7 +533,8 @@ export default new Router({
         },
         {
           path: '/department/mpp/rejected',
-          component: MppRejected
+          component: MppRejected,
+          props: {content: 'mpp'}
         },
         {
           path: '/department/mpp/detail/:id',
