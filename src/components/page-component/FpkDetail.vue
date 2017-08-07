@@ -60,9 +60,9 @@
         <textarea v-if="role !== 'DepartmentTeamMember'"name="Text1" cols="140" rows="8" class="form-control" ></textarea>
          <br/>
 
-      <button v-if="role.includes('Department')" type="reset" class="btn btn-primary" name="">Edit Fpk</button>
+      <button v-if="role.includes('Department') && alreadyApproveHead === false && alreadyApproveCeo === false" type="reset" class="btn btn-primary" name="" @click="editFpk()">Edit Fpk</button>
       <button v-if="role === 'DepartmentHead' && alreadyApproveHead === false" type="submit" class="btn btn-primary" name="" @click="approveFpk()">Apply Fpk</button>
-      <button v-if="role.includes('HR') || role === 'CEO' " type="reset" class="btn btn-primary" name="">Submit</button>
+      <button v-if="role.includes('HR') || role === 'CEO' " type="reset" class="btn btn-primary" name="" @click="acceptFpkByHR()">Submit</button>
       <button v-if="role !== 'DepartmentTeamMember'" type="reset" class="btn btn-warning" @click="rejectFpk()" name="">Reject</button>
       
       </div>
@@ -90,7 +90,9 @@ export default{
       idSelector: '',
       idUser: '',
       alreadyApproveHead: '',
-      alreadyApproveCeo: ''
+      alreadyApproveCeo: '',
+      statusApproveHead: '',
+      statusApproveCeo: ''
     }
   },
   beforeMount () {
@@ -124,6 +126,8 @@ export default{
       this.dateCreated = objFpk.createdDate
       this.alreadyApproveHead = objFpk.approveHead
       this.alreadyApproveCeo = objFpk.approveCeo
+      this.statusApproveHead = objFpk.statusApproveHead
+      this.statusApproveCeo = objFpk.statusApproveCeo
     }, () => {
       alert('No Valid Fpk for this id')
       this.$router.push('/')
@@ -136,7 +140,8 @@ export default{
     editFpk () {
       var idSelector = this.$route.params.id
       this.$router.push({
-        path: '/' + this.roleUrl + '/fpk/edit/' + idSelector
+        path: '/' + this.roleUrl + '/fpk/create-new/detail-edit/',
+        query: {id: idSelector, jobPosition: this.jobPositionRequester}
       })
     },
     approveFpk () {

@@ -2,30 +2,19 @@
   <div>
     <div v-if="content === 'fpk'" class="listContent col-md-12">
     <h1 style="text-align: center;">Form Penerimaan Karyawan</h1>
-      <!-- <form method="POST"> -->
         <div class="form-group">
-
           <label for="pos">Departemen Pemohon:</label>
             <select class="form-control" id="pos" v-model="departmentPemohon">
-              <!-- <option value="HumanResource">Human Resource</option>
-              <option value="Marketing">Marketing</option>
-              <option value="Operation">Operation</option>
-              <option value="TradePartnership">Trade Partnership</option>
-              <option value="Technology">Technology</option>
-              <option value="BusinessDevelopment">Business Development</option>
-              <option value="Finance">Finance</option>
-              <option value="ProjectManagement">Project Management</option>
-              <option value="ProductManagement">Product Management</option> -->
               <option value="jobPosition">{{jobPosition}}</option>
             </select>
           <br/>
 
         <label for="pos">Jabatan Pemohon:</label>
-          <input type="text" id="jabatanPemohon" class="form-control" v-model="jobPositionRequester"/>
+          <input type="text" id="jabatanPemohon" value="jobPositionRequester" class="form-control" v-model="jobPositionRequester">
         <br/>
 
         <label for="personNeeded">Posisi atau jumlah</label>
-        <input type="number" id="personNeeded" class="form-control" v-model="jumlahPosisi"/>
+        <input type="number" value="2" id="personNeeded" class="form-control" v-model="jumlahPosisi"/>
         <br/>
 
         <label for="">Tanggal Dibutuhkan</label>
@@ -37,7 +26,7 @@
               <option>Pemegang Jabatan terdahulu Resign</option>
               <option>Pemegang Jabatan terdahulu dimutasi/promosi</option>
               <option>Penambahan</option>
-            </select>
+          </select>
         <p v-if="alasan === 'Penambahan'">Silahkan lanjutkan alasan penambahan</p>
         <input v-if="alasan === 'Penambahan'" type="text" id="" class="form-control" v-model="alasanTambahan" value="" />
         <br/>
@@ -83,9 +72,9 @@
         <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="skillPengetahuan"></textarea>
          <br/>
 
-      <button type="submit" class="btn btn-primary" name="" v-on:click="insertFpk()">Send FPK</button>
+      <button type="submit" class="btn btn-primary" name="" v-on:click="insertFpk()">Send</button>
 
-      <button type="reset" class="btn btn-warning" name="">Reset</button>
+      <button type="reset" class="btn btn-warning" name="" @click="reset()">Reset</button>
       </div>
       <!-- </form> -->
     </div>
@@ -95,9 +84,6 @@
         <div class="form-group">
           <label for="pos">Position (select one):</label>
             <select class="form-control" id="pos" v-model="positionMpp" >
-<!--               <option>Senior Development Engineer</option>
-              <option>Junior Development Engineer</option>
-              <option>Mobile Development Engineer</option> -->
               <option v-bind:value="jobPosition">{{jobPosition}}</option>
             </select>
           <br/>
@@ -177,12 +163,6 @@
       <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="pcSpecMpp"></textarea>
       <br/>
 
-    <!--   <button v-if="currentDetailIndex === totalPositionNeeded - 1" type="submit" class="btn btn-primary" name="" v-on:click="insertMpp()">Send MPP</button>
-      <button v-if="currentDetailIndex === totalPositionNeeded - 1" type="reset" class="btn btn-warning" name="">Reset</button>
-
-      <button v-if="currentDetailIndex !== totalPositionNeeded - 1" type="submit" class="btn btn-primary" name="" v-on:click="back()">Previous Job Position</button>
-      <button v-if="currentDetailIndex !== totalPositionNeeded - 1" type="submit" class="btn btn-primary" name="" v-on:click="next()">Next Job Position</button>
- -->
       <button v-if="this.edit !== true" type="submit" class="btn btn-primary" name="" v-on:click="insertMpp()">Send MPP</button>
       <button v-if="this.edit === true" type="submit" class="btn btn-primary" name="" v-on:click="editMpp()">Edit Mpp</button>
 
@@ -240,18 +220,39 @@ export default {
       expectedJoin: '',
       expectJoin: {},
       arrayMppDetail: [],
-      indeksMppDetail: ''
+      indeksMppDetail: '',
+      fpkToEdit: []
     }
   },
   props: ['content', 'edit'],
   beforeMount () {
-    this.jobPosition = this.$route.query.jobPosition
     this.jobPosition = JSON.parse(window.sessionStorage.getItem('user')).department
-    // alert(this.jobPosition)
-    this.currentDetailIndex = 0
-    this.indeksMppDetail = this.$route.query.indeksEditMpp
-    this.arrayMppDetail = JSON.parse(window.localStorage.getItem('detailMpp'))
+    if (this.content === 'fpk' && this.edit === true) {
+      // alert('Masuk Edit')
+      var idFpkEdit = this.$route.query.id
+      var self = this
+      this.jobPosition = this.$route.query.jobPosition
+      this.$http.get('http://localhost:8080/fpk/' + idFpkEdit, {}, {}).then(response => {
+        self.fpkToEdit = JSON.stringify(response.data.data)
+        // alert(self.fpkToEdit)
+        self.jumlahPosisi = self.fpkToEdit.numberOfPerson
+        self.alasan = self.fpkToEdit.reason
+        self.kesesuaianMpp = self.fpkToEdit.fitnessWithMpp
+        self.statusKaryawan = self.fpkToEdit.employeeStatus
+        self.pendidikan = self.fpkToEdit.school
+        self.pengalamanBekerja = self.fpkToEdit.workExperience
+        self.skillPengetahuan = self.fpkToEdit.skillKnowledge
+        self.idUserRequested = self.fpkToEdit.idUserRequested
+        self.tanggalDibutuhkan = self.fpkToEdit.dateNeeded
+        self.jobPositionRequester = self.fpkToEdit.jobPositionRequester
+      })
+    }
     if (this.content === 'mpp' && this.edit === true) {
+      this.jobPosition = JSON.parse(window.sessionStorage.getItem('user')).department
+      this.arrayMppDetail = JSON.parse(window.localStorage.getItem('detailMpp'))
+      this.jobPosition = this.$route.query.jobPosition
+      this.currentDetailIndex = 0
+      this.indeksMppDetail = this.$route.query.indeksEditMpp
       var objMppDetail = this.arrayMppDetail[this.indeksMppDetail]
       // alert(JSON.stringify(objMppDetail))
       this.personNeededMpp = objMppDetail.numberOfPerson
@@ -349,6 +350,36 @@ export default {
       // alert(JSON.stringify(JSON.parse(window.localStorage.getItem('detailMpp'))[0]))
       alert('Detail MPP berhasil dibuat')
       this.$router.go(-1)
+    },
+    reset () {
+      var self = this
+      this.jobPosition = ''
+      this.arrayMppDetail = ''
+      this.jobPosition = ''
+      this.currentDetailIndex = 0
+      this.indeksMppDetail = ''
+      this.personNeededMpp = ''
+      this.positionMpp = ''
+      this.reasonMpp = ''
+      this.educationMpp = ''
+      this.experienceMpp = ''
+      this.knowledgeMpp = ''
+      this.employeeStatusMpp = ''
+      this.expectedJoin = ''
+      this.pcNumberMpp = ''
+      this.pcSpecMpp = ''
+      this.idUserRequested = ''
+      this.jobPosition = ''
+      self.jumlahPosisi = ''
+      self.alasan = ''
+      self.kesesuaianMpp = ''
+      self.statusKaryawan = ''
+      self.pendidikan = ''
+      self.pengalamanBekerja = ''
+      self.skillPengetahuan = ''
+      self.idUserRequested = ''
+      self.tanggalDibutuhkan = ''
+      self.jobPositionRequester = ''
     },
     editMpp () {
       var self = this

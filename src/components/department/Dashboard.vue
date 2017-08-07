@@ -50,7 +50,7 @@ export default {
       status: ''
     }
   },
-  props: ['content', 'param'],
+  props: ['content', 'param', 'approve'],
   beforeMount () {
     // alert(this.content)
     var self = this
@@ -59,7 +59,8 @@ export default {
     if (this.content === 'fpk') {
       self.$http.get('http://localhost:8080/fpk/byDepartment/' + this.param, {}, {
         headers: {
-          'department': division
+          'department': division,
+          'role': this.approve
         }
       }).then(response => {
         var fpk = JSON.stringify(response.data.data)

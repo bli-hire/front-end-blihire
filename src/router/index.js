@@ -489,11 +489,6 @@ export default new Router({
           props: {content: 'fpk', processFpk: 'rejectedCeo'}
         },
         {
-          path: '/department/fpk/dashboard',
-          component: DepartmentDasboard,
-          props: {content: 'fpk', param: 'active'}
-        },
-        {
           path: '/department/fpk/create-new',
           component: CreateForm,
           props: {content: 'fpk'}
@@ -503,24 +498,29 @@ export default new Router({
           component: FpkDetail
         },
         {
+          path: '/department/fpk/dashboard',
+          component: DepartmentDasboard,
+          props: {content: 'fpk', param: 'pending', approve: 'DepartmentHead'}
+        },
+        {
           path: '/department/fpk/history',
           component: DepartmentDasboard,
-          props: {content: 'fpk', param: 'history'}
+          props: {content: 'fpk', param: 'history', approve: 'DepartmentHead'}
         },
         {
           path: '/department/fpk/pending',
           component: DepartmentDasboard,
-          props: {content: 'fpk', param: 'pending'}
+          props: {content: 'fpk', param: 'pending', approve: 'DepartmentHead'}
         },
         {
           path: '/department/fpk/accepted',
           component: DepartmentDasboard,
-          props: {content: 'fpk', param: 'accepted'}
+          props: {content: 'fpk', param: 'accepted', approve: 'DepartmentHead'}
         },
         {
           path: '/department/fpk/rejected',
           component: DepartmentDasboard,
-          props: {content: 'fpk', param: 'rejected'}
+          props: {content: 'fpk', param: 'rejected', approve: 'DepartmentHead'}
         },
         {
           path: '/department/mpp'
@@ -544,6 +544,11 @@ export default new Router({
           path: '/department/mpp/create-new/detail-edit',
           component: CreateForm,
           props: {content: 'mpp', edit: true}
+        },
+        {
+          path: '/department/fpk/create-new/detail-edit',
+          component: CreateForm,
+          props: {content: 'fpk', edit: true}
         },
         {
           path: '/department/mpp/history',
