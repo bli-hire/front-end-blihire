@@ -62,7 +62,7 @@
 
       <button v-if="role.includes('Department') && alreadyApproveHead === false && alreadyApproveCeo === false" type="reset" class="btn btn-primary" name="" @click="editFpk()">Edit Fpk</button>
       <button v-if="role === 'DepartmentHead' && alreadyApproveHead === false" type="submit" class="btn btn-primary" name="" @click="approveFpk()">Apply Fpk</button>
-      <button v-if="role.includes('HR') || role === 'CEO' " type="reset" class="btn btn-primary" name="" @click="acceptFpkByHR()">Submit</button>
+      <button v-if="role.includes('HR') || role === 'CEO' " type="reset" class="btn btn-primary" name="" @click="approveFpk()">Approve</button>
       <button v-if="role !== 'DepartmentTeamMember'" type="reset" class="btn btn-warning" @click="rejectFpk()" name="">Reject</button>
       
       </div>
