@@ -72,7 +72,7 @@
         <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="skillPengetahuan"></textarea>
          <br/>
 
-      <button type="submit" class="btn btn-primary" name="" v-on:click="insertFpk()">Send</button>
+      <button type="submit" class="btn btn-primary" name="" v-on:click="insertFpk()">Apply Fpk</button>
 
       <button type="reset" class="btn btn-warning" name="" @click="reset()">Reset</button>
       </div>
