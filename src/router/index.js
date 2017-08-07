@@ -33,7 +33,6 @@ import FpkRejected from '@/components/department/FpkRejected'
 import BankQuizDashboard from '@/components/hrd/BankQuizDashboard'
 import CreateMppDashboard from '@/components/page-component/CreateMppDashboard'
 
-
 Vue.use(Router)
 
 export default new Router({

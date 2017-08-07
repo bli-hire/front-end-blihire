@@ -281,6 +281,7 @@ export default {
 .top-navbar {
   background-color: white;
   z-index: 11;
+  font-size: 10pt;
 }
 
 .navbar-brand {
