@@ -10,6 +10,7 @@
       v-bind:statusCeo="fpk.approveCeo"
       v-bind:statusHead="fpk.approveHead"
       v-bind:loginStatus="'ceo'"
+      v-bind:docType="'fpk'"
       v-bind:content="content"
       v-bind:id="fpk.idFpk"></BoxComponent>
   </div>
@@ -21,6 +22,7 @@
       v-bind:statusAccept="mpp.accept"
       v-bind:statusReject="mpp.reject"
       v-bind:loginStatus="'ceo'"
+      v-bind:docType="'mpp'"
       v-bind:content="content"
       v-bind:id="mpp.id"></BoxComponent>
     </div>
