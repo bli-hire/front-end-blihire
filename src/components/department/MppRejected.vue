@@ -4,14 +4,15 @@
 		<!-- <BoxComponent v-for="n in 3" v-bind:title="content" message="Please we need ..."></BoxComponent> -->
 		<div v-if="content === 'mpp'">
 	    <BoxComponent
-	      v-for="mpp in JSON.parse(resultContent.resultMpp)"
-	      v-bind:title="mpp.department"
-	      v-bind:message="'Created Date : '+ mpp.createdDate.dayOfWeek + ' - '+mpp.createdDate.monthOfYear + ' - ' + mpp.createdDate.yearOfEra"
-	      v-bind:statusAccept="mpp.isAccept"
-	      v-bind:statusReject="mpp.isReject"
-	      v-bind:loginStatus="role"
-	      v-bind:content="content"
-	      v-bind:id="mpp.id">
+			v-for="mpp in JSON.parse(resultContent.resultMpp)"
+			v-bind:title="mpp.department"
+			v-bind:message="'Created Date : '+ mpp.createdDate.dayOfWeek + ' - ' +mpp.createdDate.monthOfYear + ' - ' +mpp.createdDate.yearOfEra"
+			v-bind:statusAccept="mpp.accept"
+			v-bind:statusReject="mpp.reject"
+			v-bind:loginStatus="role"
+			v-bind:docType="'mpp'"
+			v-bind:content="content"
+			v-bind:id="mpp.id">
 	    </BoxComponent>
     </div>
 		<!-- <BoxComponent v-if="content === 'mpp'" v-for="n in resultContent.resultTotalMpp" v-bind:title="content" message="Please we need ..."></BoxComponent> -->

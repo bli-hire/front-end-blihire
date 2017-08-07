@@ -41,7 +41,8 @@
               <td>{{fpk.jobPositionRequester}}</td>
               <td>{{fpk.dateNeeded.dayOfMonth}} - {{fpk.dateNeeded.monthOfYear}} - {{fpk.dateNeeded.year}}</td>
               <td>{{fpk.numberOfPerson}}</td>
-              <td><button class="btn btn-primary"><router-link :to="{ path: '/'+'hrd'+'/'+'published'+'/'+content+'/detail/'+fpk.idFpk , params: { id: fpk.idFpk }}">View {{content.toUpperCase()}}</router-link></button></td>
+              <td><router-link :to="{ path: '/'+loginStatus+'/'+content+'/detail/'+id , params: { id: id }, query: { ceoApprove: statusCeo, headApprove: statusHead, accept: statusAccept }}">Detail</router-link></td>
+              <!-- <td><button class="btn btn-primary"><router-link :to="{ path: '/'+'hrd'+'/'+'published'+'/'+content+'/detail/'+fpk.idFpk , params: { id: fpk.idFpk }}">View {{content.toUpperCase()}}</router-link></button></td> -->
             </tr>
         </tbody>
       </table>
