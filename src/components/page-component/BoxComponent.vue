@@ -15,6 +15,7 @@
         <h3>{{title}}</h3>
         <h4>Requested By : {{requestedBy}}</h4>
         <h5>CEO Approve : {{statusCeo}}</h5>
+        <h5 v-if="published === true">{{publishedBy}}</h5>
         <button class="btn btn-primary">
           <router-link :to="{ path: '/'+loginStatus+'/'+content+'/detail/'+id , params: { id: id }, query: { ceoApprove: statusCeo, headApprove: statusHead, accept: statusAccept }}">Detail</router-link>
         </button>
@@ -33,7 +34,7 @@ export default {
       statusApproveHead: ''
     }
   },
-  props: ['title', 'message', 'loginStatus', 'content', 'dataContent', 'id', 'statusAccept', 'statusReject', 'statusCeo', 'statusHead', 'docType', 'requestedBy'],
+  props: ['title', 'message', 'loginStatus', 'content', 'dataContent', 'id', 'statusAccept', 'statusReject', 'statusCeo', 'statusHead', 'docType', 'requestedBy', 'publishedBy', 'published'],
   beforeMount () {
     if (this.docType === 'fpk') {
       if (this.statusAccept === false && this.statusReject === false) {

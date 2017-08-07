@@ -9,6 +9,7 @@
 			v-bind:message="'Created Date : '+ mpp.createdDate.dayOfWeek + ' - ' +mpp.createdDate.monthOfYear + ' - ' +mpp.createdDate.yearOfEra"
 			v-bind:statusAccept="mpp.accept"
 			v-bind:statusReject="mpp.reject"
+			v-bind:requestedBy="mpp.requestedBy.name"
 			v-bind:loginStatus="role"
 			v-bind:docType="'mpp'"
 			v-bind:content="content"

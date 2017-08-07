@@ -7,17 +7,17 @@
       <table class="table table-bordered" v-for="mpp in JSON.parse(resultContent.resultMpp)">
         <thead>
           <tr>
-            <th>Position Needed</th>
+            <th>Requested By</th>
             <th>Created Date</th>
-            <th>Men Needed</th>
+            <th>Accept CEO By</th>
             <th>View Detail</th>
           </tr>
         </thead>
         <tbody>
             <tr>
-              <td>{{mpp.position}}</td>
+              <td>{{mpp.requestedBy.name}}</td>
               <td>{{mpp.createdDate.dayOfMonth}} - {{mpp.createdDate.monthOfYear}} - {{mpp.createdDate.year}}</td>
-              <td>{{mpp.numberOfPerson}}</td>
+              <td>{{mpp.approvedBy.name}}</td>
               <td><button class="btn btn-primary">
                 <router-link :to="{ path: '/'+'hrd'+'/'+'published'+'/'+content+'/detail/'+mpp.id , params: { id: mpp.id }}">View {{content.toUpperCase()}}</router-link></button></td></td>
                 <!-- <router-link :to="'/hrd/requested/view-detail-mpp'">View {{content.toUpperCase()}}</router-link></button></td></td> -->

@@ -10,6 +10,7 @@
       v-bind:statusCeo="fpk.approveCeo"
       v-bind:statusHead="fpk.approveHead"
       v-bind:loginStatus="'ceo'"
+      v-bind:docType="'fpk'"
       v-bind:content="content"
       v-bind:id="fpk.idFpk"></BoxComponent>
   </div>
@@ -19,6 +20,7 @@
       v-bind:title="mpp.department"
       v-bind:statusAccept="mpp.accept"
       v-bind:statusReject="mpp.reject"
+      v-bind:published="mpp.published"
       v-bind:loginStatus="'ceo'"
       v-bind:docType="'mpp'"
       v-bind:content="content"
@@ -107,11 +109,10 @@ export default {
           }
         })
       } else if (this.statusRouting === 'published') {
-        endpoint = endpoint + 'published/ceo'
+        endpoint = endpoint + 'published'
         self.$http.get(endpoint, {}, {
           headers: {
-            'department': division,
-            'userId': self.idUser
+            'department': division
           }
         }).then(response => {
           if (response.data.data === '[]') {
@@ -123,7 +124,7 @@ export default {
             this.resultContent.resultTotalMpp = totalMpp
           }
         })
-      } else {
+      } else if (this.statusRouting === 'active') {
         endpoint = endpoint + 'active'
         self.$http.get(endpoint, {}, {
           headers: {
