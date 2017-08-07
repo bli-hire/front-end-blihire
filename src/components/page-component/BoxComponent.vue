@@ -3,9 +3,11 @@
     <div class="box-content">
       <h3>{{title}}</h3>
       <h4>{{message}}</h4>
-      <h4>{{status}}</h4>
+      <h5>Head Approve : {{statusApproveHead}}</h5>
+      <h5>CEO Approve : {{statusApproveCeo}}</h5>
+      <h5>HRD Accept : {{status}}</h5>
       <button class="btn btn-primary">
-        <router-link :to="{ path: '/'+loginStatus+'/'+content+'/detail/'+id , params: { id: id }}">detail</router-link>
+        <router-link :to="{ path: '/'+loginStatus+'/'+content+'/detail/'+id , params: { id: id }, query: { ceoApprove: statusCeo, headApprove: statusHead, accept: statusAccept }}">Detail</router-link>
       </button>
     </div>
   </div>
@@ -16,10 +18,12 @@ export default {
   name: 'box',
   data () {
     return {
-      status: ''
+      status: '',
+      statusApproveCeo: '',
+      statusApproveHead: ''
     }
   },
-  props: ['title', 'message', 'loginStatus', 'content', 'dataContent', 'id', 'statusAccept', 'statusReject'],
+  props: ['title', 'message', 'loginStatus', 'content', 'dataContent', 'id', 'statusAccept', 'statusReject', 'statusCeo', 'statusHead'],
   beforeMount () {
     if (this.statusAccept === false && this.statusReject === false) {
       this.status = 'Not Yet Accepted'
@@ -27,6 +31,16 @@ export default {
       this.status = 'Accepted'
     } else if (this.statusAccept === false && this.statusReject === true) {
       this.status = 'Rejected'
+    }
+    if (this.statusCeo === true) {
+      this.statusApproveCeo = 'CEO already Approved'
+    } else if (this.statusCeo === false) {
+      this.statusApproveCeo = 'CEO not yet approve'
+    }
+    if (this.statusHead === true) {
+      this.statusApproveHead = 'Head already Approved'
+    } else if (this.statusHead === false) {
+      this.statusApproveHead = 'Head not yet approve'
     }
   }
 }

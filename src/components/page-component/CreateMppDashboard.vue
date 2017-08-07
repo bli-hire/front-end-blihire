@@ -1,6 +1,5 @@
 <template>
   <div class="content content-job">
-    <div class=""v-if="department === 'Technology'">
       <h2>Pembuatan MPP</h2>
       <h3>Department : {{department}}</h3>
       <h4>Pengaju MPP : {{surename}}</h4>
@@ -9,6 +8,7 @@
         <p>Jika sudah selesai mengisikan detail, silahkan melanjutkan dengan menekan tombol "Send MPP"</p>
         <p>Jika sudah selesai mengosongkan seluruh data mpp yang hendak dibuat, silahkan tekan tombol "Clear MPP"</p>
         <br>
+    <div class=""v-if="department === 'Technology'">
       <div class="list-group">
         <a class="list-group-item" data-toggle="collapse" href="#jobSystemDev">Sr. System Development Engineer</a>
         <div id="jobSystemDev" class="collapse container-fluid">

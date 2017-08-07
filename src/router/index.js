@@ -17,7 +17,6 @@ import FpkDetail from '@/components/page-component/FpkDetail'
 import MppDetail from '@/components/page-component/MppDetail'
 import CreateForm from '@/components/department/CreateForm'
 import DepartmentDasboard from '@/components/department/Dashboard'
-import DepartmentHistory from '@/components/department/History'
 import HrdRequested from '@/components/hrd/Requested'
 import HrdPublished from '@/components/hrd/Published'
 import HrdCandidates from '@/components/hrd/Candidates'
@@ -29,8 +28,9 @@ import MppPending from '@/components/department/MppPending'
 import MppAccepted from '@/components/department/MppAccepted'
 import MppRejected from '@/components/department/MppRejected'
 import FpkPending from '@/components/department/FpkPending'
-import FpkAccepted from '@/components/department/FpkAccepted'
-import FpkRejected from '@/components/department/FpkRejected'
+// import FpkAccepted from '@/components/department/FpkAccepted'
+// import FpkRejected from '@/components/department/FpkRejected'
+import BankQuizDashboard from '@/components/hrd/BankQuizDashboard'
 import CreateMppDashboard from '@/components/page-component/CreateMppDashboard'
 
 Vue.use(Router)
@@ -64,47 +64,47 @@ export default new Router({
         {
           path: '/ceo/fpk/human-resource',
           component: HRD,
-          props: {content: 'fpk'}
+          props: {content: 'fpk', param: 'pending', approve: 'CEO'}
         },
         {
           path: '/ceo/fpk/marketing',
           component: Marketing,
-          props: {content: 'fpk'}
+          props: {content: 'fpk', param: 'pending', approve: 'CEO'}
         },
         {
           path: '/ceo/fpk/trade-partnership',
           component: TradePartnership,
-          props: {content: 'fpk'}
+          props: {content: 'fpk', param: 'pending', approve: 'CEO'}
         },
         {
           path: '/ceo/fpk/operation',
           component: Operation,
-          props: {content: 'fpk'}
+          props: {content: 'fpk', param: 'pending', approve: 'CEO'}
         },
         {
           path: '/ceo/fpk/technology',
           component: Technology,
-          props: {content: 'fpk'}
+          props: {content: 'fpk', param: 'pending', approve: 'CEO'}
         },
         {
           path: '/ceo/fpk/business-development',
           component: BusinessDevelopment,
-          props: {content: 'fpk'}
+          props: {content: 'fpk', param: 'pending', approve: 'CEO'}
         },
         {
           path: '/ceo/fpk/finance',
           component: Finance,
-          props: {content: 'fpk'}
+          props: {content: 'fpk', param: 'pending', approve: 'CEO'}
         },
         {
           path: '/ceo/fpk/project-management',
           component: ProjectManagement,
-          props: {content: 'fpk'}
+          props: {content: 'fpk', param: 'pending', approve: 'CEO'}
         },
         {
           path: '/ceo/fpk/product-management',
           component: ProductManagement,
-          props: {content: 'fpk'}
+          props: {content: 'fpk', param: 'pending', approve: 'CEO'}
         },
         {
           path: '/ceo/mpp'
@@ -163,17 +163,17 @@ export default new Router({
         {
           path: '/ceo/accepted/fpk/human-resource',
           component: HRD,
-          props: {department: 'HumanResource', content: 'fpk', status: 'accepted'}
+          props: {content: 'fpk', param: 'accepted', approve: 'CEO'}
         },
         {
           path: '/ceo/rejected/fpk/human-resource',
           component: HRD,
-          props: {department: 'HumanResource', content: 'fpk', status: 'rejected'}
+          props: {content: 'fpk', param: 'rejected', approve: 'CEO'}
         },
         {
           path: '/ceo/published/fpk/human-resource',
           component: HRD,
-          props: {department: 'HumanResource', content: 'fpk', status: 'published'}
+          props: {content: 'fpk', param: 'published', approve: 'HR'}
         },
         {
           path: '/ceo/accepted/mpp/human-resource',
@@ -194,17 +194,17 @@ export default new Router({
         {
           path: '/ceo/accepted/fpk/marketing',
           component: Marketing,
-          props: {department: 'Marketing', content: 'fpk'}
+          props: {content: 'fpk', param: 'accepted', approve: 'CEO'}
         },
         {
           path: '/ceo/rejected/fpk/marketing',
           component: Marketing,
-          props: {department: 'Marketing', content: 'fpk'}
+          props: {content: 'fpk', param: 'rejected', approve: 'CEO'}
         },
         {
           path: '/ceo/published/fpk/marketing',
           component: Marketing,
-          props: {department: 'Marketing', content: 'fpk'}
+          props: {content: 'fpk', param: 'published', approve: 'HR'}
         },
         {
           path: '/ceo/accepted/mpp/marketing',
@@ -225,17 +225,17 @@ export default new Router({
         {
           path: '/ceo/accepted/fpk/trade-partnership',
           component: TradePartnership,
-          props: {department: 'TradePartnership', content: 'fpk'}
+          props: {content: 'fpk', param: 'accepted', approve: 'CEO'}
         },
         {
           path: '/ceo/rejected/fpk/trade-partnership',
           component: TradePartnership,
-          props: {department: 'TradePartnership', content: 'fpk'}
+          props: {content: 'fpk', param: 'rejected', approve: 'CEO'}
         },
         {
           path: '/ceo/published/fpk/trade-partnership',
           component: TradePartnership,
-          props: {department: 'TradePartnership', content: 'fpk'}
+          props: {content: 'fpk', param: 'published', approve: 'HR'}
         },
         {
           path: '/ceo/accepted/mpp/trade-partnership',
@@ -256,17 +256,17 @@ export default new Router({
         {
           path: '/ceo/accepted/fpk/operation',
           component: Operation,
-          props: {department: 'Operation', content: 'fpk'}
+          props: {content: 'fpk', param: 'accepted', approve: 'CEO'}
         },
         {
           path: '/ceo/rejected/fpk/operation',
           component: Operation,
-          props: {department: 'Operation', content: 'fpk'}
+          props: {content: 'fpk', param: 'rejected', approve: 'CEO'}
         },
         {
           path: '/ceo/published/fpk/operation',
           component: Operation,
-          props: {department: 'Operation', content: 'fpk'}
+          props: {content: 'fpk', param: 'published', approve: 'HR'}
         },
         {
           path: '/ceo/accepted/mpp/operation',
@@ -287,17 +287,17 @@ export default new Router({
         {
           path: '/ceo/accepted/fpk/technology',
           component: Technology,
-          props: {department: 'Technology', content: 'fpk', status: 'accepted'}
+          props: {content: 'fpk', param: 'accepted', approve: 'CEO'}
         },
         {
           path: '/ceo/rejected/fpk/technology',
           component: Technology,
-          props: {department: 'Technology', content: 'fpk', status: 'rejected'}
+          props: {content: 'fpk', param: 'rejected', approve: 'CEO'}
         },
         {
           path: '/ceo/published/fpk/technology',
           component: Technology,
-          props: {department: 'Technology', content: 'fpk', status: 'published'}
+          props: {content: 'fpk', param: 'published', approve: 'HR'}
         },
         {
           path: '/ceo/accepted/mpp/technology',
@@ -318,17 +318,17 @@ export default new Router({
         {
           path: '/ceo/accepted/fpk/business-development',
           component: BusinessDevelopment,
-          props: {department: 'BusinessDevelopment', content: 'fpk'}
+          props: {content: 'fpk', param: 'accepted', approve: 'CEO'}
         },
         {
           path: '/ceo/rejected/fpk/business-development',
           component: BusinessDevelopment,
-          props: {department: 'BusinessDevelopment', content: 'fpk'}
+          props: {content: 'fpk', param: 'rejected', approve: 'CEO'}
         },
         {
           path: '/ceo/published/fpk/business-development',
           component: BusinessDevelopment,
-          props: {department: 'BusinessDevelopment', content: 'fpk'}
+          props: {content: 'fpk', param: 'published', approve: 'HR'}
         },
         {
           path: '/ceo/accepted/mpp/business-development',
@@ -349,17 +349,17 @@ export default new Router({
         {
           path: '/ceo/accepted/fpk/finance',
           component: Finance,
-          props: {department: 'Finance', content: 'fpk', status: 'accepted'}
+          props: {content: 'fpk', param: 'accepted', approve: 'CEO'}
         },
         {
           path: '/ceo/rejected/fpk/finance',
           component: Finance,
-          props: {department: 'Finance', content: 'fpk', status: 'rejected'}
+          props: {content: 'fpk', param: 'rejected', approve: 'CEO'}
         },
         {
           path: '/ceo/published/fpk/finance',
           component: Finance,
-          props: {department: 'Finance', content: 'fpk', status: 'published'}
+          props: {content: 'fpk', param: 'published', approve: 'HR'}
         },
         {
           path: '/ceo/accepted/mpp/finance',
@@ -380,17 +380,17 @@ export default new Router({
         {
           path: '/ceo/accepted/fpk/project-management',
           component: ProjectManagement,
-          props: {department: 'ProjectManagement', content: 'fpk'}
+          props: {content: 'fpk', param: 'accepted', approve: 'CEO'}
         },
         {
           path: '/ceo/rejected/fpk/project-management',
           component: ProjectManagement,
-          props: {department: 'ProjectManagement', content: 'fpk'}
+          props: {content: 'fpk', param: 'rejected', approve: 'CEO'}
         },
         {
           path: '/ceo/published/fpk/project-management',
           component: ProjectManagement,
-          props: {department: 'ProjectManagement', content: 'fpk'}
+          props: {content: 'fpk', param: 'published', approve: 'HR'}
         },
         {
           path: '/ceo/accepted/mpp/project-management',
@@ -411,17 +411,17 @@ export default new Router({
         {
           path: '/ceo/accepted/fpk/product-management',
           component: ProductManagement,
-          props: {department: 'ProductManagement', content: 'fpk'}
+          props: {content: 'fpk', param: 'accepted', approve: 'CEO'}
         },
         {
           path: '/ceo/rejected/fpk/product-management',
           component: ProductManagement,
-          props: {department: 'ProductManagement', content: 'fpk'}
+          props: {content: 'fpk', param: 'rejected', approve: 'CEO'}
         },
         {
           path: '/ceo/published/fpk/product-management',
           component: ProductManagement,
-          props: {department: 'ProductManagement', content: 'fpk'}
+          props: {content: 'fpk', param: 'published', approve: 'HR'}
         },
         {
           path: '/ceo/accepted/mpp/product-management',
@@ -460,9 +460,34 @@ export default new Router({
           path: '/department/mpp'
         },
         {
-          path: '/department/fpk/dashboard',
+          path: '/department/fpk/process',
           component: DepartmentDasboard,
           props: {content: 'fpk'}
+        },
+        {
+          path: '/department/fpk/process/accept',
+          component: DepartmentDasboard,
+          props: {content: 'fpk', processFpk: 'accept'}
+        },
+        {
+          path: '/department/fpk/process/rejected',
+          component: DepartmentDasboard,
+          props: {content: 'fpk', processFpk: 'rejected'}
+        },
+        {
+          path: '/department/fpk/process/ceo/waiting',
+          component: DepartmentDasboard,
+          props: {content: 'fpk', processFpk: 'waitingCeo'}
+        },
+        {
+          path: '/department/fpk/process/ceo/accepted',
+          component: DepartmentDasboard,
+          props: {content: 'fpk', processFpk: 'acceptedCeo'}
+        },
+        {
+          path: '/department/fpk/process/ceo/rejected',
+          component: DepartmentDasboard,
+          props: {content: 'fpk', processFpk: 'rejectedCeo'}
         },
         {
           path: '/department/fpk/create-new',
@@ -474,24 +499,29 @@ export default new Router({
           component: FpkDetail
         },
         {
+          path: '/department/fpk/dashboard',
+          component: DepartmentDasboard,
+          props: {content: 'fpk', param: 'pending', approve: 'DepartmentHead'}
+        },
+        {
           path: '/department/fpk/history',
-          component: DepartmentHistory,
-          props: {content: 'fpk'}
+          component: DepartmentDasboard,
+          props: {content: 'fpk', param: 'history', approve: 'DepartmentHead'}
         },
         {
           path: '/department/fpk/pending',
-          component: FpkPending,
-          props: {content: 'fpk'}
+          component: DepartmentDasboard,
+          props: {content: 'fpk', param: 'pending', approve: 'DepartmentHead'}
         },
         {
           path: '/department/fpk/accepted',
-          component: FpkAccepted,
-          props: {content: 'fpk'}
+          component: DepartmentDasboard,
+          props: {content: 'fpk', param: 'accepted', approve: 'DepartmentHead'}
         },
         {
           path: '/department/fpk/rejected',
-          component: FpkRejected,
-          props: {content: 'fpk'}
+          component: DepartmentDasboard,
+          props: {content: 'fpk', param: 'rejected', approve: 'DepartmentHead'}
         },
         {
           path: '/department/mpp'
@@ -499,7 +529,7 @@ export default new Router({
         {
           path: '/department/mpp/dashboard',
           component: DepartmentDasboard,
-          props: {content: 'mpp'}
+          props: {content: 'mpp', param: 'active'}
         },
         {
           path: '/department/mpp/create-new',
@@ -517,22 +547,29 @@ export default new Router({
           props: {content: 'mpp', edit: true}
         },
         {
-          path: '/department/mpp/history'
+          path: '/department/fpk/create-new/detail-edit',
+          component: CreateForm,
+          props: {content: 'fpk', edit: true}
+        },
+        {
+          path: '/department/mpp/history',
+          component: DepartmentDasboard,
+          props: {content: 'mpp', param: 'history'}
         },
         {
           path: '/department/mpp/pending',
-          component: MppPending,
-          props: {content: 'mpp'}
+          component: DepartmentDasboard,
+          props: {content: 'mpp', param: 'pending'}
         },
         {
           path: '/department/mpp/accepted',
-          component: MppAccepted,
-          props: {content: 'mpp'}
+          component: DepartmentDasboard,
+          props: {content: 'mpp', param: 'accepted'}
         },
         {
           path: '/department/mpp/rejected',
-          component: MppRejected,
-          props: {content: 'mpp'}
+          component: DepartmentDasboard,
+          props: {content: 'mpp', param: 'rejected'}
         },
         {
           path: '/department/mpp/detail/:id',
@@ -556,7 +593,7 @@ export default new Router({
         {
           path: '/hrd/fpk/dashboard',
           component: DepartmentDasboard,
-          props: {content: 'fpk'}
+          props: { content: 'fpk', param: 'pending', approve: 'DepartmentHead' }
         },
         {
           path: '/hrd/fpk/create-new',
@@ -564,7 +601,9 @@ export default new Router({
           props: {content: 'fpk'}
         },
         {
-          path: '/hrd/fpk/history'
+          path: '/hrd/fpk/history',
+          component: DepartmentDasboard,
+          props: { content: 'fpk', param: 'rejected', approve: 'DepartmentHead' }
         },
         {
           path: '/hrd/mpp'
@@ -585,7 +624,7 @@ export default new Router({
         {
           path: '/hrd/requested/fpk/human-resource',
           component: HrdRequested,
-          props: {department: 'HumanResource', content: 'fpk'}
+          props: { department: 'HumanResource', content: 'fpk', param: 'pending', approve: 'HR' }
         },
         {
           path: '/hrd/requested/mpp/human-resource',
@@ -713,8 +752,8 @@ export default new Router({
         },
         {
           path: '/hrd/fpk/accepted',
-          component: FpkAccepted,
-          props: {content: 'fpk'}
+          component: DepartmentDasboard,
+          props: { content: 'fpk', param: 'accepted', approve: 'DepartmentHead' }
         },
         {
           path: '/hrd/mpp/accepted',
@@ -723,8 +762,8 @@ export default new Router({
         },
         {
           path: '/hrd/fpk/rejected',
-          component: FpkRejected,
-          props: {content: 'fpk'}
+          component: DepartmentDasboard,
+          props: { content: 'fpk', param: 'rejected', approve: 'DepartmentHead' }
         },
         {
           path: '/hrd/mpp/rejected',
@@ -740,8 +779,16 @@ export default new Router({
           component: HrdViewHiringProcess
         },
         {
+          path: '/hrd/published/fpk/detail/:id',
+          component: FpkDetail
+        },
+        {
           path: '/hrd/requested/fpk/detail/:id',
           component: FpkDetail
+        },
+        {
+          path: '/hrd/published/fpk/detail/:id',
+          component: MppDetail
         },
         {
           path: '/hrd/requested/mpp/detail/:id',
@@ -836,6 +883,11 @@ export default new Router({
           path: '/hrd/published/mpp/product-management',
           component: HrdPublished,
           props: {department: 'ProductManagement', content: 'mpp'}
+        },
+        {
+          path: '/hrd/bank/quiz',
+          component: BankQuizDashboard,
+          props: {content: 'quiz'}
         }
       ]
     }
