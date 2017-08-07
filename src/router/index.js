@@ -787,7 +787,7 @@ export default new Router({
           component: FpkDetail
         },
         {
-          path: '/hrd/published/fpk/detail/:id',
+          path: '/hrd/published/mpp/detail/:id',
           component: MppDetail
         },
         {
