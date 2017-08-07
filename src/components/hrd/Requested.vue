@@ -19,7 +19,7 @@
               <td>{{mpp.createdDate.dayOfMonth}} - {{mpp.createdDate.monthOfYear}} - {{mpp.createdDate.year}}</td>
               <td>{{mpp.numberOfPerson}}</td>
               <td><button class="btn btn-primary">
-                <router-link :to="{ path: '/'+role+'/'+'requested'+'/'+content+'/detail/'+mpp.id , params: { id: mpp.id }}">View {{content.toUpperCase()}}</router-link></button></td></td>
+                <router-link :to="{ path: '/'+'hrd'+'/'+'requested'+'/'+content+'/detail/'+mpp.id , params: { id: mpp.id }}">View {{content.toUpperCase()}}</router-link></button></td></td>
                 <!-- <router-link :to="'/hrd/requested/view-detail-mpp'">View {{content.toUpperCase()}}</router-link></button></td></td> -->
             </tr>
         </tbody>
@@ -41,7 +41,7 @@
               <td>{{fpk.jobPositionRequester}}</td>
               <td>{{fpk.dateNeeded.dayOfMonth}} - {{fpk.dateNeeded.monthOfYear}} - {{fpk.dateNeeded.year}}</td>
               <td>{{fpk.numberOfPerson}}</td>
-              <td><button class="btn btn-primary"><router-link :to="{ path: '/'+role+'/'+'requested'+'/'+content+'/detail/'+fpk.idFpk , params: { id: fpk.idFpk }}">View {{content.toUpperCase()}}</router-link></button></td>
+              <td><button class="btn btn-primary"><router-link :to="{ path: '/'+'hrd'+'/'+'requested'+'/'+content+'/detail/'+fpk.idFpk , params: { id: fpk.idFpk }}">View {{content.toUpperCase()}}</router-link></button></td>
             </tr>
         </tbody>
       </table>
@@ -52,7 +52,7 @@
 <script>
 export default {
   name: 'requested',
-  props: ['department', 'content'],
+  props: ['department', 'content', 'param', 'approve'],
   data () {
     return {
       resultContent: {
@@ -73,20 +73,15 @@ export default {
       self.role = 'hrd'
     }
     if (this.content === 'fpk') {
-      self.$http.get('http://localhost:8080/fpk/byDepartment/active', {}, {
+      self.$http.get('http://localhost:8080/fpk/byDepartment/acceptedNotPublished', {}, {
         headers: {
           'department': division
         }
       }).then(response => {
-        if (response.data.data === '[]') {
-          this.resultContent.resultTotalFpk = 0
-        } else {
-          var fpk = JSON.stringify(response.data.data)
-          var totalFpk = JSON.stringify(response.data.totalData)
-          this.resultContent.resultFpk = fpk
-          this.resultContent.resultTotalFpk = totalFpk
-          this.totalData = totalFpk
-        }
+        var fpk = JSON.stringify(response.data.data)
+        var totalFpk = JSON.stringify(response.data.totalData)
+        this.resultContent.resultFpk = fpk
+        this.resultContent.resultTotalFpk = totalFpk
       })
     } else if (this.content === 'mpp') {
       self.$http.get('http://localhost:8080/mpp/byDepartment/acceptedNotPublished', {}, {

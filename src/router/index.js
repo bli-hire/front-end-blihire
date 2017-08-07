@@ -28,8 +28,9 @@ import MppPending from '@/components/department/MppPending'
 import MppAccepted from '@/components/department/MppAccepted'
 import MppRejected from '@/components/department/MppRejected'
 import FpkPending from '@/components/department/FpkPending'
-import FpkAccepted from '@/components/department/FpkAccepted'
-import FpkRejected from '@/components/department/FpkRejected'
+// import FpkAccepted from '@/components/department/FpkAccepted'
+// import FpkRejected from '@/components/department/FpkRejected'
+import BankQuizDashboard from '@/components/hrd/BankQuizDashboard'
 import CreateMppDashboard from '@/components/page-component/CreateMppDashboard'
 
 Vue.use(Router)
@@ -592,7 +593,7 @@ export default new Router({
         {
           path: '/hrd/fpk/dashboard',
           component: DepartmentDasboard,
-          props: {content: 'fpk'}
+          props: { content: 'fpk', param: 'pending', approve: 'DepartmentHead' }
         },
         {
           path: '/hrd/fpk/create-new',
@@ -600,7 +601,9 @@ export default new Router({
           props: {content: 'fpk'}
         },
         {
-          path: '/hrd/fpk/history'
+          path: '/hrd/fpk/history',
+          component: DepartmentDasboard,
+          props: { content: 'fpk', param: 'rejected', approve: 'DepartmentHead' }
         },
         {
           path: '/hrd/mpp'
@@ -621,7 +624,7 @@ export default new Router({
         {
           path: '/hrd/requested/fpk/human-resource',
           component: HrdRequested,
-          props: {department: 'HumanResource', content: 'fpk'}
+          props: { department: 'HumanResource', content: 'fpk', param: 'pending', approve: 'HR' }
         },
         {
           path: '/hrd/requested/mpp/human-resource',
@@ -749,8 +752,8 @@ export default new Router({
         },
         {
           path: '/hrd/fpk/accepted',
-          component: FpkAccepted,
-          props: {content: 'fpk'}
+          component: DepartmentDasboard,
+          props: { content: 'fpk', param: 'accepted', approve: 'DepartmentHead' }
         },
         {
           path: '/hrd/mpp/accepted',
@@ -759,8 +762,8 @@ export default new Router({
         },
         {
           path: '/hrd/fpk/rejected',
-          component: FpkRejected,
-          props: {content: 'fpk'}
+          component: DepartmentDasboard,
+          props: { content: 'fpk', param: 'rejected', approve: 'DepartmentHead' }
         },
         {
           path: '/hrd/mpp/rejected',
@@ -776,8 +779,16 @@ export default new Router({
           component: HrdViewHiringProcess
         },
         {
+          path: '/hrd/published/fpk/detail/:id',
+          component: FpkDetail
+        },
+        {
           path: '/hrd/requested/fpk/detail/:id',
           component: FpkDetail
+        },
+        {
+          path: '/hrd/published/fpk/detail/:id',
+          component: MppDetail
         },
         {
           path: '/hrd/requested/mpp/detail/:id',
@@ -872,6 +883,11 @@ export default new Router({
           path: '/hrd/published/mpp/product-management',
           component: HrdPublished,
           props: {department: 'ProductManagement', content: 'mpp'}
+        },
+        {
+          path: '/hrd/bank/quiz',
+          component: BankQuizDashboard,
+          props: {content: 'quiz'}
         }
       ]
     }

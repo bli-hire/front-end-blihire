@@ -276,7 +276,7 @@ export default {
       if (self.pendidikanLainnya !== '') {
         self.pendidikan = self.pendidikanLainnya
       }
-      if (self.role === 'DepartmentTeamMember') {
+      if (self.role === 'DepartmentTeamMember' || self.role === 'HR') {
         self.$http.post('http://localhost:8080/fpk/add/byMemberDepartment', {
           position: self.jumlahPosisi,
           reason: self.alasan + ' ' + self.alasanTambahan,
@@ -292,7 +292,7 @@ export default {
             alert('Sukses Terkirim')
             this.$router.go(-1)
           })
-      } else if (self.role === 'DepartmentHead') {
+      } else if (self.role === 'DepartmentHead' || self.role === 'HeadHR') {
         self.$http.post('http://localhost:8080/fpk/add/byHeadDepartment', {
           position: self.jumlahPosisi,
           reason: self.alasan + ' ' + self.alasanTambahan,
