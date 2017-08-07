@@ -50,7 +50,7 @@
               :class="{active: isActive('notification'), open: isNotifActive('notification')}"
               v-on:click="setNotifActive('notification')">
               <router-link to="">
-                <span class="glyphicon glyphicon-comment"> Notification</span>
+                <span class="glyphicon glyphicon-comment"></span>
               </router-link>
               <ul class="dropdown-menu">
                 <li><p>No FPK/MPP request</p></li>
