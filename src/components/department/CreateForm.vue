@@ -226,7 +226,11 @@ export default {
   },
   props: ['content', 'edit'],
   beforeMount () {
-    this.jobPosition = JSON.parse(window.sessionStorage.getItem('user')).department
+    if (this.content === 'fpk') {
+      this.jobPosition = JSON.parse(window.sessionStorage.getItem('user')).department
+    } else if (this.content === 'mpp') {
+      this.jobPosition = this.$route.query.jobPosition
+    }
     if (this.content === 'fpk' && this.edit === true) {
       // alert('Masuk Edit')
       var idFpkEdit = this.$route.query.id
