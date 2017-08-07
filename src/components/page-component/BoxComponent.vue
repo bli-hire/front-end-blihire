@@ -14,8 +14,7 @@
       <div v-if="docType === 'mpp'">
         <h3>{{title}}</h3>
         <h4>{{message}}</h4>
-        <h5>Head Approve : {{statusApproveHead}}</h5>
-        <h5>CEO Approve : {{statusApproveCeo}}</h5>
+        <h5>CEO Approve : {{statusCeo}}</h5>
         <button class="btn btn-primary">
           <router-link :to="{ path: '/'+loginStatus+'/'+content+'/detail/'+id , params: { id: id }, query: { ceoApprove: statusCeo, headApprove: statusHead, accept: statusAccept }}">Detail</router-link>
         </button>
@@ -36,22 +35,32 @@ export default {
   },
   props: ['title', 'message', 'loginStatus', 'content', 'dataContent', 'id', 'statusAccept', 'statusReject', 'statusCeo', 'statusHead', 'docType'],
   beforeMount () {
-    if (this.statusAccept === false && this.statusReject === false) {
-      this.status = 'Not Yet Accepted'
-    } else if (this.statusAccept === true && this.statusReject === false) {
-      this.status = 'Accepted'
-    } else if (this.statusAccept === false && this.statusReject === true) {
-      this.status = 'Rejected'
-    }
-    if (this.statusCeo === true) {
-      this.statusApproveCeo = 'CEO already Approved'
-    } else if (this.statusCeo === false) {
-      this.statusApproveCeo = 'CEO not yet approve'
-    }
-    if (this.statusHead === true) {
-      this.statusApproveHead = 'Head already Approved'
-    } else if (this.statusHead === false) {
-      this.statusApproveHead = 'Head not yet approve'
+    if (this.docType === 'fpk') {
+      if (this.statusAccept === false && this.statusReject === false) {
+        this.status = 'Not Yet Accepted'
+      } else if (this.statusAccept === true && this.statusReject === false) {
+        this.status = 'Accepted'
+      } else if (this.statusAccept === false && this.statusReject === true) {
+        this.status = 'Rejected'
+      }
+      if (this.statusCeo === true) {
+        this.statusApproveCeo = 'CEO already Approved'
+      } else if (this.statusCeo === false) {
+        this.statusApproveCeo = 'CEO not yet approve'
+      }
+      if (this.statusHead === true) {
+        this.statusApproveHead = 'Head already Approved'
+      } else if (this.statusHead === false) {
+        this.statusApproveHead = 'Head not yet approve'
+      }
+    } else if (this.docType === 'mpp') {
+      if (this.statusAccept === false && this.statusReject === false) {
+        this.statusCeo = 'Not Yet Accepted'
+      } else if (this.statusAccept === true && this.statusReject === false) {
+        this.statusCeo = 'Accepted'
+      } else if (this.statusAccept === false && this.statusReject === true) {
+        this.statusCeo = 'Rejected'
+      }
     }
   }
 }

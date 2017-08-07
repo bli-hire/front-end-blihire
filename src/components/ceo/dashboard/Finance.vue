@@ -18,7 +18,6 @@
       <BoxComponent
       v-for="mpp in JSON.parse(resultContent.resultMpp)"
       v-bind:title="mpp.department"
-      v-bind:message="'Reason : '+mpp.reason"
       v-bind:statusAccept="mpp.accept"
       v-bind:statusReject="mpp.reject"
       v-bind:loginStatus="'ceo'"
