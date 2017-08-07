@@ -145,22 +145,42 @@ export default{
       })
     },
     approveFpk () {
-      this.$http.post('http://localhost:8080/fpk/approve', {
-        idUser: this.idUser,
-        idFpk: JSON.parse(this.idSelector)
-      }, (json) => {
-        alert(JSON.stringify(json.message))
-        this.$router.go(-1)
-      })
+      if (this.role === 'HeadHR') {
+        this.$http.post('http://localhost:8080/fpk/approve/asHeadDepartment', {
+          idUser: this.idUser,
+          idFpk: JSON.parse(this.idSelector)
+        }, (json) => {
+          alert(JSON.stringify(json.message))
+          this.$router.go(-1)
+        })
+      } else {
+        this.$http.post('http://localhost:8080/fpk/approve', {
+          idUser: this.idUser,
+          idFpk: JSON.parse(this.idSelector)
+        }, (json) => {
+          alert(JSON.stringify(json.message))
+          this.$router.go(-1)
+        })
+      }
     },
     rejectFpk () {
-      this.$http.post('http://localhost:8080/fpk/reject', {
-        idUser: this.idUser,
-        idFpk: JSON.parse(this.idSelector)
-      }, (json) => {
-        alert(JSON.stringify(json.message))
-        this.$router.go(-1)
-      })
+      if (this.role === 'HeadHR') {
+        this.$http.post('http://localhost:8080/fpk/reject/asHeadDepartment', {
+          idUser: this.idUser,
+          idFpk: JSON.parse(this.idSelector)
+        }, (json) => {
+          alert(JSON.stringify(json.message))
+          this.$router.go(-1)
+        })
+      } else {
+        this.$http.post('http://localhost:8080/fpk/reject', {
+          idUser: this.idUser,
+          idFpk: JSON.parse(this.idSelector)
+        }, (json) => {
+          alert(JSON.stringify(json.message))
+          this.$router.go(-1)
+        })
+      }
     }
   }
 }
