@@ -4,7 +4,7 @@
     <h2 class="" v-if="content === 'fpk' && JSON.parse(resultContent.resultTotalFpk) === 0">There are no {{content}} published</h2>
     <div v-if=" content === 'mpp' && JSON.parse(resultContent.resultTotalMpp) !== 0">
       <h2>List of Requested {{content.toUpperCase()}}</h2>
-      <table class="table table-bordered" v-for="mpp in JSON.parse(resultContent.resultMpp)">
+      <table class="table table-bordered">
         <thead>
           <tr>
             <th>Requested By</th>
@@ -13,7 +13,7 @@
             <th>View Detail</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody v-for="mpp in JSON.parse(resultContent.resultMpp)">
             <tr>
               <td>{{mpp.requestedBy.name}}</td>
               <td>{{mpp.createdDate.dayOfMonth}} - {{mpp.createdDate.monthOfYear}} - {{mpp.createdDate.year}}</td>
@@ -30,7 +30,7 @@
     </div>
     <div v-if=" content === 'fpk' && JSON.parse(resultContent.resultTotalFpk) !== 0">
       <h2>List of Requested {{content.toUpperCase()}}</h2>
-      <table class="table table-bordered" v-for="fpk in JSON.parse(resultContent.resultFpk)">
+      <table class="table table-bordered" >
         <thead>
           <tr>
             <th>Position Needed</th>
@@ -39,7 +39,7 @@
             <th>View Detail</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody v-for="fpk in JSON.parse(resultContent.resultFpk)">
             <tr>
               <td>{{fpk.jobPositionRequester}}</td>
               <td>{{fpk.dateNeeded.dayOfMonth}} - {{fpk.dateNeeded.monthOfYear}} - {{fpk.dateNeeded.year}}</td>
