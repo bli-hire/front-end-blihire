@@ -132,7 +132,12 @@
             <li v-if="loginStatus === 'hrd' && (statePage === 'fpk' || statePage === 'mpp')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/dashboard');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/dashboard')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/dashboard'">Dashboard</router-link></li>
             <li v-if="loginStatus === 'hrd' && (statePage === 'fpk' || statePage === 'mpp')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/create-new');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/create-new')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/create-new'">Create New</router-link></li>
             <li v-if="loginStatus === 'hrd' && (statePage === 'fpk' || statePage === 'mpp')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/history');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/history')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/history'">History</router-link></li>
-            <!---->
+
+            <li v-if="loginStatus === 'hrd' && (statePage === 'bank/quiz')" v-on:click="setActiveSide('hrd/bank/quiz/create/multiple-choice');" :class="{active: isActiveSide('hrd/bank/quiz/create/multiple-choice')}"><router-link to="/hrd/bank/quiz/create/multiple-choice">Create Multiple Choice</router-link></li>
+            <li v-if="loginStatus === 'hrd' && (statePage === 'bank/quiz')" v-on:click="setActiveSide('hrd/bank/quiz/create/essay');" :class="{active: isActiveSide('hrd/bank/quiz/create/essay')}"><router-link to="/hrd/bank/quiz/create/essay">Create Essay</router-link></li>
+            <li v-if="loginStatus === 'hrd' && (statePage === 'bank/quiz')" v-on:click="setActiveSide('hrd/bank/quiz/organize/category');" :class="{active: isActiveSide('hrd/bank/quiz/organize/category')}"><router-link to="/hrd/bank/organize/category">Categorize Question</router-link></li>
+
+            <!---------------------------------------------------->
 
             <li v-if="loginStatus === 'department' && (statePage === 'fpk' || statePage === 'mpp')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/dashboard');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/dashboard')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/dashboard'">Dashboard</router-link></li>
             <li v-if="(loginStatus === 'department' && (role === 'DepartmentHead' || statePage === 'fpk') && statePage !== 'fpk/process')" v-on:click="setActiveSide({loginStatus}+'/'+{statePage}+'/create-new');" :class="{active: isActiveSide({loginStatus}+'/'+{statePage}+'/create-new')}"><router-link :to="'/'+loginStatus+'/'+statePage+'/create-new'">Create New</router-link></li>
