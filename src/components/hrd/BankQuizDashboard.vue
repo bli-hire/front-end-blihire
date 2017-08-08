@@ -1,6 +1,6 @@
 <template>
   <div class="listContent col-md-10">
-    <h2>Question Bank for Online Test</h2>
+    <h2>Question Bank (Problem Set) for Technical Test</h2>
     <br>
     <div class="">
     <p>Select Department</p>
@@ -71,5 +71,9 @@ th {
 .listContent {
   text-align: left;
   padding-bottom: 5vh;
+}
+
+h2 {
+  text-align: center;
 }
 </style>

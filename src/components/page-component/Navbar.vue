@@ -135,7 +135,7 @@
 
             <li v-if="loginStatus === 'hrd' && (statePage === 'bank/quiz')" v-on:click="setActiveSide('hrd/bank/quiz/create/multiple-choice');" :class="{active: isActiveSide('hrd/bank/quiz/create/multiple-choice')}"><router-link to="/hrd/bank/quiz/create/multiple-choice">Create Multiple Choice</router-link></li>
             <li v-if="loginStatus === 'hrd' && (statePage === 'bank/quiz')" v-on:click="setActiveSide('hrd/bank/quiz/create/essay');" :class="{active: isActiveSide('hrd/bank/quiz/create/essay')}"><router-link to="/hrd/bank/quiz/create/essay">Create Essay</router-link></li>
-            <li v-if="loginStatus === 'hrd' && (statePage === 'bank/quiz')" v-on:click="setActiveSide('hrd/bank/quiz/organize/category');" :class="{active: isActiveSide('hrd/bank/quiz/organize/category')}"><router-link to="/hrd/bank/organize/category">Categorize Question</router-link></li>
+            <li v-if="loginStatus === 'hrd' && (statePage === 'bank/quiz')" v-on:click="setActiveSide('hrd/bank/quiz/organize/problem-set');" :class="{active: isActiveSide('hrd/bank/quiz/organize/problem-set')}"><router-link to="/hrd/bank/quiz/organize/problem-set">Categorize Problem Set</router-link></li>
 
             <!---------------------------------------------------->
 

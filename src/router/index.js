@@ -896,6 +896,15 @@ export default new Router({
           path: '/hrd/bank/quiz',
           component: BankQuizDashboard,
           props: {content: 'quiz'}
+        },
+        {
+          path: '/hrd/bank/quiz/create/multiple-choice'
+        },
+        {
+          path: '/hrd/bank/quiz/create/essay'
+        },
+        {
+          path: '/hrd/bank/quiz/organize/problem-set'
         }
       ]
     }
