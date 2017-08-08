@@ -18,8 +18,11 @@
               <td>{{mpp.requestedBy.name}}</td>
               <td>{{mpp.createdDate.dayOfMonth}} - {{mpp.createdDate.monthOfYear}} - {{mpp.createdDate.year}}</td>
               <td>{{mpp.approvedBy.name}}</td>
-              <td><button class="btn btn-primary">
-                <router-link :to="{ path: '/'+'hrd'+'/'+'published'+'/'+content+'/detail/'+mpp.id , params: { id: mpp.id }}">View {{content.toUpperCase()}}</router-link></button></td></td>
+              <td>
+                <button class="btn btn-primary">
+                  <router-link :to="{ path: '/'+'hrd'+'/'+'published'+'/'+content+'/detail/'+mpp.id , params: { id: mpp.id }}">View {{content.toUpperCase()}}</router-link>
+                </button>
+              </td>
                 <!-- <router-link :to="'/hrd/requested/view-detail-mpp'">View {{content.toUpperCase()}}</router-link></button></td></td> -->
             </tr>
         </tbody>
@@ -41,7 +44,7 @@
               <td>{{fpk.jobPositionRequester}}</td>
               <td>{{fpk.dateNeeded.dayOfMonth}} - {{fpk.dateNeeded.monthOfYear}} - {{fpk.dateNeeded.year}}</td>
               <td>{{fpk.numberOfPerson}}</td>
-              <td><button class="btn btn-primary"><router-link :to="{ path: '/'+'hrd'+'/'+'published'+'/'+content+'/detail/'+fpk.idFpk , params: { id: fpk.idFpk }}">View {{content.toUpperCase()}}</router-link></button></td>
+              <!-- <td><button class="btn btn-primary"><router-link :to="{ path: '/'+'hrd'+'/'+'published'+'/'+content+'/detail/'+fpk.idFpk , params: { id: fpk.idFpk }}">View {{content.toUpperCase()}}</router-link></button></td> -->
               <td><button class="btn btn-primary">
                 <router-link :to="{ path: '/'+'hrd/'+'published/'+content+'/detail/'+fpk.idFpk , params: { id: fpk.idFpk }, query: { ceoApprove: fpk.statusCeoApprove, headApprove: fpk.statusHeadApprove, published: fpk.statusAccept }}">Detail</router-link>
               </button></td>
