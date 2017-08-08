@@ -746,6 +746,14 @@ export default new Router({
           props: {content: 'fpk'}
         },
         {
+          path: '/hrd/fpk/detail/:id',
+          component: FpkDetail
+        },
+        {
+          path: '/hrd/mpp/detail/:id',
+          component: MppDetail
+        },
+        {
           path: '/hrd/mpp/pending',
           component: MppPending,
           props: {content: 'mpp'}

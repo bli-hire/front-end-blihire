@@ -41,7 +41,13 @@
               <td>{{fpk.jobPositionRequester}}</td>
               <td>{{fpk.dateNeeded.dayOfMonth}} - {{fpk.dateNeeded.monthOfYear}} - {{fpk.dateNeeded.year}}</td>
               <td>{{fpk.numberOfPerson}}</td>
+<<<<<<< Updated upstream
               <td><button class="btn btn-primary"><router-link :to="{ path: '/'+'hrd'+'/'+'published'+'/'+content+'/detail/'+fpk.idFpk , params: { id: fpk.idFpk }}">View {{content.toUpperCase()}}</router-link></button></td>
+=======
+              <td><button class="btn btn-primary">
+                <router-link :to="{ path: '/'+'hrd/'+'published/'+content+'/detail/'+fpk.idFpk , params: { id: fpk.idFpk }, query: { ceoApprove: fpk.statusCeoApprove, headApprove: fpk.statusHeadApprove, published: fpk.statusAccept }}">Detail</router-link>
+              </button></td>
+>>>>>>> Stashed changes
             </tr>
         </tbody>
       </table>

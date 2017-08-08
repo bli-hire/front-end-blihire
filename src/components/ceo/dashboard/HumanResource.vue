@@ -6,7 +6,7 @@
       v-bind:title="fpk.department"
       v-bind:message="'Reason : '+fpk.reason"
       v-bind:statusAccept="fpk.accept"
-      v-bind:statusReject="fpk.reject"
+      v-bind:statusReject="fpk.statusAccept"
       v-bind:statusCeo="fpk.approveCeo"
       v-bind:statusHead="fpk.approveHead"
       v-bind:loginStatus="'ceo'"
