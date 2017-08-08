@@ -1,6 +1,6 @@
 <template>
   <div class="listContent col-md-10">
-    <h2>Question Bank (Problem Set) for Technical Test</h2>
+    <h2>Question Bank for Technical Test</h2>
     <br>
     <div class="">
     <p>Select Department</p>
@@ -31,13 +31,20 @@
           <tr>
             <th>No</th>
             <th>Question</th>
-            <th>Created By</th>
-            <th>Last Modified By</th>
+            <th>Answer</th>
+            <th>Generated</th>
+            <th colspan="2">Action</th>
           </tr>
         </thead>
         <tbody>
-            <tr>
-            </tr>
+        <tr>
+          <td>SampleNo</td>
+          <td>SampleQuestion</td>
+          <td>IsThereSomethingCanIDoInThisWorldOrNotIDontKnowEither</td>
+          <td>No</td>
+          <td><button class="btn btn-primary">Detail</button></td>
+          <td><button class="btn btn-warning">Edit</button></td>
+        </tr>
         </tbody>
       </table>
   </div>

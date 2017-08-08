@@ -32,6 +32,7 @@ import FpkPending from '@/components/department/FpkPending'
 // import FpkRejected from '@/components/department/FpkRejected'
 import BankQuizDashboard from '@/components/hrd/BankQuizDashboard'
 import CreateMppDashboard from '@/components/page-component/CreateMppDashboard'
+import BankQuizCreateForm from '@/components/page-component/CreateFormBankQuiz'
 
 Vue.use(Router)
 
@@ -898,13 +899,14 @@ export default new Router({
           props: {content: 'quiz'}
         },
         {
-          path: '/hrd/bank/quiz/create/multiple-choice'
+          path: '/hrd/bank/quiz/create/multiple-choice',
+          component: BankQuizCreateForm,
+          props: {content: 'multipleChoice'}
         },
         {
-          path: '/hrd/bank/quiz/create/essay'
-        },
-        {
-          path: '/hrd/bank/quiz/organize/problem-set'
+          path: '/hrd/bank/quiz/create/essay',
+          component: BankQuizCreateForm,
+          props: {content: 'essay'}
         }
       ]
     }
