@@ -5,12 +5,14 @@
         <div class="form-group">
           <label for="pos">Departemen Pemohon:</label>
             <select class="form-control" id="pos" v-model="departmentPemohon">
-              <option value="jobPosition">{{jobPosition}}</option>
+              <option value="departmentRequester">{{departmentRequester}}</option>
             </select>
           <br/>
 
         <label for="pos">Jabatan Pemohon:</label>
-          <input type="text" id="jabatanPemohon" value="jobPositionRequester" class="form-control" v-model="jobPositionRequester">
+            <select class="form-control" id="pos" v-model="jobPositionRequester">
+              <option value="job" v-for="job in listJobPosition">{{job}}</option>
+            </select>
         <br/>
 
         <label for="personNeeded">Posisi atau jumlah</label>
@@ -84,7 +86,7 @@
         <div class="form-group">
           <label for="pos">Position (select one):</label>
             <select class="form-control" id="pos" v-model="positionMpp" >
-              <option v-bind:value="jobPosition">{{jobPosition}}</option>
+              <option v-for="job in listJobPosition" v-bind:value="job">{{job}}</option>
             </select>
           <br/>
 
@@ -176,7 +178,7 @@ export default {
   name: 'create-new',
   data () {
     return {
-      jobPosition: '',
+      departmentRequester: '',
       jobPositonFpk: '',
       currentDetailIndex: '',
       departmentPemohon: '',
@@ -221,13 +223,67 @@ export default {
       expectJoin: {},
       arrayMppDetail: [],
       indeksMppDetail: '',
-      fpkToEdit: []
+      fpkToEdit: [],
+      listJobPosition: []
     }
   },
   props: ['content', 'edit'],
   beforeMount () {
+    this.departmentRequester = JSON.parse(window.sessionStorage.getItem('user')).department
+    if (this.departmentRequester === 'Technology') {
+      this.listJobPosition = [
+        'Sr. Software Development Engineer',
+        'Mobile Development Engineer',
+        'Technical Support Staff',
+        'Software Development Engineer Testing',
+        'Software Development Enginer'
+      ]
+    } else if (this.departmentRequester === 'Marketing') {
+      this.listJobPosition = [
+        'Sr. Consumer Marketing Insight Analyst',
+        'Performance Advertising Analyst'
+      ]
+    } else if (this.departmentRequester === 'TradePartnership') {
+      this.listJobPosition = [
+        'Content & Promotion Strategist',
+        'Merchandising Manager',
+        'Digital Imaging'
+      ]
+    } else if (this.departmentRequester === 'Operation') {
+      this.listJobPosition = [
+        'Senior Experience Solution Manager',
+        'Inventory Control & Asset Recovery (Return) Staff',
+        'Internal Quality Management',
+        'BLITS College Asistant Manager',
+        'Sr. Fleet Management Specialist',
+        'Fleet Management Specialist',
+        'Process Improvement Reengineering Specialist'
+      ]
+    } else if (this.departmentRequester === 'BusinessDevelopment') {
+      this.listJobPosition = [
+        'Business Development Staff',
+        'Product Manager'
+      ]
+    } else if (this.departmentRequester === 'Finance') {
+      this.listJobPosition = [
+        'Finance'
+      ]
+    } else if (this.departmentRequester === 'ProjectManagement') {
+      this.listJobPosition = [
+        'Business Development Staff',
+        'Product Manager'
+      ]
+    } else if (this.departmentRequester === 'ProductManagement') {
+      this.listJobPosition = [
+        'Sr. UX Designer',
+        'UX Copywriter'
+      ]
+    } else if (this.departmentRequester === 'HumanResource') {
+      this.listJobPosition = [
+        'Talent Acquision Specialist'
+      ]
+    }
     if (this.content === 'fpk') {
-      this.jobPosition = JSON.parse(window.sessionStorage.getItem('user')).department
     } else if (this.content === 'mpp') {
       this.jobPosition = this.$route.query.jobPosition
       this.arrayMppDetail = JSON.parse(window.localStorage.getItem('detailMpp'))
