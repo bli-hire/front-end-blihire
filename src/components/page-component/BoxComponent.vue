@@ -1,16 +1,6 @@
 <template>
   <div col-md-12>
     <div class="box-content">
-<<<<<<< Updated upstream
-      <h3>{{title}}</h3>
-      <h4>{{message}}</h4>
-      <h5>Head Approve : {{statusApproveHead}}</h5>
-      <h5>CEO Approve : {{statusApproveCeo}}</h5>
-      <h5>HRD Accept : {{status}}</h5>
-      <button class="btn btn-primary">
-        <router-link :to="{ path: '/'+loginStatus+'/'+content+'/detail/'+id , params: { id: id }, query: { ceoApprove: statusCeo, headApprove: statusHead, accept: statusAccept }}">Detail</router-link>
-      </button>
-=======
       <div v-if="docType === 'fpk'">
         <h3>{{title}}</h3>
         <h4>{{message}}</h4>
@@ -30,7 +20,6 @@
           <router-link :to="{ path: '/'+loginStatus+'/'+content+'/detail/'+id , params: { id: id }, query: { ceoApprove: statusCeo, headApprove: statusHead, accept: statusAccept }}">Detail</router-link>
         </button>
       </div>
->>>>>>> Stashed changes
     </div>
   </div>
 </template>
@@ -45,9 +34,8 @@ export default {
       statusApproveHead: ''
     }
   },
-  props: ['title', 'message', 'loginStatus', 'content', 'dataContent', 'id', 'statusAccept', 'statusReject', 'statusCeo', 'statusHead'],
+  props: ['title', 'message', 'loginStatus', 'content', 'dataContent', 'id', 'statusAccept', 'statusReject', 'statusCeo', 'statusHead', 'docType', 'requestedBy', 'publishedBy', 'published'],
   beforeMount () {
-<<<<<<< Updated upstream
     if (this.statusAccept === false && this.statusReject === false) {
       this.status = 'Not Yet Accepted'
     } else if (this.statusAccept === true && this.statusReject === false) {
@@ -64,7 +52,7 @@ export default {
       this.statusApproveHead = 'Head already Approved'
     } else if (this.statusHead === false) {
       this.statusApproveHead = 'Head not yet approve'
-=======
+    }
     if (this.docType === 'fpk') {
       if (this.statusAccept === false && this.statusReject === false) {
         this.status = 'Not Yet Accepted'
@@ -91,7 +79,6 @@ export default {
       } else if (this.statusAccept === false && this.statusReject === true) {
         this.statusCeo = 'Rejected'
       }
->>>>>>> Stashed changes
     }
   }
 }

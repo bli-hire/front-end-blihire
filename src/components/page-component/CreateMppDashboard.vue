@@ -124,6 +124,14 @@
 
     <div v-if="department === 'ProductManagement'">
       <h4>Product Management</h4>
+      <h2>Pembuatan MPP</h2>
+      <h3>Department : {{department}}</h3>
+      <h4>Pengaju MPP : {{surename}}</h4>
+      <br><br>
+        <p>Berikut ini adalah posisi pekerjaan yang tersedia untuk department anda. Silahkan pilih salah satu untuk melanjutkan pembuatan MPP detail. </p>
+        <p>Jika sudah selesai mengisikan detail, silahkan melanjutkan dengan menekan tombol "Send MPP"</p>
+        <p>Jika sudah selesai mengosongkan seluruh data mpp yang hendak dibuat, silahkan tekan tombol "Clear MPP"</p>
+        <br>
       <div class="list-group">
         <a class="list-group-item" data-toggle="collapse" href="#srUxDesigner" v-model="jobPosition">Sr. UX Designer</a>
         <div id="srUxDesigner" class="collapse container-fluid">
@@ -149,6 +157,14 @@
 
     <div v-if="department === 'TradePartnership'">
       <h4>Trade Partnership</h4>
+      <h2>Pembuatan MPP</h2>
+      <h3>Department : {{department}}</h3>
+      <h4>Pengaju MPP : {{surename}}</h4>
+      <br><br>
+        <p>Berikut ini adalah posisi pekerjaan yang tersedia untuk department anda. Silahkan pilih salah satu untuk melanjutkan pembuatan MPP detail. </p>
+        <p>Jika sudah selesai mengisikan detail, silahkan melanjutkan dengan menekan tombol "Send MPP"</p>
+        <p>Jika sudah selesai mengosongkan seluruh data mpp yang hendak dibuat, silahkan tekan tombol "Clear MPP"</p>
+        <br>
       <div class="list-group">
         <a class="list-group-item" data-toggle="collapse" href="#digitalImaging" v-model="jobPosition">Digital Imaging</a>
         <div id="digitalImaging" class="collapse container-fluid">
@@ -184,6 +200,14 @@
 
     <div v-if="department === 'HumanResource'">
       <h4>Human Resource</h4>
+      <h2>Pembuatan MPP</h2>
+      <h3>Department : {{department}}</h3>
+      <h4>Pengaju MPP : {{surename}}</h4>
+      <br><br>
+        <p>Berikut ini adalah posisi pekerjaan yang tersedia untuk department anda. Silahkan pilih salah satu untuk melanjutkan pembuatan MPP detail. </p>
+        <p>Jika sudah selesai mengisikan detail, silahkan melanjutkan dengan menekan tombol "Send MPP"</p>
+        <p>Jika sudah selesai mengosongkan seluruh data mpp yang hendak dibuat, silahkan tekan tombol "Clear MPP"</p>
+        <br>
       <div class="list-group">
         <a class="list-group-item" data-toggle="collapse" href="#talentAcquisition" v-model="jobPosition">Talent Acquisition Specialist</a>
         <div id="talentAcquisition" class="collapse container-fluid">
@@ -199,6 +223,14 @@
 
     <div v-if="department === 'Operation'">
       <h4>Operation</h4>
+      <h2>Pembuatan MPP</h2>
+      <h3>Department : {{department}}</h3>
+      <h4>Pengaju MPP : {{surename}}</h4>
+      <br><br>
+        <p>Berikut ini adalah posisi pekerjaan yang tersedia untuk department anda. Silahkan pilih salah satu untuk melanjutkan pembuatan MPP detail. </p>
+        <p>Jika sudah selesai mengisikan detail, silahkan melanjutkan dengan menekan tombol "Send MPP"</p>
+        <p>Jika sudah selesai mengosongkan seluruh data mpp yang hendak dibuat, silahkan tekan tombol "Clear MPP"</p>
+        <br>
       <div class="list-group">
 
         <a class="list-group-item" v-on:click="" data-toggle="collapse" href="#seniorExperienceSolutionManager" v-model="jobPosition">Senior Experience Solution Manager</a>

@@ -226,7 +226,14 @@ export default {
   },
   props: ['content', 'edit'],
   beforeMount () {
-    this.jobPosition = JSON.parse(window.sessionStorage.getItem('user')).department
+    if (this.content === 'fpk') {
+      this.jobPosition = JSON.parse(window.sessionStorage.getItem('user')).department
+    } else if (this.content === 'mpp') {
+      this.jobPosition = this.$route.query.jobPosition
+      this.arrayMppDetail = JSON.parse(window.localStorage.getItem('detailMpp'))
+      this.currentDetailIndex = 0
+      this.indeksMppDetail = this.$route.query.indeksEditMpp
+    }
     if (this.content === 'fpk' && this.edit === true) {
       // alert('Masuk Edit')
       var idFpkEdit = this.$route.query.id
@@ -248,11 +255,6 @@ export default {
       })
     }
     if (this.content === 'mpp' && this.edit === true) {
-      this.jobPosition = JSON.parse(window.sessionStorage.getItem('user')).department
-      this.arrayMppDetail = JSON.parse(window.localStorage.getItem('detailMpp'))
-      this.jobPosition = this.$route.query.jobPosition
-      this.currentDetailIndex = 0
-      this.indeksMppDetail = this.$route.query.indeksEditMpp
       var objMppDetail = this.arrayMppDetail[this.indeksMppDetail]
       // alert(JSON.stringify(objMppDetail))
       this.personNeededMpp = objMppDetail.numberOfPerson
