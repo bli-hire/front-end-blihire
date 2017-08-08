@@ -117,47 +117,47 @@ export default new Router({
         {
           path: '/ceo/mpp/human-resource',
           component: HRD,
-          props: {content: 'mpp'}
+          props: {content: 'mpp', statusRouting: 'active'}
         },
         {
           path: '/ceo/mpp/marketing',
           component: Marketing,
-          props: {content: 'mpp'}
+          props: {content: 'mpp', statusRouting: 'active'}
         },
         {
           path: '/ceo/mpp/trade-partnership',
           component: TradePartnership,
-          props: {content: 'mpp'}
+          props: {content: 'mpp', statusRouting: 'active'}
         },
         {
           path: '/ceo/mpp/operation',
           component: Operation,
-          props: {content: 'mpp'}
+          props: {content: 'mpp', statusRouting: 'active'}
         },
         {
           path: '/ceo/mpp/technology',
           component: Technology,
-          props: {content: 'mpp', status: 'active'}
+          props: {content: 'mpp', statusRouting: 'active'}
         },
         {
           path: '/ceo/mpp/business-development',
           component: BusinessDevelopment,
-          props: {content: 'mpp'}
+          props: {content: 'mpp', statusRouting: 'active'}
         },
         {
           path: '/ceo/mpp/finance',
           component: Finance,
-          props: {content: 'mpp', status: 'active'}
+          props: {content: 'mpp', statusRouting: 'active'}
         },
         {
           path: '/ceo/mpp/project-management',
           component: ProjectManagement,
-          props: {content: 'mpp'}
+          props: {content: 'mpp', statusRouting: 'active'}
         },
         {
           path: '/ceo/mpp/product-management',
           component: ProductManagement,
-          props: {content: 'mpp'}
+          props: {content: 'mpp', statusRouting: 'active'}
         },
         // Accepted, Published, Rejected
         {
@@ -178,17 +178,17 @@ export default new Router({
         {
           path: '/ceo/accepted/mpp/human-resource',
           component: HRD,
-          props: {department: 'HumanResource', content: 'mpp'}
+          props: {department: 'HumanResource', content: 'mpp', statusRouting: 'accepted'}
         },
         {
           path: '/ceo/rejected/mpp/human-resource',
           component: HRD,
-          props: {department: 'HumanResource', content: 'mpp'}
+          props: {department: 'HumanResource', content: 'mpp', statusRouting: 'rejected'}
         },
         {
           path: '/ceo/published/mpp/human-resource',
           component: HRD,
-          props: {department: 'HumanResource', content: 'mpp'}
+          props: {department: 'HumanResource', content: 'mpp', statusRouting: 'published'}
         },
         // --------------
         {
@@ -209,17 +209,17 @@ export default new Router({
         {
           path: '/ceo/accepted/mpp/marketing',
           component: Marketing,
-          props: {department: 'Marketing', content: 'mpp'}
+          props: {department: 'Marketing', content: 'mpp', statusRouting: 'accepted'}
         },
         {
           path: '/ceo/rejected/mpp/marketing',
           component: Marketing,
-          props: {department: 'Marketing', content: 'mpp'}
+          props: {department: 'Marketing', content: 'mpp', statusRouting: 'rejected'}
         },
         {
           path: '/ceo/published/mpp/marketing',
           component: Marketing,
-          props: {department: 'Marketing', content: 'mpp'}
+          props: {department: 'Marketing', content: 'mpp', statusRouting: 'published'}
         },
         // --------------
         {
@@ -240,17 +240,17 @@ export default new Router({
         {
           path: '/ceo/accepted/mpp/trade-partnership',
           component: TradePartnership,
-          props: {department: 'TradePartnership', content: 'mpp'}
+          props: {department: 'TradePartnership', content: 'mpp', statusRouting: 'accepted'}
         },
         {
           path: '/ceo/rejected/mpp/trade-partnership',
           component: TradePartnership,
-          props: {department: 'TradePartnership', content: 'mpp'}
+          props: {department: 'TradePartnership', content: 'mpp', statusRouting: 'rejected'}
         },
         {
           path: '/ceo/published/mpp/trade-partnership',
           component: TradePartnership,
-          props: {department: 'TradePartnership', content: 'mpp'}
+          props: {department: 'TradePartnership', content: 'mpp', statusRouting: 'published'}
         },
         // --------------
         {
@@ -271,17 +271,17 @@ export default new Router({
         {
           path: '/ceo/accepted/mpp/operation',
           component: Operation,
-          props: {department: 'Operation', content: 'mpp'}
+          props: {department: 'Operation', content: 'mpp', statusRouting: 'accepted'}
         },
         {
           path: '/ceo/rejected/mpp/operation',
           component: Operation,
-          props: {department: 'Operation', content: 'mpp'}
+          props: {department: 'Operation', content: 'mpp', statusRouting: 'rejected'}
         },
         {
           path: '/ceo/published/mpp/operation',
           component: Operation,
-          props: {department: 'Operation', content: 'mpp'}
+          props: {department: 'Operation', content: 'mpp', statusRouting: 'published'}
         },
         // --------------
         {
@@ -302,17 +302,17 @@ export default new Router({
         {
           path: '/ceo/accepted/mpp/technology',
           component: Technology,
-          props: {department: 'Technology', content: 'mpp', status: 'accepted'}
+          props: {department: 'Technology', content: 'mpp', statusRouting: 'accepted'}
         },
         {
           path: '/ceo/rejected/mpp/technology',
           component: Technology,
-          props: {department: 'Technology', content: 'mpp', status: 'rejected'}
+          props: {department: 'Technology', content: 'mpp', statusRouting: 'rejected'}
         },
         {
           path: '/ceo/published/mpp/technology',
           component: Technology,
-          props: {department: 'Technology', content: 'mpp', status: 'published'}
+          props: {department: 'Technology', content: 'mpp', statusRouting: 'published'}
         },
         // --------------
         {
@@ -333,17 +333,17 @@ export default new Router({
         {
           path: '/ceo/accepted/mpp/business-development',
           component: BusinessDevelopment,
-          props: {department: 'BusinessDevelopment', content: 'mpp'}
+          props: {department: 'BusinessDevelopment', content: 'mpp', statusRouting: 'accepted'}
         },
         {
           path: '/ceo/rejected/mpp/business-development',
           component: BusinessDevelopment,
-          props: {department: 'BusinessDevelopment', content: 'mpp'}
+          props: {department: 'BusinessDevelopment', content: 'mpp', statusRouting: 'rejected'}
         },
         {
           path: '/ceo/published/mpp/business-development',
           component: BusinessDevelopment,
-          props: {department: 'BusinessDevelopment', content: 'mpp'}
+          props: {department: 'BusinessDevelopment', content: 'mpp', statusRouting: 'published'}
         },
         // --------------
         {
@@ -364,17 +364,17 @@ export default new Router({
         {
           path: '/ceo/accepted/mpp/finance',
           component: Finance,
-          props: {department: 'Finance', content: 'mpp', status: 'accepted'}
+          props: {department: 'Finance', content: 'mpp', statusRouting: 'accepted'}
         },
         {
           path: '/ceo/rejected/mpp/finance',
           component: Finance,
-          props: {department: 'Finance', content: 'mpp', status: 'rejected'}
+          props: {department: 'Finance', content: 'mpp', statusRouting: 'rejected'}
         },
         {
           path: '/ceo/published/mpp/finance',
           component: Finance,
-          props: {department: 'Finance', content: 'mpp', status: 'published'}
+          props: {department: 'Finance', content: 'mpp', statusRouting: 'published'}
         },
         // ------
         {
@@ -395,17 +395,17 @@ export default new Router({
         {
           path: '/ceo/accepted/mpp/project-management',
           component: ProjectManagement,
-          props: {department: 'ProjectManagement', content: 'mpp'}
+          props: {department: 'ProjectManagement', content: 'mpp', statusRouting: 'accepted'}
         },
         {
           path: '/ceo/rejected/mpp/project-management',
           component: ProjectManagement,
-          props: {department: 'ProjectManagement', content: 'mpp'}
+          props: {department: 'ProjectManagement', content: 'mpp', statusRouting: 'rejected'}
         },
         {
           path: '/ceo/published/mpp/project-management',
           component: ProjectManagement,
-          props: {department: 'ProjectManagement', content: 'mpp'}
+          props: {department: 'ProjectManagement', content: 'mpp', statusRouting: 'published'}
         },
         // -----
         {
@@ -426,17 +426,17 @@ export default new Router({
         {
           path: '/ceo/accepted/mpp/product-management',
           component: ProductManagement,
-          props: {department: 'ProductManagement', content: 'mpp'}
+          props: {department: 'ProductManagement', content: 'mpp', statusRouting: 'accepted'}
         },
         {
           path: '/ceo/rejected/mpp/product-management',
           component: ProductManagement,
-          props: {department: 'ProductManagement', content: 'mpp'}
+          props: {department: 'ProductManagement', content: 'mpp', statusRouting: 'rejected'}
         },
         {
           path: '/ceo/published/mpp/product-management',
           component: ProductManagement,
-          props: {department: 'ProductManagement', content: 'mpp'}
+          props: {department: 'ProductManagement', content: 'mpp', statusRouting: 'published'}
         }
       ]
     },
@@ -558,17 +558,17 @@ export default new Router({
         },
         {
           path: '/department/mpp/pending',
-          component: DepartmentDasboard,
+          component: MppPending,
           props: {content: 'mpp', param: 'pending'}
         },
         {
           path: '/department/mpp/accepted',
-          component: DepartmentDasboard,
+          component: MppAccepted,
           props: {content: 'mpp', param: 'accepted'}
         },
         {
           path: '/department/mpp/rejected',
-          component: DepartmentDasboard,
+          component: MppRejected,
           props: {content: 'mpp', param: 'rejected'}
         },
         {

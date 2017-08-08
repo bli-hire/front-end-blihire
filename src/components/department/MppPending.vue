@@ -7,9 +7,11 @@
 	      v-for="mpp in JSON.parse(resultContent.resultMpp)"
 	      v-bind:title="mpp.department"
 	      v-bind:message="'Created Date : '+ mpp.createdDate.dayOfWeek + ' - ' +mpp.createdDate.monthOfYear + ' - ' +mpp.createdDate.yearOfEra"
-	      v-bind:statusAccept="mpp.isAccept"
-	      v-bind:statusReject="mpp.isReject"
+	      v-bind:statusAccept="mpp.accept"
+	      v-bind:statusReject="mpp.reject"
+				v-bind:requestedBy="mpp.requestedBy.name"
 	      v-bind:loginStatus="role"
+				v-bind:docType="'mpp'"
 	      v-bind:content="content"
 	      v-bind:id="mpp.id">
 	    </BoxComponent>

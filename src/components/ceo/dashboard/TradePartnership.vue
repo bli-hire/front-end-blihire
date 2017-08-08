@@ -10,6 +10,7 @@
       v-bind:statusCeo="fpk.approveCeo"
       v-bind:statusHead="fpk.approveHead"
       v-bind:loginStatus="'ceo'"
+      v-bind:docType="'fpk'"
       v-bind:content="content"
       v-bind:id="fpk.idFpk"></BoxComponent>
   </div>
@@ -17,11 +18,13 @@
       <BoxComponent
       v-for="mpp in JSON.parse(resultContent.resultMpp)"
       v-bind:title="mpp.department"
-      v-bind:message="'Reason : '+mpp.reason"
       v-bind:statusAccept="mpp.accept"
       v-bind:statusReject="mpp.reject"
+      v-bind:published="mpp.published"
       v-bind:loginStatus="'ceo'"
+      v-bind:docType="'mpp'"
       v-bind:content="content"
+      v-bind:requestedBy="mpp.requestedBy.name"
       v-bind:id="mpp.id"></BoxComponent>
     </div>
 
@@ -50,7 +53,7 @@ export default {
       status: ''
     }
   },
-  props: ['content', 'param', 'approve'],
+  props: ['content', 'param', 'approve', 'statusRouting'],
   beforeMount () {
     // alert(this.content)
     var self = this
@@ -71,7 +74,7 @@ export default {
     } else if (this.content === 'mpp') {
       this.status = this.param
       var endpoint = 'http://localhost:8080/mpp/byDepartment/'
-      if (this.status === 'accepted') {
+      if (this.statusRouting === 'accepted') {
         endpoint = endpoint + 'accepted/ceo'
         self.$http.get(endpoint, {}, {
           headers: {
@@ -88,7 +91,7 @@ export default {
             this.resultContent.resultTotalMpp = totalMpp
           }
         })
-      } else if (this.status === 'rejected') {
+      } else if (this.statusRouting === 'rejected') {
         endpoint = endpoint + 'rejected/ceo'
         self.$http.get(endpoint, {}, {
           headers: {
@@ -105,12 +108,11 @@ export default {
             this.resultContent.resultTotalMpp = totalMpp
           }
         })
-      } else if (this.status === 'published') {
-        endpoint = endpoint + 'published/ceo'
+      } else if (this.statusRouting === 'published') {
+        endpoint = endpoint + 'published'
         self.$http.get(endpoint, {}, {
           headers: {
-            'department': division,
-            'userId': self.idUser
+            'department': division
           }
         }).then(response => {
           if (response.data.data === '[]') {
