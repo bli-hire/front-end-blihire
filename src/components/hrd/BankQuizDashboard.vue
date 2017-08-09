@@ -4,7 +4,7 @@
     <br>
     <div class="">
     <p>Select Department</p>
-       <select class="form-control">
+      <select class="form-control" v-model="department">
         <option value="HumanResource">Human Resource</option>
         <option value="Marketing">Marketing</option>
         <option value="TradePartnership">Trade Partnership</option>
@@ -17,7 +17,7 @@
       </select>
     </div>
     <br>
-    <div class="">
+<!--     <div class="">
     <p>Select Category Question</p>
        <select class="form-control">
         <option value="Easy">Easy</option>
@@ -25,23 +25,34 @@
         <option value="Hard">Hard</option>
       </select>
     </div>
-    <br>
+    <br> -->
+    <button v-on:click="showProblemSetMultipleChoices()" class="btn btn-primary">View Problem Multiple Choices</button>
+    <button v-on:click="showProblemSetEssay()" class="btn btn-primary">View Problem Essay</button>
+    <br><br>
     <table class="table table-bordered">
         <thead>
           <tr>
             <th>No</th>
             <th>Question</th>
-            <th>Answer</th>
+            <th>Difficulty</th>
             <th>Generated</th>
             <th colspan="2">Action</th>
           </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>SampleNo</td>
-          <td>SampleQuestion</td>
-          <td>IsThereSomethingCanIDoInThisWorldOrNotIDontKnowEither</td>
-          <td>No</td>
+        <tr v-for="data in essayData" v-if="stateShowProblem === 'essay'">
+          <td>{{data.id}}</td>
+          <td>{{data.problem}}</td>
+          <td>{{data.problemDifficulty}}</td>
+          <td>{{data.canBeGenerated}}</td>
+          <td><button class="btn btn-primary">Detail</button></td>
+          <td><button class="btn btn-warning">Edit</button></td>
+        </tr>
+          <tr v-for="mltpl in multipleChoicesData" v-if="stateShowProblem === 'multiple'">
+          <td>{{mltpl.id}}</td>
+          <td>{{mltpl.problem}}</td>
+          <td>{{mltpl.problemDifficulty}}</td>
+          <td>{{mltpl.canBeGenerated}}</td>
           <td><button class="btn btn-primary">Detail</button></td>
           <td><button class="btn btn-warning">Edit</button></td>
         </tr>
@@ -53,15 +64,45 @@
 <script>
 export default {
   name: 'bank-quiz-dashboard',
-  props: ['department', 'content'],
+  props: ['content'],
   data () {
     return {
+      department: '',
+      multipleChoicesData: [],
+      essayData: [],
+      stateShowProblem: ''
     }
   },
   beforeMount () {
+    // this.department = JSON.parse(window.sessionStorage.getItem('user')).department
   },
   methods: {
-
+    showProblemSetMultipleChoices () {
+      if (this.validateForm() === false) {
+        return
+      }
+      this.stateShowProblem = 'multiple'
+      this.$http.get('http://localhost:8080/online-test/multiple-choices/' + this.department + '/problems', {}).then(response => {
+        this.multipleChoicesData = response.data
+      })
+    },
+    showProblemSetEssay () {
+      if (this.validateForm() === false) {
+        return
+      }
+      this.validateForm()
+      this.stateShowProblem = 'essay'
+      this.$http.get('http://localhost:8080/online-test/essay/' + this.department + '/problems', {}).then(response => {
+        this.essayData = response.data
+      })
+    },
+    validateForm () {
+      if (this.department === '') {
+        alert('Please choose department')
+        return false
+      }
+      return true
+    }
   }
 }
 </script>
@@ -75,7 +116,7 @@ th {
   text-align: center;
 }
 
-.listContent {
+.listContent{
   text-align: left;
   padding-bottom: 5vh;
 }
