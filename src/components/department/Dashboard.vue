@@ -59,7 +59,6 @@ export default {
   props: ['content', 'param', 'approve'],
   beforeMount () {
     // alert(this.content)
-    this.param = this.processFpk
     var self = this
     var division = JSON.parse(window.sessionStorage.getItem('user')).department
     this.idUser = JSON.parse(window.sessionStorage.getItem('user')).id

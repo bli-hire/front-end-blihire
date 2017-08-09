@@ -27,7 +27,7 @@ import NotFound from '@/components/page-component/NotFound'
 import MppPending from '@/components/department/MppPending'
 import MppAccepted from '@/components/department/MppAccepted'
 import MppRejected from '@/components/department/MppRejected'
-import FpkPending from '@/components/department/FpkPending'
+// import FpkPending from '@/components/department/FpkPending'
 // import FpkAccepted from '@/components/department/FpkAccepted'
 // import FpkRejected from '@/components/department/FpkRejected'
 import BankQuizDashboard from '@/components/hrd/BankQuizDashboard'
@@ -759,8 +759,8 @@ export default new Router({
         },
         {
           path: '/hrd/fpk/pending',
-          component: FpkPending,
-          props: {content: 'fpk'}
+          component: DepartmentDasboard,
+          props: { content: 'fpk', param: 'pending', approve: 'DepartmentHead' }
         },
         {
           path: '/hrd/fpk/detail/:id',
@@ -773,7 +773,7 @@ export default new Router({
         {
           path: '/hrd/mpp/pending',
           component: MppPending,
-          props: {content: 'mpp'}
+          props: {content: 'mpp', param: 'pending'}
         },
         {
           path: '/hrd/fpk/accepted',
@@ -783,7 +783,7 @@ export default new Router({
         {
           path: '/hrd/mpp/accepted',
           component: MppAccepted,
-          props: {content: 'mpp'}
+          props: {content: 'mpp', param: 'accepted'}
         },
         {
           path: '/hrd/fpk/rejected',
@@ -793,7 +793,7 @@ export default new Router({
         {
           path: '/hrd/mpp/rejected',
           component: MppRejected,
-          props: {content: 'mpp'}
+          props: {content: 'mpp', param: 'rejected'}
         },
         {
           path: '/hrd/candidates/view-cv/:id',
