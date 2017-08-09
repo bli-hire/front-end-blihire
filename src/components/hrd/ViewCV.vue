@@ -346,9 +346,11 @@
       <textarea name="Text1" cols="140" rows="8" class="form-control" ></textarea>
        <br/>
 
-    <button type="submit" class="btn btn-primary" name="">Accept CV</button>
+    <button type="reset" class="btn btn-info" name="" v-on:click="printCv()">print CV</button>
 
+    <button type="submit" class="btn btn-primary" name="">Accept CV</button>
     <button type="reset" class="btn btn-warning" name="">Reject</button>
+
 
   </div>
 </template>
@@ -371,6 +373,11 @@ export default {
       this.detailCV = response.data[0]
       // alert(JSON.stringify(this.detailCV.bro[1]))
     })
+  },
+  methods: {
+    printCv () {
+      window.location.href = 'http://localhost:8080/cv/reportCV/' + this.$route.params.id
+    }
   }
 }
 </script>
