@@ -53,10 +53,11 @@ export default {
       idUser: '',
       role: '',
       status: '',
-      loginStatus: ''
+      loginStatus: '',
+      processFpkData: ''
     }
   },
-  props: ['content', 'param', 'approve'],
+  props: ['content', 'param', 'approve', 'processFpk'],
   beforeMount () {
     // alert(this.content)
     var self = this
@@ -71,17 +72,43 @@ export default {
       this.loginStatus = 'ceo'
     }
     if (this.content === 'fpk') {
-      self.$http.get('http://localhost:8080/fpk/byDepartment/' + this.param, {}, {
-        headers: {
-          'department': division,
-          'role': this.approve
-        }
-      }).then(response => {
-        var fpk = response.data.data
-        var totalFpk = response.data.totalData
-        this.resultContent.resultFpk = fpk
-        this.resultContent.resultTotalFpk = totalFpk
-      })
+      this.processFpkData = this.processFpk
+      if (this.processFpkData === 'accept' || this.processFpkData === 'rejected') {
+        self.$http.get('http://localhost:8080/fpk/byDepartment/' + this.param, {}, {
+          headers: {
+            'department': division,
+            'role': this.role
+          }
+        }).then(response => {
+          var fpk = response.data.data
+          var totalFpk = response.data.totalData
+          this.resultContent.resultFpk = fpk
+          this.resultContent.resultTotalFpk = totalFpk
+        })
+      } else if (this.processFpkData === 'waitingCeo' || this.processFpkData === 'acceptedCeo' || this.processFpkData === 'rejectedCeo') {
+        self.$http.get('http://localhost:8080/fpk/byDepartment/' + this.param, {}, {
+          headers: {
+            'department': division,
+            'role': 'CEO'
+          }
+        }).then(response => {
+          var fpk = response.data.data
+          var totalFpk = response.data.totalData
+          this.resultContent.resultFpk = fpk
+          this.resultContent.resultTotalFpk = totalFpk
+        })
+      } else {
+        self.$http.get('http://localhost:8080/fpk/byRequest/' + this.param, {}, {
+          headers: {
+            'userId': this.idUser
+          }
+        }).then(response => {
+          var fpk = response.data.data
+          var totalFpk = response.data.totalData
+          this.resultContent.resultFpk = fpk
+          this.resultContent.resultTotalFpk = totalFpk
+        })
+      }
     } else if (this.content === 'mpp') {
       this.status = this.param
       var endpoint = 'http://localhost:8080/mpp/byDepartment/'

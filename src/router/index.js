@@ -468,27 +468,27 @@ export default new Router({
         {
           path: '/department/fpk/process/accept',
           component: DepartmentDasboard,
-          props: {content: 'fpk', processFpk: 'accept'}
+          props: {content: 'fpk', param: 'accepted', processFpk: 'accept'}
         },
         {
           path: '/department/fpk/process/rejected',
           component: DepartmentDasboard,
-          props: {content: 'fpk', processFpk: 'rejected'}
+          props: {content: 'fpk', processFpk: 'rejected', param: 'rejected'}
         },
         {
           path: '/department/fpk/process/ceo/waiting',
           component: DepartmentDasboard,
-          props: {content: 'fpk', processFpk: 'waitingCeo'}
+          props: {content: 'fpk', processFpk: 'waitingCeo', param: 'pending'}
         },
         {
           path: '/department/fpk/process/ceo/accepted',
           component: DepartmentDasboard,
-          props: {content: 'fpk', processFpk: 'acceptedCeo'}
+          props: {content: 'fpk', processFpk: 'acceptedCeo', param: 'accepted'}
         },
         {
           path: '/department/fpk/process/ceo/rejected',
           component: DepartmentDasboard,
-          props: {content: 'fpk', processFpk: 'rejectedCeo'}
+          props: {content: 'fpk', processFpk: 'rejectedCeo', param: 'rejected'}
         },
         {
           path: '/department/fpk/create-new',
