@@ -7,16 +7,16 @@
         <div class="form-group">
           <table class="table table-bordered table-condensed">
           <tr>
-              <th>Departemen Pemohon</th> 
+              <th>Departemen Pemohon</th>
               <td>{{department}}</td>
           </tr>
-          
+
           <tr>
             <th>Jabatan</th>
             <td>{{jobPositionRequester}}</td>
           </tr>
         <tr>
-          <th>Posisi/Jumlah</th> 
+          <th>Posisi/Jumlah</th>
           <td>{{number}}</td>
         </tr>
 
@@ -67,7 +67,7 @@
       <button v-if="(role === 'HeadHR' || role === 'HR') && published === false && statusPage === 'requestedToPublish'" type="reset" class="btn btn-primary" name="" @click="publishFpk()">Publish Fpk to Job Vacancy</button>
       <!-- <button v-if="(role !== 'DepartmentTeamMember' || role !== 'HR') || (role !== 'HR' && published === false)" type="reset" class="btn btn-warning" @click="rejectFpk()" name="">Reject</button> -->
       <button v-if="role !== 'DepartmentTeamMember' && role !== 'HR' && published === false && alreadyApproveHead !== true " type="reset" class="btn btn-warning" @click="rejectFpk()" name="">Reject</button>
-      
+
       </div>
     </div>
 </template>
