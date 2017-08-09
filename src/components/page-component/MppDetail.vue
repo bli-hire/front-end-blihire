@@ -168,10 +168,10 @@ export default{
       this.mpps = objMpp.mppDetails
     }, () => {
       alert('No Valid Mpp for this id')
-      this.$router.go(0)
+      this.$router.push('/' + roleUrl + '/')
     }).catch((e) => {
       alert('No Valid Mpp for this id')
-      this.$router.go(0)
+      this.$router.push('/' + roleUrl + '/')
     })
   },
   methods: {
@@ -190,7 +190,7 @@ export default{
         idMpp: parseInt(this.idSelector)
       }, (json) => {
         alert(JSON.stringify(json.message + self.role))
-        this.$router.go(0)
+        this.$router.push('/' + urlRole + '/mpp')
       })
     },
     hrdPublish () {
@@ -217,7 +217,7 @@ export default{
         idMpp: parseInt(this.idSelector)
       }, (json) => {
         alert(JSON.stringify(json.message + self.role))
-        this.$router.go(0)
+        this.$router.push('/' + urlRole + '/mpp')
       })
     }
   }
