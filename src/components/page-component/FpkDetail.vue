@@ -64,7 +64,7 @@
       <button v-if="(role.includes('Department') || role.includes('HR')) && alreadyApproveHead === false && alreadyApproveCeo === false" type="reset" class="btn btn-primary" name="" @click="editFpk()">Edit Fpk</button>
       <button v-if="(role === 'DepartmentHead' || role === 'HeadHR') && alreadyApproveHead === false" type="submit" class="btn btn-primary" name="" @click="approveFpk()">Approve as Head</button>
       <button v-if="role === 'CEO' && published === false && alreadyApproveCeo !== true" type="reset" class="btn btn-primary" name="" @click="approveFpk()">Approve as CEO</button>
-      <button v-if="(role === 'HeadHR' || role === 'HR') && published === false && statusPage === 'requestedToPublish'" type="reset" class="btn btn-primary" name="" @click="approveFpk()">Publish Fpk to Job Vacancy</button>
+      <button v-if="(role === 'HeadHR' || role === 'HR') && published === false && statusPage === 'requestedToPublish'" type="reset" class="btn btn-primary" name="" @click="publishFpk()">Publish Fpk to Job Vacancy</button>
       <!-- <button v-if="(role !== 'DepartmentTeamMember' || role !== 'HR') || (role !== 'HR' && published === false)" type="reset" class="btn btn-warning" @click="rejectFpk()" name="">Reject</button> -->
       <button v-if="role !== 'DepartmentTeamMember' && role !== 'HR' && published === false && alreadyApproveHead !== true " type="reset" class="btn btn-warning" @click="rejectFpk()" name="">Reject</button>
       
@@ -157,7 +157,7 @@ export default{
       })
     },
     approveFpk () {
-      if (this.role === 'HeadHR') {
+      if (this.role === 'HeadHR' || this.role === 'DepartmentHead') {
         this.$http.post('http://localhost:8080/fpk/approve/asHeadDepartment', {
           idUser: this.idUser,
           idFpk: JSON.parse(this.idSelector)
@@ -165,8 +165,8 @@ export default{
           alert(JSON.stringify(json.message))
           this.$router.go(-1)
         })
-      } else {
-        this.$http.post('http://localhost:8080/fpk/approve', {
+      } else if (this.role === 'CEO') {
+        this.$http.post('http://localhost:8080/fpk/approve/asCeo', {
           idUser: this.idUser,
           idFpk: JSON.parse(this.idSelector)
         }, (json) => {
@@ -193,6 +193,15 @@ export default{
           this.$router.go(-1)
         })
       }
+    },
+    publishFpk () {
+      this.$http.post('http://localhost:8080/fpk/approve', {
+        idUser: this.idUser,
+        idFpk: JSON.parse(this.idSelector)
+      }, (json) => {
+        alert(JSON.stringify(json.message))
+        this.$router.go(-1)
+      })
     }
   }
 }
