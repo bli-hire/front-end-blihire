@@ -9,18 +9,21 @@
 
       <br/>
       <br/>
-      <div class="form-group">
-        <input type="email" class="form-control" name="internalEmail" id="author-name" v-model="email" required="true" placeholder="email / username" />
-      </div>
-      <br/>
-      <div class="form-group">
-        <input type="password" class="form-control" name="internalPassword" placeholder="password" id="message-text" required="true" v-model="password"/>
-      </div>
-      <br/>
-      <br/>
-      <div class="form-group">
-        <button class="btn-login btn btn-primary" v-on:click="login()">Login</button>
-      </div>
+      <form class="" v-on:submit.prevent="onSubmit" method="post">
+        <div class="form-group">
+          <input type="email" class="form-control" name="internalEmail" id="author-name" v-model="email" required="true" placeholder="email / username" />
+        </div>
+        <br/>
+        <div class="form-group">
+          <input type="password" class="form-control" name="internalPassword" placeholder="password" id="message-text" required="true" v-model="password"/>
+        </div>
+        <br/>
+        <br/>
+        <div class="form-group">
+          <button class="btn-login btn btn-primary" v-on:click="login()">Login</button>
+        </div>
+      </form>
+
   </div>
 </template>
 
