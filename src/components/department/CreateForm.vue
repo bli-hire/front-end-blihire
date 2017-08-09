@@ -352,7 +352,7 @@ export default {
           jobPositionRequester: self.jobPositionRequester,
           completeness: ''}, (json) => {
             alert('Sukses Terkirim')
-            this.$router.go(-1)
+            this.$router.go(0)
           })
       } else if (self.role === 'DepartmentHead' || self.role === 'HeadHR') {
         self.$http.post('http://localhost:8080/fpk/add/byHeadDepartment', {
@@ -368,7 +368,7 @@ export default {
           jobPositionRequester: self.jobPositionRequester,
           completeness: ''}, (json) => {
             alert('Sukses Terkirim')
-            this.$router.go(-1)
+            this.$router.go(0)
           })
       }
     },
@@ -411,7 +411,7 @@ export default {
       // Fungsi dibawah ini untuk mengecek data di localstorage, untuk array pertama
       // alert(JSON.stringify(JSON.parse(window.localStorage.getItem('detailMpp'))[0]))
       alert('Detail MPP berhasil dibuat')
-      this.$router.go(-1)
+      this.$router.go(0)
     },
     reset () {
       var self = this
@@ -479,7 +479,8 @@ export default {
       this.arrayMppDetail[this.indeksMppDetail] = resultObjectDetailMppEdited
       window.localStorage.setItem('detailMpp', JSON.stringify(this.arrayMppDetail))
       alert('Data Berhasil di ubah')
-      this.$router.go(-1)
+      this.$router.go(0)
+      // window.location.href.reload()
     },
     validateComponentFormFpk () {
       var self = this
@@ -540,7 +541,7 @@ export default {
           }
         }).then(json => {
           alert('Data Berhasil Di Update')
-          this.$router.go(-1)
+          this.$router.go(0)
         })
     }
   }

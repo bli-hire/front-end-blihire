@@ -616,8 +616,18 @@ export default new Router({
         },
         {
           path: '/hrd/mpp/create-new',
+          component: CreateMppDashboard,
+          props: {content: 'mpp'}
+        },
+        {
+          path: '/hrd/mpp/create-new/detail',
           component: CreateForm,
           props: {content: 'mpp'}
+        },
+        {
+          path: '/hrd/mpp/create-new/detail-edit',
+          component: CreateForm,
+          props: {content: 'mpp', edit: true}
         },
         {
           path: '/hrd/mpp/history'
