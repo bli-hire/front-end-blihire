@@ -800,7 +800,7 @@ export default new Router({
           component: HrdViewCV
         },
         {
-          path: '/hrd/candidates/hiring-process',
+          path: '/hrd/candidates/hiring-process/:id',
           component: HrdViewHiringProcess
         },
         {
