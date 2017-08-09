@@ -370,6 +370,41 @@ export default {
             return false
           }
         }
+        if (this.department === 'HumanResource') {
+          if (this.detailMpp[i].position === jobPosition) {
+            return false
+          }
+        }
+        if (this.department === 'TradePartnership') {
+          if (this.detailMpp[i].position === jobPosition) {
+            return false
+          }
+        }
+        if (this.department === 'Operation') {
+          if (this.detailMpp[i].position === jobPosition) {
+            return false
+          }
+        }
+        if (this.department === 'BusinessDevelopment') {
+          if (this.detailMpp[i].position === jobPosition) {
+            return false
+          }
+        }
+        if (this.department === 'Finance') {
+          if (this.detailMpp[i].position === jobPosition) {
+            return false
+          }
+        }
+        if (this.department === 'ProjectManagement') {
+          if (this.detailMpp[i].position === jobPosition) {
+            return false
+          }
+        }
+        if (this.department === 'ProductManagement') {
+          if (this.detailMpp[i].position === jobPosition) {
+            return false
+          }
+        }
       }
       return true
     },

@@ -4,7 +4,7 @@
 		<!-- <BoxComponent v-for="n in 3" v-bind:title="content" message="Please we need ..."></BoxComponent> -->
 		<div v-if="content === 'mpp'">
 	    <BoxComponent
-			v-for="mpp in JSON.parse(resultContent.resultMpp)"
+			v-for="mpp in resultContent.resultMpp"
 			v-bind:title="mpp.department"
 			v-bind:message="'Created Date : '+ mpp.createdDate.dayOfWeek + ' - ' +mpp.createdDate.monthOfYear + ' - ' +mpp.createdDate.yearOfEra"
 			v-bind:statusAccept="mpp.accept"
@@ -33,7 +33,7 @@ export default {
       resultContent: {
         resultFpk: {},
         resultTotalFpk: 0,
-        resultMpp: {},
+        resultMpp: [],
         resultTotalMpp: 0
       },
       role: '',
@@ -60,8 +60,8 @@ export default {
         if (response.data.data === '[]') {
           this.resultContent.resultTotalMpp = 0
         } else {
-          var mpp = JSON.stringify(response.data.data)
-          var totalMpp = JSON.stringify(response.data.totalData)
+          var mpp = response.data.data
+          var totalMpp = response.data.totalData
           this.resultContent.resultMpp = mpp
           this.resultContent.resultTotalMpp = totalMpp
         }

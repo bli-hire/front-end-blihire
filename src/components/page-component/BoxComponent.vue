@@ -14,7 +14,8 @@
       <div v-if="docType === 'mpp'">
         <h3>{{title}}</h3>
         <h4>Requested By : {{requestedBy}}</h4>
-        <h5>CEO Approve : {{statusCeo}}</h5>
+        <h5>CEO Approve : {{statusCeoData}}</h5>
+        <h5 v-if="createdDateData != null">Created date: {{createdDateData}}</h5>
         <h5 v-if="published === true">{{publishedBy}}</h5>
         <button class="btn btn-primary">
           <router-link :to="{ path: '/'+loginStatus+'/'+content+'/detail/'+id , params: { id: id }, query: { ceoApprove: statusCeo, headApprove: statusHead, accept: statusAccept }}">Detail</router-link>
@@ -31,11 +32,14 @@ export default {
     return {
       status: '',
       statusApproveCeo: '',
-      statusApproveHead: ''
+      statusApproveHead: '',
+      statusCeoData: '',
+      createdDateData: ''
     }
   },
-  props: ['title', 'message', 'loginStatus', 'content', 'dataContent', 'id', 'statusAccept', 'statusReject', 'statusCeo', 'statusHead', 'docType', 'requestedBy', 'publishedBy', 'published'],
+  props: ['title', 'message', 'loginStatus', 'content', 'dataContent', 'id', 'statusAccept', 'statusReject', 'statusCeo', 'statusHead', 'docType', 'requestedBy', 'publishedBy', 'published', 'createdDate'],
   beforeMount () {
+    this.createdDateData = this.createdDate
     if (this.statusAccept === false && this.statusReject === false) {
       this.status = 'Not Yet Accepted'
     } else if (this.statusAccept === true && this.statusReject === false) {
@@ -73,11 +77,11 @@ export default {
       }
     } else if (this.docType === 'mpp') {
       if (this.statusAccept === false && this.statusReject === false) {
-        this.statusCeo = 'Not Yet Accepted'
+        this.statusCeoData = 'Not Yet Accepted'
       } else if (this.statusAccept === true && this.statusReject === false) {
-        this.statusCeo = 'Accepted'
+        this.statusCeoData = 'Accepted'
       } else if (this.statusAccept === false && this.statusReject === true) {
-        this.statusCeo = 'Rejected'
+        this.statusCeoData = 'Rejected'
       }
     }
   }

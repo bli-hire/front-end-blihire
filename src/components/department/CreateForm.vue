@@ -20,7 +20,7 @@
         <br/>
 
         <label for="">Tanggal Dibutuhkan</label>
-        <input type="date" id="" class="form-control" v-model="tanggalDibutuhkan" :value="dateNeeded"/>
+          <input type="date" id="" class="form-control" v-model="tanggalDibutuhkan" :value="dateNeeded"/>
         <br/>
 
         <label>Alasan</label>
@@ -86,7 +86,7 @@
         <div class="form-group">
           <label for="pos">Position (select one):</label>
             <select class="form-control" id="pos" v-model="positionMpp" >
-              <option v-for="job in listJobPosition" v-bind:value="job">{{job}}</option>
+              <option v-bind:value="jobPosition">{{jobPosition}}</option>
             </select>
           <br/>
 
