@@ -718,28 +718,44 @@ export default new Router({
           props: {department: 'HumanResource'}
         },
         {
-          path: '/hrd/candidates/marketing'
+          path: '/hrd/candidates/marketing',
+          component: HrdCandidates,
+          props: {department: 'Marketing'}
         },
         {
-          path: '/hrd/candidates/trade-partnership'
+          path: '/hrd/candidates/trade-partnership',
+          component: HrdCandidates,
+          props: {department: 'TradePartnership'}
         },
         {
-          path: '/hrd/candidates/operation'
+          path: '/hrd/candidates/operation',
+          component: HrdCandidates,
+          props: {department: 'Operation'}
         },
         {
-          path: '/hrd/candidates/technology'
+          path: '/hrd/candidates/technology',
+          component: HrdCandidates,
+          props: {department: 'Technology'}
         },
         {
-          path: '/hrd/candidates/business-development'
+          path: '/hrd/candidates/business-development',
+          component: HrdCandidates,
+          props: {department: 'BusinessDevelopment'}
         },
         {
-          path: '/hrd/candidates/finance'
+          path: '/hrd/candidates/finance',
+          component: HrdCandidates,
+          props: {department: 'Finance'}
         },
         {
-          path: '/hrd/candidates/project-management'
+          path: '/hrd/candidates/project-management',
+          component: HrdCandidates,
+          props: {department: 'ProjectManagement'}
         },
         {
-          path: '/hrd/candidates/product-management'
+          path: '/hrd/candidates/product-management',
+          component: HrdCandidates,
+          props: {department: 'ProductManagement'}
         },
         {
           path: '/hrd/fpk/pending',
@@ -780,7 +796,7 @@ export default new Router({
           props: {content: 'mpp'}
         },
         {
-          path: '/hrd/candidates/view-cv',
+          path: '/hrd/candidates/view-cv/:id',
           component: HrdViewCV
         },
         {
