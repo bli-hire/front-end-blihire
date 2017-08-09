@@ -823,11 +823,13 @@ export default new Router({
         },
         {
           path: '/hrd/published/mpp/detail/:id',
-          component: MppDetail
+          component: MppDetail,
+          props: {param: 'published'}
         },
         {
           path: '/hrd/requested/mpp/detail/:id',
-          component: MppDetail
+          component: MppDetail,
+          props: {param: 'requested'}
         },
         {
           path: '/hrd/published/fpk/human-resource',

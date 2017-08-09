@@ -49,7 +49,7 @@
         <textarea name="Text1" cols="140" rows="8"></textarea>
         <br/>
     </div>
-    <button v-if="role.includes('HR')"  v-on:click="hrdPublish()" type="reset" class="btn btn-primary" name="">Publish</button>
+    <button v-if="role.includes('HR') && this.param === 'requested'"  v-on:click="hrdPublish()" type="reset" class="btn btn-primary" name="">Publish</button>
     <button v-if="role === 'CEO'"  v-on:click="ceoApprove()" type="reset" class="btn btn-primary" name="">Approve</button>
     <button v-if="role === 'CEO'" v-on:click="ceoReject()"type="reset" class="btn btn-warning" name="">Reject</button>
 
@@ -126,6 +126,7 @@ export default{
       mpps: []
     }
   },
+  props: ['param'],
   beforeMount () {
     var self = this
     this.idSelector = self.$route.params.id
@@ -167,10 +168,10 @@ export default{
       this.mpps = objMpp.mppDetails
     }, () => {
       alert('No Valid Mpp for this id')
-      this.$router.push('/' + roleUrl + '/')
+      this.$router.go(0)
     }).catch((e) => {
       alert('No Valid Mpp for this id')
-      this.$router.push('/' + roleUrl + '/')
+      this.$router.go(0)
     })
   },
   methods: {
@@ -189,7 +190,7 @@ export default{
         idMpp: parseInt(this.idSelector)
       }, (json) => {
         alert(JSON.stringify(json.message + self.role))
-        this.$router.push('/' + urlRole + '/mpp')
+        this.$router.go(0)
       })
     },
     hrdPublish () {
@@ -198,7 +199,7 @@ export default{
         idMpp: parseInt(this.idSelector)
       }, (json) => {
         alert(JSON.stringify(json.message))
-        this.$router.push('/')
+        this.$router.go(0)
       })
     },
     ceoReject () {
@@ -216,7 +217,7 @@ export default{
         idMpp: parseInt(this.idSelector)
       }, (json) => {
         alert(JSON.stringify(json.message + self.role))
-        this.$router.push('/' + urlRole + '/mpp')
+        this.$router.go(0)
       })
     }
   }

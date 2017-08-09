@@ -423,7 +423,9 @@ export default {
         idRequested: self.idRequested,
         mppDetails: this.detailMpp}, (json) => {
           alert('Sukses Terkirim')
-          this.$router.push('/' + self.role + '/')
+          localStorage.removeItem('detailMpp')
+          window.localStorage.clear
+          this.$router.go(0)
         })
     },
     clearLoc () {
@@ -432,12 +434,13 @@ export default {
     },
     getIndexEditMpp (jobPosition) {
       for (var i = 0; i < this.detailMpp.length; i++) {
-        if (this.detailMpp[i].position.jobPosition === jobPosition) {
+        if (this.detailMpp[i].position === jobPosition) {
           return i
         }
       }
     },
     editMppDetail (jobPosition) {
+      this.getIndexEditMpp(jobPosition)
       this.$router.push({
         path: 'create-new/detail-edit',
         query: {indeksEditMpp: this.getIndexEditMpp(jobPosition), jobPosition: jobPosition}
