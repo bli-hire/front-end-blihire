@@ -8,7 +8,7 @@
         <h5>CEO Approve : {{statusApproveCeo}}</h5>
         <h5>HRD Accept : {{status}}</h5>
         <button class="btn btn-primary">
-          <router-link :to="{ path: '/'+loginStatus+'/'+content+'/detail/'+id , params: { id: id }, query: { ceoApprove: statusCeo, headApprove: statusHead, accept: statusAccept }}">Detail</router-link>
+          <router-link :to="{ path: '/'+loginStatus+'/'+content+'/detail/'+id , params: { id: id }, query: { ceoApprove: statusCeo, headApprove: statusHead, confirmToPublish: statusAccept , statusPublish: statusReject}}">Detail</router-link>
         </button>
       </div>
       <div v-if="docType === 'mpp'">
@@ -36,12 +36,29 @@ export default {
   },
   props: ['title', 'message', 'loginStatus', 'content', 'dataContent', 'id', 'statusAccept', 'statusReject', 'statusCeo', 'statusHead', 'docType', 'requestedBy', 'publishedBy', 'published'],
   beforeMount () {
+    if (this.statusAccept === false && this.statusReject === false) {
+      this.status = 'Not Yet Accepted'
+    } else if (this.statusAccept === true && this.statusReject === false) {
+      this.status = 'Accepted'
+    } else if (this.statusAccept === false && this.statusReject === true) {
+      this.status = 'Rejected'
+    }
+    if (this.statusCeo === true) {
+      this.statusApproveCeo = 'CEO already Approved'
+    } else if (this.statusCeo === false) {
+      this.statusApproveCeo = 'CEO not yet approve'
+    }
+    if (this.statusHead === true) {
+      this.statusApproveHead = 'Head already Approved'
+    } else if (this.statusHead === false) {
+      this.statusApproveHead = 'Head not yet approve'
+    }
     if (this.docType === 'fpk') {
       if (this.statusAccept === false && this.statusReject === false) {
         this.status = 'Not Yet Accepted'
-      } else if (this.statusAccept === true && this.statusReject === false) {
+      } else if (this.statusAccept === true && this.statusReject === true) {
         this.status = 'Accepted'
-      } else if (this.statusAccept === false && this.statusReject === true) {
+      } else if (this.statusAccept === true && this.statusReject === false) {
         this.status = 'Rejected'
       }
       if (this.statusCeo === true) {

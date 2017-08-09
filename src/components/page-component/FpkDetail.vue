@@ -55,15 +55,18 @@
           <td>{{skillKnowledge}}</td>
         </tr>
       </table>
-      
-        <label v-if="role !== 'DepartmentTeamMember'">Comment</label>
+      <div v-if="role !== 'DepartmentTeamMember' && published === true">
+        <label>Comment</label>
         <textarea v-if="role !== 'DepartmentTeamMember'"name="Text1" cols="140" rows="8" class="form-control" ></textarea>
-         <br/>
+      </div>
+       <br/>
 
-      <button v-if="role.includes('Department') && alreadyApproveHead === false && alreadyApproveCeo === false" type="reset" class="btn btn-primary" name="" @click="editFpk()">Edit Fpk</button>
-      <button v-if="role === 'DepartmentHead' && alreadyApproveHead === false" type="submit" class="btn btn-primary" name="" @click="approveFpk()">Apply Fpk</button>
-      <button v-if="role.includes('HR') || role === 'CEO' " type="reset" class="btn btn-primary" name="" @click="approveFpk()">Approve</button>
-      <button v-if="role !== 'DepartmentTeamMember'" type="reset" class="btn btn-warning" @click="rejectFpk()" name="">Reject</button>
+      <button v-if="(role.includes('Department') || role.includes('HR')) && alreadyApproveHead === false && alreadyApproveCeo === false" type="reset" class="btn btn-primary" name="" @click="editFpk()">Edit Fpk</button>
+      <button v-if="(role === 'DepartmentHead' || role === 'HeadHR') && alreadyApproveHead === false" type="submit" class="btn btn-primary" name="" @click="approveFpk()">Approve as Head</button>
+      <button v-if="role === 'CEO' && published === false && alreadyApproveCeo !== true" type="reset" class="btn btn-primary" name="" @click="approveFpk()">Approve as CEO</button>
+      <button v-if="(role === 'HeadHR' || role === 'HR') && published === false && statusPage === 'requestedToPublish'" type="reset" class="btn btn-primary" name="" @click="approveFpk()">Publish Fpk to Job Vacancy</button>
+      <!-- <button v-if="(role !== 'DepartmentTeamMember' || role !== 'HR') || (role !== 'HR' && published === false)" type="reset" class="btn btn-warning" @click="rejectFpk()" name="">Reject</button> -->
+      <button v-if="role !== 'DepartmentTeamMember' && role !== 'HR' && published === false && alreadyApproveHead !== true " type="reset" class="btn btn-warning" @click="rejectFpk()" name="">Reject</button>
       
       </div>
     </div>
@@ -92,7 +95,9 @@ export default{
       alreadyApproveHead: '',
       alreadyApproveCeo: '',
       statusApproveHead: '',
-      statusApproveCeo: ''
+      statusApproveCeo: '',
+      published: '',
+      statusPage: ''
     }
   },
   beforeMount () {
@@ -105,7 +110,14 @@ export default{
     self.alreadyApproveHead = self.$route.query.headApprove
     // alert(self.alreadyApproveHead)
     self.alreadyApproveCeo = self.$route.query.ceoApprove
+    self.statusPage = self.$route.query.statusPage
     // alert(self.alreadyApproveCeo)
+    // self.published = self.$route.query.accept
+    if (self.$route.query.confirmToPublish === true && self.$route.query.statusPublish === true) {
+      self.published = true
+    } else if (self.$route.query.confirmToPublish === false) {
+      self.published = false
+    }
     if (self.role.includes('Department')) {
       this.roleUrl = 'department'
     }

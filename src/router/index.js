@@ -32,6 +32,7 @@ import FpkPending from '@/components/department/FpkPending'
 // import FpkRejected from '@/components/department/FpkRejected'
 import BankQuizDashboard from '@/components/hrd/BankQuizDashboard'
 import CreateMppDashboard from '@/components/page-component/CreateMppDashboard'
+import BankQuizCreateForm from '@/components/page-component/CreateFormBankQuiz'
 
 Vue.use(Router)
 
@@ -717,33 +718,57 @@ export default new Router({
           props: {department: 'HumanResource'}
         },
         {
-          path: '/hrd/candidates/marketing'
+          path: '/hrd/candidates/marketing',
+          component: HrdCandidates,
+          props: {department: 'Marketing'}
         },
         {
-          path: '/hrd/candidates/trade-partnership'
+          path: '/hrd/candidates/trade-partnership',
+          component: HrdCandidates,
+          props: {department: 'TradePartnership'}
         },
         {
-          path: '/hrd/candidates/operation'
+          path: '/hrd/candidates/operation',
+          component: HrdCandidates,
+          props: {department: 'Operation'}
         },
         {
-          path: '/hrd/candidates/technology'
+          path: '/hrd/candidates/technology',
+          component: HrdCandidates,
+          props: {department: 'Technology'}
         },
         {
-          path: '/hrd/candidates/business-development'
+          path: '/hrd/candidates/business-development',
+          component: HrdCandidates,
+          props: {department: 'BusinessDevelopment'}
         },
         {
-          path: '/hrd/candidates/finance'
+          path: '/hrd/candidates/finance',
+          component: HrdCandidates,
+          props: {department: 'Finance'}
         },
         {
-          path: '/hrd/candidates/project-management'
+          path: '/hrd/candidates/project-management',
+          component: HrdCandidates,
+          props: {department: 'ProjectManagement'}
         },
         {
-          path: '/hrd/candidates/product-management'
+          path: '/hrd/candidates/product-management',
+          component: HrdCandidates,
+          props: {department: 'ProductManagement'}
         },
         {
           path: '/hrd/fpk/pending',
           component: FpkPending,
           props: {content: 'fpk'}
+        },
+        {
+          path: '/hrd/fpk/detail/:id',
+          component: FpkDetail
+        },
+        {
+          path: '/hrd/mpp/detail/:id',
+          component: MppDetail
         },
         {
           path: '/hrd/mpp/pending',
@@ -771,7 +796,7 @@ export default new Router({
           props: {content: 'mpp'}
         },
         {
-          path: '/hrd/candidates/view-cv',
+          path: '/hrd/candidates/view-cv/:id',
           component: HrdViewCV
         },
         {
@@ -888,6 +913,16 @@ export default new Router({
           path: '/hrd/bank/quiz',
           component: BankQuizDashboard,
           props: {content: 'quiz'}
+        },
+        {
+          path: '/hrd/bank/quiz/create/multiple-choice',
+          component: BankQuizCreateForm,
+          props: {content: 'multipleChoice'}
+        },
+        {
+          path: '/hrd/bank/quiz/create/essay',
+          component: BankQuizCreateForm,
+          props: {content: 'essay'}
         }
       ]
     }
