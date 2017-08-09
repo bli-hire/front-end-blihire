@@ -9,23 +9,22 @@
       v-bind:statusReject="fpk.statusAccept"
       v-bind:statusCeo="fpk.approveCeo"
       v-bind:statusHead="fpk.approveHead"
-      v-bind:loginStatus="loginStatus"
-      v-bind:content="content"
+      v-bind:loginStatus="'ceo'"
       v-bind:docType="'fpk'"
+      v-bind:content="content"
       v-bind:id="fpk.idFpk"></BoxComponent>
   </div>
   <div v-if="content === 'mpp'">
       <BoxComponent
       v-for="mpp in resultContent.resultMpp"
       v-bind:title="mpp.department"
-      v-bind:message="'Reason : '+mpp.reason"
-      v-bind:requestedBy="mpp.requestedBy.name"
-      v-bind:createdDate="mpp.createdDate.dayOfWeek + ' - ' +mpp.createdDate.monthOfYear + ' - ' +mpp.createdDate.yearOfEra"
       v-bind:statusAccept="mpp.accept"
       v-bind:statusReject="mpp.reject"
-      v-bind:loginStatus="loginStatus"
-      v-bind:content="content"
+      v-bind:published="mpp.published"
+      v-bind:loginStatus="'ceo'"
       v-bind:docType="'mpp'"
+      v-bind:content="content"
+      v-bind:requestedBy="mpp.requestedBy.name"
       v-bind:id="mpp.id"></BoxComponent>
     </div>
 
@@ -41,7 +40,7 @@ export default {
   components: {
     BoxComponent
   },
-  name: 'department-dashboard',
+  name: 'business-development',
   data () {
     return {
       resultContent: {
@@ -51,45 +50,20 @@ export default {
         resultTotalMpp: 0
       },
       idUser: '',
-      role: '',
-      status: '',
-      loginStatus: '',
-      processFpkData: ''
+      status: ''
     }
   },
-  props: ['content', 'param', 'approve', 'processFpk'],
+  props: ['content', 'param', 'approve', 'statusRouting'],
   beforeMount () {
     // alert(this.content)
     var self = this
-    var division = JSON.parse(window.sessionStorage.getItem('user')).department
+    var division = 'HumanResource'
     this.idUser = JSON.parse(window.sessionStorage.getItem('user')).id
-    this.role = JSON.parse(window.sessionStorage.getItem('user')).role
-    if (this.role === 'HeadHR' || this.role === 'HR') {
-      this.loginStatus = 'hrd'
-    } else if (this.role === 'DepartmentHead' || this.role === 'DepartmentTeamMember') {
-      this.loginStatus = 'department'
-    } else if (this.role === 'CEO') {
-      this.loginStatus = 'ceo'
-    }
     if (this.content === 'fpk') {
-      this.processFpkData = this.processFpk
-      if (this.processFpkData === 'accept' || this.processFpkData === 'rejected') {
+      if (this.approve === 'HR') {
         self.$http.get('http://localhost:8080/fpk/byDepartment/' + this.param, {}, {
           headers: {
-            'department': division,
-            'role': this.role
-          }
-        }).then(response => {
-          var fpk = response.data.data
-          var totalFpk = response.data.totalData
-          this.resultContent.resultFpk = fpk
-          this.resultContent.resultTotalFpk = totalFpk
-        })
-      } else if (this.processFpkData === 'waitingCeo' || this.processFpkData === 'acceptedCeo' || this.processFpkData === 'rejectedCeo') {
-        self.$http.get('http://localhost:8080/fpk/byDepartment/' + this.param, {}, {
-          headers: {
-            'department': division,
-            'role': 'CEO'
+            'department': division
           }
         }).then(response => {
           var fpk = response.data.data
@@ -98,9 +72,10 @@ export default {
           this.resultContent.resultTotalFpk = totalFpk
         })
       } else {
-        self.$http.get('http://localhost:8080/fpk/byRequest/' + this.param, {}, {
+        self.$http.get('http://localhost:8080/fpk/byDepartment/' + this.param, {}, {
           headers: {
-            'userId': this.idUser
+            'department': division,
+            'role': this.approve
           }
         }).then(response => {
           var fpk = response.data.data
@@ -112,7 +87,7 @@ export default {
     } else if (this.content === 'mpp') {
       this.status = this.param
       var endpoint = 'http://localhost:8080/mpp/byDepartment/'
-      if (this.status === 'accepted') {
+      if (this.statusRouting === 'accepted') {
         endpoint = endpoint + 'accepted/ceo'
         self.$http.get(endpoint, {}, {
           headers: {
@@ -129,7 +104,7 @@ export default {
             this.resultContent.resultTotalMpp = totalMpp
           }
         })
-      } else if (this.status === 'rejected') {
+      } else if (this.statusRouting === 'rejected') {
         endpoint = endpoint + 'rejected/ceo'
         self.$http.get(endpoint, {}, {
           headers: {
@@ -146,8 +121,8 @@ export default {
             this.resultContent.resultTotalMpp = totalMpp
           }
         })
-      } else if (this.status === 'published') {
-        endpoint = endpoint + 'published/ceo'
+      } else if (this.statusRouting === 'published') {
+        endpoint = endpoint + 'published'
         self.$http.get(endpoint, {}, {
           headers: {
             'department': division,
