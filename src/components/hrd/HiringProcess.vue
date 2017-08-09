@@ -125,7 +125,7 @@ export default {
       self.$http.post('http://localhost:8080/cv/updateStatusApplicant', {
         uid: this.$route.params.id,
         statusApplicant: status }, (json) => {
-          window.location.href = this.$route.path
+          this.sendEmail('Intervew  1 Blibli', 'Anda harus intervew 1')
         })
     },
     interview2Process () {
@@ -134,7 +134,7 @@ export default {
       self.$http.post('http://localhost:8080/cv/updateStatusApplicant', {
         uid: this.$route.params.id,
         statusApplicant: status }, (json) => {
-          window.location.href = this.$route.path
+          this.sendEmail('Intervew  2 Blibli', 'Anda harus intervew 2')
         })
     },
     technicalProcess () {
@@ -143,7 +143,7 @@ export default {
       self.$http.post('http://localhost:8080/cv/updateStatusApplicant', {
         uid: this.$route.params.id,
         statusApplicant: status }, (json) => {
-          window.location.href = this.$route.path
+          this.sendEmail('Technical Test Blibli', 'Anda harus tech test')
         })
     },
     psikoProcess () {
@@ -152,7 +152,7 @@ export default {
       self.$http.post('http://localhost:8080/cv/updateStatusApplicant', {
         uid: this.$route.params.id,
         statusApplicant: status }, (json) => {
-          window.location.href = this.$route.path
+          this.sendEmail('Psycho Test Blibli', 'Anda harus Psycho test')
         })
     },
     medicalProcess () {
@@ -161,7 +161,7 @@ export default {
       self.$http.post('http://localhost:8080/cv/updateStatusApplicant', {
         uid: this.$route.params.id,
         statusApplicant: status }, (json) => {
-          window.location.href = this.$route.path
+          this.sendEmail('Medical Checkup Blibli', 'Anda harus mengumpulkan medical checkup')
         })
     },
     acceptProcess () {
@@ -170,6 +170,15 @@ export default {
       self.$http.post('http://localhost:8080/cv/acceptCandidate', {
         uid: this.$route.params.id,
         statusApplicant: status }, (json) => {
+          this.sendEmail('SELAMAT', 'Selamat anda diterima')
+        })
+    },
+    sendEmail (subjectEmail, message) {
+      var self = this
+      self.$http.post('http://localhost:8080/mail/send', {
+        to: this.detailCV.emailAddress,
+        subject: subjectEmail,
+        text: message}, (json) => {
           window.location.href = this.$route.path
         })
     }
