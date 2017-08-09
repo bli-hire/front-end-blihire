@@ -6,11 +6,12 @@
       v-bind:title="fpk.department"
       v-bind:message="'Reason : '+fpk.reason"
       v-bind:statusAccept="fpk.accept"
-      v-bind:statusReject="fpk.reject"
+      v-bind:statusReject="fpk.statusAccept"
       v-bind:statusCeo="fpk.approveCeo"
       v-bind:statusHead="fpk.approveHead"
-      v-bind:loginStatus="'department'"
+      v-bind:loginStatus="loginStatus"
       v-bind:content="content"
+      v-bind:docType="'fpk'"
       v-bind:id="fpk.idFpk"></BoxComponent>
   </div>
   <div v-if="content === 'mpp'">
@@ -20,8 +21,9 @@
       v-bind:message="'Reason : '+mpp.reason"
       v-bind:statusAccept="mpp.accept"
       v-bind:statusReject="mpp.reject"
-      v-bind:loginStatus="'department'"
+      v-bind:loginStatus="loginStatus"
       v-bind:content="content"
+      v-bind:docType="'mpp'"
       v-bind:id="mpp.id"></BoxComponent>
     </div>
 
@@ -47,7 +49,9 @@ export default {
         resultTotalMpp: 0
       },
       idUser: '',
-      status: ''
+      role: '',
+      status: '',
+      loginStatus: ''
     }
   },
   props: ['content', 'param', 'approve'],
@@ -56,6 +60,14 @@ export default {
     var self = this
     var division = JSON.parse(window.sessionStorage.getItem('user')).department
     this.idUser = JSON.parse(window.sessionStorage.getItem('user')).id
+    this.role = JSON.parse(window.sessionStorage.getItem('user')).role
+    if (this.role === 'HeadHR' || this.role === 'HR') {
+      this.loginStatus = 'hrd'
+    } else if (this.role === 'DepartmentHead' || this.role === 'DepartmentTeamMember') {
+      this.loginStatus = 'department'
+    } else if (this.role === 'CEO') {
+      this.loginStatus = 'ceo'
+    }
     if (this.content === 'fpk') {
       self.$http.get('http://localhost:8080/fpk/byDepartment/' + this.param, {}, {
         headers: {

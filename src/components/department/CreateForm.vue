@@ -4,25 +4,27 @@
     <h1 style="text-align: center;">Form Penerimaan Karyawan</h1>
         <div class="form-group">
           <label for="pos">Departemen Pemohon:</label>
-            <select class="form-control" id="pos" v-model="departmentPemohon">
-              <option value="jobPosition">{{jobPosition}}</option>
+            <select class="form-control" id="pos" v-model="departmentPemohon" :value="departmentRequester">
+              <option :value="departmentRequester">{{departmentRequester}}</option>
             </select>
           <br/>
 
         <label for="pos">Jabatan Pemohon:</label>
-          <input type="text" id="jabatanPemohon" value="jobPositionRequester" class="form-control" v-model="jobPositionRequester">
+            <select class="form-control" id="pos" v-model="jobPositionRequester" :value="jobPositionRequester">
+              <option v-bind:value="job" v-for="job in listJobPosition">{{job}}</option>
+            </select>
         <br/>
 
         <label for="personNeeded">Posisi atau jumlah</label>
-        <input type="number" value="2" id="personNeeded" class="form-control" v-model="jumlahPosisi"/>
+        <input type="number" id="personNeeded" class="form-control" v-model="jumlahPosisi" :value="jumlahPosisi"/>
         <br/>
 
         <label for="">Tanggal Dibutuhkan</label>
-        <input type="date" id="" class="form-control" v-model="tanggalDibutuhkan"/>
+        <input type="date" id="" class="form-control" v-model="tanggalDibutuhkan" :value="dateNeeded"/>
         <br/>
 
         <label>Alasan</label>
-         <select class="form-control" id="" v-model="alasan">
+         <select class="form-control" id="" v-model="alasan" :value="alasan">
               <option>Pemegang Jabatan terdahulu Resign</option>
               <option>Pemegang Jabatan terdahulu dimutasi/promosi</option>
               <option>Penambahan</option>
@@ -32,7 +34,7 @@
         <br/>
 
        <label>Kesesuaian dengan MPP</label>
-         <select class="form-control" id="" v-model="kesesuaianMpp">
+         <select class="form-control" id="" v-model="kesesuaianMpp" :value="kesesuaianMpp">
               <option>Sesuai</option>
               <option>Tidak sesuai</option>
             </select>
@@ -41,14 +43,14 @@
         <br/>
 
         <label for="education">Status Karyawan:</label>
-            <select class="form-control" id="education" v-model="statusKaryawan">
+            <select class="form-control" id="education" v-model="statusKaryawan" :value="statusKaryawan">
               <option>GDN</option>
               <option>Pemborong Kerja</option>
             </select>
           <br/>
 
         <label>Pendidikan</label>
-         <select class="form-control" id="" v-model="pendidikan">
+         <select class="form-control" :value="pendidikan" id="" v-model="pendidikan">
               <option>SMA</option>
               <option>S1</option>
               <option>S2</option>
@@ -60,7 +62,7 @@
         <br/>
 
          <label>Pengalaman Bekerja</label>
-         <select class="form-control" id="" v-model="pengalamanBekerja">
+         <select class="form-control" id="" :value="pengalamanBekerja" v-model="pengalamanBekerja">
               <option>Fresh Graduate</option>
               <option>Pengalaman 1-3 Tahun</option>
               <option>Pengalaman > 5 Tahun</option>
@@ -72,8 +74,8 @@
         <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="skillPengetahuan"></textarea>
          <br/>
 
-      <button type="submit" class="btn btn-primary" name="" v-on:click="insertFpk()">Apply Fpk</button>
-
+      <button v-if="edit !== true" type="submit" class="btn btn-primary" name="" v-on:click="insertFpk()">Apply Fpk</button>
+      <button v-if="edit === true" type="submit" class="btn btn-primary" name="" v-on:click="editFpk()">Update Fpk</button>
       <button type="reset" class="btn btn-warning" name="" @click="reset()">Reset</button>
       </div>
       <!-- </form> -->
@@ -84,7 +86,7 @@
         <div class="form-group">
           <label for="pos">Position (select one):</label>
             <select class="form-control" id="pos" v-model="positionMpp" >
-              <option v-bind:value="jobPosition">{{jobPosition}}</option>
+              <option v-for="job in listJobPosition" v-bind:value="job">{{job}}</option>
             </select>
           <br/>
 
@@ -176,7 +178,7 @@ export default {
   name: 'create-new',
   data () {
     return {
-      jobPosition: '',
+      departmentRequester: '',
       jobPositonFpk: '',
       currentDetailIndex: '',
       departmentPemohon: '',
@@ -193,9 +195,9 @@ export default {
       skillPengetahuan: '',
       alasanTambahan: '',
       idUserRequested: '',
-      jobPositionRequester: '',
+      jobPositionRequester: null,
       role: '',
-      positionMpp: '',
+      positionMpp: null,
       personNeededMpp: '',
       commentMpp: '',
       reasonMpp: '',
@@ -221,13 +223,67 @@ export default {
       expectJoin: {},
       arrayMppDetail: [],
       indeksMppDetail: '',
-      fpkToEdit: []
+      fpkToEdit: [],
+      listJobPosition: []
     }
   },
   props: ['content', 'edit'],
   beforeMount () {
+    this.departmentRequester = JSON.parse(window.sessionStorage.getItem('user')).department
+    if (this.departmentRequester === 'Technology') {
+      this.listJobPosition = [
+        'Sr. Software Development Engineer',
+        'Mobile Development Engineer',
+        'Technical Support Staff',
+        'Software Development Engineer Testing',
+        'Software Development Enginer'
+      ]
+    } else if (this.departmentRequester === 'Marketing') {
+      this.listJobPosition = [
+        'Sr. Consumer Marketing Insight Analyst',
+        'Performance Advertising Analyst'
+      ]
+    } else if (this.departmentRequester === 'TradePartnership') {
+      this.listJobPosition = [
+        'Content & Promotion Strategist',
+        'Merchandising Manager',
+        'Digital Imaging'
+      ]
+    } else if (this.departmentRequester === 'Operation') {
+      this.listJobPosition = [
+        'Senior Experience Solution Manager',
+        'Inventory Control & Asset Recovery (Return) Staff',
+        'Internal Quality Management',
+        'BLITS College Asistant Manager',
+        'Sr. Fleet Management Specialist',
+        'Fleet Management Specialist',
+        'Process Improvement Reengineering Specialist'
+      ]
+    } else if (this.departmentRequester === 'BusinessDevelopment') {
+      this.listJobPosition = [
+        'Business Development Staff',
+        'Product Manager'
+      ]
+    } else if (this.departmentRequester === 'Finance') {
+      this.listJobPosition = [
+        'Finance'
+      ]
+    } else if (this.departmentRequester === 'ProjectManagement') {
+      this.listJobPosition = [
+        'Business Development Staff',
+        'Product Manager'
+      ]
+    } else if (this.departmentRequester === 'ProductManagement') {
+      this.listJobPosition = [
+        'Sr. UX Designer',
+        'UX Copywriter'
+      ]
+    } else if (this.departmentRequester === 'HumanResource') {
+      this.listJobPosition = [
+        'Talent Acquision Specialist'
+      ]
+    }
     if (this.content === 'fpk') {
-      this.jobPosition = JSON.parse(window.sessionStorage.getItem('user')).department
     } else if (this.content === 'mpp') {
       this.jobPosition = this.$route.query.jobPosition
       this.arrayMppDetail = JSON.parse(window.localStorage.getItem('detailMpp'))
@@ -240,8 +296,8 @@ export default {
       var self = this
       this.jobPosition = this.$route.query.jobPosition
       this.$http.get('http://localhost:8080/fpk/' + idFpkEdit, {}, {}).then(response => {
-        self.fpkToEdit = JSON.stringify(response.data.data)
-        // alert(self.fpkToEdit)
+        // self.fpkToEdit = JSON.stringify(response.data.data)
+        self.fpkToEdit = response.data.data[0]
         self.jumlahPosisi = self.fpkToEdit.numberOfPerson
         self.alasan = self.fpkToEdit.reason
         self.kesesuaianMpp = self.fpkToEdit.fitnessWithMpp
@@ -252,6 +308,7 @@ export default {
         self.idUserRequested = self.fpkToEdit.idUserRequested
         self.tanggalDibutuhkan = self.fpkToEdit.dateNeeded
         self.jobPositionRequester = self.fpkToEdit.jobPositionRequester
+        self.departmentPemohon = self.fpkToEdit.department
       })
     }
     if (this.content === 'mpp' && this.edit === true) {
@@ -275,6 +332,9 @@ export default {
       var self = this
       self.idUserRequested = JSON.parse(window.sessionStorage.getItem('user')).id
       self.role = JSON.parse(window.sessionStorage.getItem('user')).role
+      if (self.validateComponentFormFpk() === false) {
+        return alert('Please fill the blank')
+      }
       if (self.pendidikanLainnya !== '') {
         self.pendidikan = self.pendidikanLainnya
       }
@@ -420,6 +480,68 @@ export default {
       window.localStorage.setItem('detailMpp', JSON.stringify(this.arrayMppDetail))
       alert('Data Berhasil di ubah')
       this.$router.go(-1)
+    },
+    validateComponentFormFpk () {
+      var self = this
+      if (
+        self.jumlahPosisi === '' ||
+        self.alasan === '' ||
+        self.kesesuaianMpp === '' ||
+        self.statusKaryawan === '' ||
+        self.pendidikan === '' ||
+        self.pengalamanBekerja === '' ||
+        self.skillPengetahuan === '' ||
+        self.idUserRequested === '' ||
+        self.tanggalDibutuhkan === '' ||
+        self.jobPositionRequester === null) {
+        return false
+      }
+      return true
+    },
+    validateComponentFormMpp () {
+      var self = this
+      if (
+        self.personNeededMpp === '' ||
+        self.positionMpp === null ||
+        self.reasonMpp === '' ||
+        self.educationMpp === '' ||
+        self.experienceMpp === '' ||
+        self.knowledgeMpp === '' ||
+        self.employeeStatusMpp === '' ||
+        self.expectedJoin === '' ||
+        self.pcNumberMpp === '' ||
+        self.pcSpecMpp === '' ||
+        self.expectJoin === '') {
+        return false
+      }
+      return true
+    },
+    editFpk () {
+      var self = this
+      self.idUserRequested = JSON.parse(window.sessionStorage.getItem('user')).id
+      if (this.validateComponentFormFpk() === false) {
+        return alert('Please fill the blank')
+      }
+      self.$http.post('http://localhost:8080/fpk/edit', {
+        position: self.jumlahPosisi,
+        reason: self.alasan + ' ' + self.alasanTambahan,
+        fitnessWithMpp: self.kesesuaianMpp + ' ' + self.kesesuaianMppTambahan,
+        employeeStatus: self.statusKaryawan,
+        school: self.pendidikan,
+        workExperience: self.pengalamanBekerja,
+        skillKnowledge: self.skillPengetahuan,
+        idUserRequested: self.idUserRequested,
+        dateNeeded: self.tanggalDibutuhkan,
+        jobPositionRequester: self.jobPositionRequester,
+        completeness: ''}, {
+          headers: {
+            'idUser': self.idUserRequested,
+            'idFpkOld': this.$route.query.id
+          }
+        }).then(json => {
+          alert('Data Berhasil Di Update')
+          this.$router.go(-1)
+        })
     }
   }
 }
