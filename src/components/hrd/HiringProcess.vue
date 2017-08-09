@@ -14,7 +14,7 @@
           <option>Clara</option>
           <option>Eunike</option>
         </select><br/><br/>
-        <button v-if="interview1 === false" v-on:click="interview1()" class="btn btn-primary">Send</button>
+        <button v-if="interview1 === false" v-on:click="interview1Process()" class="btn btn-primary">Send</button>
         <br>
         <br>
     </div>
@@ -228,6 +228,6 @@ label {
   text-align: center;
 }
 .status-done {
-  background-color:
+  background-color: #62f442;
 }
 </style>
