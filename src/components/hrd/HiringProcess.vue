@@ -104,7 +104,7 @@
      </div>
 
      <div class="" v-if="interview1 === true && interview2 === true && technicalTest === true && psikoTest === true && medicalCheckup === true">
-       <button v-if="accepted === false" v-on:click="acceptProcess()" class="btn btn-primary">Send</button>
+       <button v-if="accepted === false" v-on:click="acceptProcess()" class="btn btn-primary">Accept Applicant</button>
      </div>
 
      <!-- <input type="submit" class="btn btn-primary" value="OK"/> -->
