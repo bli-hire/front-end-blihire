@@ -22,7 +22,7 @@
               <td style="text-align:center;"><button class="btn btn-primary">
                 <router-link
                   :to="{ path: '/hrd/candidates/view-cv/' + cv.uid, param: {uid: cv.uid}}">View CV</router-link></button></td>
-              <td style="text-align:center;"><button class="btn btn-primary"><router-link :to="{ path: '/hrd/candidates/hiring-process/' + cv.uid, param: {uid: cv,uid}}">Hiring Process</router-link></button></td>
+              <td style="text-align:center;"><button class="btn btn-primary"><router-link :to="{ path: '/hrd/candidates/hiring-process/' + cv.uid, param: {uid: cv.uid, idCv: cv.idCv}}">Hiring Process</router-link></button></td>
                 <td style="text-align:center;"><input type="button" value="Score" class="btn btn-primary"/></td>
               <td style="text-align:center;"><input type="button" value="Mutasi" class="btn btn-primary"/></td>
             </tr>
