@@ -1,8 +1,8 @@
 <template>
   <div class="listContent col-md-10">
-    <h2 class="" v-if="content === 'mpp' && resultContent.resultTotalMpp === 0">There are no new {{content}} requested</h2>
-    <h2 class="" v-if="content === 'fpk' && resultContent.resultTotalFpk === 0">There are no new {{content}} requested</h2>
-    <div v-if=" content === 'mpp' && resultContent.resultTotalMpp !== 0">
+    <h2 class="" v-if="content === 'mpp' && JSON.parse(resultContent.resultTotalMpp) === 0">There are no new {{content}} requested</h2>
+    <h2 class="" v-if="content === 'fpk' && JSON.parse(resultContent.resultTotalFpk) === 0">There are no new {{content}} requested</h2>
+    <div v-if=" content === 'mpp' && JSON.parse(resultContent.resultTotalMpp) !== 0">
       <h2>List of Requested {{content.toUpperCase()}}</h2>
       <table class="table table-bordered" v-for="mpp in resultContent.resultMpp">
         <thead>
@@ -17,15 +17,17 @@
             <tr>
               <td>{{mpp.requestedBy.name}}</td>
               <td>{{mpp.createdDate.dayOfMonth}} - {{mpp.createdDate.monthOfYear}} - {{mpp.createdDate.year}}</td>
-              <td>{{mpp.approvedBy.name}}</td>
+              <td v-if="mpp.approvedBy != null">{{mpp.approvedBy.name}}</td>
+              <td v-else>Not Yet Approved</td>
               <td><button class="btn btn-primary">
                 <router-link :to="{ path: '/'+'hrd'+'/'+'requested'+'/'+content+'/detail/'+mpp.id , params: { id: mpp.id }}">View {{content.toUpperCase()}}</router-link></button></td></td>
                 <!-- <router-link :to="'/hrd/requested/view-detail-mpp'">View {{content.toUpperCase()}}</router-link></button></td></td> -->
             </tr>
         </tbody>
       </table>
-      <ul class="pagination" v-for="n in totalPage">
-        <li v-bind:class="{'disabled': n === currentPage}" v-on:click="loadData(n, 5, 'createdDate', 'desc')">{{n}}</li>
+      <ul class="pagination" v-for="n in parseInt(totalPage)">
+        <!-- <li><a href="#">{{n}}</a></li> -->
+        <li v-bind:class="{'disabled': n-1 === parseInt(currentPage)}"><a href="#" v-on:click="loadData(n-1, 5, 'createdDate', 'desc')">{{n}}</a></li>
         <!-- <li><a href="#">1</a></li>
         <li><a href="#">2</a></li>
         <li><a href="#">3</a></li>
@@ -113,7 +115,7 @@ export default {
       //     this.totalData = totalMpp
       //   }
       // })
-      self.loadData(1, 5, 'createdDate', 'desc')
+      self.loadData(0, 5, 'createdDate', 'desc')
     }
   },
   methods: {
@@ -124,7 +126,7 @@ export default {
       if (self.role === 'HR') {
         self.role = 'hrd'
       }
-      self.$http.get('http://localhost:8080/mpp/hrd/byDepartment/toProcess?page=' + page + '&size=' + pageSize + '&sort=' + sortBy + ',' + sortType, {}, {
+      self.$http.get('http://localhost:8080/mpp/hrd/byDepartment/toProcess?page=' + page + '&size=' + pageSize + '&sort=' + sortBy + ',' + sortType + '', {}, {
         headers: {
           'department': division
         }
@@ -133,12 +135,12 @@ export default {
           this.resultContent.resultTotalMpp = 0
         } else {
           var mpp = response.data.dataPage.content
-          var totalMpp = response.data.dataPage.totalElements
+          var totalMpp = JSON.stringify(response.data.dataPage.totalElements)
           this.resultContent.resultMpp = mpp
           this.resultContent.resultTotalMpp = totalMpp
           this.totalData = totalMpp
-          this.totalPage = response.data.dataPage.totalPages
-          this.currentPage = response.data.dataPage.number
+          this.totalPage = JSON.stringify(response.data.dataPage.totalPages)
+          this.currentPage = JSON.stringify(response.data.dataPage.number)
         }
       })
     }
