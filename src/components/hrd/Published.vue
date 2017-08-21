@@ -27,6 +27,15 @@
             </tr>
         </tbody>
       </table>
+
+      <ul class="pagination" v-for="n in totalPage">
+        <li v-bind:class="{'disabled': n === currentPage}" v-on:click="loadData(n, 5, 'createdDate', 'desc')">{{n}}</li>
+        <!-- <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li class="disabled"><a href="#">4</a></li>
+        <li><a href="#">5</a></li> -->
+      </ul>
     </div>
     <div v-if=" content === 'fpk' && JSON.parse(resultContent.resultTotalFpk) !== 0">
       <h2>List of Requested {{content.toUpperCase()}}</h2>
@@ -68,7 +77,9 @@ export default {
         resultTotalMpp: 0
       },
       totalData: 0,
-      role: ''
+      role: '',
+      totalPage: 0,
+      currentPage: 0
     }
   },
   beforeMount () {
@@ -95,25 +106,50 @@ export default {
         }
       })
     } else if (this.content === 'mpp') {
-      self.$http.get('http://localhost:8080/mpp/byDepartment/published', {}, {
+      // self.$http.get('http://localhost:8080/mpp/hrd/byDepartment/toProcess?page=1&size=5&sort=createdDate,desc', {}, {
+      //   headers: {
+      //     'department': division
+      //   }
+      // }).then(response => {
+      //   if (response.data.data === '[]') {
+      //     this.resultContent.resultTotalMpp = 0
+      //   } else {
+      //     var mpp = JSON.stringify(response.data.data)
+      //     var totalMpp = JSON.stringify(response.data.totalData)
+      //     this.resultContent.resultMpp = mpp
+      //     this.resultContent.resultTotalMpp = totalMpp
+      //     this.totalData = totalMpp
+      //   }
+      // })
+      self.loadData(1, 5, 'createdDate', 'desc')
+    }
+  },
+  methods: {
+    loadData (page, pageSize, sortBy, sortType) {
+      var self = this
+      var division = this.department
+      self.role = JSON.parse(window.sessionStorage.getItem('user')).role
+      if (self.role === 'HR') {
+        self.role = 'hrd'
+      }
+      self.$http.get('http://localhost:8080/mpp/hrd/byDepartment/toProcess?page=' + page + '&size=' + pageSize + '&sort=' + sortBy + ',' + sortType, {}, {
         headers: {
           'department': division
         }
       }).then(response => {
-        if (response.data.data === '[]') {
+        if (response.data.dataPage.content === '[]') {
           this.resultContent.resultTotalMpp = 0
         } else {
-          var mpp = JSON.stringify(response.data.data)
-          var totalMpp = JSON.stringify(response.data.totalData)
+          var mpp = JSON.stringify(response.data.dataPage.content)
+          var totalMpp = JSON.stringify(response.data.dataPage.totalElements)
           this.resultContent.resultMpp = mpp
           this.resultContent.resultTotalMpp = totalMpp
           this.totalData = totalMpp
+          this.totalPage = JSON.stringify(response.data.dataPage.totalPages)
+          this.currentPage = JSON.stringify(response.data.dataPage.number)
         }
       })
     }
-  },
-  methods: {
-
   }
 }
 </script>
