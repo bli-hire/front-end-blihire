@@ -27,7 +27,11 @@
       </table>
       <ul class="pagination" v-for="n in parseInt(totalPage)">
         <!-- <li><a href="#">{{n}}</a></li> -->
-        <li v-bind:class="{'disabled': n-1 === parseInt(currentPage)}"><a href="#" v-on:click="loadData(n-1, 5, 'createdDate', 'desc')">{{n}}</a></li>
+        <li v-bind:class="{'disabled': n-1 === parseInt(currentPage)}">
+          <a v-if="n-1 === parseInt(currentPage)"><span>{{n}}</span></a>
+          <!-- <a href="#" v-on:click="loadData(n-1, 5, 'createdDate', 'desc')">{{n}}</a> -->
+          <a href="#" v-else v-on:click="loadData(n-1, 5, 'createdDate', 'desc')"><span>{{n}}</span></a>
+        </li>
         <!-- <li><a href="#">1</a></li>
         <li><a href="#">2</a></li>
         <li><a href="#">3</a></li>
