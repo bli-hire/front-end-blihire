@@ -90,11 +90,6 @@
             </select>
           <br/>
 
-
-        <label for="personNeeded">Number of Person(s)</label><br/>
-        <input type="number" id="personNeeded" class="form-control" v-model="personNeededMpp" v-bind:value="{personNeededMpp}"/>
-        <br/>
-
         <label>Comment Section</label>
         <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="commentMpp" v-bind:value="commentMpp"></textarea>
          <br/>

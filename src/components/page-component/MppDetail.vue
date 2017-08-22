@@ -49,7 +49,7 @@
         <textarea name="Text1" cols="140" rows="8"></textarea>
         <br/>
     </div>
-    <button v-if="role.includes('HR') && this.param === 'requested'"  v-on:click="hrdPublish()" type="reset" class="btn btn-primary" name="">Publish</button>
+    <button v-if="role.includes('HR') && this.param === 'requested'"  v-on:click="hrdAccept()" type="reset" class="btn btn-primary" name="">Accept</button>
     <button v-if="role === 'CEO'"  v-on:click="ceoApprove()" type="reset" class="btn btn-primary" name="">Approve</button>
     <button v-if="role === 'CEO'" v-on:click="ceoReject()"type="reset" class="btn btn-warning" name="">Reject</button>
 
@@ -185,7 +185,7 @@ export default{
       } else {
         urlRole = self.role
       }
-      this.$http.post('http://localhost:8080/mpp/approve', {
+      this.$http.post('http://localhost:8080/mpp/ceo/approve', {
         idUser: this.idUser,
         idMpp: parseInt(this.idSelector)
       }, (json) => {
@@ -213,6 +213,24 @@ export default{
         urlRole = self.role
       }
       this.$http.post('http://localhost:8080/mpp/reject', {
+        idUser: this.idUser,
+        idMpp: parseInt(this.idSelector)
+      }, (json) => {
+        alert(JSON.stringify(json.message + self.role))
+        this.$router.push('/' + urlRole + '/mpp')
+      })
+    },
+    hrdAccept () {
+      var self = this
+      var urlRole
+      self.role = JSON.parse(window.sessionStorage.getItem('user')).role
+      self.idUser = JSON.parse(window.sessionStorage.getItem('user')).id
+      if (self.role.includes('Department')) {
+        urlRole = 'department'
+      } else {
+        urlRole = self.role
+      }
+      this.$http.post('http://localhost:8080/mpp/hrd/approve', {
         idUser: this.idUser,
         idMpp: parseInt(this.idSelector)
       }, (json) => {

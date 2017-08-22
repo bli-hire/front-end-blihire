@@ -14,7 +14,7 @@
       <div v-if="docType === 'mpp'">
         <h3>{{title}}</h3>
         <h4>Requested By : {{requestedBy}}</h4>
-        <h5>CEO Approve : {{statusCeoData}}</h5>
+        <h5>Mpp Status : {{mppStatus}}</h5>
         <h5 v-if="createdDateData != null">Created date: {{createdDateData}}</h5>
         <h5 v-if="published === true">{{publishedBy}}</h5>
         <button class="btn btn-primary">
@@ -37,7 +37,7 @@ export default {
       createdDateData: ''
     }
   },
-  props: ['title', 'message', 'loginStatus', 'content', 'dataContent', 'id', 'statusAccept', 'statusReject', 'statusCeo', 'statusHead', 'docType', 'requestedBy', 'publishedBy', 'published', 'createdDate'],
+  props: ['title', 'message', 'loginStatus', 'content', 'dataContent', 'id', 'statusAccept', 'statusReject', 'statusCeo', 'statusHead', 'docType', 'requestedBy', 'publishedBy', 'published', 'createdDate', 'mppStatus'],
   beforeMount () {
     this.createdDateData = this.createdDate
     if (this.statusAccept === false && this.statusReject === false) {
