@@ -98,6 +98,10 @@
         <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="reasonMpp" v-bind:value="reasonMpp"></textarea>
         <br/>
 
+        <label>Main responsibility</label>
+        <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="mainResponsibility" v-bind:value="mainResponsibility"></textarea>
+        <br/>
+
         <label for="education">Education (select one):</label>
             <select class="form-control" id="education" v-model="educationMpp" :value="educationMpp">
               <option>Bacheloor Degree</option>
@@ -115,8 +119,8 @@
 
          <label for="employeeStatus">Employee Status(GDN or Outsource):</label>
             <select class="form-control" id="employeeStatus" v-model="employeeStatusMpp" :value="employeeStatusMpp">
-              <option>Bacheloor Degree</option>
-              <option>Master Degree</option>
+              <option>GDN</option>
+              <option>Outsource</option>
             </select>
           <br/>
 
@@ -199,6 +203,7 @@ export default {
       commentMpp: '',
       reasonMpp: '',
       educationMpp: '',
+      mainResponsibility: '',
       experienceMpp: '',
       knowledgeMpp: '',
       employeeStatusMpp: '',
@@ -333,6 +338,7 @@ export default {
       // alert(this.positionMpp)
       this.$http.get('http://localhost:8080/mpp/mpp-detail/' + idMppEdit, {}, {}).then(response => {
         // self.fpkToEdit = JSON.stringify(response.data.data)
+        this.mainResponsibility = response.data.mainResponsibility
         this.reasonMpp = response.data.reason
         this.educationMpp = response.data.education
         this.experienceMpp = response.data.experience
@@ -424,7 +430,7 @@ export default {
         numberOfPerson: self.personNeededMpp,
         position: self.positionMpp,
         reason: self.reasonMpp,
-        mainResponsibility: '',
+        mainResponsibility: self.mainResponsibility,
         education: self.educationMpp,
         experience: self.experienceMpp,
         knowledge: self.knowledgeMpp,
@@ -471,6 +477,7 @@ export default {
       self.idUserRequested = ''
       self.tanggalDibutuhkan = ''
       self.jobPositionRequester = ''
+      self.mainResponsibility = ''
     },
     editMpp () {
       var self = this
@@ -495,7 +502,7 @@ export default {
         numberOfPerson: self.personNeededMpp,
         position: self.positionMpp,
         reason: self.reasonMpp,
-        mainResponsibility: '',
+        mainResponsibility: self.mainResponsibility,
         education: self.educationMpp,
         experience: self.experienceMpp,
         knowledge: self.knowledgeMpp,
@@ -552,7 +559,7 @@ export default {
       self.$http.post('http://localhost:8080/mpp/editMppDetail', {
         position: self.jobPosition,
         reason: self.reasonMpp,
-        mainResponsibility: '',
+        mainResponsibility: self.mainResponsibility,
         education: self.educationMpp,
         experience: self.experienceMpp,
         knowledge: self.knowledgeMpp,
