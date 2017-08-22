@@ -99,7 +99,7 @@
         <br/>
 
         <label for="education">Education (select one):</label>
-            <select class="form-control" id="education" v-model="educationMpp" v-bind:value="educationMpp">
+            <select class="form-control" id="education" v-model="educationMpp" :value="educationMpp">
               <option>Bacheloor Degree</option>
               <option>Master Degree</option>
             </select>
@@ -114,7 +114,7 @@
          <br/>
 
          <label for="employeeStatus">Employee Status(GDN or Outsource):</label>
-            <select class="form-control" id="employeeStatus" v-model="employeeStatusMpp" v-bind:value="employeeStatusMpp">
+            <select class="form-control" id="employeeStatus" v-model="employeeStatusMpp" :value="employeeStatusMpp">
               <option>Bacheloor Degree</option>
               <option>Master Degree</option>
             </select>
@@ -160,8 +160,9 @@
       <textarea name="Text1" cols="140" rows="8" class="form-control" v-model="pcSpecMpp"></textarea>
       <br/>
 
-      <button v-if="this.edit !== true" type="submit" class="btn btn-primary" name="" v-on:click="insertMpp()">Send MPP</button>
+      <button v-if="this.edit !== true && this.editMppFromDatabase !== true" type="submit" class="btn btn-primary" name="" v-on:click="insertMpp()">Send MPP</button>
       <button v-if="this.edit === true" type="submit" class="btn btn-primary" name="" v-on:click="editMpp()">Edit Mpp</button>
+      <button v-if="this.editMppFromDatabase === true" type="submit" class="btn btn-primary" name="" v-on:click="editMppDetail()">Edit Mpp</button>
 
       </div>
     </div>
@@ -173,6 +174,7 @@ export default {
   name: 'create-new',
   data () {
     return {
+      idUser: '',
       departmentRequester: '',
       jobPositonFpk: '',
       currentDetailIndex: '',
@@ -222,9 +224,10 @@ export default {
       listJobPosition: []
     }
   },
-  props: ['content', 'edit'],
+  props: ['content', 'edit', 'editMppFromDatabase'],
   beforeMount () {
     this.indeksMppDetail = this.$route.query.indeksEditMpp
+    this.idUser = JSON.parse(window.sessionStorage.getItem('user')).id
     this.departmentRequester = JSON.parse(window.sessionStorage.getItem('user')).department
     if (this.departmentRequester === 'Technology') {
       this.listJobPosition = [
@@ -321,6 +324,36 @@ export default {
       this.pcNumberMpp = objMppDetail.pcAmmount
       this.pcSpecMpp = objMppDetail.pcSpec
       this.idUserRequested = objMppDetail.idRequested
+    }
+    if (this.content === 'mpp' && this.editMppFromDatabase === true) {
+      // this.personNeededMpp = objMppDetail.numberOfPerson
+      var idMppEdit = this.$route.query.id
+      this.positionMpp = this.$route.query.jobPositionMpp
+      this.jobPosition = this.$route.query.jobPositionMpp
+      // alert(this.positionMpp)
+      this.$http.get('http://localhost:8080/mpp/mpp-detail/' + idMppEdit, {}, {}).then(response => {
+        // self.fpkToEdit = JSON.stringify(response.data.data)
+        this.reasonMpp = response.data.reason
+        this.educationMpp = response.data.education
+        this.experienceMpp = response.data.experience
+        this.knowledgeMpp = response.data.knowledge
+        this.employeeStatusMpp = response.data.employeeStatus
+        this.expectedJoin = response.data.expectedJoin
+        this.pcNumberMpp = response.data.pcAmmount
+        this.pcSpecMpp = response.data.pcSpec
+        this.januaryExpect = response.data.januaryExpect
+        this.februaryExpect = response.data.februaryExpect
+        this.marchExpect = response.data.marchExpect
+        this.aprilExpect = response.data.aprilExpect
+        this.mayExpect = response.data.mayExpect
+        this.juneExpect = response.data.juneExpect
+        this.julyExpect = response.data.julyExpect
+        this.augustExpect = response.data.augustExpect
+        this.septemberExpect = response.data.septemberExpect
+        this.octoberExpect = response.data.octoberExpect
+        this.novemberExpect = response.data.novemberExpect
+        this.decemberExpect = response.data.decemberExpect
+      })
     }
   },
   methods: {
@@ -481,6 +514,61 @@ export default {
       alert('Data Berhasil di ubah')
       this.$router.go(0)
       // window.location.href.reload()
+    },
+    editMppDetail () {
+      var self = this
+      self.idUserRequested = JSON.parse(window.sessionStorage.getItem('user')).id
+      self.role = JSON.parse(window.sessionStorage.getItem('user')).role
+      self.expectedJoin = self.januaryExpect + self.februaryExpect + self.marchExpect + self.aprilExpect + self.mayExpect + self.juneExpect + self.julyExpect + self.augustExpect + self.septemberExpect + self.octoberExpect + self.novemberExpect + self.decemberExpect
+      self.expectJoin = {
+        januaryExpect: self.januaryExpect,
+        februaryExpect: self.februaryExpect,
+        marchExpect: self.marchExpect,
+        aprilExpect: self.aprilExpect,
+        mayExpect: self.mayExpect,
+        juneExpect: self.juneExpect,
+        julyExpect: self.julyExpect,
+        augustExpect: self.augustExpect,
+        septemberExpect: self.septemberExpect,
+        octoberExpect: self.octoberExpect,
+        novemberExpect: self.novemberExpect,
+        decemberExpect: self.decemberExpect
+      }
+      // var resultObjectDetailMpp = {
+      //   numberOfPerson: self.personNeededMpp,
+      //   position: self.positionMpp,
+      //   reason: self.reasonMpp,
+      //   mainResponsibility: '',
+      //   education: self.educationMpp,
+      //   experience: self.experienceMpp,
+      //   knowledge: self.knowledgeMpp,
+      //   employeeStatus: self.employeeStatusMpp,
+      //   expectedJoin: self.expectedJoin,
+      //   pcAmmount: self.pcNumberMpp,
+      //   pcSpec: self.pcSpecMpp,
+      //   expectJoin: self.expectJoin
+      // }
+      var idMppEdit = this.$route.query.id
+      self.$http.post('http://localhost:8080/mpp/editMppDetail', {
+        position: self.jobPosition,
+        reason: self.reasonMpp,
+        mainResponsibility: '',
+        education: self.educationMpp,
+        experience: self.experienceMpp,
+        knowledge: self.knowledgeMpp,
+        employeeStatus: self.employeeStatusMpp,
+        expectedJoin: self.expectedJoin,
+        pcAmmount: self.pcNumberMpp,
+        pcSpec: self.pcSpecMpp,
+        expectJoin: self.expectJoin}, {
+          headers: {
+            'idEditor': this.idUser,
+            'idMppDetail': idMppEdit
+          }
+        }).then(json => {
+          alert('Data Berhasil Di Update')
+          this.$router.go(0)
+        })
     },
     validateComponentFormFpk () {
       var self = this

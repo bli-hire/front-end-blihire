@@ -548,6 +548,11 @@ export default new Router({
           props: {content: 'mpp', edit: true}
         },
         {
+          path: '/department/mpp/create-new/edit-mpp',
+          component: CreateForm,
+          props: {content: 'mpp', editMppFromDatabase: true}
+        },
+        {
           path: '/department/fpk/create-new/detail-edit',
           component: CreateForm,
           props: {content: 'fpk', edit: true}

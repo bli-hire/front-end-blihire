@@ -48,10 +48,13 @@
         <h3>Comment :</h3>
         <textarea name="Text1" cols="140" rows="8"></textarea>
         <br/>
+        <button v-if="(role.includes('Head')) && (mppStatus === 'reject_hrd' || mppStatus === 'reject_ceo')" type="reset" class="btn btn-primary" name="" @click="editMpp(mpp.position, mpp.id)">editMpp</button>
     </div>
     <button v-if="role.includes('HR') && this.param === 'requested'"  v-on:click="hrdAccept()" type="reset" class="btn btn-primary" name="">Accept</button>
+    <button v-if="role.includes('HR') && this.param === 'requested'"  v-on:click="hrdReject()" type="reset" class="btn btn-primary" name="">Reject</button>
     <button v-if="role === 'CEO'"  v-on:click="ceoApprove()" type="reset" class="btn btn-primary" name="">Approve</button>
     <button v-if="role === 'CEO'" v-on:click="ceoReject()"type="reset" class="btn btn-warning" name="">Reject</button>
+    <button v-if="(role.includes('Head')) && (mppStatus === 'reject_hrd' || mppStatus === 'reject_ceo')" type="reset" class="btn btn-primary" name="" @click="resendMpp()">Resend Mpp</button>
 
 
   </div>
@@ -64,6 +67,8 @@ export default{
   // ]
   data () {
     return {
+      mppIdRequestor: '',
+      mppStatus: '',
       position: '',
       department: '',
       number: '',
@@ -133,7 +138,7 @@ export default{
     self.username = JSON.parse(window.sessionStorage.getItem('user')).name
     self.role = JSON.parse(window.sessionStorage.getItem('user')).role
     self.idUser = JSON.parse(window.sessionStorage.getItem('user')).id
-    if (self.role.includes('Department')) {
+    if (self.role.includes('Department') || self.role.includes('department')) {
       var roleUrl = 'department'
     }
     self.$http.get('http://localhost:8080/mpp/' + this.idSelector).then(response => {
@@ -152,7 +157,8 @@ export default{
       // this.pcAmmount = objMpp.pcAmmount
       // this.dateNeeded = objMpp.dateNeeded
       this.dateCreated = objMpp.createdDate
-
+      this.mppStatus = objMpp.mppStatus
+      this.mppIdRequestor = objMpp.requestedBy.id
       // this.month1 = objMpp.januaryExpect
       // this.month2 = objMpp.februaryExpect
       // this.month3 = objMpp.marchExpect
@@ -231,6 +237,52 @@ export default{
         urlRole = self.role
       }
       this.$http.post('http://localhost:8080/mpp/hrd/approve', {
+        idUser: this.idUser,
+        idMpp: parseInt(this.idSelector)
+      }, (json) => {
+        alert(JSON.stringify(json.message + self.role))
+        this.$router.push('/' + urlRole + '/mpp')
+      })
+    },
+    hrdReject () {
+      var self = this
+      var urlRole
+      self.role = JSON.parse(window.sessionStorage.getItem('user')).role
+      self.idUser = JSON.parse(window.sessionStorage.getItem('user')).id
+      if (self.role.includes('Department')) {
+        urlRole = 'department'
+      } else {
+        urlRole = self.role
+      }
+      this.$http.post('http://localhost:8080/mpp/hrd/reject', {
+        idUser: this.idUser,
+        idMpp: parseInt(this.idSelector)
+      }, (json) => {
+        alert(JSON.stringify(json.message + self.role))
+        this.$router.push('/' + urlRole + '/mpp')
+      })
+    },
+    editMpp (position, id) {
+      var idSelector = id
+      if (this.role.includes('Department') || this.role.includes('department')) {
+        var roleUrl = 'department'
+      }
+      this.$router.push({
+        path: '/' + roleUrl + '/mpp/create-new/edit-mpp',
+        query: {id: idSelector, jobPositionMpp: position, idRequestor: this.mppIdRequestor}
+      })
+    },
+    resendMpp () {
+      var self = this
+      var urlRole
+      self.role = JSON.parse(window.sessionStorage.getItem('user')).role
+      self.idUser = JSON.parse(window.sessionStorage.getItem('user')).id
+      if (self.role.includes('Department')) {
+        urlRole = 'department'
+      } else {
+        urlRole = self.role
+      }
+      this.$http.post('http://localhost:8080/mpp/department/resendMpp', {
         idUser: this.idUser,
         idMpp: parseInt(this.idSelector)
       }, (json) => {
