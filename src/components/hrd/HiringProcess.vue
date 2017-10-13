@@ -50,15 +50,24 @@
           <option>Eunike</option>
         </select><br/><br/>
         <div class="technicalQuestion">
-          <label for="">Technical Test :</label><br>
-          <label for="">Essay Question:</label><input type="number"><br>
-          <label for="">Medium Question:</label><input type="number"><br>
-          <label for="">Hard Question:</label><input type="number"><br>
-          <label for="">Mutliple Choice:</label><input type="number"><br>
-          <label for="">Essay</label><input type="number"><br>
+          <div class="technical-left">
+            Easy Multiple: <input type="number" v-model="totalMultipleEasy"><br>
+            Medium Multiple: <input type="number" v-model="totalMultipleMedium"><br>
+            Hard Multiple: <input type="number" v-model="totalMultipleHard"><br>
+          </div>
+          <div class="technical-left">
+            Easy Essay: <input type="number" v-model="totalEssayEasy"><br>
+            Medium Essay: <input type="number" v-model="totalEssayMedium"><br>
+            Hard Essay: <input type="number" v-model="totalEssayHard"><br>
+          </div>
+          <div class="technical-left">
+            Essay Generate: <input type="number" v-model="totalGenerateEasy"><br>
+            Medium Generate: <input type="number" v-model="totalGenerateMedium"><br>
+            Hard Generate: <input type="number" v-model="totalGenerateHard"><br>
+          </div>
         </div>
-        <br>
-        <button v-if="technicalTest === false" v-on:click="technicalProcess()" class="btn btn-primary">Send</button>
+        <br><br>
+        <button v-if="technicalTest === false" v-on:click="technicalProcess()" class="btn btn-primary" style="float: center;">Send</button>
         <br>
         <br>
     </div>
@@ -95,7 +104,7 @@
      </div>
 
      <div class="" v-if="interview1 === true && interview2 === true && technicalTest === true && psikoTest === true && medicalCheckup === true">
-       <button v-if="accepted === false" v-on:click="acceptProcess()" class="btn btn-primary">Send</button>
+       <button v-if="accepted === false" v-on:click="acceptProcess()" class="btn btn-primary">Accept Applicant</button>
      </div>
 
      <!-- <input type="submit" class="btn btn-primary" value="OK"/> -->
@@ -115,7 +124,17 @@ export default {
       psikoTest: false,
       medicalCheckup: false,
       accepted: false,
-      detailCV: {}
+      detailCV: {},
+      idCvData: '',
+      totalMultipleEasy: '',
+      totalMultipleMedium: '',
+      totalMultipleHard: '',
+      totalEssayEasy: '',
+      totalEssayMedium: '',
+      totalEssayHard: '',
+      totalGenerateEasy: '',
+      totalGenerateMedium: '',
+      totalGenerateHard: ''
     }
   },
   methods: {
@@ -125,7 +144,7 @@ export default {
       self.$http.post('http://localhost:8080/cv/updateStatusApplicant', {
         uid: this.$route.params.id,
         statusApplicant: status }, (json) => {
-          window.location.href = this.$route.path
+          this.sendEmail('Intervew  1 Blibli', 'Anda harus intervew 1')
         })
     },
     interview2Process () {
@@ -134,16 +153,30 @@ export default {
       self.$http.post('http://localhost:8080/cv/updateStatusApplicant', {
         uid: this.$route.params.id,
         statusApplicant: status }, (json) => {
-          window.location.href = this.$route.path
+          this.sendEmail('Intervew  2 Blibli', 'Anda harus intervew 2')
         })
     },
     technicalProcess () {
       var self = this
       var status = 'technicalTest'
+      self.$http.post('http://localhost:8080/online-test/create-test', {
+        numEssayEasy: this.totalEssayEasy,
+        numEssayMedium: this.totalEssayMedium,
+        numEssayHard: this.totalEssayHard,
+        numMultipleChoicesEasy: this.totalMultipleEasy,
+        numMultipleChoicesMedium: this.totalMultipleMedium,
+        numMultipleChoicesHard: this.totalMultipleHard,
+        numProlbemGeneratorEasy: this.totalGenerateEasy,
+        numProlbemGeneratorMedium: this.totalGenerateMedium,
+        numProlbemGeneratorHard: this.totalGenerateHard,
+        idCv: this.idCvData
+      }).then(response => {
+        alert('Sukses Membuat Technical Test')
+      })
       self.$http.post('http://localhost:8080/cv/updateStatusApplicant', {
         uid: this.$route.params.id,
         statusApplicant: status }, (json) => {
-          window.location.href = this.$route.path
+          this.sendEmail('Technical Test Blibli', 'Anda harus tech test')
         })
     },
     psikoProcess () {
@@ -152,7 +185,7 @@ export default {
       self.$http.post('http://localhost:8080/cv/updateStatusApplicant', {
         uid: this.$route.params.id,
         statusApplicant: status }, (json) => {
-          window.location.href = this.$route.path
+          this.sendEmail('Psycho Test Blibli', 'Anda harus Psycho test')
         })
     },
     medicalProcess () {
@@ -161,7 +194,7 @@ export default {
       self.$http.post('http://localhost:8080/cv/updateStatusApplicant', {
         uid: this.$route.params.id,
         statusApplicant: status }, (json) => {
-          window.location.href = this.$route.path
+          this.sendEmail('Medical Checkup Blibli', 'Anda harus mengumpulkan medical checkup')
         })
     },
     acceptProcess () {
@@ -170,11 +203,21 @@ export default {
       self.$http.post('http://localhost:8080/cv/acceptCandidate', {
         uid: this.$route.params.id,
         statusApplicant: status }, (json) => {
+          this.sendEmail('SELAMAT', 'Selamat anda diterima')
+        })
+    },
+    sendEmail (subjectEmail, message) {
+      var self = this
+      self.$http.post('http://localhost:8080/mail/send', {
+        to: this.detailCV.emailAddress,
+        subject: subjectEmail,
+        text: message}, (json) => {
           window.location.href = this.$route.path
         })
     }
   },
   beforeMount () {
+    this.idCvData = this.$route.params.idCv
     this.$http.get('http://localhost:8080/cv/getCVByUid', {}, {
       headers: {
         'uid': this.$route.params.id
@@ -229,5 +272,10 @@ label {
 }
 .status-done {
   background-color: #62f442;
+}
+.technical-left {
+  text-align: left;
+  float: left;
+  padding-left: 0.5vw;
 }
 </style>

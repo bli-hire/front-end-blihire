@@ -346,9 +346,11 @@
       <textarea name="Text1" cols="140" rows="8" class="form-control" ></textarea>
        <br/>
 
-    <button type="submit" class="btn btn-primary" name="">Accept CV</button>
+    <button type="reset" class="btn btn-info" name="" v-on:click="printCv()">print CV</button>
 
-    <button type="reset" class="btn btn-warning" name="">Reject</button>
+    <button type="submit" class="btn btn-primary" name="" v-on:click="acceptCv()">Accept CV</button>
+    <button type="submit" class="btn btn-warning" name="" v-on:click="rejectCv()">Reject</button>
+
 
   </div>
 </template>
@@ -371,6 +373,29 @@ export default {
       this.detailCV = response.data[0]
       // alert(JSON.stringify(this.detailCV.bro[1]))
     })
+  },
+  methods: {
+    printCv () {
+      window.location.href = 'http://localhost:8080/cv/reportCV/' + this.$route.params.id
+    },
+    acceptCv () {
+      var self = this
+      var status = 'Process'
+      self.$http.post('http://localhost:8080/cv/updateStatusApplicant', {
+        uid: this.$route.params.id,
+        statusApplicant: status }, (json) => {
+          this.sendEmail('Medical Checkup Blibli', 'Anda harus mengumpulkan medical checkup')
+        })
+    },
+    rejectCv () {
+      var self = this
+      var status = 'Rejected'
+      self.$http.post('http://localhost:8080/cv/updateStatusApplicant', {
+        uid: this.$route.params.id,
+        statusApplicant: status }, (json) => {
+          this.sendEmail('Medical Checkup Blibli', 'Anda harus mengumpulkan medical checkup')
+        })
+    }
   }
 }
 </script>

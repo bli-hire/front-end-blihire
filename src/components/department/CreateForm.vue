@@ -229,6 +229,7 @@ export default {
   },
   props: ['content', 'edit'],
   beforeMount () {
+    this.indeksMppDetail = this.$route.query.indeksEditMpp
     this.departmentRequester = JSON.parse(window.sessionStorage.getItem('user')).department
     if (this.departmentRequester === 'Technology') {
       this.listJobPosition = [
@@ -462,7 +463,7 @@ export default {
         novemberExpect: self.novemberExpect,
         decemberExpect: self.decemberExpect
       }
-      var resultObjectDetailMppEdited = {
+      var resultObjectDetailMpp = {
         numberOfPerson: self.personNeededMpp,
         position: self.positionMpp,
         reason: self.reasonMpp,
@@ -474,9 +475,13 @@ export default {
         expectedJoin: self.expectedJoin,
         pcAmmount: self.pcNumberMpp,
         pcSpec: self.pcSpecMpp,
-        idRequested: self.idUserRequested
+        expectJoin: self.expectJoin
       }
-      this.arrayMppDetail[this.indeksMppDetail] = resultObjectDetailMppEdited
+      // alert(JSON.stringify(this.arrayMppDetail))
+      // Fungsi dibawah ini untuk mengecek data di localstorage, untuk array pertama
+      // alert(JSON.stringify(JSON.parse(window.localStorage.getItem('detailMpp'))[0]))
+
+      this.arrayMppDetail[this.indeksMppDetail] = resultObjectDetailMpp
       window.localStorage.setItem('detailMpp', JSON.stringify(this.arrayMppDetail))
       alert('Data Berhasil di ubah')
       this.$router.go(0)

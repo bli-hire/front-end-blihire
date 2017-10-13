@@ -58,7 +58,7 @@
 <script>
 export default {
   name: 'requested',
-  props: ['department', 'content'],
+  props: ['department', 'content', 'param'],
   data () {
     return {
       resultContent: {
