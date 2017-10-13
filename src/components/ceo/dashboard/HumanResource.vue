@@ -2,11 +2,11 @@
   <div class="content">
   <div v-if="content === 'fpk'">
     <BoxComponent
-      v-for="fpk in JSON.parse(resultContent.resultFpk)"
+      v-for="fpk in resultContent.resultFpk"
       v-bind:title="fpk.department"
       v-bind:message="'Reason : '+fpk.reason"
       v-bind:statusAccept="fpk.accept"
-      v-bind:statusReject="fpk.reject"
+      v-bind:statusReject="fpk.statusAccept"
       v-bind:statusCeo="fpk.approveCeo"
       v-bind:statusHead="fpk.approveHead"
       v-bind:loginStatus="'ceo'"
@@ -16,7 +16,7 @@
   </div>
   <div v-if="content === 'mpp'">
       <BoxComponent
-      v-for="mpp in JSON.parse(resultContent.resultMpp)"
+      v-for="mpp in resultContent.resultMpp"
       v-bind:title="mpp.department"
       v-bind:statusAccept="mpp.accept"
       v-bind:statusReject="mpp.reject"
@@ -28,8 +28,8 @@
       v-bind:id="mpp.id"></BoxComponent>
     </div>
 
-    <h2 class="msg-empty" v-if="content === 'fpk' && JSON.parse(resultContent.resultTotalFpk) === 0">There are no fpk ( {{param}} )</h2>
-    <h2 class="msg-empty" v-if="content === 'mpp' && JSON.parse(resultContent.resultTotalMpp) === 0">There are no mpp ( {{param}} )</h2>
+    <h2 class="msg-empty" v-if="content === 'fpk' && resultContent.resultTotalFpk === 0">There are no fpk ( {{param}} )</h2>
+    <h2 class="msg-empty" v-if="content === 'mpp' && resultContent.resultTotalMpp === 0">There are no mpp ( {{param}} )</h2>
     <!-- <h2 class="msg-empty" v-if="content === 'mpp'">There are no mpp ( {{param}} )</h2> -->
   </div>
 </template>
@@ -44,9 +44,9 @@ export default {
   data () {
     return {
       resultContent: {
-        resultFpk: {},
+        resultFpk: [],
         resultTotalFpk: 0,
-        resultMpp: {},
+        resultMpp: [],
         resultTotalMpp: 0
       },
       idUser: '',
@@ -66,8 +66,8 @@ export default {
             'department': division
           }
         }).then(response => {
-          var fpk = JSON.stringify(response.data.data)
-          var totalFpk = JSON.stringify(response.data.totalData)
+          var fpk = response.data.data
+          var totalFpk = response.data.totalData
           this.resultContent.resultFpk = fpk
           this.resultContent.resultTotalFpk = totalFpk
         })
@@ -78,8 +78,8 @@ export default {
             'role': this.approve
           }
         }).then(response => {
-          var fpk = JSON.stringify(response.data.data)
-          var totalFpk = JSON.stringify(response.data.totalData)
+          var fpk = response.data.data
+          var totalFpk = response.data.totalData
           this.resultContent.resultFpk = fpk
           this.resultContent.resultTotalFpk = totalFpk
         })
@@ -98,8 +98,8 @@ export default {
           if (response.data.data === '[]') {
             this.resultContent.resultTotalMpp = 0
           } else {
-            var mpp = JSON.stringify(response.data.data)
-            var totalMpp = JSON.stringify(response.data.totalData)
+            var mpp = response.data.data
+            var totalMpp = response.data.totalData
             this.resultContent.resultMpp = mpp
             this.resultContent.resultTotalMpp = totalMpp
           }
@@ -115,8 +115,8 @@ export default {
           if (response.data.data === '[]') {
             this.resultContent.resultTotalMpp = 0
           } else {
-            var mpp = JSON.stringify(response.data.data)
-            var totalMpp = JSON.stringify(response.data.totalData)
+            var mpp = response.data.data
+            var totalMpp = response.data.totalData
             this.resultContent.resultMpp = mpp
             this.resultContent.resultTotalMpp = totalMpp
           }
@@ -132,8 +132,8 @@ export default {
           if (response.data.data === '[]') {
             this.resultContent.resultTotalMpp = 0
           } else {
-            var mpp = JSON.stringify(response.data.data)
-            var totalMpp = JSON.stringify(response.data.totalData)
+            var mpp = response.data.data
+            var totalMpp = response.data.totalData
             this.resultContent.resultMpp = mpp
             this.resultContent.resultTotalMpp = totalMpp
           }
@@ -148,8 +148,8 @@ export default {
           if (response.data.data === '[]') {
             this.resultContent.resultTotalMpp = 0
           } else {
-            var mpp = JSON.stringify(response.data.data)
-            var totalMpp = JSON.stringify(response.data.totalData)
+            var mpp = response.data.data
+            var totalMpp = response.data.totalData
             this.resultContent.resultMpp = mpp
             this.resultContent.resultTotalMpp = totalMpp
           }

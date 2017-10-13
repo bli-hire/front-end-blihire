@@ -1,13 +1,15 @@
 <template>
   <div class="content content-job">
-      <h2>Pembuatan MPP</h2>
-      <h3>Department : {{department}}</h3>
-      <h4>Pengaju MPP : {{surename}}</h4>
-      <br><br>
-        <p>Berikut ini adalah posisi pekerjaan yang tersedia untuk department anda. Silahkan pilih salah satu untuk melanjutkan pembuatan MPP detail. </p>
-        <p>Jika sudah selesai mengisikan detail, silahkan melanjutkan dengan menekan tombol "Send MPP"</p>
-        <p>Jika sudah selesai mengosongkan seluruh data mpp yang hendak dibuat, silahkan tekan tombol "Clear MPP"</p>
-        <br>
+      <div v-if="this.role != 'HeadHR'">
+        <h2>Pembuatan MPP</h2>
+        <h3>Department : {{department}}</h3>
+        <h4>Pengaju MPP : {{surename}}</h4>
+        <br><br>
+          <p>Berikut ini adalah posisi pekerjaan yang tersedia untuk department anda. Silahkan pilih salah satu untuk melanjutkan pembuatan MPP detail. </p>
+          <p>Jika sudah selesai mengisikan detail, silahkan melanjutkan dengan menekan tombol "Send MPP"</p>
+          <p>Jika sudah selesai mengosongkan seluruh data mpp yang hendak dibuat, silahkan tekan tombol "Clear MPP"</p>
+          <br>
+      </div>
     <div class=""v-if="department === 'Technology'">
       <div class="list-group">
         <a class="list-group-item" data-toggle="collapse" href="#jobSystemDev">Sr. System Development Engineer</a>
@@ -370,6 +372,41 @@ export default {
             return false
           }
         }
+        if (this.department === 'HumanResource') {
+          if (this.detailMpp[i].position === jobPosition) {
+            return false
+          }
+        }
+        if (this.department === 'TradePartnership') {
+          if (this.detailMpp[i].position === jobPosition) {
+            return false
+          }
+        }
+        if (this.department === 'Operation') {
+          if (this.detailMpp[i].position === jobPosition) {
+            return false
+          }
+        }
+        if (this.department === 'BusinessDevelopment') {
+          if (this.detailMpp[i].position === jobPosition) {
+            return false
+          }
+        }
+        if (this.department === 'Finance') {
+          if (this.detailMpp[i].position === jobPosition) {
+            return false
+          }
+        }
+        if (this.department === 'ProjectManagement') {
+          if (this.detailMpp[i].position === jobPosition) {
+            return false
+          }
+        }
+        if (this.department === 'ProductManagement') {
+          if (this.detailMpp[i].position === jobPosition) {
+            return false
+          }
+        }
       }
       return true
     },
@@ -386,7 +423,9 @@ export default {
         idRequested: self.idRequested,
         mppDetails: this.detailMpp}, (json) => {
           alert('Sukses Terkirim')
-          this.$router.push('/' + self.role + '/')
+          localStorage.removeItem('detailMpp')
+          window.localStorage.clear
+          this.$router.go(0)
         })
     },
     clearLoc () {
@@ -395,12 +434,13 @@ export default {
     },
     getIndexEditMpp (jobPosition) {
       for (var i = 0; i < this.detailMpp.length; i++) {
-        if (this.detailMpp[i].position.jobPosition === jobPosition) {
+        if (this.detailMpp[i].position === jobPosition) {
           return i
         }
       }
     },
     editMppDetail (jobPosition) {
+      this.getIndexEditMpp(jobPosition)
       this.$router.push({
         path: 'create-new/detail-edit',
         query: {indeksEditMpp: this.getIndexEditMpp(jobPosition), jobPosition: jobPosition}
