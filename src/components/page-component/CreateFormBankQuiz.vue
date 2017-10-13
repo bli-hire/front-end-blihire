@@ -49,12 +49,6 @@
           <option v-bind:value="choiceD">{{choiceD}}</option>
         </select>
         <br>
-        <label for="">Generated</label>
-        <select class="form-control" name="" id="" v-model="canBeGenerated">
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-        <br>
         <button class="btn btn-primary pull-right" v-on:click="createAnswer()">Create</button>
         <button class="btn btn-warning pull-right">Reset</button>
       </div>
@@ -86,12 +80,6 @@
         <option value="Hard">Hard</option>
       </select>
       <br>
-      <label for="">Generated</label>
-      <select class="form-control" name="" id="" v-model="canBeGenerated">
-        <option value="No">No</option>
-        <option value="Yes">Yes</option>
-      </select>
-      <br>
       <button class="btn btn-primary pull-right" v-on:click="createAnswer()">Create</button>
       <button class="btn btn-warning pull-right">Reset</button>
     </div>
@@ -109,7 +97,6 @@ export default {
       choiceB: '',
       choiceC: '',
       choiceD: '',
-      canBeGenerated: '',
       department: '',
       difficulty: ''
     }
@@ -120,11 +107,6 @@ export default {
   },
   methods: {
     createAnswer () {
-      if (this.canBeGenerated === 'Yes') {
-        this.canBeGenerated = true
-      } else {
-        this.canBeGenerated = false
-      }
       if (this.content === 'multipleChoice') {
         if (this.validateFormMultiple() === false) {
           return
@@ -137,8 +119,7 @@ export default {
           'answerC': this.choiceC,
           'answerD': this.choiceD,
           'realAnswer': this.answer,
-          'difficulty': this.difficulty,
-          'canBeGenerated': this.canBeGenerated
+          'difficulty': this.difficulty
         }).then(response => {
           alert('Success')
           this.$router.push('/hrd/bank/quiz')
@@ -151,8 +132,7 @@ export default {
           'department': this.department,
           'problem': this.problem,
           'answer': this.answer,
-          'difficulty': this.difficulty,
-          'canBeGenerated': this.canBeGenerated
+          'difficulty': this.difficulty
         }).then(response => {
           alert('Success')
           this.$router.push('/hrd/bank/quiz')
@@ -162,14 +142,14 @@ export default {
     validateFormMultiple () {
       if (
         this.department === '' || this.problem === '' || this.choiceA === '' || this.answer === '' ||
-        this.choiceB === '' || this.choiceC === '' || this.choiceD === '' || this.canBeGenerated === '' || this.difficulty === '') {
+        this.choiceB === '' || this.choiceC === '' || this.choiceD === '' || this.difficulty === '') {
         alert('Please Fill the blank')
         return false
       }
       return true
     },
     validateFormEssay () {
-      if (this.department === '' || this.problem === '' || this.canBeGenerated === '' || this.difficulty === '') {
+      if (this.department === '' || this.problem === '' || this.difficulty === '') {
         alert('Please Fill the blank')
         return false
       }
